@@ -7,7 +7,7 @@ final class MethodChannelFreeFEOS extends FreeFEOSPlatform {
   final _methodChannel = const MethodChannel('freefeos');
 
   /// 方法通道调用参数
-  final Map<String, String> _arguments = const {'channel': 'ecosed_engine'};
+  final Map<String, String> _arguments = const {'channel': 'freefeos_engine'};
 
   @override
   Future<List?> getPlatformPluginList() async {
