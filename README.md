@@ -9,7 +9,7 @@
   <!-- 介绍 -->
   <span>
     <a href="https://pub.dev/packages/freefeos">FreeFEOS</a>
-    <span>:&nbsp</span>
+    <span>(WIP):&nbsp</span>
     <span>FreeFEOS 是一个 Flutter 插件, 也是一个简单的 Flutter 库操作系统和高级 Flutter 开发框架, 它能够为应用提供诸多高级功能.</span>
   </span>
 </p>
