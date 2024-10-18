@@ -90,9 +90,7 @@ base mixin AppMixin implements BaseWrapper {
 base mixin BaseEntry implements FreeFEOSInterface {
   /// 执行接口
   @override
-  FreeFEOSInterface get interface {
-    return SystemBase()();
-  }
+  FreeFEOSInterface get interface => SystemBase()();
 }
 
 /// 绑定层混入
@@ -197,6 +195,10 @@ base class SystemBase extends ContextWrapper
                 );
                 // 初始化控件绑定
                 WidgetsFlutterBinding.ensureInitialized();
+                // 初始化窗口管理
+                if (PlatformUtil.kIsDesktop) {
+                  await windowManager.ensureInitialized();
+                }
                 // 初始化内核桥接
                 await initKernelBridge();
                 // 初始化内核
@@ -229,7 +231,6 @@ base class SystemBase extends ContextWrapper
                 );
                 // 初始化窗口相关
                 if (PlatformUtil.kIsDesktop) {
-                  await windowManager.ensureInitialized();
                   await windowManager.waitUntilReadyToShow(
                     const WindowOptions(
                       center: true,

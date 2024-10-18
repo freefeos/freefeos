@@ -3,20 +3,18 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:freefeos/freefeos.dart';
 
-// Future<void> main() async {
-//   /// 初始化FreeFEOSRunner
-//   final run = FreeFEOSRunner(
-//     runner: (app) async => runApp(app), // 使用默认的runApp作为运行器启动应用
-//     plugins: [ExamplePlugin()], // 插件列表
-//     initApi: (exec) async => Global.exec = exec,
-//     enabled: true,
-//   );
+Future<void> main() async {
+  /// 初始化运行器
+  final run = FreeFEOSRunner(
+    runner: (app) async => runApp(app), // 使用默认的runApp作为运行器启动应用
+    plugins: [ExamplePlugin()], // 插件列表
+    initApi: (exec) async => Global.exec = exec,
+    enabled: true,
+  );
 
-//   /// 使用FreeFEOSRunner启动应用
-//   await run(app: const MyApp());
-// }
-
-Future<void> main() => runFFApp(const MyApp());
+  /// 使用运行器启动应用
+  await run(app: const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

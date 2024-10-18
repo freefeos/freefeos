@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:freefeos/src/entry/default_entry.dart';
+import 'package:freefeos/src/entry/system_entry.dart';
 import 'package:freefeos/src/interface/system_interface.dart';
 import 'package:freefeos/src/plugin/plugin_runtime.dart';
 import 'package:freefeos/src/type/types.dart';
@@ -54,8 +54,8 @@ class MockFreeFEOSInterface
 void main() {
   final FreeFEOSInterface initialInterface = FreeFEOSInterface.instance;
 
-  test('$DefaultEntry 是默认实例.', () {
-    expect(initialInterface, isInstanceOf<DefaultEntry>());
+  test('$SystemEntry 是默认实例.', () {
+    expect(initialInterface, isInstanceOf<SystemEntry>());
   });
 
   test('runFreeFEOSApp 接口调用正常.', () async {

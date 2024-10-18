@@ -132,8 +132,8 @@ typedef FreeFEOSExec = MethodExecer;
 ///   }
 /// }
 /// ```
-abstract base class FreeFEOSBase {
-  const FreeFEOSBase();
+abstract base class BaseRegister {
+  const BaseRegister();
 
   void call() {
     FreeFEOSInterface.instance = SystemEntry();
@@ -194,10 +194,10 @@ final class FreeFEOSRunner {
     required Widget app,
   }) {
     return FreeFEOSInterface.instance.runFreeFEOSApp(
-      runner: runner ?? (app) async => runApp(app),
-      plugins: plugins ?? [],
-      initApi: initApi ?? (_) async {},
-      enabled: enabled ?? false,
+      runner: runner,
+      plugins: plugins,
+      initApi: initApi,
+      enabled: enabled,
       app: app,
       error: null,
     );

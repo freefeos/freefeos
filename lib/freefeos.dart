@@ -5,12 +5,12 @@ import 'src/export/export.dart';
 
 export 'src/export/export.dart'
     show FreeFEOSPlugin, FreeFEOSExec, FreeFEOSRunner, runFFApp
-    hide FreeFEOSBase;
+    hide BaseRegister;
 
 /// 平台插件注册
 ///
 /// 插件注册由Flutter框架接管, 请勿手动注册.
-final class FreeFEOSRegister extends FreeFEOSBase {
+final class FreeFEOSRegister extends BaseRegister {
   const FreeFEOSRegister();
 
   /// 注册插件

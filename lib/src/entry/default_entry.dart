@@ -2,7 +2,6 @@ import 'package:flutter/widgets.dart';
 
 import '../framework/log.dart';
 import '../interface/system_interface.dart';
-
 import '../type/types.dart';
 import '../values/tag.dart';
 
