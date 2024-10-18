@@ -6,7 +6,6 @@ import 'package:window_manager/window_manager.dart';
 import '../embedder/embedder_mixin.dart';
 import '../engine/bridge_mixin.dart';
 import '../framework/context.dart';
-import '../interface/config.dart';
 import '../kernel/kernel.dart';
 import '../plugin/plugin_runtime.dart';
 import '../runtime/runtime.dart';
@@ -37,14 +36,8 @@ abstract interface class BaseWrapper {
   /// 用户App
   Widget get child;
 
-  /// 系统配置
-  SystemConfig get config;
-
   /// 导入用户App
-  Future<void> includeApp(
-    SystemConfig config,
-    Widget child,
-  );
+  Future<void> includeApp(Widget child);
 
   /// 获取带有导航主机的上下文
   BuildContext get context;
@@ -59,7 +52,6 @@ abstract interface class BaseWrapper {
   ViewModel buildViewModel(
     BuildContext context,
     ContextAttacher attach,
-    SystemConfig config,
     Widget child,
   );
 
@@ -85,26 +77,13 @@ base mixin AppMixin implements BaseWrapper {
   /// 应用
   static late Widget _child;
 
-  /// 配置
-  static late SystemConfig _config;
-
   /// 获取应用
   @override
   Widget get child => _child;
 
-  /// 获取配置
-  @override
-  SystemConfig get config => _config;
-
   /// 导入应用
   @override
-  Future<void> includeApp(
-    SystemConfig config,
-    Widget child,
-  ) async {
-    _config = config;
-    _child = child;
-  }
+  Future<void> includeApp(Widget child) async => _child = child;
 }
 
 /// 入口混入
@@ -177,7 +156,6 @@ base class SystemBase extends ContextWrapper
       (context) => buildViewModel(
         context,
         super.attachContext,
-        super.config,
         super.child,
       ),
     );
@@ -197,15 +175,17 @@ base class SystemBase extends ContextWrapper
   @protected
   @override
   Future<void> runFreeFEOSApp({
-    required SystemImport import,
-    required SystemConfig config,
+    required AppRunner? runner,
+    required PluginList? plugins,
+    required ApiBuilder? initApi,
+    required bool? enabled,
     required Widget app,
     required dynamic error,
   }) async {
     // 判断是否启用框架, 如果在浏览器中运行不启用.
-    return (config.enabled ?? false) && (!PlatformUtil.kIsWebBrowser)
+    return (enabled ?? false) && (!PlatformUtil.kIsWebBrowser)
         // 导入App
-        ? includeApp(config, app).then(
+        ? includeApp(app).then(
             (_) async {
               try {
                 // 初始化日志
@@ -230,9 +210,9 @@ base class SystemBase extends ContextWrapper
                 // 初始化引擎
                 await engineBridgerScope.onCreateEngine(baseContext);
                 // 初始化应用
-                await init(import.plugins ?? <RuntimePlugin>[]);
+                await init(plugins ?? <RuntimePlugin>[]);
                 // 初始化API
-                await (import.initApi ?? (_) async {})(
+                await (initApi ?? (_) async {})(
                   (
                     String channel,
                     String method, [
@@ -253,7 +233,7 @@ base class SystemBase extends ContextWrapper
                   await windowManager.waitUntilReadyToShow(
                     const WindowOptions(
                       center: true,
-                      minimumSize: Size(400, 700),
+                      minimumSize: Size(600, 400),
                       alwaysOnTop: false,
                       skipTaskbar: false,
                       titleBarStyle: TitleBarStyle.hidden,
@@ -266,7 +246,7 @@ base class SystemBase extends ContextWrapper
                   );
                 }
                 // 调用运行器启动应用
-                return await (import.runner ?? (app) async => runApp(app))(
+                return await (runner ?? (app) async => runApp(app))(
                   WidgetUtil.layout2Widget(findApplication()),
                 );
               } catch (_) {
@@ -283,7 +263,7 @@ base class SystemBase extends ContextWrapper
             },
           )
         // 未启用框架时直接调用运行器启动应用
-        : (import.runner ?? (app) async => runApp(app))(app);
+        : (runner ?? (app) async => runApp(app))(app);
   }
 
   /// 初始化应用
@@ -307,7 +287,6 @@ base class SystemBase extends ContextWrapper
   ViewModel buildViewModel(
     BuildContext context,
     ContextAttacher attach,
-    SystemConfig config,
     Widget child,
   ) {
     return this;

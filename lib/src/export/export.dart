@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:freefeos/src/values/url.dart';
 
 import '../entry/system_entry.dart';
 import '../interface/platform_interface.dart';
@@ -159,38 +158,29 @@ abstract base class FreeFEOSBase {
 /// ```
 final class FreeFEOSRunner {
   const FreeFEOSRunner._({
-    required this.import,
-    required this.config,
+    required this.runner,
+    required this.plugins,
+    required this.initApi,
+    required this.enabled,
   });
 
-  final AppImport import;
-  final AppConfig config;
+  final AppRunner? runner;
+  final PluginList? plugins;
+  final ApiBuilder? initApi;
+  final bool? enabled;
 
   /// 工厂构建函数
   factory FreeFEOSRunner({
-    Future<void> Function(Widget app)? runner,
-    List<FreeFEOSPlugin>? plugins,
-    Future<void> Function(FreeFEOSExec exec)? initApi,
-    String? developer,
-    String? description,
-    Uri? official,
-    Uri? feedback,
+    AppRunner? runner,
+    PluginList? plugins,
+    ApiBuilder? initApi,
     bool? enabled,
   }) {
     return FreeFEOSRunner._(
-      import: AppImport(
-        runner: runner ?? (app) async => runApp(app),
-        plugins: plugins ?? [],
-        initApi: initApi ?? (_) async {},
-      ),
-      config: AppConfig(
-        enabled: enabled ?? false,
-        developer: developer ?? 'freefeos by wyq0918dev',
-        description: description ?? 'Based on FreeFEOS',
-        official: official ?? Uri.parse(pubDevUrl),
-        feedback: feedback ??
-            Uri.parse('https://github.com/freefeos/freefeos/issues'),
-      ),
+      runner: runner,
+      plugins: plugins,
+      initApi: initApi,
+      enabled: enabled,
     );
   }
 
@@ -204,8 +194,10 @@ final class FreeFEOSRunner {
     required Widget app,
   }) {
     return FreeFEOSInterface.instance.runFreeFEOSApp(
-      import: import,
-      config: config,
+      runner: runner ?? (app) async => runApp(app),
+      plugins: plugins ?? [],
+      initApi: initApi ?? (_) async {},
+      enabled: enabled ?? false,
       app: app,
       error: null,
     );

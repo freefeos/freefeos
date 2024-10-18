@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import '../base/base.dart';
 import '../framework/context.dart';
 import '../framework/log.dart';
-import '../interface/config.dart';
 import '../interface/system_interface.dart';
 import '../plugin/plugin_details.dart';
 import '../plugin/plugin_runtime.dart';
@@ -109,13 +108,11 @@ final class SystemRuntime extends SystemBase {
   ViewModel buildViewModel(
     BuildContext context,
     ContextAttacher attach,
-    SystemConfig config,
     Widget child,
   ) {
     return SystemViewModel(
       context: context,
       contextAttacher: attach,
-      config: config,
       pluginDetailsList: _pluginDetailsList,
       pluginGetter: _getPlugin,
       pluginWidgetGetter: _getPluginWidget,

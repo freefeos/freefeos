@@ -44,7 +44,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "bottomSheetTooltip": MessageLookupByLibrary.simpleMessage("菜单"),
         "closeDialogCancelButton": MessageLookupByLibrary.simpleMessage("取消"),
         "closeDialogExitButton": MessageLookupByLibrary.simpleMessage("退出"),
-        "closeDialogMessage": MessageLookupByLibrary.simpleMessage("是否退出应用?"),
+        "closeDialogMessage":
+            MessageLookupByLibrary.simpleMessage("是否退出应用?\n此功能在iOS下不可用,请直接退出."),
         "closeDialogTitle": MessageLookupByLibrary.simpleMessage("退出应用"),
         "error": MessageLookupByLibrary.simpleMessage("错误"),
         "infoTitle": MessageLookupByLibrary.simpleMessage("应用信息"),

@@ -250,10 +250,10 @@ class IntlLocalizations {
     );
   }
 
-  /// `是否退出应用?`
+  /// `是否退出应用?\n此功能在iOS下不可用,请直接退出.`
   String get closeDialogMessage {
     return Intl.message(
-      '是否退出应用?',
+      '是否退出应用?\n此功能在iOS下不可用,请直接退出.',
       name: 'closeDialogMessage',
       desc: '',
       args: [],

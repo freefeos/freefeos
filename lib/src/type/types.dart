@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 
 import '../framework/log.dart';
-import '../interface/config.dart';
 import '../plugin/plugin_details.dart';
 import '../plugin/plugin_runtime.dart';
 
@@ -9,8 +8,6 @@ import '../plugin/plugin_runtime.dart';
 typedef ApiBuilder = Future<void> Function(MethodExecer exec);
 typedef AppRunner = Future<void> Function(Widget app);
 typedef PluginList = List<RuntimePlugin>;
-typedef AppImport = SystemImport;
-typedef AppConfig = SystemConfig;
 typedef MethodExecer = Future<dynamic> Function(
   String channel,
   String method, [

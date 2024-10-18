@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import '../entry/default_entry.dart';
-import 'config.dart';
+import '../type/types.dart';
 
 /// 实现平台接口的抽象类
 abstract class FreeFEOSInterface extends PlatformInterface {
@@ -28,8 +28,10 @@ abstract class FreeFEOSInterface extends PlatformInterface {
 
   /// 运行应用
   Future<void> runFreeFEOSApp({
-    required SystemImport import,
-    required SystemConfig config,
+    required AppRunner? runner,
+    required PluginList? plugins,
+    required ApiBuilder? initApi,
+    required bool? enabled,
     required Widget app,
     required dynamic error,
   }) async {

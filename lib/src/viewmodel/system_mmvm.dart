@@ -6,7 +6,6 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:window_manager/window_manager.dart';
 
 import '../framework/context.dart';
-import '../interface/config.dart';
 import '../intl/l10n.dart';
 import '../plugin/plugin_details.dart';
 import '../plugin/plugin_type.dart';
@@ -94,7 +93,6 @@ final class SystemViewModel extends ContextWrapper
   SystemViewModel({
     required BuildContext context,
     required this.contextAttacher,
-    required this.config,
     required this.pluginDetailsList,
     required this.pluginGetter,
     required this.pluginWidgetGetter,
@@ -106,8 +104,6 @@ final class SystemViewModel extends ContextWrapper
 
   /// 上下文附加器
   final ContextAttacher contextAttacher;
-
-  final SystemConfig config;
 
   /// 插件列表
   final List<PluginDetails> pluginDetailsList;

@@ -1,9 +1,9 @@
 import 'package:flutter/widgets.dart';
 
 import '../framework/log.dart';
-import '../interface/config.dart';
 import '../interface/system_interface.dart';
 
+import '../type/types.dart';
 import '../values/tag.dart';
 
 /// 无法正确加载平台时的实现
@@ -13,15 +13,17 @@ final class DefaultEntry extends FreeFEOSInterface {
   /// 入口函数
   @override
   Future<void> runFreeFEOSApp({
-    required SystemImport import,
-    required SystemConfig config,
+    required AppRunner? runner,
+    required PluginList? plugins,
+    required ApiBuilder? initApi,
+    required bool? enabled,
     required Widget app,
     required dynamic error,
   }) {
-    return (config.enabled ?? false)
+    return (enabled ?? false)
         ? () async {
             try {
-              await (import.initApi ?? (_) async {})(
+              await (initApi ?? (_) async {})(
                 (
                   String channel,
                   String method, [
@@ -38,25 +40,27 @@ final class DefaultEntry extends FreeFEOSInterface {
                   return await null;
                 },
               );
-              return await (import.runner ?? (app) async => runApp(app))(
+              return await (runner ?? (app) async => runApp(app))(
                 app,
               ).then(
                 (_) => Log.w(
                   tag: entryTag,
                   message: '不支持当前平台,\n'
                       '框架所有代码将不会参与执行,\n'
-                      '${(import.plugins ?? []).length}个插件不会被加载.\n',
+                      '${(plugins ?? []).length}个插件不会被加载.\n',
                 ),
               );
             } catch (exception) {
               return await super.runFreeFEOSApp(
-                import: import,
-                config: config,
+                runner: runner,
+                plugins: plugins,
+                initApi: initApi,
+                enabled: enabled,
                 app: app,
                 error: exception,
               );
             }
           }()
-        : (import.runner ?? (app) async => runApp(app))(app);
+        : (runner ?? (app) async => runApp(app))(app);
   }
 }

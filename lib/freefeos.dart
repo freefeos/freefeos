@@ -4,7 +4,7 @@ library;
 import 'src/export/export.dart';
 
 export 'src/export/export.dart'
-    show FreeFEOSPlugin, FreeFEOSExec, FreeFEOSRunner
+    show FreeFEOSPlugin, FreeFEOSExec, FreeFEOSRunner, runFFApp
     hide FreeFEOSBase;
 
 /// 平台插件注册
