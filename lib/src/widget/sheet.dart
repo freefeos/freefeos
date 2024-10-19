@@ -18,449 +18,443 @@ class SystemSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<SystemViewModel>(
-      builder: (context, viewModel, child) {
-        return AlertDialog(
-          title: ListTile(
-            leading: FlutterLogo(),
-            title: FutureBuilder(
-              future: viewModel.getAppName(),
-              builder: (context, snapshot) {
-                String text = IntlLocalizations.of(
-                  context,
-                ).unknown;
-                switch (snapshot.connectionState) {
-                  case ConnectionState.waiting:
-                    text = IntlLocalizations.of(
-                      context,
-                    ).waiting;
-                    break;
-                  case ConnectionState.done:
-                    if (snapshot.hasError) {
-                      text = IntlLocalizations.of(
-                        context,
-                      ).error;
-                      break;
-                    }
-                    if (snapshot.hasData) {
-                      text = snapshot.data ??
-                          IntlLocalizations.of(
-                            context,
-                          ).sNull;
-                      break;
-                    }
-                    break;
-                  default:
-                    break;
-                }
-                return Text(text);
-              },
-            ),
-            subtitle: FutureBuilder(
-              future: viewModel.getAppVersion(),
-              builder: (context, snapshot) {
-                String text = IntlLocalizations.of(
-                  context,
-                ).unknown;
-                switch (snapshot.connectionState) {
-                  case ConnectionState.waiting:
-                    text = IntlLocalizations.of(
-                      context,
-                    ).waiting;
-                    break;
-                  case ConnectionState.done:
-                    if (snapshot.hasError) {
-                      text = IntlLocalizations.of(
-                        context,
-                      ).error;
-                      break;
-                    }
-                    if (snapshot.hasData) {
-                      text = snapshot.data ??
-                          IntlLocalizations.of(
-                            context,
-                          ).sNull;
-                      break;
-                    }
-                    break;
-                  default:
-                    break;
-                }
-                return Text(text);
-              },
-            ),
-            trailing: Icon(Icons.keyboard_arrow_right),
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(28),
-                topRight: Radius.circular(28),
-              ),
-            ),
-            contentPadding: EdgeInsets.only(
-              left: 24,
-              top: 8,
-              right: 24,
-              bottom: 0,
-            ),
-            onTap: () {
-              Navigator.of(
+      builder: (context, viewModel, _) => AlertDialog(
+        title: ListTile(
+          leading: FlutterLogo(),
+          title: FutureBuilder(
+            future: viewModel.getAppName(),
+            builder: (context, snapshot) {
+              String text = IntlLocalizations.of(
                 context,
-                rootNavigator: true,
-              ).pop();
-              showDialog(
-                context: context,
-                useRootNavigator: true,
-                builder: (context) => SystemAbout(
-                  isPackage: false,
-                ),
-              );
+              ).unknown;
+              switch (snapshot.connectionState) {
+                case ConnectionState.waiting:
+                  text = IntlLocalizations.of(
+                    context,
+                  ).waiting;
+                  break;
+                case ConnectionState.done:
+                  if (snapshot.hasError) {
+                    text = IntlLocalizations.of(
+                      context,
+                    ).error;
+                    break;
+                  }
+                  if (snapshot.hasData) {
+                    text = snapshot.data ??
+                        IntlLocalizations.of(
+                          context,
+                        ).sNull;
+                    break;
+                  }
+                  break;
+                default:
+                  break;
+              }
+              return Text(text);
             },
           ),
-          titlePadding: EdgeInsets.zero,
-          content: Wrap(
-            children: [
-              SheetButton(
-                onTap: () {
-                  Navigator.of(
+          subtitle: FutureBuilder(
+            future: viewModel.getAppVersion(),
+            builder: (context, snapshot) {
+              String text = IntlLocalizations.of(
+                context,
+              ).unknown;
+              switch (snapshot.connectionState) {
+                case ConnectionState.waiting:
+                  text = IntlLocalizations.of(
                     context,
-                    rootNavigator: true,
-                  ).pop();
-                  Navigator.of(
-                    context,
-                    rootNavigator: true,
-                  ).pushNamed(routeManager);
-                },
-                icon: Icons.manage_accounts_outlined,
-                label: IntlLocalizations.of(
-                  context,
-                ).bottomSheetManager,
-                tooltip: IntlLocalizations.of(
-                  context,
-                ).bottomSheetManagerTooltip,
-                enabled: !isManager,
-              ),
-              SheetButton(
-                onTap: () async {
-                  Navigator.of(
-                    context,
-                    rootNavigator: true,
-                  ).pop();
-                },
-                icon: Icons.link,
-                label: '官网',
-                tooltip: '官网',
-                enabled: true,
-              ),
-              SheetButton(
-                onTap: () async {
-                  Navigator.of(
-                    context,
-                    rootNavigator: true,
-                  ).pop();
-                },
-                icon: Icons.feedback_outlined,
-                label: '反馈',
-                tooltip: '反馈',
-                enabled: true,
-              ),
-              SheetButton(
-                onTap: () {
-                  Navigator.of(
-                    context,
-                    rootNavigator: true,
-                  ).pop();
-                  showDialog(
-                    context: context,
-                    useRootNavigator: true,
-                    builder: (context) => const SystemExit(),
-                  );
-                },
-                icon: Icons.exit_to_app,
-                label: IntlLocalizations.of(
-                  context,
-                ).bottomSheetExit,
-                tooltip: IntlLocalizations.of(
-                  context,
-                ).bottomSheetExitToolTip,
-                enabled: true,
-              ),
-            ],
-          ),
-          actions: [
-            Tooltip(
-              message: 'cancel',
-              child: TextButton(
-                onPressed: () => Navigator.of(
-                  context,
-                  rootNavigator: true,
-                ).pop(),
-                child: Text('cancel'),
-              ),
-            )
-          ],
-        );
-      },
-    );
-
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Expanded(
-          child: Consumer<SystemViewModel>(
-            builder: (context, viewModel, child) => ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(28),
-                topRight: Radius.circular(28),
-              ),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    ListTile(
-                      leading: const FlutterLogo(),
-                      trailing: Tooltip(
-                        message: IntlLocalizations.of(
+                  ).waiting;
+                  break;
+                case ConnectionState.done:
+                  if (snapshot.hasError) {
+                    text = IntlLocalizations.of(
+                      context,
+                    ).error;
+                    break;
+                  }
+                  if (snapshot.hasData) {
+                    text = snapshot.data ??
+                        IntlLocalizations.of(
                           context,
-                        ).bottomSheetAboutTooltip,
-                        child: IconButton(
-                          padding: EdgeInsets.zero,
-                          onPressed: () {
-                            Navigator.of(
-                              context,
-                              rootNavigator: true,
-                            ).pop();
-                            showDialog(
-                              context: context,
-                              builder: (context) => SystemAbout(
-                                isPackage: false,
-                              ),
-                            );
-                          },
-                          icon: const Icon(Icons.keyboard_arrow_right),
-                        ),
-                      ),
-                      title: FutureBuilder(
-                        future: viewModel.getAppName(),
-                        builder: (context, snapshot) {
-                          String text = IntlLocalizations.of(
-                            context,
-                          ).unknown;
-                          switch (snapshot.connectionState) {
-                            case ConnectionState.waiting:
-                              text = IntlLocalizations.of(
-                                context,
-                              ).waiting;
-                              break;
-                            case ConnectionState.done:
-                              if (snapshot.hasError) {
-                                text = IntlLocalizations.of(
-                                  context,
-                                ).error;
-                                break;
-                              }
-                              if (snapshot.hasData) {
-                                text = snapshot.data ??
-                                    IntlLocalizations.of(
-                                      context,
-                                    ).sNull;
-                                break;
-                              }
-                              break;
-                            default:
-                              break;
-                          }
-                          return Text(text);
-                        },
-                      ),
-                      subtitle: const Text('这是开发者的名字'),
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(28),
-                          topRight: Radius.circular(28),
-                        ),
-                      ),
-                    ),
-                    Tooltip(
-                      message: '',
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                bottom: 16,
-                                left: 16,
-                                right: 24,
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  FutureBuilder(
-                                    future: viewModel.getAppVersion(),
-                                    builder: (context, snapshot) {
-                                      String text = IntlLocalizations.of(
-                                        context,
-                                      ).unknown;
-                                      switch (snapshot.connectionState) {
-                                        case ConnectionState.waiting:
-                                          text = IntlLocalizations.of(
-                                            context,
-                                          ).waiting;
-                                          break;
-                                        case ConnectionState.done:
-                                          if (snapshot.hasError) {
-                                            text = IntlLocalizations.of(
-                                              context,
-                                            ).error;
-                                            break;
-                                          }
-                                          if (snapshot.hasData) {
-                                            text = snapshot.data ??
-                                                IntlLocalizations.of(
-                                                  context,
-                                                ).sNull;
-                                            break;
-                                          }
-                                          break;
-                                        default:
-                                          break;
-                                      }
-                                      return Text(
-                                        text,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelMedium,
-                                      );
-                                    },
-                                  ),
-                                  Text(
-                                    '这里是应用的介绍文字',
-                                    style:
-                                        Theme.of(context).textTheme.labelSmall,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    const Divider(
-                      height: 1,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: 8,
-                        top: 16,
-                        bottom: 6,
-                        right: 20,
-                      ),
-                      child: Wrap(
-                        children: [
-                          SheetButton(
-                            onTap: () {
-                              Navigator.of(
-                                context,
-                                rootNavigator: true,
-                              ).pop();
-                              Navigator.of(
-                                context,
-                                rootNavigator: true,
-                              ).pushNamed(routeManager);
-                            },
-                            icon: Icons.manage_accounts_outlined,
-                            label: IntlLocalizations.of(
-                              context,
-                            ).bottomSheetManager,
-                            tooltip: IntlLocalizations.of(
-                              context,
-                            ).bottomSheetManagerTooltip,
-                            enabled: !isManager,
-                          ),
-                          SheetButton(
-                            onTap: () async {
-                              Navigator.of(
-                                context,
-                                rootNavigator: true,
-                              ).pop();
-                            },
-                            icon: Icons.link,
-                            label: '官网',
-                            tooltip: '官网',
-                            enabled: true,
-                          ),
-                          SheetButton(
-                            onTap: () async {
-                              Navigator.of(
-                                context,
-                                rootNavigator: true,
-                              ).pop();
-                            },
-                            icon: Icons.feedback_outlined,
-                            label: '反馈',
-                            tooltip: '反馈',
-                            enabled: true,
-                          ),
-                          SheetButton(
-                            onTap: () {
-                              Navigator.of(
-                                context,
-                                rootNavigator: true,
-                              ).pop();
-                              showDialog(
-                                context: context,
-                                useRootNavigator: true,
-                                builder: (context) => const SystemExit(),
-                              );
-                            },
-                            icon: Icons.exit_to_app,
-                            label: IntlLocalizations.of(
-                              context,
-                            ).bottomSheetExit,
-                            tooltip: IntlLocalizations.of(
-                              context,
-                            ).bottomSheetExitToolTip,
-                            enabled: true,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+                        ).sNull;
+                    break;
+                  }
+                  break;
+                default:
+                  break;
+              }
+              return Text(text);
+            },
+          ),
+          trailing: Icon(Icons.keyboard_arrow_right),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(28),
+              topRight: Radius.circular(28),
             ),
           ),
-        ),
-        const Divider(
-          height: 1,
-        ),
-        Tooltip(
-          message: IntlLocalizations.of(
-            context,
-          ).bottomSheetCloseTooltip,
-          child: ListTile(
-            title: Align(
-              alignment: Alignment.center,
-              child: Text(
-                IntlLocalizations.of(
-                  context,
-                ).bottomSheetClose,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-              ),
-            ),
-            contentPadding: EdgeInsets.only(
-              bottom: MediaQuery.paddingOf(context).bottom,
-            ),
-            onTap: () => Navigator.of(
+          contentPadding: EdgeInsets.only(
+            left: 24,
+            top: 8,
+            right: 24,
+            bottom: 0,
+          ),
+          onTap: () {
+            Navigator.of(
               context,
               rootNavigator: true,
-            ).pop(),
-          ),
+            ).pop();
+            showDialog(
+              context: context,
+              useRootNavigator: true,
+              builder: (context) => SystemAbout(
+                isPackage: false,
+              ),
+            );
+          },
         ),
-      ],
+        titlePadding: EdgeInsets.zero,
+        content: Wrap(
+          alignment: WrapAlignment.center,
+          children: <SheetButton>[
+            SheetButton(
+              onTap: () {
+                Navigator.of(
+                  context,
+                  rootNavigator: true,
+                ).pop();
+                Navigator.of(
+                  context,
+                  rootNavigator: true,
+                ).pushNamed(routeManager);
+              },
+              icon: Icons.manage_accounts_outlined,
+              label: IntlLocalizations.of(
+                context,
+              ).bottomSheetManager,
+              tooltip: IntlLocalizations.of(
+                context,
+              ).bottomSheetManagerTooltip,
+              enabled: !isManager,
+            ),
+            SheetButton(
+              onTap: () {
+                Navigator.of(
+                  context,
+                  rootNavigator: true,
+                ).pop();
+                showDialog(
+                  context: context,
+                  useRootNavigator: true,
+                  builder: (context) => const SystemAbout(
+                    isPackage: false,
+                  ),
+                );
+              },
+              icon: Icons.info_outline,
+              label: '关于',
+              tooltip: '关于',
+              enabled: true,
+            ),
+            SheetButton(
+              onTap: () {
+                Navigator.of(
+                  context,
+                  rootNavigator: true,
+                ).pop();
+                showDialog(
+                  context: context,
+                  useRootNavigator: true,
+                  builder: (context) => const SystemExit(),
+                );
+              },
+              icon: Icons.exit_to_app,
+              label: IntlLocalizations.of(
+                context,
+              ).bottomSheetExit,
+              tooltip: IntlLocalizations.of(
+                context,
+              ).bottomSheetExitToolTip,
+              enabled: true,
+            ),
+          ],
+        ),
+        actions: <Widget>[
+          Tooltip(
+            message: 'cancel',
+            child: TextButton(
+              onPressed: () => Navigator.of(
+                context,
+                rootNavigator: true,
+              ).pop(),
+              child: Text('cancel'),
+            ),
+          )
+        ],
+      ),
     );
+
+    // return Column(
+    //   mainAxisSize: MainAxisSize.max,
+    //   mainAxisAlignment: MainAxisAlignment.start,
+    //   crossAxisAlignment: CrossAxisAlignment.start,
+    //   children: [
+    //     Expanded(
+    //       child: Consumer<SystemViewModel>(
+    //         builder: (context, viewModel, child) => ClipRRect(
+    //           borderRadius: const BorderRadius.only(
+    //             topLeft: Radius.circular(28),
+    //             topRight: Radius.circular(28),
+    //           ),
+    //           child: SingleChildScrollView(
+    //             child: Column(
+    //               children: [
+    //                 ListTile(
+    //                   leading: const FlutterLogo(),
+    //                   trailing: Tooltip(
+    //                     message: IntlLocalizations.of(
+    //                       context,
+    //                     ).bottomSheetAboutTooltip,
+    //                     child: IconButton(
+    //                       padding: EdgeInsets.zero,
+    //                       onPressed: () {
+    //                         Navigator.of(
+    //                           context,
+    //                           rootNavigator: true,
+    //                         ).pop();
+    //                         showDialog(
+    //                           context: context,
+    //                           builder: (context) => SystemAbout(
+    //                             isPackage: false,
+    //                           ),
+    //                         );
+    //                       },
+    //                       icon: const Icon(Icons.keyboard_arrow_right),
+    //                     ),
+    //                   ),
+    //                   title: FutureBuilder(
+    //                     future: viewModel.getAppName(),
+    //                     builder: (context, snapshot) {
+    //                       String text = IntlLocalizations.of(
+    //                         context,
+    //                       ).unknown;
+    //                       switch (snapshot.connectionState) {
+    //                         case ConnectionState.waiting:
+    //                           text = IntlLocalizations.of(
+    //                             context,
+    //                           ).waiting;
+    //                           break;
+    //                         case ConnectionState.done:
+    //                           if (snapshot.hasError) {
+    //                             text = IntlLocalizations.of(
+    //                               context,
+    //                             ).error;
+    //                             break;
+    //                           }
+    //                           if (snapshot.hasData) {
+    //                             text = snapshot.data ??
+    //                                 IntlLocalizations.of(
+    //                                   context,
+    //                                 ).sNull;
+    //                             break;
+    //                           }
+    //                           break;
+    //                         default:
+    //                           break;
+    //                       }
+    //                       return Text(text);
+    //                     },
+    //                   ),
+    //                   subtitle: const Text('这是开发者的名字'),
+    //                   shape: const RoundedRectangleBorder(
+    //                     borderRadius: BorderRadius.only(
+    //                       topLeft: Radius.circular(28),
+    //                       topRight: Radius.circular(28),
+    //                     ),
+    //                   ),
+    //                 ),
+    //                 Tooltip(
+    //                   message: '',
+    //                   child: Row(
+    //                     children: [
+    //                       Expanded(
+    //                         child: Padding(
+    //                           padding: const EdgeInsets.only(
+    //                             bottom: 16,
+    //                             left: 16,
+    //                             right: 24,
+    //                           ),
+    //                           child: Column(
+    //                             crossAxisAlignment: CrossAxisAlignment.start,
+    //                             mainAxisAlignment: MainAxisAlignment.start,
+    //                             children: [
+    //                               FutureBuilder(
+    //                                 future: viewModel.getAppVersion(),
+    //                                 builder: (context, snapshot) {
+    //                                   String text = IntlLocalizations.of(
+    //                                     context,
+    //                                   ).unknown;
+    //                                   switch (snapshot.connectionState) {
+    //                                     case ConnectionState.waiting:
+    //                                       text = IntlLocalizations.of(
+    //                                         context,
+    //                                       ).waiting;
+    //                                       break;
+    //                                     case ConnectionState.done:
+    //                                       if (snapshot.hasError) {
+    //                                         text = IntlLocalizations.of(
+    //                                           context,
+    //                                         ).error;
+    //                                         break;
+    //                                       }
+    //                                       if (snapshot.hasData) {
+    //                                         text = snapshot.data ??
+    //                                             IntlLocalizations.of(
+    //                                               context,
+    //                                             ).sNull;
+    //                                         break;
+    //                                       }
+    //                                       break;
+    //                                     default:
+    //                                       break;
+    //                                   }
+    //                                   return Text(
+    //                                     text,
+    //                                     style: Theme.of(context)
+    //                                         .textTheme
+    //                                         .labelMedium,
+    //                                   );
+    //                                 },
+    //                               ),
+    //                               Text(
+    //                                 '这里是应用的介绍文字',
+    //                                 style:
+    //                                     Theme.of(context).textTheme.labelSmall,
+    //                               ),
+    //                             ],
+    //                           ),
+    //                         ),
+    //                       )
+    //                     ],
+    //                   ),
+    //                 ),
+    //                 const Divider(
+    //                   height: 1,
+    //                 ),
+    //                 Padding(
+    //                   padding: const EdgeInsets.only(
+    //                     left: 8,
+    //                     top: 16,
+    //                     bottom: 6,
+    //                     right: 20,
+    //                   ),
+    //                   child: Wrap(
+    //                     children: [
+    //                       SheetButton(
+    //                         onTap: () {
+    //                           Navigator.of(
+    //                             context,
+    //                             rootNavigator: true,
+    //                           ).pop();
+    //                           Navigator.of(
+    //                             context,
+    //                             rootNavigator: true,
+    //                           ).pushNamed(routeManager);
+    //                         },
+    //                         icon: Icons.manage_accounts_outlined,
+    //                         label: IntlLocalizations.of(
+    //                           context,
+    //                         ).bottomSheetManager,
+    //                         tooltip: IntlLocalizations.of(
+    //                           context,
+    //                         ).bottomSheetManagerTooltip,
+    //                         enabled: !isManager,
+    //                       ),
+    //                       SheetButton(
+    //                         onTap: () async {
+    //                           Navigator.of(
+    //                             context,
+    //                             rootNavigator: true,
+    //                           ).pop();
+    //                         },
+    //                         icon: Icons.link,
+    //                         label: '官网',
+    //                         tooltip: '官网',
+    //                         enabled: true,
+    //                       ),
+    //                       SheetButton(
+    //                         onTap: () async {
+    //                           Navigator.of(
+    //                             context,
+    //                             rootNavigator: true,
+    //                           ).pop();
+    //                         },
+    //                         icon: Icons.feedback_outlined,
+    //                         label: '反馈',
+    //                         tooltip: '反馈',
+    //                         enabled: true,
+    //                       ),
+    //                       SheetButton(
+    //                         onTap: () {
+    //                           Navigator.of(
+    //                             context,
+    //                             rootNavigator: true,
+    //                           ).pop();
+    //                           showDialog(
+    //                             context: context,
+    //                             useRootNavigator: true,
+    //                             builder: (context) => const SystemExit(),
+    //                           );
+    //                         },
+    //                         icon: Icons.exit_to_app,
+    //                         label: IntlLocalizations.of(
+    //                           context,
+    //                         ).bottomSheetExit,
+    //                         tooltip: IntlLocalizations.of(
+    //                           context,
+    //                         ).bottomSheetExitToolTip,
+    //                         enabled: true,
+    //                       ),
+    //                     ],
+    //                   ),
+    //                 ),
+    //               ],
+    //             ),
+    //           ),
+    //         ),
+    //       ),
+    //     ),
+    //     const Divider(
+    //       height: 1,
+    //     ),
+    //     Tooltip(
+    //       message: IntlLocalizations.of(
+    //         context,
+    //       ).bottomSheetCloseTooltip,
+    //       child: ListTile(
+    //         title: Align(
+    //           alignment: Alignment.center,
+    //           child: Text(
+    //             IntlLocalizations.of(
+    //               context,
+    //             ).bottomSheetClose,
+    //             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+    //                   color: Theme.of(context).colorScheme.primary,
+    //                 ),
+    //           ),
+    //         ),
+    //         contentPadding: EdgeInsets.only(
+    //           bottom: MediaQuery.paddingOf(context).bottom,
+    //         ),
+    //         onTap: () => Navigator.of(
+    //           context,
+    //           rootNavigator: true,
+    //         ).pop(),
+    //       ),
+    //     ),
+    //   ],
+    // );
   }
 }
 

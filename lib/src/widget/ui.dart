@@ -51,17 +51,13 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
   @override
   void onWindowMaximize() {
     super.onWindowMaximize();
-    setState(
-      () => _maxIcon = Icons.fullscreen_exit,
-    );
+    setState(() => _maxIcon = Icons.fullscreen_exit);
   }
 
   @override
   void onWindowUnmaximize() {
     super.onWindowUnmaximize();
-    setState(
-      () => _maxIcon = Icons.fullscreen,
-    );
+    setState(() => _maxIcon = Icons.fullscreen);
   }
 
   @override
@@ -263,7 +259,13 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
                                     useRootNavigator: true,
                                     builder: (context) => const SystemExit(),
                                   ),
-                                  onLongPress: viewModel.exitApp,
+                                  onLongPress: () => showDialog(
+                                    context: context,
+                                    useRootNavigator: true,
+                                    builder: (context) => const SystemSheet(
+                                      isManager: false,
+                                    ),
+                                  ),
                                   borderRadius: const BorderRadius.only(
                                     topRight: Radius.circular(20),
                                     bottomRight: Radius.circular(20),
@@ -389,13 +391,14 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
               ),
               actions: [
                 Consumer<SystemViewModel>(
-                  builder: (context, viewModel, child) => Tooltip(
+                  builder: (context, viewModel, _) => Tooltip(
                     message: IntlLocalizations.of(
                       context,
                     ).bottomSheetTooltip,
                     child: IconButton(
-                      onPressed: () => showModalBottomSheet(
+                      onPressed: () => showDialog(
                         context: context,
+                        useRootNavigator: true,
                         builder: (context) => const SystemSheet(
                           isManager: true,
                         ),
