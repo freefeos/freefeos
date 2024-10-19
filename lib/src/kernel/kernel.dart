@@ -19,14 +19,14 @@ abstract class KernelModule {}
 final class KernelBridge extends KernelModule {
   /// TODO: 内核相关操作
   Future<void> onCreateKernel() async {
-    final kernel = FreeFEOSKernel();
+    final kernel = SystemKernel();
     await kernel.initHandle();
   }
 }
 
 /// 内核
-final class FreeFEOSKernel extends KernelModule {
-  FreeFEOSKernel() {
+final class SystemKernel extends KernelModule {
+  SystemKernel() {
     RustLib.init();
   }
 
