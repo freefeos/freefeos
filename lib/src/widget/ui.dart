@@ -219,7 +219,7 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
                             child: Row(
                               children: [
                                 InkWell(
-                                  onTap: () => showModalBottomSheet(
+                                  onTap: () => showDialog(
                                     context: context,
                                     useRootNavigator: true,
                                     builder: (context) => const SystemSheet(

@@ -502,7 +502,20 @@ class _PluginPageState extends State<PluginPage> {
                             useRootNavigator: true,
                             builder: (context) {
                               return AlertDialog(
-                                title: Text('打不开'),
+                                title: Text('无界面'),
+                                content: Text('此插件未提供用户界面.'),
+                                actions: [
+                                  Tooltip(
+                                    message: '确定',
+                                    child: TextButton(
+                                      onPressed: () => Navigator.of(
+                                        context,
+                                        rootNavigator: true,
+                                      ).pop(),
+                                      child: Text('确定'),
+                                    ),
+                                  )
+                                ],
                               );
                             },
                           ),
