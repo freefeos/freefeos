@@ -38,9 +38,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "bottomSheetManager": MessageLookupByLibrary.simpleMessage("管理器"),
         "bottomSheetManagerTooltip":
             MessageLookupByLibrary.simpleMessage("打开管理器"),
-        "bottomSheetSettings": MessageLookupByLibrary.simpleMessage("设置"),
-        "bottomSheetSettingsTooltip":
-            MessageLookupByLibrary.simpleMessage("打开设置"),
         "bottomSheetTooltip": MessageLookupByLibrary.simpleMessage("菜单"),
         "closeDialogCancelButton": MessageLookupByLibrary.simpleMessage("取消"),
         "closeDialogExitButton": MessageLookupByLibrary.simpleMessage("退出"),
@@ -48,7 +45,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("是否退出应用?\n此功能在iOS下不可用,请直接退出."),
         "closeDialogTitle": MessageLookupByLibrary.simpleMessage("退出应用"),
         "error": MessageLookupByLibrary.simpleMessage("错误"),
-        "infoTitle": MessageLookupByLibrary.simpleMessage("应用信息"),
         "managerDestinationHome": MessageLookupByLibrary.simpleMessage("主页"),
         "managerDestinationLog": MessageLookupByLibrary.simpleMessage("日志"),
         "managerDestinationPlugin": MessageLookupByLibrary.simpleMessage("插件"),
@@ -92,7 +88,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("未知类型插件"),
         "managerTitle": MessageLookupByLibrary.simpleMessage("系统管理器"),
         "sNull": MessageLookupByLibrary.simpleMessage("空"),
-        "settingsTitle": MessageLookupByLibrary.simpleMessage("设置"),
         "unknown": MessageLookupByLibrary.simpleMessage("未知"),
         "viewModelTypeError":
             MessageLookupByLibrary.simpleMessage("View Model 类型错误!"),

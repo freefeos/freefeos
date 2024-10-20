@@ -10,8 +10,6 @@
     "bottomSheetManager": "管理器",
     "bottomSheetManagerTooltip": "打开管理器",
     "bottomSheetAboutTooltip": "打开关于对话框",
-    "bottomSheetSettings": "设置",
-    "bottomSheetSettingsTooltip": "打开设置",
     "bottomSheetClose": "取消",
     "bottomSheetCloseTooltip": "关闭对话框",
     "bottomSheetExit": "退出",
@@ -52,7 +50,5 @@
     "managerPluginActionNoUI": "无界面",
     "managerPluginTooltipOpen": "打开插件的界面",
     "managerPluginTooltipAbout": "关于本框架",
-    "managerPluginTooltipNoUI": "此插件没有界面",
-    "infoTitle": "应用信息",
-    "settingsTitle": "设置"
+    "managerPluginTooltipNoUI": "此插件没有界面"
 }

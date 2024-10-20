@@ -7,8 +7,8 @@ import '../viewmodel/system_mmvm.dart';
 import 'about.dart';
 import 'exit.dart';
 
-class SystemSheet extends StatelessWidget {
-  const SystemSheet({
+class SystemDialog extends StatelessWidget {
+  const SystemDialog({
     super.key,
     required this.isManager,
   });

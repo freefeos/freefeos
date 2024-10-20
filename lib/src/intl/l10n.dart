@@ -150,26 +150,6 @@ class IntlLocalizations {
     );
   }
 
-  /// `设置`
-  String get bottomSheetSettings {
-    return Intl.message(
-      '设置',
-      name: 'bottomSheetSettings',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `打开设置`
-  String get bottomSheetSettingsTooltip {
-    return Intl.message(
-      '打开设置',
-      name: 'bottomSheetSettingsTooltip',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `取消`
   String get bottomSheetClose {
     return Intl.message(
@@ -575,26 +555,6 @@ class IntlLocalizations {
     return Intl.message(
       '此插件没有界面',
       name: 'managerPluginTooltipNoUI',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `应用信息`
-  String get infoTitle {
-    return Intl.message(
-      '应用信息',
-      name: 'infoTitle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `设置`
-  String get settingsTitle {
-    return Intl.message(
-      '设置',
-      name: 'settingsTitle',
       desc: '',
       args: [],
     );

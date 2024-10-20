@@ -228,7 +228,7 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
                                     onTap: () => showDialog(
                                       context: context,
                                       useRootNavigator: true,
-                                      builder: (_) => const SystemSheet(
+                                      builder: (_) => const SystemDialog(
                                         isManager: false,
                                       ),
                                     ),
@@ -398,7 +398,7 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
                     onPressed: () => showDialog(
                       context: context,
                       useRootNavigator: true,
-                      builder: (_) => const SystemSheet(
+                      builder: (_) => const SystemDialog(
                         isManager: true,
                       ),
                     ),

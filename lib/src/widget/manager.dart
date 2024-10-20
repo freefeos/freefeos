@@ -482,154 +482,166 @@ class _PluginPageState extends State<PluginPage> {
                       right: 12,
                     ),
                     child: Card(
-                      child: InkWell(
-                        onTap: () => viewModel.clickPlugin(
-                          context,
-                          details,
-                          () => Navigator.of(
+                      child: Tooltip(
+                        message: viewModel.getPluginTooltip(context, details),
+                        child: InkWell(
+                          onTap: () => viewModel.clickPlugin(
                             context,
-                            rootNavigator: true,
-                          ).pushNamed(routePlugin),
-                          () => showDialog(
-                            context: context,
-                            useRootNavigator: true,
-                            builder: (context) => const SystemAbout(
-                              isPackage: true,
+                            details,
+                            () => Navigator.of(
+                              context,
+                              rootNavigator: true,
+                            ).pushNamed(routePlugin),
+                            () => showDialog(
+                              context: context,
+                              useRootNavigator: true,
+                              builder: (context) => const SystemAbout(
+                                isPackage: true,
+                              ),
                             ),
-                          ),
-                          () => showDialog(
-                            context: context,
-                            useRootNavigator: true,
-                            builder: (context) {
-                              return AlertDialog(
-                                title: Text('无界面'),
-                                content: Text('此插件未提供用户界面.'),
-                                actions: [
-                                  Tooltip(
-                                    message: '确定',
-                                    child: TextButton(
-                                      onPressed: () => Navigator.of(
-                                        context,
-                                        rootNavigator: true,
-                                      ).pop(),
-                                      child: Text('确定'),
-                                    ),
-                                  )
-                                ],
-                              );
-                            },
-                          ),
-                        ),
-                        borderRadius: BorderRadius.circular(12),
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(24, 16, 24, 8),
-                          child: Consumer<SystemViewModel>(
-                            builder: (context, viewModel, child) => Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            details.title,
-                                            textAlign: TextAlign.start,
-                                            style: TextStyle(
-                                              fontSize: Theme.of(
-                                                context,
-                                              ).textTheme.titleMedium?.fontSize,
-                                              fontFamily: Theme.of(
-                                                context,
-                                              )
-                                                  .textTheme
-                                                  .titleMedium
-                                                  ?.fontFamily,
-                                              height: Theme.of(
-                                                context,
-                                              ).textTheme.bodySmall?.height,
-                                              fontWeight: FontWeight.bold,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ),
-                                          Text(
-                                            '${IntlLocalizations.of(context).managerPluginChannel}: ${details.channel}',
-                                            textAlign: TextAlign.start,
-                                            style: TextStyle(
-                                              fontSize: Theme.of(
-                                                context,
-                                              ).textTheme.bodySmall?.fontSize,
-                                              fontFamily: Theme.of(
-                                                context,
-                                              ).textTheme.bodySmall?.fontFamily,
-                                              height: Theme.of(
-                                                context,
-                                              ).textTheme.bodySmall?.height,
-                                            ),
-                                          ),
-                                          Text(
-                                            '${IntlLocalizations.of(context).managerPluginAuthor}: ${details.author}',
-                                            textAlign: TextAlign.start,
-                                            style: TextStyle(
-                                              fontSize: Theme.of(
-                                                context,
-                                              ).textTheme.bodySmall?.fontSize,
-                                              fontFamily: Theme.of(
-                                                context,
-                                              ).textTheme.bodySmall?.fontFamily,
-                                              height: Theme.of(
-                                                context,
-                                              ).textTheme.bodySmall?.height,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Container(
-                                      child: viewModel.getPluginIcon(
-                                        context,
-                                        details,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 12),
-                                Text(
-                                  details.description,
-                                  textAlign: TextAlign.start,
-                                  style: Theme.of(
-                                    context,
-                                  ).textTheme.bodySmall?.apply(
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                  maxLines: 4,
-                                ),
-                                const SizedBox(height: 16),
-                                const Divider(),
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                        vertical: 8,
-                                      ),
-                                      child: Text(
-                                        viewModel.getPluginType(
+                            () => showDialog(
+                              context: context,
+                              useRootNavigator: true,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text('无界面'),
+                                  content: Text('此插件未提供用户界面.'),
+                                  actions: [
+                                    Tooltip(
+                                      message: '确定',
+                                      child: TextButton(
+                                        onPressed: () => Navigator.of(
                                           context,
-                                          details,
-                                        ),
-                                        textAlign: TextAlign.start,
-                                        style: Theme.of(
-                                          context,
-                                        ).textTheme.bodySmall,
+                                          rootNavigator: true,
+                                        ).pop(),
+                                        child: Text('确定'),
                                       ),
                                     )
                                   ],
-                                ),
-                              ],
+                                );
+                              },
+                            ),
+                          ),
+                          borderRadius: BorderRadius.circular(12),
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(24, 16, 24, 8),
+                            child: Consumer<SystemViewModel>(
+                              builder: (context, viewModel, child) => Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              details.title,
+                                              textAlign: TextAlign.start,
+                                              style: TextStyle(
+                                                fontSize: Theme.of(
+                                                  context,
+                                                )
+                                                    .textTheme
+                                                    .titleMedium
+                                                    ?.fontSize,
+                                                fontFamily: Theme.of(
+                                                  context,
+                                                )
+                                                    .textTheme
+                                                    .titleMedium
+                                                    ?.fontFamily,
+                                                height: Theme.of(
+                                                  context,
+                                                ).textTheme.bodySmall?.height,
+                                                fontWeight: FontWeight.bold,
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ),
+                                            Text(
+                                              '${IntlLocalizations.of(context).managerPluginChannel}: ${details.channel}',
+                                              textAlign: TextAlign.start,
+                                              style: TextStyle(
+                                                fontSize: Theme.of(
+                                                  context,
+                                                ).textTheme.bodySmall?.fontSize,
+                                                fontFamily: Theme.of(
+                                                  context,
+                                                )
+                                                    .textTheme
+                                                    .bodySmall
+                                                    ?.fontFamily,
+                                                height: Theme.of(
+                                                  context,
+                                                ).textTheme.bodySmall?.height,
+                                              ),
+                                            ),
+                                            Text(
+                                              '${IntlLocalizations.of(context).managerPluginAuthor}: ${details.author}',
+                                              textAlign: TextAlign.start,
+                                              style: TextStyle(
+                                                fontSize: Theme.of(
+                                                  context,
+                                                ).textTheme.bodySmall?.fontSize,
+                                                fontFamily: Theme.of(
+                                                  context,
+                                                )
+                                                    .textTheme
+                                                    .bodySmall
+                                                    ?.fontFamily,
+                                                height: Theme.of(
+                                                  context,
+                                                ).textTheme.bodySmall?.height,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        child: viewModel.getPluginIcon(
+                                          context,
+                                          details,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 12),
+                                  Text(
+                                    details.description,
+                                    textAlign: TextAlign.start,
+                                    style: Theme.of(
+                                      context,
+                                    ).textTheme.bodySmall?.apply(
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                    maxLines: 4,
+                                  ),
+                                  const SizedBox(height: 16),
+                                  const Divider(),
+                                  Row(
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                          vertical: 8,
+                                        ),
+                                        child: Text(
+                                          viewModel.getPluginType(
+                                            context,
+                                            details,
+                                          ),
+                                          textAlign: TextAlign.start,
+                                          style: Theme.of(
+                                            context,
+                                          ).textTheme.bodySmall,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
