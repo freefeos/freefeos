@@ -182,13 +182,13 @@ class SystemDialog extends StatelessWidget {
         ),
         actions: <Widget>[
           Tooltip(
-            message: 'cancel',
+            message: '关闭对话框',
             child: TextButton(
               onPressed: () => Navigator.of(
                 context,
                 rootNavigator: true,
               ).pop(),
-              child: Text('cancel'),
+              child: Text('取消'),
             ),
           )
         ],
