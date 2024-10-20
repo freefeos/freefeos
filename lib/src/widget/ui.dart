@@ -12,7 +12,6 @@ import '../utils/utils.dart';
 import '../values/route.dart';
 import '../values/strings.dart';
 import '../viewmodel/system_mmvm.dart';
-import 'about.dart';
 import 'exit.dart';
 import 'manager.dart';
 import 'sheet.dart';
@@ -73,7 +72,7 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
         );
       },
       home: Consumer<SystemViewModel>(
-        builder: (context, viewModel, child) {
+        builder: (context, viewModel, _) {
           viewModel.attachBuildContext(context);
           return Stack(
             children: <Positioned>[
@@ -125,45 +124,26 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
                               color: Colors.transparent,
                               child: Row(
                                 children: <Widget>[
-                                  InkWell(
-                                    onTap: viewModel.minimizeWindow,
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(20),
-                                      bottomLeft: Radius.circular(20),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 12,
-                                        vertical: 3,
+                                  Tooltip(
+                                    message: '最小化',
+                                    child: InkWell(
+                                      onTap: viewModel.minimizeWindow,
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(20),
+                                        bottomLeft: Radius.circular(20),
                                       ),
-                                      child: Icon(
-                                        Icons.minimize,
-                                        color: Theme.of(context).brightness ==
-                                                Brightness.light
-                                            ? Colors.white
-                                            : Colors.black,
-                                      ),
-                                    ),
-                                  ),
-                                  VerticalDivider(
-                                    indent: 6,
-                                    endIndent: 6,
-                                    width: 1,
-                                    color: Colors.white.withOpacity(0.3),
-                                  ),
-                                  InkWell(
-                                    onTap: viewModel.maximizeWindow,
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 12,
-                                        vertical: 3,
-                                      ),
-                                      child: Icon(
-                                        _maxIcon,
-                                        color: Theme.of(context).brightness ==
-                                                Brightness.light
-                                            ? Colors.white
-                                            : Colors.black,
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 12,
+                                          vertical: 3,
+                                        ),
+                                        child: Icon(
+                                          Icons.minimize,
+                                          color: Theme.of(context).brightness ==
+                                                  Brightness.light
+                                              ? Colors.white
+                                              : Colors.black,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -173,23 +153,51 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
                                     width: 1,
                                     color: Colors.white.withOpacity(0.3),
                                   ),
-                                  InkWell(
-                                    onTap: viewModel.closeWindow,
-                                    borderRadius: const BorderRadius.only(
-                                      topRight: Radius.circular(20),
-                                      bottomRight: Radius.circular(20),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 12,
-                                        vertical: 3,
+                                  Tooltip(
+                                    message: '最大化',
+                                    child: InkWell(
+                                      onTap: viewModel.maximizeWindow,
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 12,
+                                          vertical: 3,
+                                        ),
+                                        child: Icon(
+                                          _maxIcon,
+                                          color: Theme.of(context).brightness ==
+                                                  Brightness.light
+                                              ? Colors.white
+                                              : Colors.black,
+                                        ),
                                       ),
-                                      child: Icon(
-                                        Icons.close,
-                                        color: Theme.of(context).brightness ==
-                                                Brightness.light
-                                            ? Colors.white
-                                            : Colors.black,
+                                    ),
+                                  ),
+                                  VerticalDivider(
+                                    indent: 6,
+                                    endIndent: 6,
+                                    width: 1,
+                                    color: Colors.white.withOpacity(0.3),
+                                  ),
+                                  Tooltip(
+                                    message: '关闭窗口',
+                                    child: InkWell(
+                                      onTap: viewModel.closeWindow,
+                                      borderRadius: const BorderRadius.only(
+                                        topRight: Radius.circular(20),
+                                        bottomRight: Radius.circular(20),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 12,
+                                          vertical: 3,
+                                        ),
+                                        child: Icon(
+                                          Icons.close,
+                                          color: Theme.of(context).brightness ==
+                                                  Brightness.light
+                                              ? Colors.white
+                                              : Colors.black,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -214,36 +222,32 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
                             color: Colors.transparent,
                             child: Row(
                               children: [
-                                InkWell(
-                                  onTap: () => showDialog(
-                                    context: context,
-                                    useRootNavigator: true,
-                                    builder: (context) => const SystemSheet(
-                                      isManager: false,
+                                Tooltip(
+                                  message: '系统菜单',
+                                  child: InkWell(
+                                    onTap: () => showDialog(
+                                      context: context,
+                                      useRootNavigator: true,
+                                      builder: (_) => const SystemSheet(
+                                        isManager: false,
+                                      ),
                                     ),
-                                  ),
-                                  onLongPress: () => showDialog(
-                                    context: context,
-                                    useRootNavigator: true,
-                                    builder: (context) => const SystemAbout(
-                                      isPackage: false,
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      bottomLeft: Radius.circular(20),
                                     ),
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(20),
-                                    bottomLeft: Radius.circular(20),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 12,
-                                      vertical: 3,
-                                    ),
-                                    child: Icon(
-                                      Icons.more_horiz,
-                                      color: Theme.of(context).brightness ==
-                                              Brightness.light
-                                          ? Colors.white
-                                          : Colors.black,
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 12,
+                                        vertical: 3,
+                                      ),
+                                      child: Icon(
+                                        Icons.more_horiz,
+                                        color: Theme.of(context).brightness ==
+                                                Brightness.light
+                                            ? Colors.white
+                                            : Colors.black,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -253,34 +257,30 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
                                   width: 1,
                                   color: Colors.white.withOpacity(0.3),
                                 ),
-                                InkWell(
-                                  onTap: () => showDialog(
-                                    context: context,
-                                    useRootNavigator: true,
-                                    builder: (context) => const SystemExit(),
-                                  ),
-                                  onLongPress: () => showDialog(
-                                    context: context,
-                                    useRootNavigator: true,
-                                    builder: (context) => const SystemSheet(
-                                      isManager: false,
+                                Tooltip(
+                                  message: '退出应用',
+                                  child: InkWell(
+                                    onTap: () => showDialog(
+                                      context: context,
+                                      useRootNavigator: true,
+                                      builder: (_) => const SystemExit(),
                                     ),
-                                  ),
-                                  borderRadius: const BorderRadius.only(
-                                    topRight: Radius.circular(20),
-                                    bottomRight: Radius.circular(20),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 12,
-                                      vertical: 3,
+                                    borderRadius: const BorderRadius.only(
+                                      topRight: Radius.circular(20),
+                                      bottomRight: Radius.circular(20),
                                     ),
-                                    child: Icon(
-                                      Icons.adjust,
-                                      color: Theme.of(context).brightness ==
-                                              Brightness.light
-                                          ? Colors.white
-                                          : Colors.black,
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 12,
+                                        vertical: 3,
+                                      ),
+                                      child: Icon(
+                                        Icons.adjust,
+                                        color: Theme.of(context).brightness ==
+                                                Brightness.light
+                                            ? Colors.white
+                                            : Colors.black,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -357,7 +357,7 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
               beginWidth: 840,
             ),
             selectedIndex: _currentIndex,
-            body: (context) => PageTransitionSwitcher(
+            body: (_) => PageTransitionSwitcher(
               duration: const Duration(
                 milliseconds: 300,
               ),
@@ -390,21 +390,19 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
                 ).managerTitle,
               ),
               actions: [
-                Consumer<SystemViewModel>(
-                  builder: (context, viewModel, _) => Tooltip(
-                    message: IntlLocalizations.of(
-                      context,
-                    ).bottomSheetTooltip,
-                    child: IconButton(
-                      onPressed: () => showDialog(
-                        context: context,
-                        useRootNavigator: true,
-                        builder: (context) => const SystemSheet(
-                          isManager: true,
-                        ),
+                Tooltip(
+                  message: IntlLocalizations.of(
+                    context,
+                  ).bottomSheetTooltip,
+                  child: IconButton(
+                    onPressed: () => showDialog(
+                      context: context,
+                      useRootNavigator: true,
+                      builder: (_) => const SystemSheet(
+                        isManager: true,
                       ),
-                      icon: const Icon(Icons.more_vert),
                     ),
+                    icon: const Icon(Icons.more_vert),
                   ),
                 ),
               ],
@@ -414,7 +412,7 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
         },
         routePlugin: (context) {
           return Consumer<SystemViewModel>(
-            builder: (context, viewModel, child) => Scaffold(
+            builder: (context, viewModel, _) => Scaffold(
               appBar: AppBar(
                 title: Text(
                   viewModel.getCurrentDetails.title,
