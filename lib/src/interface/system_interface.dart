@@ -1,18 +1,20 @@
 import 'package:flutter/widgets.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-import '../entry/default_entry.dart';
+import '../framework/log.dart';
 import '../type/types.dart';
+import '../values/tag.dart';
 
 /// 实现平台接口的抽象类
-abstract class FreeFEOSInterface extends PlatformInterface {
+class FreeFEOSInterface extends PlatformInterface {
   FreeFEOSInterface() : super(token: _token);
 
   /// 令牌
   static final Object _token = Object();
+  static final FreeFEOSInterface _default = FreeFEOSInterface();
 
   /// 实例
-  static FreeFEOSInterface _instance = DefaultEntry();
+  static FreeFEOSInterface _instance = _default;
 
   /// 获取实例
   static FreeFEOSInterface get instance => _instance;
@@ -35,10 +37,42 @@ abstract class FreeFEOSInterface extends PlatformInterface {
     required Widget app,
     required dynamic error,
   }) async {
-    if (error != null) {
-      throw FlutterError(error.toString());
-    } else {
-      throw UnimplementedError('未实现runFreeFEOSApp方法');
-    }
+    return (error == null)
+        ? (enabled ?? false)
+            ? () async {
+                try {
+                  await (initApi ?? (_) async {})(
+                    (
+                      String channel,
+                      String method, [
+                      dynamic arguments,
+                    ]) async {
+                      Log.w(
+                        tag: entryTag,
+                        message: '不支持当前平台,\n'
+                            '当前调用的插件通道: $channel,\n'
+                            '方法名: $method,\n'
+                            '携带参数: $arguments,\n'
+                            '无法执行操作, 将返回空.',
+                      );
+                      return await null;
+                    },
+                  );
+                  return await (runner ?? (app) async => runApp(app))(
+                    app,
+                  ).then(
+                    (_) => Log.w(
+                      tag: entryTag,
+                      message: '不支持当前平台,\n'
+                          '框架所有代码将不会参与执行,\n'
+                          '${(plugins ?? []).length}个插件不会被加载.\n',
+                    ),
+                  );
+                } catch (exception) {
+                  throw FlutterError(exception.toString());
+                }
+              }()
+            : (runner ?? (app) async => runApp(app))(app)
+        : throw FlutterError(error.toString());
   }
 }

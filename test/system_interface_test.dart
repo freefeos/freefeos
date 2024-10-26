@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:freefeos/src/entry/system_entry.dart';
 import 'package:freefeos/src/interface/system_interface.dart';
 import 'package:freefeos/src/plugin/plugin_runtime.dart';
 import 'package:freefeos/src/type/types.dart';
 import 'package:freefeos/src/values/strings.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-class MockFreeFEOSInterface
+final class MockFreeFEOSInterface
     with MockPlatformInterfaceMixin
     implements FreeFEOSInterface, RuntimePlugin {
   bool isInitialized = false;
@@ -54,8 +53,8 @@ class MockFreeFEOSInterface
 void main() {
   final FreeFEOSInterface initialInterface = FreeFEOSInterface.instance;
 
-  test('$SystemEntry 是默认实例.', () {
-    expect(initialInterface, isInstanceOf<SystemEntry>());
+  test('$FreeFEOSInterface 是默认实例.', () {
+    expect(initialInterface, isInstanceOf<FreeFEOSInterface>());
   });
 
   test('runFreeFEOSApp 接口调用正常.', () async {

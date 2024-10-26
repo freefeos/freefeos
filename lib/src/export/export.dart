@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import '../entry/system_entry.dart';
+import '../entry/entry.dart';
 import '../interface/platform_interface.dart';
 import '../interface/system_interface.dart';
 import '../platform/method_channel.dart';
