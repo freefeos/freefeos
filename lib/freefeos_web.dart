@@ -1,20 +1,20 @@
-/// Web插件注册
-library;
+// /// Web插件注册
+// library;
 
-import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+// import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
-import 'src/export/export.dart';
+// import 'src/export/export.dart';
 
-/// 平台插件注册
-///
-/// 插件注册由Flutter框架接管, 请勿手动注册.
-final class FreeFEOSRegister extends BaseRegister {
-  const FreeFEOSRegister();
+// /// 平台插件注册
+// ///
+// /// 插件注册由Flutter框架接管, 请勿手动注册.
+// final class FreeFEOSRegister extends BaseRegister {
+//   const FreeFEOSRegister();
 
-  /// 注册插件
-  ///
-  /// 插件注册由Flutter框架接管, 请勿手动注册.
-  static void registerWith(Registrar _) {
-    const FreeFEOSRegister()();
-  }
-}
+//   /// 注册插件
+//   ///
+//   /// 插件注册由Flutter框架接管, 请勿手动注册.
+//   static void registerWith(Registrar _) {
+//     const FreeFEOSRegister()();
+//   }
+// }
