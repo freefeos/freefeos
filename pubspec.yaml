@@ -73,11 +73,10 @@ flutter:
         pluginClass: FreeFEOSRegister
         ffiPlugin: true
   assets:
-    - AUTHORS
-    - LICENSE
     - README.md
     - CHANGELOG.md
-    - screenshot.png
+    - LICENSE
+    - AUTHORS
 
 flutter_intl:
   enabled: true

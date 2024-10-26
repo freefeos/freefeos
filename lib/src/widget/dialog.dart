@@ -19,100 +19,101 @@ class SystemDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<SystemViewModel>(
       builder: (context, viewModel, _) => AlertDialog(
-        title: ListTile(
-          leading: FlutterLogo(),
-          title: FutureBuilder(
-            future: viewModel.getAppName(),
-            builder: (context, snapshot) {
-              String text = IntlLocalizations.of(
-                context,
-              ).unknown;
-              switch (snapshot.connectionState) {
-                case ConnectionState.waiting:
-                  text = IntlLocalizations.of(
-                    context,
-                  ).waiting;
-                  break;
-                case ConnectionState.done:
-                  if (snapshot.hasError) {
+        title: Tooltip(
+          message: '打开管理器',
+          child: ListTile(
+            leading: FlutterLogo(),
+            title: FutureBuilder(
+              future: viewModel.getAppName(),
+              builder: (context, snapshot) {
+                String text = IntlLocalizations.of(
+                  context,
+                ).unknown;
+                switch (snapshot.connectionState) {
+                  case ConnectionState.waiting:
                     text = IntlLocalizations.of(
                       context,
-                    ).error;
+                    ).waiting;
                     break;
-                  }
-                  if (snapshot.hasData) {
-                    text = snapshot.data ??
-                        IntlLocalizations.of(
-                          context,
-                        ).sNull;
+                  case ConnectionState.done:
+                    if (snapshot.hasError) {
+                      text = IntlLocalizations.of(
+                        context,
+                      ).error;
+                      break;
+                    }
+                    if (snapshot.hasData) {
+                      text = snapshot.data ??
+                          IntlLocalizations.of(
+                            context,
+                          ).sNull;
+                      break;
+                    }
                     break;
-                  }
-                  break;
-                default:
-                  break;
-              }
-              return Text(text);
-            },
-          ),
-          subtitle: FutureBuilder(
-            future: viewModel.getAppVersion(),
-            builder: (context, snapshot) {
-              String text = IntlLocalizations.of(
-                context,
-              ).unknown;
-              switch (snapshot.connectionState) {
-                case ConnectionState.waiting:
-                  text = IntlLocalizations.of(
-                    context,
-                  ).waiting;
-                  break;
-                case ConnectionState.done:
-                  if (snapshot.hasError) {
-                    text = IntlLocalizations.of(
-                      context,
-                    ).error;
+                  default:
                     break;
-                  }
-                  if (snapshot.hasData) {
-                    text = snapshot.data ??
-                        IntlLocalizations.of(
-                          context,
-                        ).sNull;
-                    break;
-                  }
-                  break;
-                default:
-                  break;
-              }
-              return Text(text);
-            },
-          ),
-          trailing: Icon(Icons.keyboard_arrow_right),
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(28),
-              topRight: Radius.circular(28),
+                }
+                return Text(text);
+              },
             ),
-          ),
-          contentPadding: EdgeInsets.only(
-            left: 24,
-            top: 8,
-            right: 24,
-            bottom: 0,
-          ),
-          onTap: () {
-            Navigator.of(
-              context,
-              rootNavigator: true,
-            ).pop();
-            showDialog(
-              context: context,
-              useRootNavigator: true,
-              builder: (context) => SystemAbout(
-                isPackage: false,
+            subtitle: FutureBuilder(
+              future: viewModel.getAppVersion(),
+              builder: (context, snapshot) {
+                String text = IntlLocalizations.of(
+                  context,
+                ).unknown;
+                switch (snapshot.connectionState) {
+                  case ConnectionState.waiting:
+                    text = IntlLocalizations.of(
+                      context,
+                    ).waiting;
+                    break;
+                  case ConnectionState.done:
+                    if (snapshot.hasError) {
+                      text = IntlLocalizations.of(
+                        context,
+                      ).error;
+                      break;
+                    }
+                    if (snapshot.hasData) {
+                      text = snapshot.data ??
+                          IntlLocalizations.of(
+                            context,
+                          ).sNull;
+                      break;
+                    }
+                    break;
+                  default:
+                    break;
+                }
+                return Text(text);
+              },
+            ),
+            trailing: Icon(Icons.keyboard_arrow_right),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(28),
+                topRight: Radius.circular(28),
               ),
-            );
-          },
+            ),
+            contentPadding: EdgeInsets.only(
+              left: 24,
+              top: 8,
+              right: 24,
+              bottom: 0,
+            ),
+            enabled: !isManager,
+            onTap: () {
+              Navigator.of(
+                context,
+                rootNavigator: true,
+              ).pop();
+              Navigator.of(
+                context,
+                rootNavigator: true,
+              ).pushNamed(routeManager);
+            },
+          ),
         ),
         titlePadding: EdgeInsets.zero,
         content: Wrap(
@@ -221,12 +222,12 @@ class SheetButton extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Card(
-            margin: EdgeInsets.zero,
-            elevation: 0,
-            color: Theme.of(context).colorScheme.surfaceContainerHigh,
-            child: Tooltip(
-              message: tooltip,
+          Tooltip(
+            message: tooltip,
+            child: Card(
+              margin: EdgeInsets.zero,
+              elevation: 0,
+              color: Theme.of(context).colorScheme.surfaceContainerHigh,
               child: InkWell(
                 onTap: enabled ? onTap : null,
                 canRequestFocus: enabled,

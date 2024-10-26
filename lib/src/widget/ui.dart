@@ -14,7 +14,7 @@ import '../values/strings.dart';
 import '../viewmodel/system_mmvm.dart';
 import 'exit.dart';
 import 'manager.dart';
-import 'sheet.dart';
+import 'dialog.dart';
 
 class SystemUI extends StatefulWidget {
   const SystemUI({

@@ -54,114 +54,26 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.fromLTRB(12, 12, 12, 6),
-                      child: Card(
-                        color: Theme.of(context).colorScheme.primaryContainer,
-                        child: InkWell(
-                          onTap: () => Navigator.of(
-                            context,
-                            rootNavigator: true,
-                          ).popUntil(
-                            ModalRoute.withName(routeRoot),
-                          ),
-                          borderRadius: BorderRadius.circular(12),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 12,
-                              horizontal: 6,
+                      child: Tooltip(
+                        message: '打开应用',
+                        child: Card(
+                          color: Theme.of(context).colorScheme.primaryContainer,
+                          child: InkWell(
+                            onTap: () => Navigator.of(
+                              context,
+                              rootNavigator: true,
+                            ).popUntil(
+                              ModalRoute.withName(routeRoot),
                             ),
-                            child: ListTile(
-                              leading: const FlutterLogo(),
-                              title: FutureBuilder(
-                                future: viewModel.getAppName(),
-                                builder: (context, snapshot) {
-                                  String text = IntlLocalizations.of(
-                                    context,
-                                  ).unknown;
-                                  switch (snapshot.connectionState) {
-                                    case ConnectionState.waiting:
-                                      text = IntlLocalizations.of(
-                                        context,
-                                      ).waiting;
-                                      break;
-                                    case ConnectionState.done:
-                                      if (snapshot.hasError) {
-                                        text = IntlLocalizations.of(
-                                          context,
-                                        ).error;
-                                        break;
-                                      }
-                                      if (snapshot.hasData) {
-                                        text = snapshot.data ??
-                                            IntlLocalizations.of(
-                                              context,
-                                            ).sNull;
-                                        break;
-                                      }
-                                      break;
-                                    default:
-                                      break;
-                                  }
-                                  return Text(text);
-                                },
+                            borderRadius: BorderRadius.circular(12),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 12,
+                                horizontal: 6,
                               ),
-                              subtitle: FutureBuilder(
-                                future: viewModel.getAppVersion(),
-                                builder: (context, snapshot) {
-                                  String text = IntlLocalizations.of(
-                                    context,
-                                  ).unknown;
-                                  switch (snapshot.connectionState) {
-                                    case ConnectionState.waiting:
-                                      text = IntlLocalizations.of(
-                                        context,
-                                      ).waiting;
-                                      break;
-                                    case ConnectionState.done:
-                                      if (snapshot.hasError) {
-                                        text = IntlLocalizations.of(
-                                          context,
-                                        ).error;
-                                        break;
-                                      }
-                                      if (snapshot.hasData) {
-                                        text = snapshot.data ??
-                                            IntlLocalizations.of(
-                                              context,
-                                            ).sNull;
-                                        break;
-                                      }
-                                      break;
-                                    default:
-                                      break;
-                                  }
-                                  return Text(text);
-                                },
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 6,
-                        horizontal: 12,
-                      ),
-                      child: Card(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 12,
-                            horizontal: 6,
-                          ),
-                          child: Column(
-                            children: [
-                              ListTile(
-                                title: Text(
-                                  IntlLocalizations.of(
-                                    context,
-                                  ).managerHomeInfoAppName,
-                                ),
-                                subtitle: FutureBuilder(
+                              child: ListTile(
+                                leading: const FlutterLogo(),
+                                title: FutureBuilder(
                                   future: viewModel.getAppName(),
                                   builder: (context, snapshot) {
                                     String text = IntlLocalizations.of(
@@ -193,13 +105,6 @@ class _HomePageState extends State<HomePage> {
                                     }
                                     return Text(text);
                                   },
-                                ),
-                              ),
-                              ListTile(
-                                title: Text(
-                                  IntlLocalizations.of(
-                                    context,
-                                  ).managerHomeInfoAppVersion,
                                 ),
                                 subtitle: FutureBuilder(
                                   future: viewModel.getAppVersion(),
@@ -234,55 +139,166 @@ class _HomePageState extends State<HomePage> {
                                     return Text(text);
                                   },
                                 ),
+                                trailing: Icon(Icons.keyboard_arrow_right),
                               ),
-                              ListTile(
-                                title: Text(
-                                  IntlLocalizations.of(
-                                    context,
-                                  ).managerHomeInfoPlatform,
-                                ),
-                                subtitle: Text(
-                                  Theme.of(context).platform.name,
-                                ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 6,
+                        horizontal: 12,
+                      ),
+                      child: Tooltip(
+                        message: '关于',
+                        child: Card(
+                          child: InkWell(
+                            onTap: () => showDialog(
+                              context: context,
+                              builder: (context) => SystemAbout(
+                                isPackage: false,
                               ),
-                              ListTile(
-                                title: Text(
-                                  IntlLocalizations.of(
-                                    context,
-                                  ).managerHomeInfoPluginCount,
-                                ),
-                                subtitle: Text(
-                                  viewModel.pluginCount(),
-                                ),
+                            ),
+                            borderRadius: BorderRadius.circular(12),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 12,
+                                horizontal: 6,
                               ),
-                              // Padding(
-                              //   padding: const EdgeInsets.symmetric(
-                              //     vertical: 8,
-                              //     horizontal: 24,
-                              //   ),
-                              //   child: Row(
-                              //     mainAxisSize: MainAxisSize.max,
-                              //     mainAxisAlignment: MainAxisAlignment.end,
-                              //     children: [
-                              //       FilledButton.icon(
-                              //         onPressed: () => showDialog(
-                              //           context: context,
-                              //           useRootNavigator: true,
-                              //           builder: (context) => const SystemAbout(
-                              //             isPackage: false,
-                              //           ),
-                              //         ),
-                              //         icon: const Icon(Icons.info_outline),
-                              //         label: Text(
-                              //           IntlLocalizations.of(
-                              //             context,
-                              //           ).managerHomeInfoAbout,
-                              //         ),
-                              //       ),
-                              //     ],
-                              //   ),
-                              // ),
-                            ],
+                              child: Column(
+                                children: [
+                                  ListTile(
+                                    title: Text(
+                                      IntlLocalizations.of(
+                                        context,
+                                      ).managerHomeInfoAppName,
+                                    ),
+                                    subtitle: FutureBuilder(
+                                      future: viewModel.getAppName(),
+                                      builder: (context, snapshot) {
+                                        String text = IntlLocalizations.of(
+                                          context,
+                                        ).unknown;
+                                        switch (snapshot.connectionState) {
+                                          case ConnectionState.waiting:
+                                            text = IntlLocalizations.of(
+                                              context,
+                                            ).waiting;
+                                            break;
+                                          case ConnectionState.done:
+                                            if (snapshot.hasError) {
+                                              text = IntlLocalizations.of(
+                                                context,
+                                              ).error;
+                                              break;
+                                            }
+                                            if (snapshot.hasData) {
+                                              text = snapshot.data ??
+                                                  IntlLocalizations.of(
+                                                    context,
+                                                  ).sNull;
+                                              break;
+                                            }
+                                            break;
+                                          default:
+                                            break;
+                                        }
+                                        return Text(text);
+                                      },
+                                    ),
+                                  ),
+                                  ListTile(
+                                    title: Text(
+                                      IntlLocalizations.of(
+                                        context,
+                                      ).managerHomeInfoAppVersion,
+                                    ),
+                                    subtitle: FutureBuilder(
+                                      future: viewModel.getAppVersion(),
+                                      builder: (context, snapshot) {
+                                        String text = IntlLocalizations.of(
+                                          context,
+                                        ).unknown;
+                                        switch (snapshot.connectionState) {
+                                          case ConnectionState.waiting:
+                                            text = IntlLocalizations.of(
+                                              context,
+                                            ).waiting;
+                                            break;
+                                          case ConnectionState.done:
+                                            if (snapshot.hasError) {
+                                              text = IntlLocalizations.of(
+                                                context,
+                                              ).error;
+                                              break;
+                                            }
+                                            if (snapshot.hasData) {
+                                              text = snapshot.data ??
+                                                  IntlLocalizations.of(
+                                                    context,
+                                                  ).sNull;
+                                              break;
+                                            }
+                                            break;
+                                          default:
+                                            break;
+                                        }
+                                        return Text(text);
+                                      },
+                                    ),
+                                  ),
+                                  ListTile(
+                                    title: Text(
+                                      IntlLocalizations.of(
+                                        context,
+                                      ).managerHomeInfoPlatform,
+                                    ),
+                                    subtitle: Text(
+                                      Theme.of(context).platform.name,
+                                    ),
+                                  ),
+                                  ListTile(
+                                    title: Text(
+                                      IntlLocalizations.of(
+                                        context,
+                                      ).managerHomeInfoPluginCount,
+                                    ),
+                                    subtitle: Text(
+                                      viewModel.pluginCount(),
+                                    ),
+                                  ),
+                                  // Padding(
+                                  //   padding: const EdgeInsets.symmetric(
+                                  //     vertical: 8,
+                                  //     horizontal: 24,
+                                  //   ),
+                                  //   child: Row(
+                                  //     mainAxisSize: MainAxisSize.max,
+                                  //     mainAxisAlignment: MainAxisAlignment.end,
+                                  //     children: [
+                                  //       FilledButton.icon(
+                                  //         onPressed: () => showDialog(
+                                  //           context: context,
+                                  //           useRootNavigator: true,
+                                  //           builder: (context) => const SystemAbout(
+                                  //             isPackage: false,
+                                  //           ),
+                                  //         ),
+                                  //         icon: const Icon(Icons.info_outline),
+                                  //         label: Text(
+                                  //           IntlLocalizations.of(
+                                  //             context,
+                                  //           ).managerHomeInfoAbout,
+                                  //         ),
+                                  //       ),
+                                  //     ],
+                                  //   ),
+                                  // ),
+                                ],
+                              ),
+                            ),
                           ),
                         ),
                       ),
