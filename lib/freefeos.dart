@@ -1,4 +1,4 @@
-/// 平台插件注册和API导出
+/// 插件注册和API导出
 library;
 
 import 'src/export/export.dart';

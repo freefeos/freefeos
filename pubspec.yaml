@@ -68,10 +68,6 @@ flutter:
       windows:
         dartPluginClass: FreeFEOSRegister
         ffiPlugin: true
-      # web:
-      #   fileName: freefeos_web.dart
-      #   pluginClass: FreeFEOSRegister
-      #   ffiPlugin: true
   assets:
     - README.md
     - CHANGELOG.md
