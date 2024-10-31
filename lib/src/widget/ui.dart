@@ -481,34 +481,31 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
               return viewModel as SystemViewModel;
             },
             child: Consumer<SystemViewModel>(
-              builder: (_, viewModel, child) => Overlay(
-                initialEntries: <OverlayEntry>[
-                  OverlayEntry(
-                    builder: (_) => ConstrainedBox(
+              builder: (context, viewModel, child) => Stack(
+                children: <Positioned>[
+                  Positioned(
+                    left: 0,
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    child: ConstrainedBox(
                       constraints: const BoxConstraints.expand(),
                       child: child,
                     ),
                   ),
-                  OverlayEntry(
-                    builder: (context) => Align(
-                      alignment: Alignment.topCenter,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          top: MediaQuery.paddingOf(context).top,
-                        ),
-                        child: SizedBox(
-                          height: kToolbarHeight,
-                          child: PreferredSize(
-                            preferredSize: const Size.fromHeight(
-                              kToolbarHeight,
-                            ),
-                            child: GestureDetector(
-                              onPanStart: (_) => viewModel.startDragging(),
-                              onDoubleTap: () => viewModel.maximizeWindow(),
-                              behavior: HitTestBehavior.translucent,
-                            ),
-                          ),
-                        ),
+                  Positioned(
+                    left: 0,
+                    top: MediaQuery.paddingOf(context).top,
+                    right: 0,
+                    height: kToolbarHeight,
+                    child: PreferredSize(
+                      preferredSize: const Size.fromHeight(
+                        kToolbarHeight,
+                      ),
+                      child: GestureDetector(
+                        onPanStart: (_) => viewModel.startDragging(),
+                        onDoubleTap: () => viewModel.maximizeWindow(),
+                        behavior: HitTestBehavior.translucent,
                       ),
                     ),
                   ),
