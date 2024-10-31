@@ -74,14 +74,10 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
       home: Consumer<SystemViewModel>(
         builder: (context, viewModel, _) {
           viewModel.attachBuildContext(context);
-          return Stack(
-            children: <Positioned>[
-              Positioned(
-                left: 0,
-                right: 0,
-                top: 0,
-                bottom: 0,
-                child: ConstrainedBox(
+          return Overlay(
+            initialEntries: <OverlayEntry>[
+              OverlayEntry(
+                builder: (context) => ConstrainedBox(
                   constraints: const BoxConstraints.expand(),
                   child: PlatformUtil.kNoBanner
                       ? Container(
@@ -96,200 +92,219 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
                         ),
                 ),
               ),
-              Positioned(
-                top: MediaQuery.paddingOf(context).top,
-                height: kToolbarHeight,
-                left: 0,
-                right: 0,
-                child: PreferredSize(
-                  preferredSize: const Size.fromHeight(kToolbarHeight),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      Visibility(
-                        visible: PlatformUtil.kIsDesktop,
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 8),
-                          child: Container(
-                            height: 30,
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).brightness ==
-                                      Brightness.light
-                                  ? Colors.black.withOpacity(0.3)
-                                  : Colors.white.withOpacity(0.3),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Material(
-                              color: Colors.transparent,
-                              child: Row(
-                                children: <Widget>[
-                                  Tooltip(
-                                    message: '最小化',
-                                    child: InkWell(
-                                      onTap: viewModel.minimizeWindow,
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(20),
-                                        bottomLeft: Radius.circular(20),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 12,
-                                          vertical: 3,
+              OverlayEntry(
+                builder: (context) => Align(
+                  alignment: Alignment.topCenter,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      top: MediaQuery.paddingOf(context).top,
+                    ),
+                    child: SizedBox(
+                      height: kToolbarHeight,
+                      child: PreferredSize(
+                        preferredSize: const Size.fromHeight(
+                          kToolbarHeight,
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            Visibility(
+                              visible: PlatformUtil.kIsDesktop,
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 8),
+                                child: Container(
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? Colors.black.withOpacity(0.3)
+                                        : Colors.white.withOpacity(0.3),
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Material(
+                                    color: Colors.transparent,
+                                    child: Row(
+                                      children: <Widget>[
+                                        Tooltip(
+                                          message: '最小化',
+                                          child: InkWell(
+                                            onTap: viewModel.minimizeWindow,
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              topLeft: Radius.circular(20),
+                                              bottomLeft: Radius.circular(20),
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                horizontal: 12,
+                                                vertical: 3,
+                                              ),
+                                              child: Icon(
+                                                Icons.minimize,
+                                                color: Theme.of(context)
+                                                            .brightness ==
+                                                        Brightness.light
+                                                    ? Colors.white
+                                                    : Colors.black,
+                                              ),
+                                            ),
+                                          ),
                                         ),
-                                        child: Icon(
-                                          Icons.minimize,
-                                          color: Theme.of(context).brightness ==
-                                                  Brightness.light
-                                              ? Colors.white
-                                              : Colors.black,
+                                        VerticalDivider(
+                                          indent: 6,
+                                          endIndent: 6,
+                                          width: 1,
+                                          color: Colors.white.withOpacity(0.3),
                                         ),
-                                      ),
+                                        Tooltip(
+                                          message: '最大化',
+                                          child: InkWell(
+                                            onTap: viewModel.maximizeWindow,
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                horizontal: 12,
+                                                vertical: 3,
+                                              ),
+                                              child: Icon(
+                                                _maxIcon,
+                                                color: Theme.of(context)
+                                                            .brightness ==
+                                                        Brightness.light
+                                                    ? Colors.white
+                                                    : Colors.black,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        VerticalDivider(
+                                          indent: 6,
+                                          endIndent: 6,
+                                          width: 1,
+                                          color: Colors.white.withOpacity(0.3),
+                                        ),
+                                        Tooltip(
+                                          message: '关闭窗口',
+                                          child: InkWell(
+                                            onTap: viewModel.closeWindow,
+                                            borderRadius:
+                                                const BorderRadius.only(
+                                              topRight: Radius.circular(20),
+                                              bottomRight: Radius.circular(20),
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                horizontal: 12,
+                                                vertical: 3,
+                                              ),
+                                              child: Icon(
+                                                Icons.close,
+                                                color: Theme.of(context)
+                                                            .brightness ==
+                                                        Brightness.light
+                                                    ? Colors.white
+                                                    : Colors.black,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                  VerticalDivider(
-                                    indent: 6,
-                                    endIndent: 6,
-                                    width: 1,
-                                    color: Colors.white.withOpacity(0.3),
-                                  ),
-                                  Tooltip(
-                                    message: '最大化',
-                                    child: InkWell(
-                                      onTap: viewModel.maximizeWindow,
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 12,
-                                          vertical: 3,
-                                        ),
-                                        child: Icon(
-                                          _maxIcon,
-                                          color: Theme.of(context).brightness ==
-                                                  Brightness.light
-                                              ? Colors.white
-                                              : Colors.black,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  VerticalDivider(
-                                    indent: 6,
-                                    endIndent: 6,
-                                    width: 1,
-                                    color: Colors.white.withOpacity(0.3),
-                                  ),
-                                  Tooltip(
-                                    message: '关闭窗口',
-                                    child: InkWell(
-                                      onTap: viewModel.closeWindow,
-                                      borderRadius: const BorderRadius.only(
-                                        topRight: Radius.circular(20),
-                                        bottomRight: Radius.circular(20),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 12,
-                                          vertical: 3,
-                                        ),
-                                        child: Icon(
-                                          Icons.close,
-                                          color: Theme.of(context).brightness ==
-                                                  Brightness.light
-                                              ? Colors.white
-                                              : Colors.black,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 12),
-                        child: Container(
-                          height: 30,
-                          decoration: BoxDecoration(
-                            color:
-                                Theme.of(context).brightness == Brightness.light
-                                    ? Colors.black.withOpacity(0.3)
-                                    : Colors.white.withOpacity(0.3),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Material(
-                            color: Colors.transparent,
-                            child: Row(
-                              children: [
-                                Tooltip(
-                                  message: '系统菜单',
-                                  child: InkWell(
-                                    onTap: () => showDialog(
-                                      context: context,
-                                      useRootNavigator: true,
-                                      builder: (_) => const SystemDialog(
-                                        isManager: false,
+                            Padding(
+                              padding: const EdgeInsets.only(right: 12),
+                              child: Container(
+                                height: 30,
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).brightness ==
+                                          Brightness.light
+                                      ? Colors.black.withOpacity(0.3)
+                                      : Colors.white.withOpacity(0.3),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Material(
+                                  color: Colors.transparent,
+                                  child: Row(
+                                    children: [
+                                      Tooltip(
+                                        message: '系统菜单',
+                                        child: InkWell(
+                                          onTap: () => showDialog(
+                                            context: context,
+                                            useRootNavigator: true,
+                                            builder: (_) => const SystemDialog(
+                                              isManager: false,
+                                            ),
+                                          ),
+                                          borderRadius: const BorderRadius.only(
+                                            topLeft: Radius.circular(20),
+                                            bottomLeft: Radius.circular(20),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 12,
+                                              vertical: 3,
+                                            ),
+                                            child: Icon(
+                                              Icons.more_horiz,
+                                              color: Theme.of(context)
+                                                          .brightness ==
+                                                      Brightness.light
+                                                  ? Colors.white
+                                                  : Colors.black,
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                    borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(20),
-                                      bottomLeft: Radius.circular(20),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 12,
-                                        vertical: 3,
+                                      VerticalDivider(
+                                        indent: 6,
+                                        endIndent: 6,
+                                        width: 1,
+                                        color: Colors.white.withOpacity(0.3),
                                       ),
-                                      child: Icon(
-                                        Icons.more_horiz,
-                                        color: Theme.of(context).brightness ==
-                                                Brightness.light
-                                            ? Colors.white
-                                            : Colors.black,
+                                      Tooltip(
+                                        message: '退出应用',
+                                        child: InkWell(
+                                          onTap: () => showDialog(
+                                            context: context,
+                                            useRootNavigator: true,
+                                            builder: (_) => const SystemExit(),
+                                          ),
+                                          borderRadius: const BorderRadius.only(
+                                            topRight: Radius.circular(20),
+                                            bottomRight: Radius.circular(20),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 12,
+                                              vertical: 3,
+                                            ),
+                                            child: Icon(
+                                              Icons.adjust,
+                                              color: Theme.of(context)
+                                                          .brightness ==
+                                                      Brightness.light
+                                                  ? Colors.white
+                                                  : Colors.black,
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                    ),
+                                    ],
                                   ),
                                 ),
-                                VerticalDivider(
-                                  indent: 6,
-                                  endIndent: 6,
-                                  width: 1,
-                                  color: Colors.white.withOpacity(0.3),
-                                ),
-                                Tooltip(
-                                  message: '退出应用',
-                                  child: InkWell(
-                                    onTap: () => showDialog(
-                                      context: context,
-                                      useRootNavigator: true,
-                                      builder: (_) => const SystemExit(),
-                                    ),
-                                    borderRadius: const BorderRadius.only(
-                                      topRight: Radius.circular(20),
-                                      bottomRight: Radius.circular(20),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 12,
-                                        vertical: 3,
-                                      ),
-                                      child: Icon(
-                                        Icons.adjust,
-                                        color: Theme.of(context).brightness ==
-                                                Brightness.light
-                                            ? Colors.white
-                                            : Colors.black,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
-                          ),
+                          ],
                         ),
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),
@@ -410,7 +425,7 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
             appBarBreakpoint: Breakpoints.standard,
           );
         },
-        routePlugin: (context) {
+        routePlugin: (_) {
           return Consumer<SystemViewModel>(
             builder: (context, viewModel, _) => Scaffold(
               appBar: AppBar(
@@ -466,31 +481,34 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
               return viewModel as SystemViewModel;
             },
             child: Consumer<SystemViewModel>(
-              builder: (context, viewModel, child) => Stack(
-                children: <Positioned>[
-                  Positioned(
-                    left: 0,
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    child: ConstrainedBox(
+              builder: (_, viewModel, child) => Overlay(
+                initialEntries: <OverlayEntry>[
+                  OverlayEntry(
+                    builder: (_) => ConstrainedBox(
                       constraints: const BoxConstraints.expand(),
                       child: child,
                     ),
                   ),
-                  Positioned(
-                    left: 0,
-                    top: MediaQuery.paddingOf(context).top,
-                    right: 0,
-                    height: kToolbarHeight,
-                    child: PreferredSize(
-                      preferredSize: const Size.fromHeight(
-                        kToolbarHeight,
-                      ),
-                      child: GestureDetector(
-                        onPanStart: (_) => viewModel.startDragging(),
-                        onDoubleTap: () => viewModel.maximizeWindow(),
-                        behavior: HitTestBehavior.translucent,
+                  OverlayEntry(
+                    builder: (context) => Align(
+                      alignment: Alignment.topCenter,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          top: MediaQuery.paddingOf(context).top,
+                        ),
+                        child: SizedBox(
+                          height: kToolbarHeight,
+                          child: PreferredSize(
+                            preferredSize: const Size.fromHeight(
+                              kToolbarHeight,
+                            ),
+                            child: GestureDetector(
+                              onPanStart: (_) => viewModel.startDragging(),
+                              onDoubleTap: () => viewModel.maximizeWindow(),
+                              behavior: HitTestBehavior.translucent,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ),
