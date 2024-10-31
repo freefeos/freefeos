@@ -12,11 +12,11 @@ import '../runtime/runtime.dart';
 import '../type/types.dart';
 import '../utils/utils.dart';
 import '../values/channel.dart';
+import '../values/values.dart';
 import '../values/strings.dart';
 import '../values/tag.dart';
 import '../framework/log.dart';
 import '../interface/system_interface.dart';
-import '../values/drawable.dart';
 import '../server/server.dart';
 
 /// 绑定层包装器
@@ -191,7 +191,13 @@ base class SystemBase extends ContextWrapper
                 // 打印横幅
                 Log.d(
                   tag: baseTag,
-                  message: utf8.decode(base64Decode(banner)),
+                  message: utf8.decode(
+                    base64Decode(
+                      resources.getValues(
+                        value: V.drawable.banner,
+                      ),
+                    ),
+                  ),
                 );
                 // 初始化控件绑定
                 WidgetsFlutterBinding.ensureInitialized();
@@ -296,7 +302,9 @@ base class SystemBase extends ContextWrapper
   /// 构建应用
   @override
   Layout buildSystemUI(ViewModelBuilder builder) {
-    return resources.layoutPlaceholder();
+    return resources.getLayout(
+      layout: const Placeholder(),
+    );
   }
 
   /// 执行引擎方法

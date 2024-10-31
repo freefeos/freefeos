@@ -66,14 +66,10 @@ final class Resources {
     );
   }
 
-  Layout layoutPlaceholder() {
-    return const Layout(
-      layout: Placeholder(),
-    );
-  }
-
-  String getString() {
-    return '';
+  dynamic getValues({
+    required dynamic value,
+  }) {
+    return value;
   }
 }
 
