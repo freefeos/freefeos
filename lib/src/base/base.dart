@@ -239,10 +239,15 @@ base class SystemBase extends ContextWrapper
                 if (PlatformUtil.kIsDesktop) {
                   await windowManager.waitUntilReadyToShow(
                     const WindowOptions(
+                      size: null,
                       center: true,
                       minimumSize: Size(600, 400),
+                      maximumSize: null,
                       alwaysOnTop: false,
+                      fullScreen: false,
+                      backgroundColor: null,
                       skipTaskbar: false,
+                      title: null,
                       titleBarStyle: TitleBarStyle.hidden,
                       windowButtonVisibility: false,
                     ),
