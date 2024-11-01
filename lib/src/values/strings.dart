@@ -1,4 +1,3 @@
-const String packageName = 'FreeFEOS';
 const String developerName = 'wyq0918dev';
 
 // base

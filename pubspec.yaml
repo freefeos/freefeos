@@ -43,10 +43,10 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   ffi: ^2.1.3
   ffigen: ^15.0.0
-  intl_utils: ^2.8.7
 
 flutter:
   uses-material-design: true
+  generate: true
   plugin:
     platforms:
       android:
@@ -72,13 +72,6 @@ flutter:
     - CHANGELOG.md
     - LICENSE
     - AUTHORS
-
-flutter_intl:
-  enabled: true
-  class_name: IntlLocalizations
-  main_locale: zh
-  arb_dir: lib/src/l10n
-  output_dir: lib/src/intl
 
 screenshots:
   - description: "Screenshots 0"

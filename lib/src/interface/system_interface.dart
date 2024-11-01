@@ -11,6 +11,8 @@ class FreeFEOSInterface extends PlatformInterface {
 
   /// 令牌
   static final Object _token = Object();
+
+  /// 默认实现
   static final FreeFEOSInterface _default = FreeFEOSInterface();
 
   /// 实例

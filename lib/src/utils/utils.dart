@@ -7,6 +7,8 @@ import '../framework/context.dart';
 
 /// 平台工具集
 final class PlatformUtil {
+  const PlatformUtil();
+
   /// 无角标
   static bool get kNoBanner => !kDebugMode;
 
@@ -27,6 +29,8 @@ final class PlatformUtil {
 
 /// 心灵鸡汤
 class PoemUtil {
+  const PoemUtil();
+
   /// 随机抽取一句
   String get getPoem => _list[Random().nextInt(_list.length)];
 
@@ -47,6 +51,8 @@ class PoemUtil {
 
 ///  Widget工具集
 final class WidgetUtil {
+  const WidgetUtil();
+
   /// Widget转Widget列表
   static List<Widget> widget2WidgetList(Widget? child) {
     return <Container>[Container(child: child)];

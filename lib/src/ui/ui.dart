@@ -3,7 +3,6 @@ import 'dart:collection';
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
@@ -14,12 +13,11 @@ import '../event/rendered_event.dart';
 import '../framework/ansi_parser.dart';
 import '../framework/log.dart';
 import '../framework/toast.dart';
-import '../intl/l10n.dart';
+import '../intl/package_localizations.dart';
 import '../plugin/plugin_details.dart';
 import '../type/types.dart';
 import '../utils/utils.dart';
 import '../values/route.dart';
-import '../values/strings.dart';
 import '../mvvm/mmvm.dart';
 
 /// 系统界面布局
@@ -91,9 +89,10 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
                           child: viewModel.getChild,
                         )
                       : Banner(
-                          message: IntlLocalizations.of(
+                          message: PackageLocalizations.of(
                             context,
-                          ).bannerTitle,
+                          )!
+                              .bannerTitle,
                           location: BannerLocation.topStart,
                           child: viewModel.getChild,
                         ),
@@ -326,45 +325,53 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
               NavigationDestination(
                 icon: const Icon(Icons.home_outlined),
                 selectedIcon: const Icon(Icons.home),
-                label: IntlLocalizations.of(
+                label: PackageLocalizations.of(
                   context,
-                ).managerDestinationHome,
-                tooltip: IntlLocalizations.of(
+                )!
+                    .managerDestinationHome,
+                tooltip: PackageLocalizations.of(
                   context,
-                ).managerDestinationHome,
+                )!
+                    .managerDestinationHome,
                 enabled: true,
               ),
               NavigationDestination(
                 icon: const Icon(Icons.bug_report_outlined),
                 selectedIcon: const Icon(Icons.bug_report),
-                label: IntlLocalizations.of(
+                label: PackageLocalizations.of(
                   context,
-                ).managerDestinationLog,
-                tooltip: IntlLocalizations.of(
+                )!
+                    .managerDestinationLog,
+                tooltip: PackageLocalizations.of(
                   context,
-                ).managerDestinationLog,
+                )!
+                    .managerDestinationLog,
                 enabled: true,
               ),
               NavigationDestination(
                 icon: const Icon(Icons.extension_outlined),
                 selectedIcon: const Icon(Icons.extension),
-                label: IntlLocalizations.of(
+                label: PackageLocalizations.of(
                   context,
-                ).managerDestinationPlugin,
-                tooltip: IntlLocalizations.of(
+                )!
+                    .managerDestinationPlugin,
+                tooltip: PackageLocalizations.of(
                   context,
-                ).managerDestinationPlugin,
+                )!
+                    .managerDestinationPlugin,
                 enabled: true,
               ),
               NavigationDestination(
                 icon: const Icon(Icons.settings_outlined),
                 selectedIcon: const Icon(Icons.settings),
-                label: IntlLocalizations.of(
+                label: PackageLocalizations.of(
                   context,
-                ).managerDestinationSetting,
-                tooltip: IntlLocalizations.of(
+                )!
+                    .managerDestinationSetting,
+                tooltip: PackageLocalizations.of(
                   context,
-                ).managerDestinationSetting,
+                )!
+                    .managerDestinationSetting,
                 enabled: true,
               ),
             ],
@@ -407,15 +414,17 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
             useDrawer: false,
             appBar: AppBar(
               title: Text(
-                IntlLocalizations.of(
+                PackageLocalizations.of(
                   context,
-                ).managerTitle,
+                )!
+                    .managerTitle,
               ),
               actions: [
                 Tooltip(
-                  message: IntlLocalizations.of(
+                  message: PackageLocalizations.of(
                     context,
-                  ).bottomSheetTooltip,
+                  )!
+                      .bottomSheetTooltip,
                   child: IconButton(
                     onPressed: () => showDialog(
                       context: context,
@@ -478,9 +487,10 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
               assert(() {
                 if (viewModel is! SystemViewModel) {
                   throw FlutterError(
-                    IntlLocalizations.of(
+                    PackageLocalizations.of(
                       context,
-                    ).viewModelTypeError,
+                    )!
+                        .viewModelTypeError,
                   );
                 }
                 return true;
@@ -523,16 +533,12 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
           ),
         ),
       ),
-      title: packageName,
+      onGenerateTitle: (context) {
+        return PackageLocalizations.of(context)!.packageName;
+      },
       color: Colors.transparent,
-      locale: const Locale('zh', 'CN'),
-      localizationsDelegates: const [
-        IntlLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: IntlLocalizations.delegate.supportedLocales,
+      localizationsDelegates: PackageLocalizations.localizationsDelegates,
+      supportedLocales: PackageLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
     );
   }
@@ -554,27 +560,31 @@ class SystemAbout extends StatelessWidget {
         return FutureBuilder(
           future: viewModel.getAppName(),
           builder: (context, snapshot) {
-            String appName = IntlLocalizations.of(
+            String appName = PackageLocalizations.of(
               context,
-            ).unknown;
+            )!
+                .unknown;
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
-                appName = IntlLocalizations.of(
+                appName = PackageLocalizations.of(
                   context,
-                ).waiting;
+                )!
+                    .waiting;
                 break;
               case ConnectionState.done:
                 if (snapshot.hasError) {
-                  appName = IntlLocalizations.of(
+                  appName = PackageLocalizations.of(
                     context,
-                  ).error;
+                  )!
+                      .error;
                   break;
                 }
                 if (snapshot.hasData) {
                   appName = snapshot.data ??
-                      IntlLocalizations.of(
+                      PackageLocalizations.of(
                         context,
-                      ).sNull;
+                      )!
+                          .sNull;
                   break;
                 }
                 break;
@@ -584,27 +594,31 @@ class SystemAbout extends StatelessWidget {
             return FutureBuilder(
               future: viewModel.getAppVersion(),
               builder: (context, snapshot) {
-                String appVersion = IntlLocalizations.of(
+                String appVersion = PackageLocalizations.of(
                   context,
-                ).unknown;
+                )!
+                    .unknown;
                 switch (snapshot.connectionState) {
                   case ConnectionState.waiting:
-                    appVersion = IntlLocalizations.of(
+                    appVersion = PackageLocalizations.of(
                       context,
-                    ).waiting;
+                    )!
+                        .waiting;
                     break;
                   case ConnectionState.done:
                     if (snapshot.hasError) {
-                      appVersion = IntlLocalizations.of(
+                      appVersion = PackageLocalizations.of(
                         context,
-                      ).error;
+                      )!
+                          .error;
                       break;
                     }
                     if (snapshot.hasData) {
                       appVersion = snapshot.data ??
-                          IntlLocalizations.of(
+                          PackageLocalizations.of(
                             context,
-                          ).sNull;
+                          )!
+                              .sNull;
                       break;
                     }
                     break;
@@ -613,18 +627,21 @@ class SystemAbout extends StatelessWidget {
                 }
                 return AboutDialog(
                   applicationName: isPackage
-                      ? IntlLocalizations.of(
+                      ? PackageLocalizations.of(
                           context,
-                        ).aboutPackageName
+                        )!
+                          .aboutPackageName
                       : appName,
                   applicationVersion: appVersion,
                   applicationLegalese: isPackage
-                      ? IntlLocalizations.of(
+                      ? PackageLocalizations.of(
                           context,
-                        ).aboutPackageDescription
-                      : IntlLocalizations.of(
+                        )!
+                          .aboutPackageDescription
+                      : PackageLocalizations.of(
                           context,
-                        ).aboutDialogLegalese,
+                        )!
+                          .aboutDialogLegalese,
                   children: WidgetUtil.widget2WidgetList(child),
                 );
               },
@@ -656,27 +673,31 @@ class SystemDialog extends StatelessWidget {
             title: FutureBuilder(
               future: viewModel.getAppName(),
               builder: (context, snapshot) {
-                String text = IntlLocalizations.of(
+                String text = PackageLocalizations.of(
                   context,
-                ).unknown;
+                )!
+                    .unknown;
                 switch (snapshot.connectionState) {
                   case ConnectionState.waiting:
-                    text = IntlLocalizations.of(
+                    text = PackageLocalizations.of(
                       context,
-                    ).waiting;
+                    )!
+                        .waiting;
                     break;
                   case ConnectionState.done:
                     if (snapshot.hasError) {
-                      text = IntlLocalizations.of(
+                      text = PackageLocalizations.of(
                         context,
-                      ).error;
+                      )!
+                          .error;
                       break;
                     }
                     if (snapshot.hasData) {
                       text = snapshot.data ??
-                          IntlLocalizations.of(
+                          PackageLocalizations.of(
                             context,
-                          ).sNull;
+                          )!
+                              .sNull;
                       break;
                     }
                     break;
@@ -689,27 +710,31 @@ class SystemDialog extends StatelessWidget {
             subtitle: FutureBuilder(
               future: viewModel.getAppVersion(),
               builder: (context, snapshot) {
-                String text = IntlLocalizations.of(
+                String text = PackageLocalizations.of(
                   context,
-                ).unknown;
+                )!
+                    .unknown;
                 switch (snapshot.connectionState) {
                   case ConnectionState.waiting:
-                    text = IntlLocalizations.of(
+                    text = PackageLocalizations.of(
                       context,
-                    ).waiting;
+                    )!
+                        .waiting;
                     break;
                   case ConnectionState.done:
                     if (snapshot.hasError) {
-                      text = IntlLocalizations.of(
+                      text = PackageLocalizations.of(
                         context,
-                      ).error;
+                      )!
+                          .error;
                       break;
                     }
                     if (snapshot.hasData) {
                       text = snapshot.data ??
-                          IntlLocalizations.of(
+                          PackageLocalizations.of(
                             context,
-                          ).sNull;
+                          )!
+                              .sNull;
                       break;
                     }
                     break;
@@ -761,12 +786,14 @@ class SystemDialog extends StatelessWidget {
                 ).pushNamed(routeManager);
               },
               icon: Icons.manage_accounts_outlined,
-              label: IntlLocalizations.of(
+              label: PackageLocalizations.of(
                 context,
-              ).bottomSheetManager,
-              tooltip: IntlLocalizations.of(
+              )!
+                  .bottomSheetManager,
+              tooltip: PackageLocalizations.of(
                 context,
-              ).bottomSheetManagerTooltip,
+              )!
+                  .bottomSheetManagerTooltip,
               enabled: !isManager,
             ),
             DialogButton(
@@ -801,12 +828,14 @@ class SystemDialog extends StatelessWidget {
                 );
               },
               icon: Icons.exit_to_app,
-              label: IntlLocalizations.of(
+              label: PackageLocalizations.of(
                 context,
-              ).bottomSheetExit,
-              tooltip: IntlLocalizations.of(
+              )!
+                  .bottomSheetExit,
+              tooltip: PackageLocalizations.of(
                 context,
-              ).bottomSheetExitToolTip,
+              )!
+                  .bottomSheetExitToolTip,
               enabled: true,
             ),
           ],
@@ -906,36 +935,41 @@ class SystemExit extends StatelessWidget {
     return Consumer<SystemViewModel>(
       builder: (context, viewModel, child) => AlertDialog(
         title: Text(
-          IntlLocalizations.of(
+          PackageLocalizations.of(
             context,
-          ).closeDialogTitle,
+          )!
+              .closeDialogTitle,
         ),
         content: Text(
-          IntlLocalizations.of(
+          PackageLocalizations.of(
             context,
-          ).closeDialogMessage,
+          )!
+              .closeDialogMessage,
         ),
         actions: [
           Tooltip(
-            message: IntlLocalizations.of(
+            message: PackageLocalizations.of(
               context,
-            ).closeDialogCancelButton,
+            )!
+                .closeDialogCancelButton,
             child: TextButton(
               onPressed: () => Navigator.of(
                 context,
                 rootNavigator: true,
               ).pop(),
               child: Text(
-                IntlLocalizations.of(
+                PackageLocalizations.of(
                   context,
-                ).closeDialogCancelButton,
+                )!
+                    .closeDialogCancelButton,
               ),
             ),
           ),
           Tooltip(
-            message: IntlLocalizations.of(
+            message: PackageLocalizations.of(
               context,
-            ).closeDialogExitButton,
+            )!
+                .closeDialogExitButton,
             child: TextButton(
               onPressed: () {
                 Navigator.of(
@@ -945,9 +979,10 @@ class SystemExit extends StatelessWidget {
                 viewModel.exitApp();
               },
               child: Text(
-                IntlLocalizations.of(
+                PackageLocalizations.of(
                   context,
-                ).closeDialogExitButton,
+                )!
+                    .closeDialogExitButton,
               ),
             ),
           ),
@@ -1019,27 +1054,31 @@ class _HomePageState extends State<HomePage> {
                                 title: FutureBuilder(
                                   future: viewModel.getAppName(),
                                   builder: (context, snapshot) {
-                                    String text = IntlLocalizations.of(
+                                    String text = PackageLocalizations.of(
                                       context,
-                                    ).unknown;
+                                    )!
+                                        .unknown;
                                     switch (snapshot.connectionState) {
                                       case ConnectionState.waiting:
-                                        text = IntlLocalizations.of(
+                                        text = PackageLocalizations.of(
                                           context,
-                                        ).waiting;
+                                        )!
+                                            .waiting;
                                         break;
                                       case ConnectionState.done:
                                         if (snapshot.hasError) {
-                                          text = IntlLocalizations.of(
+                                          text = PackageLocalizations.of(
                                             context,
-                                          ).error;
+                                          )!
+                                              .error;
                                           break;
                                         }
                                         if (snapshot.hasData) {
                                           text = snapshot.data ??
-                                              IntlLocalizations.of(
+                                              PackageLocalizations.of(
                                                 context,
-                                              ).sNull;
+                                              )!
+                                                  .sNull;
                                           break;
                                         }
                                         break;
@@ -1052,27 +1091,31 @@ class _HomePageState extends State<HomePage> {
                                 subtitle: FutureBuilder(
                                   future: viewModel.getAppVersion(),
                                   builder: (context, snapshot) {
-                                    String text = IntlLocalizations.of(
+                                    String text = PackageLocalizations.of(
                                       context,
-                                    ).unknown;
+                                    )!
+                                        .unknown;
                                     switch (snapshot.connectionState) {
                                       case ConnectionState.waiting:
-                                        text = IntlLocalizations.of(
+                                        text = PackageLocalizations.of(
                                           context,
-                                        ).waiting;
+                                        )!
+                                            .waiting;
                                         break;
                                       case ConnectionState.done:
                                         if (snapshot.hasError) {
-                                          text = IntlLocalizations.of(
+                                          text = PackageLocalizations.of(
                                             context,
-                                          ).error;
+                                          )!
+                                              .error;
                                           break;
                                         }
                                         if (snapshot.hasData) {
                                           text = snapshot.data ??
-                                              IntlLocalizations.of(
+                                              PackageLocalizations.of(
                                                 context,
-                                              ).sNull;
+                                              )!
+                                                  .sNull;
                                           break;
                                         }
                                         break;
@@ -1114,34 +1157,39 @@ class _HomePageState extends State<HomePage> {
                                 children: [
                                   ListTile(
                                     title: Text(
-                                      IntlLocalizations.of(
+                                      PackageLocalizations.of(
                                         context,
-                                      ).managerHomeInfoAppName,
+                                      )!
+                                          .managerHomeInfoAppName,
                                     ),
                                     subtitle: FutureBuilder(
                                       future: viewModel.getAppName(),
                                       builder: (context, snapshot) {
-                                        String text = IntlLocalizations.of(
+                                        String text = PackageLocalizations.of(
                                           context,
-                                        ).unknown;
+                                        )!
+                                            .unknown;
                                         switch (snapshot.connectionState) {
                                           case ConnectionState.waiting:
-                                            text = IntlLocalizations.of(
+                                            text = PackageLocalizations.of(
                                               context,
-                                            ).waiting;
+                                            )!
+                                                .waiting;
                                             break;
                                           case ConnectionState.done:
                                             if (snapshot.hasError) {
-                                              text = IntlLocalizations.of(
+                                              text = PackageLocalizations.of(
                                                 context,
-                                              ).error;
+                                              )!
+                                                  .error;
                                               break;
                                             }
                                             if (snapshot.hasData) {
                                               text = snapshot.data ??
-                                                  IntlLocalizations.of(
+                                                  PackageLocalizations.of(
                                                     context,
-                                                  ).sNull;
+                                                  )!
+                                                      .sNull;
                                               break;
                                             }
                                             break;
@@ -1154,34 +1202,39 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   ListTile(
                                     title: Text(
-                                      IntlLocalizations.of(
+                                      PackageLocalizations.of(
                                         context,
-                                      ).managerHomeInfoAppVersion,
+                                      )!
+                                          .managerHomeInfoAppVersion,
                                     ),
                                     subtitle: FutureBuilder(
                                       future: viewModel.getAppVersion(),
                                       builder: (context, snapshot) {
-                                        String text = IntlLocalizations.of(
+                                        String text = PackageLocalizations.of(
                                           context,
-                                        ).unknown;
+                                        )!
+                                            .unknown;
                                         switch (snapshot.connectionState) {
                                           case ConnectionState.waiting:
-                                            text = IntlLocalizations.of(
+                                            text = PackageLocalizations.of(
                                               context,
-                                            ).waiting;
+                                            )!
+                                                .waiting;
                                             break;
                                           case ConnectionState.done:
                                             if (snapshot.hasError) {
-                                              text = IntlLocalizations.of(
+                                              text = PackageLocalizations.of(
                                                 context,
-                                              ).error;
+                                              )!
+                                                  .error;
                                               break;
                                             }
                                             if (snapshot.hasData) {
                                               text = snapshot.data ??
-                                                  IntlLocalizations.of(
+                                                  PackageLocalizations.of(
                                                     context,
-                                                  ).sNull;
+                                                  )!
+                                                      .sNull;
                                               break;
                                             }
                                             break;
@@ -1194,9 +1247,10 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   ListTile(
                                     title: Text(
-                                      IntlLocalizations.of(
+                                      PackageLocalizations.of(
                                         context,
-                                      ).managerHomeInfoPlatform,
+                                      )!
+                                          .managerHomeInfoPlatform,
                                     ),
                                     subtitle: Text(
                                       Theme.of(context).platform.name,
@@ -1204,9 +1258,10 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   ListTile(
                                     title: Text(
-                                      IntlLocalizations.of(
+                                      PackageLocalizations.of(
                                         context,
-                                      ).managerHomeInfoPluginCount,
+                                      )!
+                                          .managerHomeInfoPluginCount,
                                     ),
                                     subtitle: Text(
                                       viewModel.pluginCount(),
@@ -1249,9 +1304,10 @@ class _HomePageState extends State<HomePage> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(12, 6, 12, 12),
                       child: Tooltip(
-                        message: IntlLocalizations.of(
+                        message: PackageLocalizations.of(
                           context,
-                        ).managerHomeLearnTooltip,
+                        )!
+                            .managerHomeLearnTooltip,
                         child: Card(
                           child: InkWell(
                             onTap: viewModel.launchPubDev,
@@ -1263,14 +1319,16 @@ class _HomePageState extends State<HomePage> {
                               ),
                               child: ListTile(
                                 title: Text(
-                                  IntlLocalizations.of(
+                                  PackageLocalizations.of(
                                     context,
-                                  ).managerHomeLearnTitle,
+                                  )!
+                                      .managerHomeLearnTitle,
                                 ),
                                 subtitle: Text(
-                                  IntlLocalizations.of(
+                                  PackageLocalizations.of(
                                     context,
-                                  ).managerHomeLearnDescription,
+                                  )!
+                                      .managerHomeLearnDescription,
                                 ),
                               ),
                             ),
@@ -1312,9 +1370,10 @@ class _LogcatPageState extends State<LogcatPage> {
         context: context,
         showTips: () => Toast.makeToast(
           context: context,
-          text: IntlLocalizations.of(
+          text: PackageLocalizations.of(
             context,
-          ).managerLogCopyTips,
+          )!
+              .managerLogCopyTips,
         ).show(),
       );
       final String text = event.lines.join('\n');
@@ -1523,7 +1582,7 @@ class _PluginPageState extends State<PluginPage> {
                                               ),
                                             ),
                                             Text(
-                                              '${IntlLocalizations.of(context).managerPluginChannel}: ${details.channel}',
+                                              '${PackageLocalizations.of(context)!.managerPluginChannel}: ${details.channel}',
                                               textAlign: TextAlign.start,
                                               style: TextStyle(
                                                 fontSize: Theme.of(
@@ -1541,7 +1600,7 @@ class _PluginPageState extends State<PluginPage> {
                                               ),
                                             ),
                                             Text(
-                                              '${IntlLocalizations.of(context).managerPluginAuthor}: ${details.author}',
+                                              '${PackageLocalizations.of(context)!.managerPluginAuthor}: ${details.author}',
                                               textAlign: TextAlign.start,
                                               style: TextStyle(
                                                 fontSize: Theme.of(

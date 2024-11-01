@@ -4,6 +4,7 @@
     "waiting": "等待",
     "error": "错误",
     "sNull": "空",
+    "packageName": "freefeos",
     "bannerTitle": "FREEFEOS",
     "viewModelTypeError": "View Model 类型错误!",
     "bottomSheetTooltip": "菜单",

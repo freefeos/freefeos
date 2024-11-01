@@ -217,6 +217,8 @@ final class FreeFEOSLauncher {
 }
 
 /// 最简实现
+/// 
+/// [app] 传入App的根Widget
 Future<void> runFFApp(Widget app) => FreeFEOSLauncher(enabled: true)(app);
 
 /// 此文件为导出的, 可被外部访问的公共API接口, 但 [FreeFEOSBase] 类除外.

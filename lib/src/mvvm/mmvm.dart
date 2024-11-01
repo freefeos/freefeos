@@ -6,7 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:window_manager/window_manager.dart';
 
 import '../framework/context.dart';
-import '../intl/l10n.dart';
+import '../intl/package_localizations.dart';
 import '../plugin/plugin_details.dart';
 import '../plugin/plugin_type.dart';
 import '../type/types.dart';
@@ -294,49 +294,58 @@ final class SystemViewModel extends ContextWrapper
     switch (details.type) {
       // 框架运行时
       case PluginType.runtime:
-        return IntlLocalizations.of(
+        return PackageLocalizations.of(
           context,
-        ).managerPluginTypeRuntime;
+        )!
+            .managerPluginTypeRuntime;
       // 绑定通信层
       case PluginType.base:
-        return IntlLocalizations.of(
+        return PackageLocalizations.of(
           context,
-        ).managerPluginTypeBase;
+        )!
+            .managerPluginTypeBase;
       // 平台嵌入层
       case PluginType.embedder:
-        return IntlLocalizations.of(
+        return PackageLocalizations.of(
           context,
-        ).managerPluginTypeEmbedder;
+        )!
+            .managerPluginTypeEmbedder;
       // 平台插件
       case PluginType.engine:
-        return IntlLocalizations.of(
+        return PackageLocalizations.of(
           context,
-        ).managerPluginTypeEngine;
+        )!
+            .managerPluginTypeEngine;
       // 平台插件
       case PluginType.platform:
-        return IntlLocalizations.of(
+        return PackageLocalizations.of(
           context,
-        ).managerPluginTypePlatform;
+        )!
+            .managerPluginTypePlatform;
       // 内核模块
       case PluginType.kernel:
-        return IntlLocalizations.of(
+        return PackageLocalizations.of(
           context,
-        ).managerPluginTypeKernel;
+        )!
+            .managerPluginTypeKernel;
       // 普通插件
       case PluginType.flutter:
-        return IntlLocalizations.of(
+        return PackageLocalizations.of(
           context,
-        ).managerPluginTypeFlutter;
+        )!
+            .managerPluginTypeFlutter;
       // 未知类型插件
       case PluginType.unknown:
-        return IntlLocalizations.of(
+        return PackageLocalizations.of(
           context,
-        ).managerPluginTypeUnknown;
+        )!
+            .managerPluginTypeUnknown;
       // 未知
       default:
-        return IntlLocalizations.of(
+        return PackageLocalizations.of(
           context,
-        ).unknown;
+        )!
+            .unknown;
     }
   }
 
@@ -348,15 +357,18 @@ final class SystemViewModel extends ContextWrapper
   ) {
     return _isAllowPush(details)
         ? runtimeChecker(details)
-            ? IntlLocalizations.of(
+            ? PackageLocalizations.of(
                 context,
-              ).managerPluginTooltipAbout
-            : IntlLocalizations.of(
+              )!
+                .managerPluginTooltipAbout
+            : PackageLocalizations.of(
                 context,
-              ).managerPluginTooltipOpen
-        : IntlLocalizations.of(
+              )!
+                .managerPluginTooltipOpen
+        : PackageLocalizations.of(
             context,
-          ).managerPluginTooltipNoUI;
+          )!
+            .managerPluginTooltipNoUI;
   }
 
   /// 打开卡片
