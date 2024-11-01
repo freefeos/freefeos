@@ -33,36 +33,9 @@ class SystemUI extends StatefulWidget {
   State<SystemUI> createState() => _SystemUIState();
 }
 
-class _SystemUIState extends State<SystemUI> with WindowListener {
-  /// 最大化按钮的图标
-  IconData _maxIcon = Icons.fullscreen;
-
+class _SystemUIState extends State<SystemUI> {
   /// 当前页面
   int _currentIndex = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    windowManager.addListener(this);
-  }
-
-  @override
-  void dispose() {
-    windowManager.removeListener(this);
-    super.dispose();
-  }
-
-  @override
-  void onWindowMaximize() {
-    super.onWindowMaximize();
-    setState(() => _maxIcon = Icons.fullscreen_exit);
-  }
-
-  @override
-  void onWindowUnmaximize() {
-    super.onWindowUnmaximize();
-    setState(() => _maxIcon = Icons.fullscreen);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -115,113 +88,9 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
-                            Visibility(
-                              visible: PlatformUtil.kIsDesktop,
-                              child: Padding(
-                                padding: const EdgeInsets.only(right: 8),
-                                child: Container(
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context).brightness ==
-                                            Brightness.light
-                                        ? Colors.black.withOpacity(0.3)
-                                        : Colors.white.withOpacity(0.3),
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  child: Material(
-                                    color: Colors.transparent,
-                                    child: Row(
-                                      children: <Widget>[
-                                        Tooltip(
-                                          message: '最小化',
-                                          child: InkWell(
-                                            onTap: viewModel.minimizeWindow,
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topLeft: Radius.circular(20),
-                                              bottomLeft: Radius.circular(20),
-                                            ),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                horizontal: 12,
-                                                vertical: 3,
-                                              ),
-                                              child: Icon(
-                                                Icons.minimize,
-                                                color: Theme.of(context)
-                                                            .brightness ==
-                                                        Brightness.light
-                                                    ? Colors.white
-                                                    : Colors.black,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        VerticalDivider(
-                                          indent: 6,
-                                          endIndent: 6,
-                                          width: 1,
-                                          color: Colors.white.withOpacity(0.3),
-                                        ),
-                                        Tooltip(
-                                          message: '最大化',
-                                          child: InkWell(
-                                            onTap: viewModel.maximizeWindow,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                horizontal: 12,
-                                                vertical: 3,
-                                              ),
-                                              child: Icon(
-                                                _maxIcon,
-                                                color: Theme.of(context)
-                                                            .brightness ==
-                                                        Brightness.light
-                                                    ? Colors.white
-                                                    : Colors.black,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        VerticalDivider(
-                                          indent: 6,
-                                          endIndent: 6,
-                                          width: 1,
-                                          color: Colors.white.withOpacity(0.3),
-                                        ),
-                                        Tooltip(
-                                          message: '关闭窗口',
-                                          child: InkWell(
-                                            onTap: viewModel.closeWindow,
-                                            borderRadius:
-                                                const BorderRadius.only(
-                                              topRight: Radius.circular(20),
-                                              bottomRight: Radius.circular(20),
-                                            ),
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                horizontal: 12,
-                                                vertical: 3,
-                                              ),
-                                              child: Icon(
-                                                Icons.close,
-                                                color: Theme.of(context)
-                                                            .brightness ==
-                                                        Brightness.light
-                                                    ? Colors.white
-                                                    : Colors.black,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 8),
+                              child: WindowPanel(),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(right: 12),
@@ -320,125 +189,134 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
       ),
       routes: <String, WidgetBuilder>{
         routeManager: (context) {
-          return AdaptiveScaffold(
-            destinations: <NavigationDestination>[
-              NavigationDestination(
-                icon: const Icon(Icons.home_outlined),
-                selectedIcon: const Icon(Icons.home),
-                label: PackageLocalizations.of(
-                  context,
-                )!
-                    .managerDestinationHome,
-                tooltip: PackageLocalizations.of(
-                  context,
-                )!
-                    .managerDestinationHome,
-                enabled: true,
-              ),
-              NavigationDestination(
-                icon: const Icon(Icons.bug_report_outlined),
-                selectedIcon: const Icon(Icons.bug_report),
-                label: PackageLocalizations.of(
-                  context,
-                )!
-                    .managerDestinationLog,
-                tooltip: PackageLocalizations.of(
-                  context,
-                )!
-                    .managerDestinationLog,
-                enabled: true,
-              ),
-              NavigationDestination(
-                icon: const Icon(Icons.extension_outlined),
-                selectedIcon: const Icon(Icons.extension),
-                label: PackageLocalizations.of(
-                  context,
-                )!
-                    .managerDestinationPlugin,
-                tooltip: PackageLocalizations.of(
-                  context,
-                )!
-                    .managerDestinationPlugin,
-                enabled: true,
-              ),
-              NavigationDestination(
-                icon: const Icon(Icons.settings_outlined),
-                selectedIcon: const Icon(Icons.settings),
-                label: PackageLocalizations.of(
-                  context,
-                )!
-                    .managerDestinationSetting,
-                tooltip: PackageLocalizations.of(
-                  context,
-                )!
-                    .managerDestinationSetting,
-                enabled: true,
-              ),
-            ],
-            smallBreakpoint: const Breakpoint(
-              endWidth: 600,
-            ),
-            mediumBreakpoint: const Breakpoint(
-              beginWidth: 600,
-              endWidth: 840,
-            ),
-            largeBreakpoint: const Breakpoint(
-              beginWidth: 840,
-            ),
-            selectedIndex: _currentIndex,
-            body: (_) => PageTransitionSwitcher(
-              duration: const Duration(
-                milliseconds: 300,
-              ),
-              transitionBuilder: (child, animation, secondaryAnimation) {
-                return SharedAxisTransition(
-                  animation: animation,
-                  secondaryAnimation: secondaryAnimation,
-                  transitionType: SharedAxisTransitionType.scaled,
-                  child: child,
-                );
-              },
-              child: <Widget>[
-                const HomePage(),
-                const LogcatPage(),
-                const PluginPage(),
-                const SettingsPage(),
-              ][_currentIndex],
-            ),
-            transitionDuration: const Duration(
-              milliseconds: 500,
-            ),
-            onSelectedIndexChange: (index) => setState(
-              () => _currentIndex = index,
-            ),
-            useDrawer: false,
-            appBar: AppBar(
-              title: Text(
-                PackageLocalizations.of(
-                  context,
-                )!
-                    .managerTitle,
-              ),
-              actions: [
-                Tooltip(
-                  message: PackageLocalizations.of(
+          return Consumer<SystemViewModel>(
+            builder: (context, viewModel, _) => AdaptiveScaffold(
+              destinations: <NavigationDestination>[
+                NavigationDestination(
+                  icon: const Icon(Icons.home_outlined),
+                  selectedIcon: const Icon(Icons.home),
+                  label: PackageLocalizations.of(
                     context,
                   )!
-                      .bottomSheetTooltip,
-                  child: IconButton(
-                    onPressed: () => showDialog(
-                      context: context,
-                      useRootNavigator: true,
-                      builder: (_) => const SystemDialog(
-                        isManager: true,
-                      ),
-                    ),
-                    icon: const Icon(Icons.more_vert),
-                  ),
+                      .managerDestinationHome,
+                  tooltip: PackageLocalizations.of(
+                    context,
+                  )!
+                      .managerDestinationHome,
+                  enabled: true,
+                ),
+                NavigationDestination(
+                  icon: const Icon(Icons.bug_report_outlined),
+                  selectedIcon: const Icon(Icons.bug_report),
+                  label: PackageLocalizations.of(
+                    context,
+                  )!
+                      .managerDestinationLog,
+                  tooltip: PackageLocalizations.of(
+                    context,
+                  )!
+                      .managerDestinationLog,
+                  enabled: true,
+                ),
+                NavigationDestination(
+                  icon: const Icon(Icons.extension_outlined),
+                  selectedIcon: const Icon(Icons.extension),
+                  label: PackageLocalizations.of(
+                    context,
+                  )!
+                      .managerDestinationPlugin,
+                  tooltip: PackageLocalizations.of(
+                    context,
+                  )!
+                      .managerDestinationPlugin,
+                  enabled: true,
+                ),
+                NavigationDestination(
+                  icon: const Icon(Icons.settings_outlined),
+                  selectedIcon: const Icon(Icons.settings),
+                  label: PackageLocalizations.of(
+                    context,
+                  )!
+                      .managerDestinationSetting,
+                  tooltip: PackageLocalizations.of(
+                    context,
+                  )!
+                      .managerDestinationSetting,
+                  enabled: true,
                 ),
               ],
+              smallBreakpoint: const Breakpoint(
+                endWidth: 600,
+              ),
+              mediumBreakpoint: const Breakpoint(
+                beginWidth: 600,
+                endWidth: 840,
+              ),
+              largeBreakpoint: const Breakpoint(
+                beginWidth: 840,
+              ),
+              selectedIndex: _currentIndex,
+              body: (_) => PageTransitionSwitcher(
+                duration: const Duration(
+                  milliseconds: 300,
+                ),
+                transitionBuilder: (child, animation, secondaryAnimation) {
+                  return SharedAxisTransition(
+                    animation: animation,
+                    secondaryAnimation: secondaryAnimation,
+                    transitionType: SharedAxisTransitionType.scaled,
+                    child: child,
+                  );
+                },
+                child: <Widget>[
+                  const HomePage(),
+                  const LogcatPage(),
+                  const PluginPage(),
+                  const SettingsPage(),
+                ][_currentIndex],
+              ),
+              transitionDuration: const Duration(
+                milliseconds: 500,
+              ),
+              onSelectedIndexChange: (index) => setState(
+                () => _currentIndex = index,
+              ),
+              useDrawer: false,
+              appBar: AppBar(
+                title: Text(
+                  PackageLocalizations.of(
+                    context,
+                  )!
+                      .managerTitle,
+                ),
+                actions: [
+                  Tooltip(
+                    message: PackageLocalizations.of(
+                      context,
+                    )!
+                        .bottomSheetTooltip,
+                    child: IconButton(
+                      onPressed: () => showDialog(
+                        context: context,
+                        useRootNavigator: true,
+                        builder: (_) => const SystemDialog(
+                          isManager: true,
+                        ),
+                      ),
+                      icon: const Icon(Icons.more_vert),
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 12,
+                    ),
+                    child: WindowPanel(),
+                  ),
+                ],
+              ),
+              appBarBreakpoint: Breakpoints.standard,
             ),
-            appBarBreakpoint: Breakpoints.standard,
           );
         },
         routePlugin: (_) {
@@ -448,6 +326,15 @@ class _SystemUIState extends State<SystemUI> with WindowListener {
                 title: Text(
                   viewModel.getCurrentDetails.title,
                 ),
+                actions: [
+                  const Padding(
+                    padding: EdgeInsets.only(
+                      left: 8,
+                      right: 12,
+                    ),
+                    child: WindowPanel(),
+                  ),
+                ],
               ),
               body: viewModel.getPluginWidget(
                 context,
@@ -649,6 +536,141 @@ class SystemAbout extends StatelessWidget {
           },
         );
       },
+    );
+  }
+}
+
+class WindowPanel extends StatefulWidget {
+  const WindowPanel({super.key});
+
+  @override
+  State<WindowPanel> createState() => _WindowPanelState();
+}
+
+class _WindowPanelState extends State<WindowPanel> with WindowListener {
+  /// 最大化按钮的图标
+  IconData _maxIcon = Icons.fullscreen;
+
+  @override
+  void initState() {
+    super.initState();
+    windowManager.addListener(this);
+  }
+
+  @override
+  void dispose() {
+    windowManager.removeListener(this);
+    super.dispose();
+  }
+
+  @override
+  void onWindowMaximize() {
+    super.onWindowMaximize();
+    setState(() => _maxIcon = Icons.fullscreen_exit);
+  }
+
+  @override
+  void onWindowUnmaximize() {
+    super.onWindowUnmaximize();
+    setState(() => _maxIcon = Icons.fullscreen);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<SystemViewModel>(
+      builder: (context, viewModel, _) => Visibility(
+        visible: PlatformUtil.kIsDesktop,
+        child: Container(
+          height: 30,
+          decoration: BoxDecoration(
+            color: Theme.of(context).brightness == Brightness.light
+                ? Colors.black.withOpacity(0.3)
+                : Colors.white.withOpacity(0.3),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Material(
+            color: Colors.transparent,
+            child: Row(
+              children: <Widget>[
+                Tooltip(
+                  message: '最小化',
+                  child: InkWell(
+                    onTap: viewModel.minimizeWindow,
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      bottomLeft: Radius.circular(20),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 3,
+                      ),
+                      child: Icon(
+                        Icons.minimize,
+                        color: Theme.of(context).brightness == Brightness.light
+                            ? Colors.white
+                            : Colors.black,
+                      ),
+                    ),
+                  ),
+                ),
+                VerticalDivider(
+                  indent: 6,
+                  endIndent: 6,
+                  width: 1,
+                  color: Colors.white.withOpacity(0.3),
+                ),
+                Tooltip(
+                  message: '最大化',
+                  child: InkWell(
+                    onTap: viewModel.maximizeWindow,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 3,
+                      ),
+                      child: Icon(
+                        _maxIcon,
+                        color: Theme.of(context).brightness == Brightness.light
+                            ? Colors.white
+                            : Colors.black,
+                      ),
+                    ),
+                  ),
+                ),
+                VerticalDivider(
+                  indent: 6,
+                  endIndent: 6,
+                  width: 1,
+                  color: Colors.white.withOpacity(0.3),
+                ),
+                Tooltip(
+                  message: '关闭窗口',
+                  child: InkWell(
+                    onTap: viewModel.closeWindow,
+                    borderRadius: const BorderRadius.only(
+                      topRight: Radius.circular(20),
+                      bottomRight: Radius.circular(20),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 3,
+                      ),
+                      child: Icon(
+                        Icons.close,
+                        color: Theme.of(context).brightness == Brightness.light
+                            ? Colors.white
+                            : Colors.black,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
