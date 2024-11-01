@@ -13,7 +13,7 @@ Future<void> main() async {
   );
 
   /// 使用运行器启动应用
-  await run(app: const MyApp());
+  await run(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

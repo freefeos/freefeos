@@ -15,8 +15,8 @@ import '../values/method.dart';
 import '../values/placeholder.dart';
 import '../values/strings.dart';
 import '../values/tag.dart';
-import '../viewmodel/system_mmvm.dart';
-import '../widget/ui.dart';
+import '../mvvm/mmvm.dart';
+import '../ui/ui.dart';
 
 /// 运行时混入
 base mixin RuntimeMixin implements BaseWrapper {

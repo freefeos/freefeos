@@ -190,9 +190,7 @@ final class FreeFEOSRunner {
   ///
   /// FreeFEOSRunner可调用对象,
   /// 官方文档https://dart.dev/language/callable-objects
-  Future<void> call({
-    required Widget app,
-  }) {
+  Future<void> call(Widget app) {
     return FreeFEOSInterface.instance.runFreeFEOSApp(
       runner: runner,
       plugins: plugins,
@@ -205,7 +203,7 @@ final class FreeFEOSRunner {
 }
 
 /// 最简实现
-Future<void> runFFApp(Widget app) => FreeFEOSRunner(enabled: true)(app: app);
+Future<void> runFFApp(Widget app) => FreeFEOSRunner(enabled: true)(app);
 
 /// 此文件为导出的, 可被外部访问的公共API接口, 但 [FreeFEOSBase] 类除外.
 /// 有关API的完整示例代码, 请参阅 https://pub.dev/packages/freefeos/example
