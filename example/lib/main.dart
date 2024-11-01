@@ -5,7 +5,7 @@ import 'package:freefeos/freefeos.dart';
 
 Future<void> main() async {
   /// 初始化运行器
-  final run = FreeFEOSRunner(
+  final launch = FreeFEOSLauncher(
     runner: (app) async => runApp(app), // 使用默认的runApp作为运行器启动应用
     plugins: [ExamplePlugin()], // 插件列表
     initApi: (exec) async => Global.exec = exec,
@@ -13,7 +13,7 @@ Future<void> main() async {
   );
 
   /// 使用运行器启动应用
-  await run(const MyApp());
+  await launch(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
