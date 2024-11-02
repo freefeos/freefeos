@@ -47,9 +47,7 @@
   </a>
 </p>
 
----
-
-<!-- 截图 -->
+## 截图
 
 <table align="center">
   <tr>
@@ -104,9 +102,6 @@
       </a>
     </td>
   </tr>
-</table>
-
-<table align="center">
   <tr>
     <td colspan="2" align="center">macOS</td>
   </tr>
@@ -124,22 +119,21 @@
       </a>
     </td>
   </tr>
-</table>
-
-<table align="center">
   <tr>
     <td colspan="2" align="center">Windows</td>
   </tr>
   <tr>
     <td>
       <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_windows_app.png">
-        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_windows_app.png"
+        <img
+          src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_windows_app.png"
           width="400">
       </a>
     </td>
     <td>
       <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_windows_mgr.png">
-        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_windows_mgr.png"
+        <img
+          src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_windows_mgr.png"
           width="400">
       </a>
     </td>
