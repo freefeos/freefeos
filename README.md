@@ -53,18 +53,21 @@
 <table align="center">
   <tr>
     <td>
-      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/screenshot.png">
-        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/screenshot.png" width="200">
+      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_app.png">
+        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_app.png" width="200">
       </a>
     </td>
     <td>
-      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/screenshot.png">
-        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/screenshot.png" width="200">
+      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_mgr.png">
+        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/screenhot.png" width="200">
       </a>
     </td>
+
+  </tr>
+  <tr>
     <td>
-      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/screenshot.png">
-        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/screenshot.png" width="200">
+      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_ios_app.png">
+        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/screenhot.png" width="200">
       </a>
     </td>
   </tr>
@@ -78,7 +81,8 @@
 
 FreeFEOS 是一个 Flutter 插件, 也是一个简单的 Flutter 库操作系统和高级 Flutter 开发框架, 它能够为应用提供诸多高级功能.
 
-FreeFEOS is a Flutter plugin, a simple Flutter library operating system and an advanced Flutter development framework that can provide many advanced features for applications.
+FreeFEOS is a Flutter plugin, a simple Flutter library operating system and an advanced Flutter development framework
+that can provide many advanced features for applications.
 
 ## 📚快速开始
 
@@ -99,7 +103,7 @@ FreeFEOS is a Flutter plugin, a simple Flutter library operating system and an a
 Version](https://img.shields.io/pub/v/freefeos?include_prereleases&style=flat-square&logo=dart&logoColor=white&label=Pub&color=blue)](https://pub.dev/packages/freefeos)
 ```yaml
 dependencies:
-  freefeos: ^这里写最新版本
+freefeos: ^这里写最新版本
 ```
 * 在终端中更新依赖:
 ```shell
