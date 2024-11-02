@@ -50,29 +50,55 @@
 ---
 
 <!-- 截图 -->
+
 <table align="center">
   <tr>
-    <td>
-      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_app.png">
-        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_app.png"
-          width="500">
-      </a>
-    </td>
-    <td>
-      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_mgr.png">
-        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_mgr.png" width="500">
-      </a>
-    </td>
+    <td colspan="2" align="center"> iOS </td>
+    <td colspan="2" align="center"> Android </td>
   </tr>
   <tr>
     <td>
       <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_ios_app.png">
-        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_ios_app.png" width="200">
+        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_ios_app.png"
+          height="500">
       </a>
     </td>
     <td>
       <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_ios_mgr.png">
-        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_ios_mgr.png" width="200">
+        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_ios_mgr.png"
+          height="500">
+      </a>
+    </td>
+    <td>
+      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_android_app.png">
+        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_android_app.png"
+          height="500">
+      </a>
+    </td>
+    <td>
+      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_android_mgr.png">
+        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_android_mgr.png"
+          height="500">
+      </a>
+    </td>
+  </tr>
+</table>
+
+<table align="center">
+  <tr>
+    <td colspan="2" align="center"> macOS </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_app.png">
+        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_app.png"
+          width="400">
+      </a>
+    </td>
+    <td>
+      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_mgr.png">
+        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_mgr.png"
+          width="400">
       </a>
     </td>
   </tr>
