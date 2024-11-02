@@ -6,16 +6,25 @@
   </a>
   <br>
   <br>
+  <a href="">主页</a>
+  <span>|</span>
+  <a href="">文档</a>
+  <span>|</span>
+  <a href="https://pub.dev/documentation/freefeos/latest/">API参考</a>
+  <span>|</span>
+  <a href="https://pub.dev/packages/freefeos/example">示例</a>
+  <span>|</span>
+  <a href="https://pub.dev/packages/freefeos">PUB包</a>
+  <br>
+  <br>
   <!-- 介绍 -->
   <span>
     <a href="https://pub.dev/packages/freefeos">FreeFEOS</a>
     <span>(WIP):&nbsp</span>
     <span>FreeFEOS 是一个 Flutter 插件, 也是一个简单的 Flutter 库操作系统和高级 Flutter 开发框架, 它能够为应用提供诸多高级功能.</span>
   </span>
-</p>
-
-<!-- 标签 -->
-<p align="center">
+  <br>
+  <br>
   <!-- Pub版本 -->
   <a href="https://pub.dev/packages/freefeos">
     <img
@@ -46,6 +55,17 @@
       alt="FreeFEOS Project">
   </a>
 </p>
+
+## 📢重要通知
+
+***因开发者学业原因, 自2024年9月起至2025年春季高考结束(2025年5月12日)期间项目进入维护状态, 仅提供重大错误修复, 预计更新频率最多每月一次, 敬请谅解, 谢谢!***
+
+## 🍀这是什么?
+
+FreeFEOS 是一个 Flutter 插件, 也是一个简单的 Flutter 库操作系统和高级 Flutter 开发框架, 它能够为应用提供诸多高级功能.
+
+FreeFEOS is a Flutter plugin, a simple Flutter library operating system and an advanced Flutter development framework
+that can provide many advanced features for applications.
 
 ## 截图
 
@@ -139,17 +159,6 @@
     </td>
   </tr>
 </table>
-
-## 📢重要通知
-
-***因开发者学业原因, 自2024年9月起至2025年春季高考结束(2025年5月12日)期间项目进入维护状态, 仅提供重大错误修复, 预计更新频率最多每月一次, 敬请谅解, 谢谢!***
-
-## 🍀这是什么?
-
-FreeFEOS 是一个 Flutter 插件, 也是一个简单的 Flutter 库操作系统和高级 Flutter 开发框架, 它能够为应用提供诸多高级功能.
-
-FreeFEOS is a Flutter plugin, a simple Flutter library operating system and an advanced Flutter development framework
-that can provide many advanced features for applications.
 
 ## 📚快速开始
 
