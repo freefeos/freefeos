@@ -54,20 +54,25 @@
   <tr>
     <td>
       <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_app.png">
-        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_app.png" width="200">
+        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_app.png"
+          width="200">
       </a>
     </td>
     <td>
       <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_mgr.png">
-        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/screenhot.png" width="200">
+        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_mgr.png" width="200">
       </a>
     </td>
-
   </tr>
   <tr>
     <td>
       <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_ios_app.png">
-        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/screenhot.png" width="200">
+        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_ios_app.png" width="200">
+      </a>
+    </td>
+    <td>
+      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_ios_mgr.png">
+        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_ios_mgr.png" width="200">
       </a>
     </td>
   </tr>
