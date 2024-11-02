@@ -77,26 +77,22 @@ screenshots:
     path: assets/screenhots/screenhot_android_app.png
   - description: "Manager screenshot on iOS"
     path: assets/screenhots/screenhot_android_mgr.png
-
   - description: "App screenshot on iOS"
     path: assets/screenhots/screenhot_ios_app.png
   - description: "Manager screenshot on iOS"
     path: assets/screenhots/screenhot_ios_mgr.png
-
-  - description: "App screenshot on Linux"
-    path: assets/screenhots/screenhot_ios_app.png
-  - description: "Manager screenshot on Linux"
-    path: assets/screenhots/screenhot_ios_mgr.png
-
+  # - description: "App screenshot on Linux"
+  #   path: assets/screenhots/screenhot_ios_app.png
+  # - description: "Manager screenshot on Linux"
+  #   path: assets/screenhots/screenhot_ios_mgr.png
   - description: "App screenshot on macOS"
     path: assets/screenhots/screenhot_macos_app.png
   - description: "Manager screenshot on macOS"
     path: assets/screenhots/screenhot_macos_mgr.png
-
   - description: "App screenshot on Windows"
-    path: assets/screenhots/screenhot_ios_app.png
+    path: assets/screenhots/screenhot_windows_app.png
   - description: "Manager screenshot on Windows"
-    path: assets/screenhots/screenhot_ios_mgr.png
+    path: assets/screenhots/screenhot_windows_mgr.png
 
 topics:
   - framework
