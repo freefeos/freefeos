@@ -82,9 +82,6 @@
       </a>
     </td>
   </tr>
-</table>
-
-<table align="center">
   <tr>
     <td colspan="2" align="center">Linux</td>
   </tr>
