@@ -55,12 +55,12 @@
     <td>
       <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_app.png">
         <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_app.png"
-          width="200">
+          width="500">
       </a>
     </td>
     <td>
       <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_mgr.png">
-        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_mgr.png" width="200">
+        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_mgr.png" width="500">
       </a>
     </td>
   </tr>
