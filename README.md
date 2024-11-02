@@ -6,9 +6,9 @@
   </a>
   <br>
   <br>
-  <a href="">主页</a>
+  <a href="https://github.com/freefeos/freefeos">主页</a>
   <span>|</span>
-  <a href="">文档</a>
+  <a href="https://github.com/freefeos/freefeos">文档</a>
   <span>|</span>
   <a href="https://pub.dev/documentation/freefeos/latest/">API参考</a>
   <span>|</span>
@@ -175,11 +175,10 @@ that can provide many advanced features for applications.
 3.添加依赖
 
 * 在项目的pubspec.yaml中添加依赖:
-[![Pub
-Version](https://img.shields.io/pub/v/freefeos?include_prereleases&style=flat-square&logo=dart&logoColor=white&label=Pub&color=blue)](https://pub.dev/packages/freefeos)
+[![PubVersion](https://img.shields.io/pub/v/freefeos?include_prereleases&style=flat-square&logo=dart&logoColor=white&label=Pub&color=blue)](https://pub.dev/packages/freefeos)
 ```yaml
 dependencies:
-freefeos: ^这里写最新版本
+  freefeos: ^这里写最新版本
 ```
 * 在终端中更新依赖:
 ```shell
