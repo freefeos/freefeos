@@ -82,25 +82,11 @@
       </a>
     </td>
   </tr>
+</table>
+
+<table align="center">
   <tr>
-    <td colspan="4" align="center">Linux</td>
-  </tr>
-  <tr>
-    <td colspan="4">
-      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_app.png">
-        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_app.png"
-          width="400">
-      </a>
-    </td>
-    <td colspan="4">
-      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_mgr.png">
-        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_mgr.png"
-          width="400">
-      </a>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="4" align="center">macOS</td>
+    <td colspan="2" align="center">Linux</td>
   </tr>
   <tr>
     <td>
@@ -117,7 +103,24 @@
     </td>
   </tr>
   <tr>
-    <td colspan="4" align="center">Windows</td>
+    <td colspan="2" align="center">macOS</td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_app.png">
+        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_app.png"
+          width="400">
+      </a>
+    </td>
+    <td>
+      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_mgr.png">
+        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_mgr.png"
+          width="400">
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">Windows</td>
   </tr>
   <tr>
     <td>
