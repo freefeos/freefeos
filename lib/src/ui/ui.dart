@@ -77,6 +77,8 @@ class _SystemUIState extends State<SystemUI> {
                   child: Padding(
                     padding: EdgeInsets.only(
                       top: MediaQuery.paddingOf(context).top,
+                      right: MediaQuery.paddingOf(context).right,
+                      left: MediaQuery.paddingOf(context).left,
                     ),
                     child: SizedBox(
                       height: kToolbarHeight,
@@ -695,7 +697,10 @@ class SystemDialog extends StatelessWidget {
         title: Tooltip(
           message: '打开管理器',
           child: ListTile(
-            leading: FlutterLogo(),
+            leading: Opacity(
+              opacity: isManager ? 0.5 : 1,
+              child: FlutterLogo(),
+            ),
             title: FutureBuilder(
               future: viewModel.getAppName(),
               builder: (context, snapshot) {
