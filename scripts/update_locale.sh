@@ -1,1 +1,1 @@
-flutter pub run intl_utils:generate
+flutter gen-l10n
