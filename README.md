@@ -6,16 +6,25 @@
   </a>
   <br>
   <br>
+  <a href="https://github.com/freefeos/freefeos">主页</a>
+  <span>|</span>
+  <a href="https://github.com/freefeos/freefeos">文档</a>
+  <span>|</span>
+  <a href="https://pub.dev/documentation/freefeos/latest/">API参考</a>
+  <span>|</span>
+  <a href="https://pub.dev/packages/freefeos/example">示例</a>
+  <span>|</span>
+  <a href="https://pub.dev/packages/freefeos">PUB包</a>
+  <br>
+  <br>
   <!-- 介绍 -->
   <span>
     <a href="https://pub.dev/packages/freefeos">FreeFEOS</a>
     <span>(WIP):&nbsp</span>
     <span>FreeFEOS 是一个 Flutter 插件, 也是一个简单的 Flutter 库操作系统和高级 Flutter 开发框架, 它能够为应用提供诸多高级功能.</span>
   </span>
-</p>
-
-<!-- 标签 -->
-<p align="center">
+  <br>
+  <br>
   <!-- Pub版本 -->
   <a href="https://pub.dev/packages/freefeos">
     <img
@@ -47,29 +56,6 @@
   </a>
 </p>
 
----
-
-<!-- 截图 -->
-<table align="center">
-  <tr>
-    <td>
-      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/screenshot.png">
-        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/screenshot.png" width="200">
-      </a>
-    </td>
-    <td>
-      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/screenshot.png">
-        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/screenshot.png" width="200">
-      </a>
-    </td>
-    <td>
-      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/screenshot.png">
-        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/screenshot.png" width="200">
-      </a>
-    </td>
-  </tr>
-</table>
-
 ## 📢重要通知
 
 ***因开发者学业原因, 自2024年9月起至2025年春季高考结束(2025年5月12日)期间项目进入维护状态, 仅提供重大错误修复, 预计更新频率最多每月一次, 敬请谅解, 谢谢!***
@@ -78,7 +64,101 @@
 
 FreeFEOS 是一个 Flutter 插件, 也是一个简单的 Flutter 库操作系统和高级 Flutter 开发框架, 它能够为应用提供诸多高级功能.
 
-FreeFEOS is a Flutter plugin, a simple Flutter library operating system and an advanced Flutter development framework that can provide many advanced features for applications.
+FreeFEOS is a Flutter plugin, a simple Flutter library operating system and an advanced Flutter development framework
+that can provide many advanced features for applications.
+
+## 截图
+
+<table align="center">
+  <tr>
+    <td colspan="2" align="center">iOS</td>
+    <td colspan="2" align="center">Android</td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_ios_app.png">
+        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_ios_app.png"
+          width="200">
+      </a>
+    </td>
+    <td>
+      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_ios_mgr.png">
+        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_ios_mgr.png"
+          width="200">
+      </a>
+    </td>
+    <td>
+      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_android_app.png">
+        <img
+          src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_android_app.png"
+          width="200">
+      </a>
+    </td>
+    <td>
+      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_android_mgr.png">
+        <img
+          src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_android_mgr.png"
+          width="200">
+      </a>
+    </td>
+  </tr>
+</table>
+
+<table align="center">
+  <tr>
+    <td colspan="2" align="center">Linux</td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_app.png">
+        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_app.png"
+          width="400">
+      </a>
+    </td>
+    <td>
+      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_mgr.png">
+        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_mgr.png"
+          width="400">
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">macOS</td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_app.png">
+        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_app.png"
+          width="400">
+      </a>
+    </td>
+    <td>
+      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_mgr.png">
+        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_mgr.png"
+          width="400">
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">Windows</td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_windows_app.png">
+        <img
+          src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_windows_app.png"
+          width="400">
+      </a>
+    </td>
+    <td>
+      <a href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_windows_mgr.png">
+        <img
+          src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_windows_mgr.png"
+          width="400">
+      </a>
+    </td>
+  </tr>
+</table>
 
 ## 📚快速开始
 
@@ -95,8 +175,7 @@ FreeFEOS is a Flutter plugin, a simple Flutter library operating system and an a
 3.添加依赖
 
 * 在项目的pubspec.yaml中添加依赖:
-[![Pub
-Version](https://img.shields.io/pub/v/freefeos?include_prereleases&style=flat-square&logo=dart&logoColor=white&label=Pub&color=blue)](https://pub.dev/packages/freefeos)
+[![PubVersion](https://img.shields.io/pub/v/freefeos?include_prereleases&style=flat-square&logo=dart&logoColor=white&label=Pub&color=blue)](https://pub.dev/packages/freefeos)
 ```yaml
 dependencies:
   freefeos: ^这里写最新版本
