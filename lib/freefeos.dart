@@ -217,7 +217,7 @@ final class FreeFEOSLauncher {
 }
 
 /// 最简实现
-/// 
+///
 /// [app] 传入App的根Widget
 Future<void> runFFApp(Widget app) => FreeFEOSLauncher(enabled: true)(app);
 

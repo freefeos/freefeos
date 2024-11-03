@@ -61,15 +61,18 @@ import 'package_localizations_zh.dart';
 /// be consistent with the languages listed in the PackageLocalizations.supportedLocales
 /// property.
 abstract class PackageLocalizations {
-  PackageLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  PackageLocalizations(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
-  static PackageLocalizations? of(BuildContext context) {
-    return Localizations.of<PackageLocalizations>(context, PackageLocalizations);
+  static PackageLocalizations of(BuildContext context) {
+    return Localizations.of<PackageLocalizations>(
+        context, PackageLocalizations)!;
   }
 
-  static const LocalizationsDelegate<PackageLocalizations> delegate = _PackageLocalizationsDelegate();
+  static const LocalizationsDelegate<PackageLocalizations> delegate =
+      _PackageLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -81,7 +84,8 @@ abstract class PackageLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -89,9 +93,7 @@ abstract class PackageLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[
-    Locale('zh')
-  ];
+  static const List<Locale> supportedLocales = <Locale>[Locale('zh')];
 
   /// No description provided for @unknown.
   ///
@@ -406,33 +408,34 @@ abstract class PackageLocalizations {
   String get managerPluginTooltipNoUI;
 }
 
-class _PackageLocalizationsDelegate extends LocalizationsDelegate<PackageLocalizations> {
+class _PackageLocalizationsDelegate
+    extends LocalizationsDelegate<PackageLocalizations> {
   const _PackageLocalizationsDelegate();
 
   @override
   Future<PackageLocalizations> load(Locale locale) {
-    return SynchronousFuture<PackageLocalizations>(lookupPackageLocalizations(locale));
+    return SynchronousFuture<PackageLocalizations>(
+        lookupPackageLocalizations(locale));
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['zh'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['zh'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_PackageLocalizationsDelegate old) => false;
 }
 
 PackageLocalizations lookupPackageLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'zh': return PackageLocalizationsZh();
+    case 'zh':
+      return PackageLocalizationsZh();
   }
 
   throw FlutterError(
-    'PackageLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+      'PackageLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }

@@ -296,56 +296,47 @@ final class SystemViewModel extends ContextWrapper
       case PluginType.runtime:
         return PackageLocalizations.of(
           context,
-        )!
-            .managerPluginTypeRuntime;
+        ).managerPluginTypeRuntime;
       // 绑定通信层
       case PluginType.base:
         return PackageLocalizations.of(
           context,
-        )!
-            .managerPluginTypeBase;
+        ).managerPluginTypeBase;
       // 平台嵌入层
       case PluginType.embedder:
         return PackageLocalizations.of(
           context,
-        )!
-            .managerPluginTypeEmbedder;
+        ).managerPluginTypeEmbedder;
       // 平台插件
       case PluginType.engine:
         return PackageLocalizations.of(
           context,
-        )!
-            .managerPluginTypeEngine;
+        ).managerPluginTypeEngine;
       // 平台插件
       case PluginType.platform:
         return PackageLocalizations.of(
           context,
-        )!
-            .managerPluginTypePlatform;
+        ).managerPluginTypePlatform;
       // 内核模块
       case PluginType.kernel:
         return PackageLocalizations.of(
           context,
-        )!
-            .managerPluginTypeKernel;
+        ).managerPluginTypeKernel;
       // 普通插件
       case PluginType.flutter:
         return PackageLocalizations.of(
           context,
-        )!
-            .managerPluginTypeFlutter;
+        ).managerPluginTypeFlutter;
       // 未知类型插件
       case PluginType.unknown:
         return PackageLocalizations.of(
           context,
-        )!
-            .managerPluginTypeUnknown;
+        ).managerPluginTypeUnknown;
       // 未知
       default:
         return PackageLocalizations.of(
           context,
-        )!
-            .unknown;
+        ).unknown;
     }
   }
 
@@ -359,16 +350,13 @@ final class SystemViewModel extends ContextWrapper
         ? runtimeChecker(details)
             ? PackageLocalizations.of(
                 context,
-              )!
-                .managerPluginTooltipAbout
+              ).managerPluginTooltipAbout
             : PackageLocalizations.of(
                 context,
-              )!
-                .managerPluginTooltipOpen
+              ).managerPluginTooltipOpen
         : PackageLocalizations.of(
             context,
-          )!
-            .managerPluginTooltipNoUI;
+          ).managerPluginTooltipNoUI;
   }
 
   /// 打开卡片

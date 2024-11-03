@@ -64,8 +64,7 @@ class _SystemUIState extends State<SystemUI> {
                       : Banner(
                           message: PackageLocalizations.of(
                             context,
-                          )!
-                              .bannerTitle,
+                          ).bannerTitle,
                           location: BannerLocation.topStart,
                           child: viewModel.getChild,
                         ),
@@ -201,12 +200,10 @@ class _SystemUIState extends State<SystemUI> {
                 selectedIcon: const Icon(Icons.home),
                 label: PackageLocalizations.of(
                   context,
-                )!
-                    .managerDestinationHome,
+                ).managerDestinationHome,
                 tooltip: PackageLocalizations.of(
                   context,
-                )!
-                    .managerDestinationHome,
+                ).managerDestinationHome,
                 enabled: true,
               ),
               NavigationDestination(
@@ -214,12 +211,10 @@ class _SystemUIState extends State<SystemUI> {
                 selectedIcon: const Icon(Icons.bug_report),
                 label: PackageLocalizations.of(
                   context,
-                )!
-                    .managerDestinationLog,
+                ).managerDestinationLog,
                 tooltip: PackageLocalizations.of(
                   context,
-                )!
-                    .managerDestinationLog,
+                ).managerDestinationLog,
                 enabled: true,
               ),
               NavigationDestination(
@@ -227,12 +222,10 @@ class _SystemUIState extends State<SystemUI> {
                 selectedIcon: const Icon(Icons.extension),
                 label: PackageLocalizations.of(
                   context,
-                )!
-                    .managerDestinationPlugin,
+                ).managerDestinationPlugin,
                 tooltip: PackageLocalizations.of(
                   context,
-                )!
-                    .managerDestinationPlugin,
+                ).managerDestinationPlugin,
                 enabled: true,
               ),
               NavigationDestination(
@@ -240,12 +233,10 @@ class _SystemUIState extends State<SystemUI> {
                 selectedIcon: const Icon(Icons.settings),
                 label: PackageLocalizations.of(
                   context,
-                )!
-                    .managerDestinationSetting,
+                ).managerDestinationSetting,
                 tooltip: PackageLocalizations.of(
                   context,
-                )!
-                    .managerDestinationSetting,
+                ).managerDestinationSetting,
                 enabled: true,
               ),
             ],
@@ -290,15 +281,13 @@ class _SystemUIState extends State<SystemUI> {
               title: Text(
                 PackageLocalizations.of(
                   context,
-                )!
-                    .managerTitle,
+                ).managerTitle,
               ),
               actions: [
                 Tooltip(
                   message: PackageLocalizations.of(
                     context,
-                  )!
-                      .bottomSheetTooltip,
+                  ).bottomSheetTooltip,
                   child: IconButton(
                     onPressed: () => showDialog(
                       context: context,
@@ -385,8 +374,7 @@ class _SystemUIState extends State<SystemUI> {
                   throw FlutterError(
                     PackageLocalizations.of(
                       context,
-                    )!
-                        .viewModelTypeError,
+                    ).viewModelTypeError,
                   );
                 }
                 return true;
@@ -430,7 +418,7 @@ class _SystemUIState extends State<SystemUI> {
         ),
       ),
       onGenerateTitle: (context) {
-        return PackageLocalizations.of(context)!.packageName;
+        return PackageLocalizations.of(context).packageName;
       },
       color: Colors.transparent,
       localizationsDelegates: PackageLocalizations.localizationsDelegates,
@@ -458,29 +446,25 @@ class SystemAbout extends StatelessWidget {
           builder: (context, snapshot) {
             String appName = PackageLocalizations.of(
               context,
-            )!
-                .unknown;
+            ).unknown;
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
                 appName = PackageLocalizations.of(
                   context,
-                )!
-                    .waiting;
+                ).waiting;
                 break;
               case ConnectionState.done:
                 if (snapshot.hasError) {
                   appName = PackageLocalizations.of(
                     context,
-                  )!
-                      .error;
+                  ).error;
                   break;
                 }
                 if (snapshot.hasData) {
                   appName = snapshot.data ??
                       PackageLocalizations.of(
                         context,
-                      )!
-                          .sNull;
+                      ).sNull;
                   break;
                 }
                 break;
@@ -492,29 +476,25 @@ class SystemAbout extends StatelessWidget {
               builder: (context, snapshot) {
                 String appVersion = PackageLocalizations.of(
                   context,
-                )!
-                    .unknown;
+                ).unknown;
                 switch (snapshot.connectionState) {
                   case ConnectionState.waiting:
                     appVersion = PackageLocalizations.of(
                       context,
-                    )!
-                        .waiting;
+                    ).waiting;
                     break;
                   case ConnectionState.done:
                     if (snapshot.hasError) {
                       appVersion = PackageLocalizations.of(
                         context,
-                      )!
-                          .error;
+                      ).error;
                       break;
                     }
                     if (snapshot.hasData) {
                       appVersion = snapshot.data ??
                           PackageLocalizations.of(
                             context,
-                          )!
-                              .sNull;
+                          ).sNull;
                       break;
                     }
                     break;
@@ -525,19 +505,16 @@ class SystemAbout extends StatelessWidget {
                   applicationName: isPackage
                       ? PackageLocalizations.of(
                           context,
-                        )!
-                          .aboutPackageName
+                        ).aboutPackageName
                       : appName,
                   applicationVersion: appVersion,
                   applicationLegalese: isPackage
                       ? PackageLocalizations.of(
                           context,
-                        )!
-                          .aboutPackageDescription
+                        ).aboutPackageDescription
                       : PackageLocalizations.of(
                           context,
-                        )!
-                          .aboutDialogLegalese,
+                        ).aboutDialogLegalese,
                   children: WidgetUtil.widget2WidgetList(child),
                 );
               },
@@ -706,29 +683,25 @@ class SystemDialog extends StatelessWidget {
               builder: (context, snapshot) {
                 String text = PackageLocalizations.of(
                   context,
-                )!
-                    .unknown;
+                ).unknown;
                 switch (snapshot.connectionState) {
                   case ConnectionState.waiting:
                     text = PackageLocalizations.of(
                       context,
-                    )!
-                        .waiting;
+                    ).waiting;
                     break;
                   case ConnectionState.done:
                     if (snapshot.hasError) {
                       text = PackageLocalizations.of(
                         context,
-                      )!
-                          .error;
+                      ).error;
                       break;
                     }
                     if (snapshot.hasData) {
                       text = snapshot.data ??
                           PackageLocalizations.of(
                             context,
-                          )!
-                              .sNull;
+                          ).sNull;
                       break;
                     }
                     break;
@@ -743,29 +716,25 @@ class SystemDialog extends StatelessWidget {
               builder: (context, snapshot) {
                 String text = PackageLocalizations.of(
                   context,
-                )!
-                    .unknown;
+                ).unknown;
                 switch (snapshot.connectionState) {
                   case ConnectionState.waiting:
                     text = PackageLocalizations.of(
                       context,
-                    )!
-                        .waiting;
+                    ).waiting;
                     break;
                   case ConnectionState.done:
                     if (snapshot.hasError) {
                       text = PackageLocalizations.of(
                         context,
-                      )!
-                          .error;
+                      ).error;
                       break;
                     }
                     if (snapshot.hasData) {
                       text = snapshot.data ??
                           PackageLocalizations.of(
                             context,
-                          )!
-                              .sNull;
+                          ).sNull;
                       break;
                     }
                     break;
@@ -819,12 +788,10 @@ class SystemDialog extends StatelessWidget {
               icon: Icons.manage_accounts_outlined,
               label: PackageLocalizations.of(
                 context,
-              )!
-                  .bottomSheetManager,
+              ).bottomSheetManager,
               tooltip: PackageLocalizations.of(
                 context,
-              )!
-                  .bottomSheetManagerTooltip,
+              ).bottomSheetManagerTooltip,
               enabled: !isManager,
             ),
             DialogButton(
@@ -861,12 +828,10 @@ class SystemDialog extends StatelessWidget {
               icon: Icons.exit_to_app,
               label: PackageLocalizations.of(
                 context,
-              )!
-                  .bottomSheetExit,
+              ).bottomSheetExit,
               tooltip: PackageLocalizations.of(
                 context,
-              )!
-                  .bottomSheetExitToolTip,
+              ).bottomSheetExitToolTip,
               enabled: true,
             ),
           ],
@@ -968,21 +933,18 @@ class SystemExit extends StatelessWidget {
         title: Text(
           PackageLocalizations.of(
             context,
-          )!
-              .closeDialogTitle,
+          ).closeDialogTitle,
         ),
         content: Text(
           PackageLocalizations.of(
             context,
-          )!
-              .closeDialogMessage,
+          ).closeDialogMessage,
         ),
         actions: [
           Tooltip(
             message: PackageLocalizations.of(
               context,
-            )!
-                .closeDialogCancelButton,
+            ).closeDialogCancelButton,
             child: TextButton(
               onPressed: () => Navigator.of(
                 context,
@@ -991,16 +953,14 @@ class SystemExit extends StatelessWidget {
               child: Text(
                 PackageLocalizations.of(
                   context,
-                )!
-                    .closeDialogCancelButton,
+                ).closeDialogCancelButton,
               ),
             ),
           ),
           Tooltip(
             message: PackageLocalizations.of(
               context,
-            )!
-                .closeDialogExitButton,
+            ).closeDialogExitButton,
             child: TextButton(
               onPressed: () {
                 Navigator.of(
@@ -1012,8 +972,7 @@ class SystemExit extends StatelessWidget {
               child: Text(
                 PackageLocalizations.of(
                   context,
-                )!
-                    .closeDialogExitButton,
+                ).closeDialogExitButton,
               ),
             ),
           ),
@@ -1087,29 +1046,25 @@ class _HomePageState extends State<HomePage> {
                                   builder: (context, snapshot) {
                                     String text = PackageLocalizations.of(
                                       context,
-                                    )!
-                                        .unknown;
+                                    ).unknown;
                                     switch (snapshot.connectionState) {
                                       case ConnectionState.waiting:
                                         text = PackageLocalizations.of(
                                           context,
-                                        )!
-                                            .waiting;
+                                        ).waiting;
                                         break;
                                       case ConnectionState.done:
                                         if (snapshot.hasError) {
                                           text = PackageLocalizations.of(
                                             context,
-                                          )!
-                                              .error;
+                                          ).error;
                                           break;
                                         }
                                         if (snapshot.hasData) {
                                           text = snapshot.data ??
                                               PackageLocalizations.of(
                                                 context,
-                                              )!
-                                                  .sNull;
+                                              ).sNull;
                                           break;
                                         }
                                         break;
@@ -1124,29 +1079,25 @@ class _HomePageState extends State<HomePage> {
                                   builder: (context, snapshot) {
                                     String text = PackageLocalizations.of(
                                       context,
-                                    )!
-                                        .unknown;
+                                    ).unknown;
                                     switch (snapshot.connectionState) {
                                       case ConnectionState.waiting:
                                         text = PackageLocalizations.of(
                                           context,
-                                        )!
-                                            .waiting;
+                                        ).waiting;
                                         break;
                                       case ConnectionState.done:
                                         if (snapshot.hasError) {
                                           text = PackageLocalizations.of(
                                             context,
-                                          )!
-                                              .error;
+                                          ).error;
                                           break;
                                         }
                                         if (snapshot.hasData) {
                                           text = snapshot.data ??
                                               PackageLocalizations.of(
                                                 context,
-                                              )!
-                                                  .sNull;
+                                              ).sNull;
                                           break;
                                         }
                                         break;
@@ -1190,37 +1141,32 @@ class _HomePageState extends State<HomePage> {
                                     title: Text(
                                       PackageLocalizations.of(
                                         context,
-                                      )!
-                                          .managerHomeInfoAppName,
+                                      ).managerHomeInfoAppName,
                                     ),
                                     subtitle: FutureBuilder(
                                       future: viewModel.getAppName(),
                                       builder: (context, snapshot) {
                                         String text = PackageLocalizations.of(
                                           context,
-                                        )!
-                                            .unknown;
+                                        ).unknown;
                                         switch (snapshot.connectionState) {
                                           case ConnectionState.waiting:
                                             text = PackageLocalizations.of(
                                               context,
-                                            )!
-                                                .waiting;
+                                            ).waiting;
                                             break;
                                           case ConnectionState.done:
                                             if (snapshot.hasError) {
                                               text = PackageLocalizations.of(
                                                 context,
-                                              )!
-                                                  .error;
+                                              ).error;
                                               break;
                                             }
                                             if (snapshot.hasData) {
                                               text = snapshot.data ??
                                                   PackageLocalizations.of(
                                                     context,
-                                                  )!
-                                                      .sNull;
+                                                  ).sNull;
                                               break;
                                             }
                                             break;
@@ -1235,37 +1181,32 @@ class _HomePageState extends State<HomePage> {
                                     title: Text(
                                       PackageLocalizations.of(
                                         context,
-                                      )!
-                                          .managerHomeInfoAppVersion,
+                                      ).managerHomeInfoAppVersion,
                                     ),
                                     subtitle: FutureBuilder(
                                       future: viewModel.getAppVersion(),
                                       builder: (context, snapshot) {
                                         String text = PackageLocalizations.of(
                                           context,
-                                        )!
-                                            .unknown;
+                                        ).unknown;
                                         switch (snapshot.connectionState) {
                                           case ConnectionState.waiting:
                                             text = PackageLocalizations.of(
                                               context,
-                                            )!
-                                                .waiting;
+                                            ).waiting;
                                             break;
                                           case ConnectionState.done:
                                             if (snapshot.hasError) {
                                               text = PackageLocalizations.of(
                                                 context,
-                                              )!
-                                                  .error;
+                                              ).error;
                                               break;
                                             }
                                             if (snapshot.hasData) {
                                               text = snapshot.data ??
                                                   PackageLocalizations.of(
                                                     context,
-                                                  )!
-                                                      .sNull;
+                                                  ).sNull;
                                               break;
                                             }
                                             break;
@@ -1280,8 +1221,7 @@ class _HomePageState extends State<HomePage> {
                                     title: Text(
                                       PackageLocalizations.of(
                                         context,
-                                      )!
-                                          .managerHomeInfoPlatform,
+                                      ).managerHomeInfoPlatform,
                                     ),
                                     subtitle: Text(
                                       Theme.of(context).platform.name,
@@ -1291,40 +1231,12 @@ class _HomePageState extends State<HomePage> {
                                     title: Text(
                                       PackageLocalizations.of(
                                         context,
-                                      )!
-                                          .managerHomeInfoPluginCount,
+                                      ).managerHomeInfoPluginCount,
                                     ),
                                     subtitle: Text(
                                       viewModel.pluginCount(),
                                     ),
                                   ),
-                                  // Padding(
-                                  //   padding: const EdgeInsets.symmetric(
-                                  //     vertical: 8,
-                                  //     horizontal: 24,
-                                  //   ),
-                                  //   child: Row(
-                                  //     mainAxisSize: MainAxisSize.max,
-                                  //     mainAxisAlignment: MainAxisAlignment.end,
-                                  //     children: [
-                                  //       FilledButton.icon(
-                                  //         onPressed: () => showDialog(
-                                  //           context: context,
-                                  //           useRootNavigator: true,
-                                  //           builder: (context) => const SystemAbout(
-                                  //             isPackage: false,
-                                  //           ),
-                                  //         ),
-                                  //         icon: const Icon(Icons.info_outline),
-                                  //         label: Text(
-                                  //           IntlLocalizations.of(
-                                  //             context,
-                                  //           ).managerHomeInfoAbout,
-                                  //         ),
-                                  //       ),
-                                  //     ],
-                                  //   ),
-                                  // ),
                                 ],
                               ),
                             ),
@@ -1337,8 +1249,7 @@ class _HomePageState extends State<HomePage> {
                       child: Tooltip(
                         message: PackageLocalizations.of(
                           context,
-                        )!
-                            .managerHomeLearnTooltip,
+                        ).managerHomeLearnTooltip,
                         child: Card(
                           child: InkWell(
                             onTap: viewModel.launchPubDev,
@@ -1352,14 +1263,12 @@ class _HomePageState extends State<HomePage> {
                                 title: Text(
                                   PackageLocalizations.of(
                                     context,
-                                  )!
-                                      .managerHomeLearnTitle,
+                                  ).managerHomeLearnTitle,
                                 ),
                                 subtitle: Text(
                                   PackageLocalizations.of(
                                     context,
-                                  )!
-                                      .managerHomeLearnDescription,
+                                  ).managerHomeLearnDescription,
                                 ),
                               ),
                             ),
@@ -1403,8 +1312,7 @@ class _LogcatPageState extends State<LogcatPage> {
           context: context,
           text: PackageLocalizations.of(
             context,
-          )!
-              .managerLogCopyTips,
+          ).managerLogCopyTips,
         ).show(),
       );
       final String text = event.lines.join('\n');
@@ -1613,7 +1521,7 @@ class _PluginPageState extends State<PluginPage> {
                                               ),
                                             ),
                                             Text(
-                                              '${PackageLocalizations.of(context)!.managerPluginChannel}: ${details.channel}',
+                                              '${PackageLocalizations.of(context).managerPluginChannel}: ${details.channel}',
                                               textAlign: TextAlign.start,
                                               style: TextStyle(
                                                 fontSize: Theme.of(
@@ -1631,7 +1539,7 @@ class _PluginPageState extends State<PluginPage> {
                                               ),
                                             ),
                                             Text(
-                                              '${PackageLocalizations.of(context)!.managerPluginAuthor}: ${details.author}',
+                                              '${PackageLocalizations.of(context).managerPluginAuthor}: ${details.author}',
                                               textAlign: TextAlign.start,
                                               style: TextStyle(
                                                 fontSize: Theme.of(

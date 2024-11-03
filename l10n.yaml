@@ -5,3 +5,5 @@ output-localization-file: package_localizations.dart
 synthetic-package: false
 output-class: PackageLocalizations
 preferred-supported-locales: [ zh ]
+nullable-getter: false
+format: true
