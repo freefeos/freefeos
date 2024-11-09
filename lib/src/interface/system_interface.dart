@@ -39,8 +39,8 @@ class FreeFEOSInterface extends PlatformInterface {
     required Widget app,
     required dynamic error,
   }) async {
-    return (error == null)
-        ? (enabled ?? false)
+    return error == null
+        ? enabled ?? true
             ? () async {
                 try {
                   await (initApi ?? (_) async {})(

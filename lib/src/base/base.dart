@@ -181,7 +181,7 @@ base class SystemBase extends ContextWrapper
     required dynamic error,
   }) async {
     // 判断是否启用框架, 如果在浏览器中运行不启用.
-    return (enabled ?? false) && (!PlatformUtil.kIsWebBrowser)
+    return enabled ?? true && !PlatformUtil.kIsWebBrowser
         // 导入App
         ? includeApp(app).then(
             (_) async {

@@ -3,16 +3,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:freefeos/freefeos.dart';
 
+/// 入口函数
 Future<void> main() async {
-  /// 初始化运行器
-  final launch = FreeFEOSLauncher(
-    runner: (app) async => runApp(app), // 使用默认的runApp作为运行器启动应用
-    plugins: [ExamplePlugin()], // 插件列表
+  // 初始化运行器
+  final FreeFEOSLauncher launch = FreeFEOSLauncher(
+    plugins: <FreeFEOSPlugin>[ExamplePlugin()],
     initApi: (exec) async => Global.exec = exec,
-    enabled: true,
   );
-
-  /// 使用运行器启动应用
+  // 使用运行器启动应用
   await launch(const MyApp());
 }
 
@@ -141,7 +139,11 @@ class Global {
   ]) async {
     final example = ExamplePlugin();
     if (channel == example.pluginChannel) {
-      example.invoke(method, arguments);
+      try {
+        example.invoke(method, arguments);
+      } on Exception {
+        rethrow;
+      }
     }
     return await null;
   };

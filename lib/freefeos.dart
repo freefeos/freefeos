@@ -117,11 +117,11 @@ typedef FreeFEOSPlugin = RuntimePlugin;
 /// }
 /// ```
 ///
-/// 2.随后在用于启动App的FreeFEOSRunner的initApi
+/// 2.随后在用于启动App的FreeFEOSLauncher的initApi
 /// 函数中将exec参数赋值给Global.exec.
 ///
 /// ```dart
-/// final run = FreeFEOSRunner(
+/// final launch = FreeFEOSLauncher(
 ///   runner: (app) async => runApp(app),
 ///   plugins: () => [ExamplePlugin()],
 ///   initApi: (exec) async {
