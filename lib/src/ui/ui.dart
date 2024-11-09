@@ -90,7 +90,7 @@ class _SystemUIState extends State<SystemUI> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
                             Visibility(
-                              visible: PlatformUtil.kIsDesktop,
+                              visible: WidgetUtil.kIsDesktopWithUI(context),
                               child: const Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 8),
                                 child: WindowPanel(),
@@ -300,7 +300,7 @@ class _SystemUIState extends State<SystemUI> {
                   ),
                 ),
                 Visibility(
-                  visible: PlatformUtil.kIsDesktop,
+                  visible: WidgetUtil.kIsDesktopWithUI(context),
                   child: const Padding(
                     padding: EdgeInsets.only(
                       left: 8,
@@ -323,7 +323,7 @@ class _SystemUIState extends State<SystemUI> {
                 ),
                 actions: [
                   Visibility(
-                    visible: PlatformUtil.kIsDesktop,
+                    visible: WidgetUtil.kIsDesktopWithUI(context),
                     child: const Padding(
                       padding: EdgeInsets.only(
                         left: 8,

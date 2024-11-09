@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 import '../framework/context.dart';
 
@@ -61,5 +61,12 @@ final class WidgetUtil {
   /// Layout转Widget
   static Widget layout2Widget(Layout layout) {
     return LayoutFrame(layout: layout);
+  }
+
+  /// 是否为桌面端
+  static bool kIsDesktopWithUI(BuildContext context) {
+    return Theme.of(context).platform == TargetPlatform.windows ||
+        Theme.of(context).platform == TargetPlatform.linux ||
+        Theme.of(context).platform == TargetPlatform.macOS;
   }
 }
