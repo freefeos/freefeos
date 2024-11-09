@@ -75,7 +75,7 @@ flutter:
 screenshots:
   - description: "App screenshot on Android"
     path: assets/screenhots/screenhot_android_app.png
-  - description: "Manager screenshot on iOS"
+  - description: "Manager screenshot on Android"
     path: assets/screenhots/screenhot_android_mgr.png
   - description: "App screenshot on iOS"
     path: assets/screenhots/screenhot_ios_app.png
