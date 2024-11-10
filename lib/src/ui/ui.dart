@@ -418,7 +418,9 @@ class _SystemUIState extends State<SystemUI> {
         ),
       ),
       onGenerateTitle: (context) {
-        return PackageLocalizations.of(context).packageName;
+        return PackageLocalizations.of(
+          context,
+        ).packageName;
       },
       color: Colors.transparent,
       localizationsDelegates: PackageLocalizations.localizationsDelegates,
