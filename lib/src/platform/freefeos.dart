@@ -1,4 +1,4 @@
-import '../interface/platform_interface.dart';
+import '../interface/interface.dart';
 
 final class FreeFEOSLinker implements FreeFEOSPlatform {
   /// 平台实例

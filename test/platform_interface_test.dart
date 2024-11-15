@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:freefeos/src/interface/platform_interface.dart';
-import 'package:freefeos/src/platform/default_platform.dart';
+import 'package:freefeos/src/interface/interface.dart';
+
 import 'package:freefeos/src/platform/freefeos.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
@@ -18,8 +18,8 @@ class MockFreeFEOSPlatform
 void main() {
   final FreeFEOSPlatform initialPlatform = FreeFEOSPlatform.instance;
 
-  test('$DefaultPlatform 是默认实例.', () {
-    expect(initialPlatform, isInstanceOf<DefaultPlatform>());
+  test('$FreeFEOSPlatform 是默认实例.', () {
+    expect(initialPlatform, isInstanceOf<FreeFEOSPlatform>());
   });
 
   test('getPlatformPluginList', () async {

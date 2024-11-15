@@ -5,7 +5,7 @@ import '../engine/plugin_engine.dart';
 import '../engine/result.dart';
 import '../framework/service.dart';
 import '../framework/want.dart';
-import '../interface/platform_interface.dart';
+import '../interface/interface.dart';
 import '../platform/freefeos.dart';
 import '../plugin/plugin_runtime.dart';
 import '../utils/utils.dart';

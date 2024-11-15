@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:freefeos/src/interface/system_interface.dart';
+import 'package:freefeos/src/interface/interface.dart';
 import 'package:freefeos/src/plugin/plugin_runtime.dart';
 import 'package:freefeos/src/type/types.dart';
 import 'package:freefeos/src/values/strings.dart';
@@ -8,11 +8,11 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 final class MockFreeFEOSInterface
     with MockPlatformInterfaceMixin
-    implements FreeFEOSInterface, RuntimePlugin {
+    implements FreeFEOSSystem, RuntimePlugin {
   bool isInitialized = false;
 
   @override
-  FreeFEOSInterface get interface => this;
+  FreeFEOSSystem get interface => this;
 
   @override
   Future<void> runFreeFEOSApp({
@@ -51,16 +51,16 @@ final class MockFreeFEOSInterface
 
 /// 系统接口单元测试
 void main() {
-  final FreeFEOSInterface initialInterface = FreeFEOSInterface.instance;
+  final FreeFEOSSystem initialInterface = FreeFEOSSystem.instance;
 
-  test('$FreeFEOSInterface 是默认实例.', () {
-    expect(initialInterface, isInstanceOf<FreeFEOSInterface>());
+  test('$FreeFEOSSystem 是默认实例.', () {
+    expect(initialInterface, isInstanceOf<FreeFEOSSystem>());
   });
 
   test('runFreeFEOSApp 接口调用正常.', () async {
     MockFreeFEOSInterface fakeInterface = MockFreeFEOSInterface();
-    FreeFEOSInterface.instance = fakeInterface;
-    await FreeFEOSInterface.instance.runFreeFEOSApp(
+    FreeFEOSSystem.instance = fakeInterface;
+    await FreeFEOSSystem.instance.runFreeFEOSApp(
       runner: (app) async => runApp(app),
       plugins: [fakeInterface],
       initApi: (exec) async {},

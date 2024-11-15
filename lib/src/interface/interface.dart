@@ -6,29 +6,29 @@ import '../type/types.dart';
 import '../values/tag.dart';
 
 /// 实现平台接口的抽象类
-class FreeFEOSInterface extends PlatformInterface {
-  FreeFEOSInterface() : super(token: _token);
+class FreeFEOSSystem extends PlatformInterface {
+  FreeFEOSSystem() : super(token: _token);
 
   /// 令牌
   static final Object _token = Object();
 
   /// 默认实现
-  static final FreeFEOSInterface _default = FreeFEOSInterface();
+  static final FreeFEOSSystem _default = FreeFEOSSystem();
 
   /// 实例
-  static FreeFEOSInterface _instance = _default;
+  static FreeFEOSSystem _instance = _default;
 
   /// 获取实例
-  static FreeFEOSInterface get instance => _instance;
+  static FreeFEOSSystem get instance => _instance;
 
   /// 设置实例
-  static set instance(FreeFEOSInterface instance) {
+  static set instance(FreeFEOSSystem instance) {
     PlatformInterface.verify(instance, _token);
     _instance = instance;
   }
 
   /// 实现的接口
-  FreeFEOSInterface get interface => instance;
+  FreeFEOSSystem get interface => instance;
 
   /// 运行应用
   Future<void> runFreeFEOSApp({
@@ -76,5 +76,32 @@ class FreeFEOSInterface extends PlatformInterface {
               }()
             : (runner ?? (app) async => runApp(app))(app)
         : throw FlutterError(error.toString());
+  }
+}
+
+class FreeFEOSPlatform extends PlatformInterface {
+  FreeFEOSPlatform() : super(token: _token);
+
+  static final Object _token = Object();
+
+  static FreeFEOSPlatform _instance = FreeFEOSPlatform();
+
+  static FreeFEOSPlatform get instance => _instance;
+
+  static set instance(FreeFEOSPlatform instance) {
+    PlatformInterface.verifyToken(instance, _token);
+    _instance = instance;
+  }
+
+  Future<List?> getPlatformPluginList() async {
+    throw UnimplementedError('未实现getPlatformPluginList()接口.');
+  }
+
+  Future<bool?> openPlatformDialog() async {
+    throw UnimplementedError('未实现openPlatformDialog()接口.');
+  }
+
+  Future<bool?> closePlatformDialog() async {
+    throw UnimplementedError('未实现closePlatformDialog()接口.');
   }
 }

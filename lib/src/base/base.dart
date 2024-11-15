@@ -16,13 +16,13 @@ import '../values/values.dart';
 import '../values/strings.dart';
 import '../values/tag.dart';
 import '../framework/log.dart';
-import '../interface/system_interface.dart';
+import '../interface/interface.dart';
 import '../server/server.dart';
 
 /// 绑定层包装器
 abstract interface class BaseWrapper {
   /// 运行时入口
-  FreeFEOSInterface call();
+  FreeFEOSSystem call();
 
   /// 初始化
   Future<void> init(List<RuntimePlugin> plugins);
@@ -87,10 +87,10 @@ base mixin AppMixin implements BaseWrapper {
 }
 
 /// 入口混入
-base mixin BaseEntry implements FreeFEOSInterface {
+base mixin BaseEntry implements FreeFEOSSystem {
   /// 执行接口
   @override
-  FreeFEOSInterface get interface => SystemBase()();
+  FreeFEOSSystem get interface => SystemBase()();
 }
 
 /// 绑定层混入
@@ -127,7 +127,7 @@ base class SystemBase extends ContextWrapper
         ServerBridgeMixin,
         EngineBridgeMixin,
         ViewModel
-    implements RuntimePlugin, FreeFEOSInterface, KernelModule, BaseWrapper {
+    implements RuntimePlugin, FreeFEOSSystem, KernelModule, BaseWrapper {
   /// 构造函数
   SystemBase() : super(attach: true);
 

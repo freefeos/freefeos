@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 
-import '../interface/platform_interface.dart';
+import '../interface/interface.dart';
 
 final class MethodChannelFreeFEOS extends FreeFEOSPlatform {
   /// 方法通道

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../base/base.dart';
 import '../framework/context.dart';
 import '../framework/log.dart';
-import '../interface/system_interface.dart';
+import '../interface/interface.dart';
 import '../plugin/plugin_details.dart';
 import '../plugin/plugin_runtime.dart';
 import '../plugin/plugin_type.dart';
@@ -22,7 +22,7 @@ import '../ui/ui.dart';
 base mixin RuntimeMixin implements BaseWrapper {
   /// 获取运行时实例
   @override
-  FreeFEOSInterface call() => SystemRuntime();
+  FreeFEOSSystem call() => SystemRuntime();
 }
 
 /// 运行时

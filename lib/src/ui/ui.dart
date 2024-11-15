@@ -1022,6 +1022,7 @@ class _HomePageState extends State<HomePage> {
               child: Consumer<SystemViewModel>(
                 builder: (context, viewModel, child) => Column(
                   children: [
+                    Text(PoemUtil().getPoem),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(12, 12, 12, 6),
                       child: Tooltip(

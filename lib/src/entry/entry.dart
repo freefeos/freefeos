@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart';
 
 import '../base/base.dart';
-import '../interface/system_interface.dart';
+import '../interface/interface.dart';
 import '../type/types.dart';
 
-final class SystemEntry extends FreeFEOSInterface with BaseEntry {
+final class SystemEntry extends FreeFEOSSystem with BaseEntry {
   SystemEntry();
 
   /// 入口函数

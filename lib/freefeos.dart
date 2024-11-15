@@ -4,8 +4,7 @@ library;
 import 'package:flutter/widgets.dart';
 
 import 'src/entry/entry.dart';
-import 'src/interface/platform_interface.dart';
-import 'src/interface/system_interface.dart';
+import 'src/interface/interface.dart';
 import 'src/platform/method_channel.dart';
 import 'src/plugin/plugin_runtime.dart';
 import 'src/type/types.dart';
@@ -33,7 +32,7 @@ final class FreeFEOSRegister {
   ///
   /// 重要的事情说三遍!
   static void registerWith() {
-    FreeFEOSInterface.instance = SystemEntry();
+    FreeFEOSSystem.instance = SystemEntry();
     FreeFEOSPlatform.instance = MethodChannelFreeFEOS();
   }
 }
@@ -205,7 +204,7 @@ final class FreeFEOSLauncher {
   /// FreeFEOSRunner的可调用对象 (call函数),
   /// 可调用对象官方文档https://dart.dev/language/callable-objects
   Future<void> call(Widget app) {
-    return FreeFEOSInterface.instance.runFreeFEOSApp(
+    return FreeFEOSSystem.instance.runFreeFEOSApp(
       runner: runner,
       plugins: plugins,
       initApi: initApi,
@@ -219,7 +218,7 @@ final class FreeFEOSLauncher {
 /// 最简实现
 ///
 /// [app] 传入App的根Widget
-Future<void> runFFApp(Widget app) => FreeFEOSLauncher(enabled: true)(app);
+Future<void> runFFApp(Widget app) => FreeFEOSLauncher()(app);
 
-/// 此文件为导出的, 可被外部访问的公共API接口, 但 [FreeFEOSBase] 类除外.
+/// 此文件为导出的, 可被外部访问的公共API接口.
 /// 有关API的完整示例代码, 请参阅 https://pub.dev/packages/freefeos/example
