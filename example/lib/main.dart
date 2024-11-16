@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        // backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       ),
       body: Center(
         child: Column(
@@ -107,7 +107,7 @@ class _DetailsPageState extends State<DetailsPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Details'),
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        // backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       ),
       body: Center(
         child: Column(
