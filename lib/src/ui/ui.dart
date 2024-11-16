@@ -1022,7 +1022,7 @@ class _HomePageState extends State<HomePage> {
               child: Consumer<SystemViewModel>(
                 builder: (context, viewModel, child) => Column(
                   children: [
-                    Text(PoemUtil().getPoem),
+                    Text(viewModel.getPoem),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(12, 12, 12, 6),
                       child: Tooltip(
@@ -1654,7 +1654,10 @@ class _SettingsPageState extends State<SettingsPage> {
             controller: _scrollController,
             padding: EdgeInsets.zero,
             child: const Column(
-              children: [],
+              children: [
+                ListTile(title: Text('about'), subtitle: Text('about'),leading: Icon(Icons.info_outline),),
+                ListTile(title: Text('info'),),
+              ],
             ),
           ),
         ),

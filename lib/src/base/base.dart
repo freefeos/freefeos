@@ -258,7 +258,7 @@ base class SystemBase extends ContextWrapper
                   );
                 }
                 // 调用运行器启动应用
-                return await (runner ?? (app) async => runApp(app))(
+                return await (runner ?? (Widget app) async => runApp(app))(
                   WidgetUtil.layout2Widget(findApplication()),
                 );
               } catch (_) {
@@ -275,7 +275,7 @@ base class SystemBase extends ContextWrapper
             },
           )
         // 未启用框架时直接调用运行器启动应用
-        : (runner ?? (app) async => runApp(app))(app);
+        : (runner ?? (Widget app) async => runApp(app))(app);
   }
 
   /// 初始化应用

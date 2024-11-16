@@ -60,7 +60,7 @@ class FreeFEOSSystem extends PlatformInterface {
                       return await null;
                     },
                   );
-                  return await (runner ?? (app) async => runApp(app))(
+                  return await (runner ?? (Widget app) async => runApp(app))(
                     app,
                   ).then(
                     (_) => Log.w(
@@ -74,7 +74,7 @@ class FreeFEOSSystem extends PlatformInterface {
                   throw FlutterError(exception.toString());
                 }
               }()
-            : (runner ?? (app) async => runApp(app))(app)
+            : (runner ?? (Widget app) async => runApp(app))(app)
         : throw FlutterError(error.toString());
   }
 }
