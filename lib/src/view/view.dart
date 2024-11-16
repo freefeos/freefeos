@@ -936,21 +936,21 @@ class _SystemManagerState extends State<SystemManager> {
           ).managerTitle,
         ),
         actions: [
-          Tooltip(
-            message: PackageLocalizations.of(
-              context,
-            ).bottomSheetTooltip,
-            child: IconButton(
-              onPressed: () => showDialog(
-                context: context,
-                useRootNavigator: true,
-                builder: (_) => const SystemDialog(
-                  isManager: true,
-                ),
-              ),
-              icon: const Icon(Icons.more_vert),
-            ),
-          ),
+          // Tooltip(
+          //   message: PackageLocalizations.of(
+          //     context,
+          //   ).bottomSheetTooltip,
+          //   child: IconButton(
+          //     onPressed: () => showDialog(
+          //       context: context,
+          //       useRootNavigator: true,
+          //       builder: (_) => const SystemDialog(
+          //         isManager: true,
+          //       ),
+          //     ),
+          //     icon: const Icon(Icons.more_vert),
+          //   ),
+          // ),
           Visibility(
             visible: WidgetUtil.kIsDesktopWithUI(context),
             child: const Padding(
