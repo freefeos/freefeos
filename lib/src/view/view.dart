@@ -8,17 +8,15 @@ import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
 import 'package:window_manager/window_manager.dart';
 
-import '../event/event_buffer.dart';
-import '../event/rendered_event.dart';
+import '../event/event.dart';
 import '../framework/ansi_parser.dart';
-import '../framework/log.dart';
 import '../framework/toast.dart';
 import '../intl/package_localizations.dart';
-import '../plugin/plugin_details.dart';
+import '../model/plugin_details.dart';
 import '../type/types.dart';
 import '../utils/utils.dart';
 import '../values/route.dart';
-import '../mvvm/mmvm.dart';
+import '../view_model/view_model.dart';
 
 /// 系统界面布局
 class SystemUI extends StatefulWidget {
@@ -34,9 +32,6 @@ class SystemUI extends StatefulWidget {
 }
 
 class _SystemUIState extends State<SystemUI> {
-  /// 当前页面
-  int _currentIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return WidgetsApp(
@@ -192,155 +187,8 @@ class _SystemUIState extends State<SystemUI> {
         },
       ),
       routes: <String, WidgetBuilder>{
-        routeManager: (context) {
-          return AdaptiveScaffold(
-            destinations: <NavigationDestination>[
-              NavigationDestination(
-                icon: const Icon(Icons.home_outlined),
-                selectedIcon: const Icon(Icons.home),
-                label: PackageLocalizations.of(
-                  context,
-                ).managerDestinationHome,
-                tooltip: PackageLocalizations.of(
-                  context,
-                ).managerDestinationHome,
-                enabled: true,
-              ),
-              NavigationDestination(
-                icon: const Icon(Icons.bug_report_outlined),
-                selectedIcon: const Icon(Icons.bug_report),
-                label: PackageLocalizations.of(
-                  context,
-                ).managerDestinationLog,
-                tooltip: PackageLocalizations.of(
-                  context,
-                ).managerDestinationLog,
-                enabled: true,
-              ),
-              NavigationDestination(
-                icon: const Icon(Icons.extension_outlined),
-                selectedIcon: const Icon(Icons.extension),
-                label: PackageLocalizations.of(
-                  context,
-                ).managerDestinationPlugin,
-                tooltip: PackageLocalizations.of(
-                  context,
-                ).managerDestinationPlugin,
-                enabled: true,
-              ),
-              NavigationDestination(
-                icon: const Icon(Icons.settings_outlined),
-                selectedIcon: const Icon(Icons.settings),
-                label: PackageLocalizations.of(
-                  context,
-                ).managerDestinationSetting,
-                tooltip: PackageLocalizations.of(
-                  context,
-                ).managerDestinationSetting,
-                enabled: true,
-              ),
-            ],
-            smallBreakpoint: const Breakpoint(
-              endWidth: 600,
-            ),
-            mediumBreakpoint: const Breakpoint(
-              beginWidth: 600,
-              endWidth: 840,
-            ),
-            largeBreakpoint: const Breakpoint(
-              beginWidth: 840,
-            ),
-            selectedIndex: _currentIndex,
-            body: (_) => PageTransitionSwitcher(
-              duration: const Duration(
-                milliseconds: 300,
-              ),
-              transitionBuilder: (child, animation, secondaryAnimation) {
-                return SharedAxisTransition(
-                  animation: animation,
-                  secondaryAnimation: secondaryAnimation,
-                  transitionType: SharedAxisTransitionType.scaled,
-                  child: child,
-                );
-              },
-              child: <Widget>[
-                const HomePage(),
-                const LogcatPage(),
-                const PluginPage(),
-                const SettingsPage(),
-              ][_currentIndex],
-            ),
-            transitionDuration: const Duration(
-              milliseconds: 500,
-            ),
-            onSelectedIndexChange: (index) => setState(
-              () => _currentIndex = index,
-            ),
-            useDrawer: false,
-            appBar: AppBar(
-              title: Text(
-                PackageLocalizations.of(
-                  context,
-                ).managerTitle,
-              ),
-              actions: [
-                Tooltip(
-                  message: PackageLocalizations.of(
-                    context,
-                  ).bottomSheetTooltip,
-                  child: IconButton(
-                    onPressed: () => showDialog(
-                      context: context,
-                      useRootNavigator: true,
-                      builder: (_) => const SystemDialog(
-                        isManager: true,
-                      ),
-                    ),
-                    icon: const Icon(Icons.more_vert),
-                  ),
-                ),
-                Visibility(
-                  visible: WidgetUtil.kIsDesktopWithUI(context),
-                  child: const Padding(
-                    padding: EdgeInsets.only(
-                      left: 8,
-                      right: 12,
-                    ),
-                    child: WindowPanel(),
-                  ),
-                ),
-              ],
-            ),
-            appBarBreakpoint: Breakpoints.standard,
-          );
-        },
-        routePlugin: (_) {
-          return Consumer<SystemViewModel>(
-            builder: (context, viewModel, _) => Scaffold(
-              appBar: AppBar(
-                title: Text(
-                  viewModel.getCurrentDetails.title,
-                ),
-                actions: [
-                  Visibility(
-                    visible: WidgetUtil.kIsDesktopWithUI(context),
-                    child: const Padding(
-                      padding: EdgeInsets.only(
-                        left: 8,
-                        right: 12,
-                      ),
-                      child: WindowPanel(),
-                    ),
-                  ),
-                ],
-              ),
-              body: viewModel.getPluginWidget(
-                context,
-                viewModel.getCurrentDetails,
-              ),
-            ),
-          );
-        },
+        routeManager: (_) => SystemManager(),
+        routePlugin: (_) => PluginUI(),
       },
       builder: (context, child) => Theme(
         data: ThemeData(
@@ -984,6 +832,142 @@ class SystemExit extends StatelessWidget {
   }
 }
 
+class SystemManager extends StatefulWidget {
+  const SystemManager({super.key});
+
+  @override
+  State<SystemManager> createState() => _SystemManagerState();
+}
+
+class _SystemManagerState extends State<SystemManager> {
+  /// 当前页面
+  int _currentIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return AdaptiveScaffold(
+      destinations: <NavigationDestination>[
+        NavigationDestination(
+          icon: const Icon(Icons.home_outlined),
+          selectedIcon: const Icon(Icons.home),
+          label: PackageLocalizations.of(
+            context,
+          ).managerDestinationHome,
+          tooltip: PackageLocalizations.of(
+            context,
+          ).managerDestinationHome,
+          enabled: true,
+        ),
+        NavigationDestination(
+          icon: const Icon(Icons.bug_report_outlined),
+          selectedIcon: const Icon(Icons.bug_report),
+          label: PackageLocalizations.of(
+            context,
+          ).managerDestinationLog,
+          tooltip: PackageLocalizations.of(
+            context,
+          ).managerDestinationLog,
+          enabled: true,
+        ),
+        NavigationDestination(
+          icon: const Icon(Icons.extension_outlined),
+          selectedIcon: const Icon(Icons.extension),
+          label: PackageLocalizations.of(
+            context,
+          ).managerDestinationPlugin,
+          tooltip: PackageLocalizations.of(
+            context,
+          ).managerDestinationPlugin,
+          enabled: true,
+        ),
+        NavigationDestination(
+          icon: const Icon(Icons.settings_outlined),
+          selectedIcon: const Icon(Icons.settings),
+          label: PackageLocalizations.of(
+            context,
+          ).managerDestinationSetting,
+          tooltip: PackageLocalizations.of(
+            context,
+          ).managerDestinationSetting,
+          enabled: true,
+        ),
+      ],
+      smallBreakpoint: const Breakpoint(
+        endWidth: 600,
+      ),
+      mediumBreakpoint: const Breakpoint(
+        beginWidth: 600,
+        endWidth: 840,
+      ),
+      largeBreakpoint: const Breakpoint(
+        beginWidth: 840,
+      ),
+      selectedIndex: _currentIndex,
+      body: (_) => PageTransitionSwitcher(
+        duration: const Duration(
+          milliseconds: 300,
+        ),
+        transitionBuilder: (child, animation, secondaryAnimation) {
+          return SharedAxisTransition(
+            animation: animation,
+            secondaryAnimation: secondaryAnimation,
+            transitionType: SharedAxisTransitionType.scaled,
+            child: child,
+          );
+        },
+        child: <Widget>[
+          const HomePage(),
+          const LogcatPage(),
+          const PluginPage(),
+          const SettingsPage(),
+        ][_currentIndex],
+      ),
+      transitionDuration: const Duration(
+        milliseconds: 500,
+      ),
+      onSelectedIndexChange: (index) => setState(
+        () => _currentIndex = index,
+      ),
+      useDrawer: false,
+      appBar: AppBar(
+        title: Text(
+          PackageLocalizations.of(
+            context,
+          ).managerTitle,
+        ),
+        actions: [
+          Tooltip(
+            message: PackageLocalizations.of(
+              context,
+            ).bottomSheetTooltip,
+            child: IconButton(
+              onPressed: () => showDialog(
+                context: context,
+                useRootNavigator: true,
+                builder: (_) => const SystemDialog(
+                  isManager: true,
+                ),
+              ),
+              icon: const Icon(Icons.more_vert),
+            ),
+          ),
+          Visibility(
+            visible: WidgetUtil.kIsDesktopWithUI(context),
+            child: const Padding(
+              padding: EdgeInsets.only(
+                left: 8,
+                right: 12,
+              ),
+              child: WindowPanel(),
+            ),
+          ),
+        ],
+      ),
+      appBarBreakpoint: Breakpoints.standard,
+    );
+  }
+}
+
 /// 主页页面布局
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -1375,7 +1359,10 @@ class _LogcatPageState extends State<LogcatPage> {
                 key: Key(logEntry.id.toString()),
                 style: TextStyle(
                   fontSize: 14,
-                  color: logEntry.level.toColor(context),
+                  color: LogUtils.level2Color(
+                    logEntry.level,
+                    context,
+                  ),
                 ),
               );
             },
@@ -1655,11 +1642,50 @@ class _SettingsPageState extends State<SettingsPage> {
             padding: EdgeInsets.zero,
             child: const Column(
               children: [
-                ListTile(title: Text('about'), subtitle: Text('about'),leading: Icon(Icons.info_outline),),
-                ListTile(title: Text('info'),),
+                ListTile(
+                  title: Text('about'),
+                  subtitle: Text('about'),
+                  leading: Icon(Icons.info_outline),
+                ),
+                ListTile(
+                  title: Text('info'),
+                ),
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class PluginUI extends StatelessWidget {
+  const PluginUI({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<SystemViewModel>(
+      builder: (context, viewModel, _) => Scaffold(
+        appBar: AppBar(
+          title: Text(
+            viewModel.getCurrentDetails.title,
+          ),
+          actions: [
+            Visibility(
+              visible: WidgetUtil.kIsDesktopWithUI(context),
+              child: const Padding(
+                padding: EdgeInsets.only(
+                  left: 8,
+                  right: 12,
+                ),
+                child: WindowPanel(),
+              ),
+            ),
+          ],
+        ),
+        body: viewModel.getPluginWidget(
+          context,
+          viewModel.getCurrentDetails,
         ),
       ),
     );

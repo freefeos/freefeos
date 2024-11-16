@@ -6,7 +6,7 @@ import '../base/base.dart';
 import '../framework/context.dart';
 import '../framework/log.dart';
 import '../interface/interface.dart';
-import '../plugin/plugin_details.dart';
+import '../model/plugin_details.dart';
 import '../plugin/plugin_runtime.dart';
 import '../plugin/plugin_type.dart';
 import '../type/types.dart';
@@ -15,8 +15,8 @@ import '../values/method.dart';
 import '../values/placeholder.dart';
 import '../values/strings.dart';
 import '../values/tag.dart';
-import '../mvvm/mmvm.dart';
-import '../ui/ui.dart';
+import '../view_model/view_model.dart';
+import '../view/view.dart';
 
 /// 运行时混入
 base mixin RuntimeMixin implements BaseWrapper {

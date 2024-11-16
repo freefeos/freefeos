@@ -21,6 +21,9 @@ base mixin EngineMixin on EnginePlugin implements EngineProxy {
     String methodProxy, [
     dynamic argumentsProxy,
   ]) async {
-    return await engineScope.onMethodCall(methodProxy, argumentsProxy);
+    return await engineScope.onMethodCall(
+      methodProxy,
+      argumentsProxy,
+    );
   }
 }

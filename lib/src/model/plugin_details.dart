@@ -1,4 +1,4 @@
-import 'plugin_type.dart';
+import '../plugin/plugin_type.dart';
 
 /// 插件详细信息
 final class PluginDetails {

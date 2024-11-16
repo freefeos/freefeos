@@ -9,7 +9,7 @@ import 'package:window_manager/window_manager.dart';
 
 import '../framework/context.dart';
 import '../intl/package_localizations.dart';
-import '../plugin/plugin_details.dart';
+import '../model/plugin_details.dart';
 import '../plugin/plugin_type.dart';
 import '../type/types.dart';
 import '../utils/utils.dart';
