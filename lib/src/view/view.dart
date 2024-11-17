@@ -1640,16 +1640,32 @@ class _SettingsPageState extends State<SettingsPage> {
           child: SingleChildScrollView(
             controller: _scrollController,
             padding: EdgeInsets.zero,
-            child: const Column(
+            child: Column(
               children: [
-                ListTile(
-                  title: Text('about'),
-                  subtitle: Text('about'),
-                  leading: Icon(Icons.info_outline),
-                ),
-                ListTile(
-                  title: Text('info'),
-                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: 12,
+                    right: 12,
+                    top: 12,
+                    bottom: 6,
+                  ),
+                  child: Card(
+                    child: Column(
+                      children: [
+                        ListTile(
+                          title: Text('关于'),
+                          subtitle: Text('关于 FreeFEOS'),
+                          leading: Icon(Icons.info_outline),
+                        ),
+                        ListTile(
+                          title: Text('了解更多'),
+                          subtitle: Text('了解如何使用 FreeFEOS 进行开发'),
+                          leading: Icon(Icons.web),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
               ],
             ),
           ),
