@@ -194,7 +194,7 @@ abstract class PackageLocalizations {
   /// No description provided for @aboutPackageDescription.
   ///
   /// In zh, this message translates to:
-  /// **'FreeFEOS Flutter Package'**
+  /// **'Free Flutter Embedded Operating System'**
   String get aboutPackageDescription;
 
   /// No description provided for @aboutDialogLegalese.

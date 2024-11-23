@@ -16,7 +16,7 @@
     "bottomSheetExit": "退出",
     "bottomSheetExitToolTip": "退出应用",
     "aboutPackageName": "FreeFEOS",
-    "aboutPackageDescription": "FreeFEOS Flutter Package",
+    "aboutPackageDescription": "Free Flutter Embedded Operating System",
     "aboutDialogLegalese": "Powered by FreeFEOS",
     "closeDialogTitle": "退出应用",
     "closeDialogMessage": "是否退出应用?\n此功能在iOS下不可用,请直接退出.",

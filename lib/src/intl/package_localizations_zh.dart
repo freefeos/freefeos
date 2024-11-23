@@ -55,7 +55,8 @@ class PackageLocalizationsZh extends PackageLocalizations {
   String get aboutPackageName => 'FreeFEOS';
 
   @override
-  String get aboutPackageDescription => 'FreeFEOS Flutter Package';
+  String get aboutPackageDescription =>
+      'Free Flutter Embedded Operating System';
 
   @override
   String get aboutDialogLegalese => 'Powered by FreeFEOS';

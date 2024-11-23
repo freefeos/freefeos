@@ -273,7 +273,11 @@ final class SystemViewModel extends ContextWrapper
           color: Colors.blueGrey,
         );
       case PluginType.flutter:
-        return const FlutterLogo();
+        return Icon(
+          Icons.extension,
+          size: Theme.of(context).iconTheme.size,
+          color: Colors.lightGreen,
+        );
       case PluginType.unknown:
         return Icon(
           Icons.error,
