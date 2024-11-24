@@ -47,224 +47,22 @@ class _SystemUIState extends State<SystemUI> {
       home: Consumer<SystemViewModel>(
         builder: (context, viewModel, _) {
           viewModel.attachBuildContext(context);
-          return Overlay(
-            initialEntries: <OverlayEntry>[
-              OverlayEntry(
-                builder: (context) => ConstrainedBox(
-                  constraints: const BoxConstraints.expand(),
-                  child: PlatformUtil.kNoBanner
-                      ? Container(
-                          child: viewModel.getChild,
-                        )
-                      : Banner(
-                          message: PackageLocalizations.of(
-                            context,
-                          ).bannerTitle,
-                          location: BannerLocation.topStart,
-                          child: viewModel.getChild,
-                        ),
-                ),
-              ),
-              OverlayEntry(
-                builder: (context) => Align(
-                  alignment: Alignment.topCenter,
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                      top: MediaQuery.paddingOf(context).top,
-                      right: MediaQuery.paddingOf(context).right,
-                      left: MediaQuery.paddingOf(context).left,
-                    ),
-                    child: SizedBox(
-                      height: kToolbarHeight,
-                      child: PreferredSize(
-                        preferredSize: const Size.fromHeight(
-                          kToolbarHeight,
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: <Widget>[
-                            Visibility(
-                              visible: WidgetUtil.kIsDesktopWithUI(context),
-                              child: const Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 8),
-                                child: WindowPanel(),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 12),
-                              child: Container(
-                                height: 30,
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context).brightness ==
-                                          Brightness.light
-                                      ? Colors.black.withOpacity(0.3)
-                                      : Colors.white.withOpacity(0.3),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Material(
-                                  color: Colors.transparent,
-                                  child: Row(
-                                    children: [
-                                      Tooltip(
-                                        message: '系统菜单',
-                                        child: InkWell(
-                                          onTap: () => showDialog(
-                                            context: context,
-                                            useRootNavigator: true,
-                                            builder: (_) => const SystemDialog(
-                                              isManager: false,
-                                            ),
-                                          ),
-                                          borderRadius: const BorderRadius.only(
-                                            topLeft: Radius.circular(20),
-                                            bottomLeft: Radius.circular(20),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 12,
-                                              vertical: 3,
-                                            ),
-                                            child: Icon(
-                                              Icons.more_horiz,
-                                              color: Theme.of(context)
-                                                          .brightness ==
-                                                      Brightness.light
-                                                  ? Colors.white
-                                                  : Colors.black,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      VerticalDivider(
-                                        indent: 6,
-                                        endIndent: 6,
-                                        width: 1,
-                                        color: Colors.white.withOpacity(0.3),
-                                      ),
-                                      Tooltip(
-                                        message: '退出应用',
-                                        child: InkWell(
-                                          onTap: () => showDialog(
-                                            context: context,
-                                            useRootNavigator: true,
-                                            builder: (_) => const SystemExit(),
-                                          ),
-                                          borderRadius: const BorderRadius.only(
-                                            topRight: Radius.circular(20),
-                                            bottomRight: Radius.circular(20),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 12,
-                                              vertical: 3,
-                                            ),
-                                            child: Icon(
-                                              Icons.adjust,
-                                              color: Theme.of(context)
-                                                          .brightness ==
-                                                      Brightness.light
-                                                  ? Colors.white
-                                                  : Colors.black,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+          return AppContainer(
+            app: viewModel.getChild,
           );
         },
       ),
       routes: <String, WidgetBuilder>{
         routeManager: (_) => SystemManager(),
         routePlugin: (_) => PluginUI(),
+        routeAbout: (_) => AboutPage(),
       },
-      builder: (context, child) => Theme(
-        data: ThemeData(
-          useMaterial3: true,
-          brightness: MediaQuery.platformBrightnessOf(
-            context,
-          ),
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.blue,
-            brightness: MediaQuery.platformBrightnessOf(
-              context,
-            ),
-          ),
-          pageTransitionsTheme: const PageTransitionsTheme(
-            builders: <TargetPlatform, PageTransitionsBuilder>{
-              TargetPlatform.android: PredictiveBackPageTransitionsBuilder(),
-              TargetPlatform.fuchsia: ZoomPageTransitionsBuilder(),
-              TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-              TargetPlatform.linux: ZoomPageTransitionsBuilder(),
-              TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
-              TargetPlatform.windows: ZoomPageTransitionsBuilder(),
-            },
-          ),
-        ),
-        child: ToastificationWrapper(
-          child: ChangeNotifierProvider<SystemViewModel>(
-            create: (context) {
-              final ViewModel viewModel = widget.builder(context);
-              assert(() {
-                if (viewModel is! SystemViewModel) {
-                  throw FlutterError(
-                    PackageLocalizations.of(
-                      context,
-                    ).viewModelTypeError,
-                  );
-                }
-                return true;
-              }());
-              return viewModel as SystemViewModel;
-            },
-            child: Consumer<SystemViewModel>(
-              builder: (context, viewModel, child) => Stack(
-                children: <Positioned>[
-                  Positioned(
-                    left: 0,
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints.expand(),
-                      child: child,
-                    ),
-                  ),
-                  Positioned(
-                    left: 0,
-                    top: MediaQuery.paddingOf(context).top,
-                    right: 0,
-                    height: kToolbarHeight,
-                    child: PreferredSize(
-                      preferredSize: const Size.fromHeight(
-                        kToolbarHeight,
-                      ),
-                      child: GestureDetector(
-                        onPanStart: (_) => viewModel.startDragging(),
-                        onDoubleTap: () => viewModel.maximizeWindow(),
-                        behavior: HitTestBehavior.translucent,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              child: child,
-            ),
-          ),
-        ),
-      ),
+      builder: (context, child) {
+        return SystemUIBuilder(
+          builder: widget.builder,
+          child: child,
+        );
+      },
       onGenerateTitle: (context) {
         return PackageLocalizations.of(
           context,
@@ -278,100 +76,240 @@ class _SystemUIState extends State<SystemUI> {
   }
 }
 
-/// 关于对话框布局
-class SystemAbout extends StatelessWidget {
-  const SystemAbout({
+class AppContainer extends StatelessWidget {
+  const AppContainer({
     super.key,
-    required this.isPackage,
+    required this.app,
   });
 
-  final bool isPackage;
+  final Widget app;
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<SystemViewModel>(
-      builder: (context, viewModel, child) {
-        return FutureBuilder(
-          future: viewModel.getAppName(),
-          builder: (context, snapshot) {
-            String appName = PackageLocalizations.of(
-              context,
-            ).unknown;
-            switch (snapshot.connectionState) {
-              case ConnectionState.waiting:
-                appName = PackageLocalizations.of(
-                  context,
-                ).waiting;
-                break;
-              case ConnectionState.done:
-                if (snapshot.hasError) {
-                  appName = PackageLocalizations.of(
-                    context,
-                  ).error;
-                  break;
-                }
-                if (snapshot.hasData) {
-                  appName = snapshot.data ??
-                      PackageLocalizations.of(
-                        context,
-                      ).sNull;
-                  break;
-                }
-                break;
-              default:
-                break;
-            }
-            return FutureBuilder(
-              future: viewModel.getAppVersion(),
-              builder: (context, snapshot) {
-                String appVersion = PackageLocalizations.of(
-                  context,
-                ).unknown;
-                switch (snapshot.connectionState) {
-                  case ConnectionState.waiting:
-                    appVersion = PackageLocalizations.of(
+    return Overlay(
+      initialEntries: <OverlayEntry>[
+        OverlayEntry(
+          builder: (context) => ConstrainedBox(
+            constraints: const BoxConstraints.expand(),
+            child: PlatformUtil.kNoBanner
+                ? Container(
+                    child: app,
+                  )
+                : Banner(
+                    message: PackageLocalizations.of(
                       context,
-                    ).waiting;
-                    break;
-                  case ConnectionState.done:
-                    if (snapshot.hasError) {
-                      appVersion = PackageLocalizations.of(
-                        context,
-                      ).error;
-                      break;
-                    }
-                    if (snapshot.hasData) {
-                      appVersion = snapshot.data ??
-                          PackageLocalizations.of(
-                            context,
-                          ).sNull;
-                      break;
-                    }
-                    break;
-                  default:
-                    break;
-                }
-                return AboutDialog(
-                  applicationName: isPackage
-                      ? PackageLocalizations.of(
-                          context,
-                        ).aboutPackageName
-                      : appName,
-                  applicationVersion: appVersion,
-                  applicationLegalese: isPackage
-                      ? PackageLocalizations.of(
-                          context,
-                        ).aboutPackageDescription
-                      : PackageLocalizations.of(
-                          context,
-                        ).aboutDialogLegalese,
-                  children: WidgetUtil.widget2WidgetList(child),
-                );
-              },
-            );
+                    ).bannerTitle,
+                    location: BannerLocation.topStart,
+                    child: app,
+                  ),
+          ),
+        ),
+        OverlayEntry(
+          builder: (context) => Align(
+            alignment: Alignment.topCenter,
+            child: Padding(
+              padding: EdgeInsets.only(
+                top: MediaQuery.paddingOf(context).top,
+                right: MediaQuery.paddingOf(context).right,
+                left: MediaQuery.paddingOf(context).left,
+              ),
+              child: SizedBox(
+                height: kToolbarHeight,
+                child: PreferredSize(
+                  preferredSize: const Size.fromHeight(
+                    kToolbarHeight,
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Visibility(
+                        visible: WidgetUtil.kIsDesktopWithUI(context),
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 8),
+                          child: WindowPanel(),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: Container(
+                          height: 30,
+                          decoration: BoxDecoration(
+                            color:
+                                Theme.of(context).brightness == Brightness.light
+                                    ? Colors.black.withOpacity(0.3)
+                                    : Colors.white.withOpacity(0.3),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Material(
+                            color: Colors.transparent,
+                            child: Row(
+                              children: [
+                                Tooltip(
+                                  message: '系统菜单',
+                                  child: InkWell(
+                                    onTap: () => showDialog(
+                                      context: context,
+                                      useRootNavigator: true,
+                                      builder: (_) => const SystemDialog(
+                                        isManager: false,
+                                      ),
+                                    ),
+                                    borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      bottomLeft: Radius.circular(20),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 12,
+                                        vertical: 3,
+                                      ),
+                                      child: Icon(
+                                        Icons.more_horiz,
+                                        color: Theme.of(context).brightness ==
+                                                Brightness.light
+                                            ? Colors.white
+                                            : Colors.black,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                VerticalDivider(
+                                  indent: 6,
+                                  endIndent: 6,
+                                  width: 1,
+                                  color: Colors.white.withOpacity(0.3),
+                                ),
+                                Tooltip(
+                                  message: '退出应用',
+                                  child: InkWell(
+                                    onTap: () => showDialog(
+                                      context: context,
+                                      useRootNavigator: true,
+                                      builder: (_) => const SystemExit(),
+                                    ),
+                                    borderRadius: const BorderRadius.only(
+                                      topRight: Radius.circular(20),
+                                      bottomRight: Radius.circular(20),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 12,
+                                        vertical: 3,
+                                      ),
+                                      child: Icon(
+                                        Icons.adjust,
+                                        color: Theme.of(context).brightness ==
+                                                Brightness.light
+                                            ? Colors.white
+                                            : Colors.black,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class SystemUIBuilder extends StatelessWidget {
+  const SystemUIBuilder({
+    super.key,
+    required this.child,
+    required this.builder,
+  });
+
+  final Widget? child;
+  final ViewModelBuilder builder;
+
+  @override
+  Widget build(BuildContext context) {
+    return Theme(
+      data: ThemeData(
+        useMaterial3: true,
+        brightness: MediaQuery.platformBrightnessOf(
+          context,
+        ),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.blue,
+          brightness: MediaQuery.platformBrightnessOf(
+            context,
+          ),
+        ),
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: <TargetPlatform, PageTransitionsBuilder>{
+            TargetPlatform.android: PredictiveBackPageTransitionsBuilder(),
+            TargetPlatform.fuchsia: ZoomPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.linux: ZoomPageTransitionsBuilder(),
+            TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.windows: ZoomPageTransitionsBuilder(),
           },
-        );
-      },
+        ),
+      ),
+      child: ToastificationWrapper(
+        child: ChangeNotifierProvider<SystemViewModel>(
+          create: (context) {
+            final ViewModel viewModel = builder(context);
+            assert(() {
+              if (viewModel is! SystemViewModel) {
+                throw FlutterError(
+                  PackageLocalizations.of(
+                    context,
+                  ).viewModelTypeError,
+                );
+              }
+              return true;
+            }());
+            return viewModel as SystemViewModel;
+          },
+          child: Consumer<SystemViewModel>(
+            builder: (context, viewModel, child) => Stack(
+              children: <Positioned>[
+                Positioned(
+                  left: 0,
+                  top: 0,
+                  right: 0,
+                  bottom: 0,
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints.expand(),
+                    child: child,
+                  ),
+                ),
+                Positioned(
+                  left: 0,
+                  top: MediaQuery.paddingOf(context).top,
+                  right: 0,
+                  height: kToolbarHeight,
+                  child: PreferredSize(
+                    preferredSize: const Size.fromHeight(
+                      kToolbarHeight,
+                    ),
+                    child: GestureDetector(
+                      onPanStart: (_) => viewModel.startDragging(),
+                      onDoubleTap: () => viewModel.maximizeWindow(),
+                      behavior: HitTestBehavior.translucent,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            child: child,
+          ),
+        ),
+      ),
     );
   }
 }
@@ -650,13 +588,10 @@ class SystemDialog extends StatelessWidget {
                   context,
                   rootNavigator: true,
                 ).pop();
-                showDialog(
-                  context: context,
-                  useRootNavigator: true,
-                  builder: (context) => const SystemAbout(
-                    isPackage: false,
-                  ),
-                );
+                Navigator.of(
+                  context,
+                  rootNavigator: true,
+                ).pushNamed(routeAbout);
               },
               icon: Icons.info_outline,
               label: '关于',
@@ -1127,12 +1062,10 @@ class _HomePageState extends State<HomePage> {
                         message: '关于',
                         child: Card(
                           child: InkWell(
-                            onTap: () => showDialog(
-                              context: context,
-                              builder: (context) => SystemAbout(
-                                isPackage: false,
-                              ),
-                            ),
+                            onTap: () => Navigator.of(
+                              context,
+                              rootNavigator: true,
+                            ).pushNamed(routeAbout),
                             borderRadius: BorderRadius.circular(12),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
@@ -1458,13 +1391,10 @@ class _PluginPageState extends State<PluginPage> {
                               context,
                               rootNavigator: true,
                             ).pushNamed(routePlugin),
-                            () => showDialog(
-                              context: context,
-                              useRootNavigator: true,
-                              builder: (context) => const SystemAbout(
-                                isPackage: true,
-                              ),
-                            ),
+                            () => Navigator.of(
+                              context,
+                              rootNavigator: true,
+                            ).pushNamed(routeAbout),
                             () => showDialog(
                               context: context,
                               useRootNavigator: true,
@@ -1674,44 +1604,48 @@ class _SettingsPageState extends State<SettingsPage> {
                       child: Card(
                         child: Column(
                           children: [
-                            ListTile(
-                              title: Text('关于'),
-                              subtitle: Text('关于 FreeFEOS'),
-                              leading: Icon(Icons.info_outline),
-                              onTap: () => showDialog(
-                                context: context,
-                                builder: (context) => SystemAbout(
-                                  isPackage: false,
+                            Tooltip(
+                              message: '关于 FreeFEOS',
+                              child: ListTile(
+                                title: Text('关于'),
+                                subtitle: Text('关于 FreeFEOS'),
+                                leading: Icon(Icons.info_outline),
+                                onTap: () => Navigator.of(
+                                  context,
+                                  rootNavigator: true,
+                                ).pushNamed(routeAbout),
+                                contentPadding: const EdgeInsets.only(
+                                  top: 6,
+                                  left: 24,
+                                  right: 24,
+                                  bottom: 3,
                                 ),
-                              ),
-                              contentPadding: const EdgeInsets.only(
-                                top: 6,
-                                left: 24,
-                                right: 24,
-                                bottom: 3,
-                              ),
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(12),
-                                  topRight: Radius.circular(12),
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(12),
+                                    topRight: Radius.circular(12),
+                                  ),
                                 ),
                               ),
                             ),
-                            ListTile(
-                              title: Text('了解更多'),
-                              subtitle: Text('了解如何使用 FreeFEOS 进行开发'),
-                              leading: Icon(Icons.web),
-                              onTap: () => viewModel.launchPubDev(),
-                              contentPadding: const EdgeInsets.only(
-                                top: 3,
-                                left: 24,
-                                right: 24,
-                                bottom: 6,
-                              ),
-                              shape: const RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(12),
-                                  bottomRight: Radius.circular(12),
+                            Tooltip(
+                              message: '了解如何使用 FreeFEOS 进行开发',
+                              child: ListTile(
+                                title: Text('了解更多'),
+                                subtitle: Text('了解如何使用 FreeFEOS 进行开发'),
+                                leading: Icon(Icons.web),
+                                onTap: () => viewModel.launchPubDev(),
+                                contentPadding: const EdgeInsets.only(
+                                  top: 3,
+                                  left: 24,
+                                  right: 24,
+                                  bottom: 6,
+                                ),
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(12),
+                                    bottomRight: Radius.circular(12),
+                                  ),
                                 ),
                               ),
                             ),
@@ -1777,6 +1711,108 @@ class PluginUI extends StatelessWidget {
           viewModel.getCurrentDetails,
         ),
       ),
+    );
+  }
+}
+
+class AboutPage extends StatelessWidget {
+  const AboutPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('关于'),
+        actions: [
+          Visibility(
+            visible: WidgetUtil.kIsDesktopWithUI(context),
+            child: const Padding(
+              padding: EdgeInsets.only(
+                left: 8,
+                right: 12,
+              ),
+              child: WindowPanel(),
+            ),
+          ),
+        ],
+      ),
+      body: Consumer<SystemViewModel>(builder: (context, viewModel, child) {
+        return Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              FutureBuilder(
+                future: viewModel.getAppName(),
+                builder: (context, snapshot) {
+                  String appName = PackageLocalizations.of(
+                    context,
+                  ).unknown;
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.waiting:
+                      appName = PackageLocalizations.of(
+                        context,
+                      ).waiting;
+                      break;
+                    case ConnectionState.done:
+                      if (snapshot.hasError) {
+                        appName = PackageLocalizations.of(
+                          context,
+                        ).error;
+                        break;
+                      }
+                      if (snapshot.hasData) {
+                        appName = snapshot.data ??
+                            PackageLocalizations.of(
+                              context,
+                            ).sNull;
+                        break;
+                      }
+                      break;
+                    default:
+                      break;
+                  }
+                  return Text(appName);
+                },
+              ),
+              FutureBuilder(
+                future: viewModel.getAppVersion(),
+                builder: (context, snapshot) {
+                  String appVersion = PackageLocalizations.of(
+                    context,
+                  ).unknown;
+                  switch (snapshot.connectionState) {
+                    case ConnectionState.waiting:
+                      appVersion = PackageLocalizations.of(
+                        context,
+                      ).waiting;
+                      break;
+                    case ConnectionState.done:
+                      if (snapshot.hasError) {
+                        appVersion = PackageLocalizations.of(
+                          context,
+                        ).error;
+                        break;
+                      }
+                      if (snapshot.hasData) {
+                        appVersion = snapshot.data ??
+                            PackageLocalizations.of(
+                              context,
+                            ).sNull;
+                        break;
+                      }
+                      break;
+                    default:
+                      break;
+                  }
+                  return Center(
+                    child: Text(appVersion),
+                  );
+                },
+              ),
+            ],
+          ),
+        );
+      }),
     );
   }
 }
