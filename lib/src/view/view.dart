@@ -6,8 +6,9 @@ import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
-import 'package:window_manager/window_manager.dart';
 
+import '../components/dialog_button.dart';
+import '../components/window_control_buttons.dart';
 import '../event/event.dart';
 import '../framework/ansi_parser.dart';
 import '../framework/toast.dart';
@@ -47,15 +48,12 @@ class _SystemUIState extends State<SystemUI> {
       home: Consumer<SystemViewModel>(
         builder: (context, viewModel, _) {
           viewModel.attachBuildContext(context);
-          return AppContainer(
-            app: viewModel.getChild,
-          );
+          return AppContainer();
         },
       ),
       routes: <String, WidgetBuilder>{
         routeManager: (_) => SystemManager(),
         routePlugin: (_) => PluginUI(),
-        routeAbout: (_) => AboutPage(),
       },
       builder: (context, child) {
         return SystemUIBuilder(
@@ -76,14 +74,14 @@ class _SystemUIState extends State<SystemUI> {
   }
 }
 
-class AppContainer extends StatelessWidget {
-  const AppContainer({
-    super.key,
-    required this.app,
-  });
+class AppContainer extends StatefulWidget {
+  const AppContainer({super.key});
 
-  final Widget app;
+  @override
+  State<AppContainer> createState() => _AppContainerState();
+}
 
+class _AppContainerState extends State<AppContainer> {
   @override
   Widget build(BuildContext context) {
     return Overlay(
@@ -92,15 +90,13 @@ class AppContainer extends StatelessWidget {
           builder: (context) => ConstrainedBox(
             constraints: const BoxConstraints.expand(),
             child: PlatformUtil.kNoBanner
-                ? Container(
-                    child: app,
-                  )
+                ? AppRootView()
                 : Banner(
                     message: PackageLocalizations.of(
                       context,
                     ).bannerTitle,
                     location: BannerLocation.topStart,
-                    child: app,
+                    child: AppRootView(),
                   ),
           ),
         ),
@@ -127,7 +123,7 @@ class AppContainer extends StatelessWidget {
                         visible: WidgetUtil.kIsDesktopWithUI(context),
                         child: const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 8),
-                          child: WindowPanel(),
+                          child: WindowControlButtons(),
                         ),
                       ),
                       Padding(
@@ -224,6 +220,30 @@ class AppContainer extends StatelessWidget {
   }
 }
 
+class AppRootView extends StatefulWidget {
+  const AppRootView({super.key});
+
+  @override
+  State<AppRootView> createState() => _AppRootViewState();
+}
+
+class _AppRootViewState extends State<AppRootView>
+    with AutomaticKeepAliveClientMixin {
+  /// 启用状态保持
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return Consumer<SystemViewModel>(
+      builder: (context, viewModel, _) => Container(
+        child: viewModel.getChild,
+      ),
+    );
+  }
+}
+
 class SystemUIBuilder extends StatelessWidget {
   const SystemUIBuilder({
     super.key,
@@ -314,133 +334,109 @@ class SystemUIBuilder extends StatelessWidget {
   }
 }
 
-class WindowPanel extends StatefulWidget {
-  const WindowPanel({super.key});
-
-  @override
-  State<WindowPanel> createState() => _WindowPanelState();
-}
-
-class _WindowPanelState extends State<WindowPanel> with WindowListener {
-  /// 最大化按钮的图标
-  IconData _maxIcon = Icons.fullscreen;
-
-  @override
-  void initState() {
-    super.initState();
-    windowManager.addListener(this);
-  }
-
-  @override
-  void dispose() {
-    windowManager.removeListener(this);
-    super.dispose();
-  }
-
-  @override
-  void onWindowMaximize() {
-    super.onWindowMaximize();
-    setState(() => _maxIcon = Icons.fullscreen_exit);
-  }
-
-  @override
-  void onWindowUnmaximize() {
-    super.onWindowUnmaximize();
-    setState(() => _maxIcon = Icons.fullscreen);
-  }
+class SystemAbout extends StatelessWidget {
+  const SystemAbout({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Consumer<SystemViewModel>(
-      builder: (context, viewModel, _) => Container(
-        height: 30,
-        decoration: BoxDecoration(
-          color: Theme.of(context).brightness == Brightness.light
-              ? Colors.black.withOpacity(0.3)
-              : Colors.white.withOpacity(0.3),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Material(
-          color: Colors.transparent,
-          child: Row(
-            children: <Widget>[
-              Tooltip(
-                message: '最小化',
-                child: InkWell(
-                  onTap: viewModel.minimizeWindow,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    bottomLeft: Radius.circular(20),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 3,
-                    ),
-                    child: Icon(
-                      Icons.minimize,
-                      color: Theme.of(context).brightness == Brightness.light
-                          ? Colors.white
-                          : Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-              VerticalDivider(
-                indent: 6,
-                endIndent: 6,
-                width: 1,
-                color: Colors.white.withOpacity(0.3),
-              ),
-              Tooltip(
-                message: '最大化',
-                child: InkWell(
-                  onTap: viewModel.maximizeWindow,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 3,
-                    ),
-                    child: Icon(
-                      _maxIcon,
-                      color: Theme.of(context).brightness == Brightness.light
-                          ? Colors.white
-                          : Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-              VerticalDivider(
-                indent: 6,
-                endIndent: 6,
-                width: 1,
-                color: Colors.white.withOpacity(0.3),
-              ),
-              Tooltip(
-                message: '关闭窗口',
-                child: InkWell(
-                  onTap: viewModel.closeWindow,
-                  borderRadius: const BorderRadius.only(
-                    topRight: Radius.circular(20),
-                    bottomRight: Radius.circular(20),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 3,
-                    ),
-                    child: Icon(
-                      Icons.close,
-                      color: Theme.of(context).brightness == Brightness.light
-                          ? Colors.white
-                          : Colors.black,
-                    ),
-                  ),
-                ),
-              ),
-            ],
+      builder: (context, viewModel, _) => AlertDialog(
+        title: ListTile(
+          title: FutureBuilder(
+            future: viewModel.getAppName(),
+            builder: (context, snapshot) {
+              String text = PackageLocalizations.of(
+                context,
+              ).unknown;
+              switch (snapshot.connectionState) {
+                case ConnectionState.waiting:
+                  text = PackageLocalizations.of(
+                    context,
+                  ).waiting;
+                  break;
+                case ConnectionState.done:
+                  if (snapshot.hasError) {
+                    text = PackageLocalizations.of(
+                      context,
+                    ).error;
+                    break;
+                  }
+                  if (snapshot.hasData) {
+                    text = snapshot.data ??
+                        PackageLocalizations.of(
+                          context,
+                        ).sNull;
+                    break;
+                  }
+                  break;
+                default:
+                  break;
+              }
+              return Text(text);
+            },
+          ),
+          subtitle: FutureBuilder(
+            future: viewModel.getAppVersion(),
+            builder: (context, snapshot) {
+              String text = PackageLocalizations.of(
+                context,
+              ).unknown;
+              switch (snapshot.connectionState) {
+                case ConnectionState.waiting:
+                  text = PackageLocalizations.of(
+                    context,
+                  ).waiting;
+                  break;
+                case ConnectionState.done:
+                  if (snapshot.hasError) {
+                    text = PackageLocalizations.of(
+                      context,
+                    ).error;
+                    break;
+                  }
+                  if (snapshot.hasData) {
+                    text = snapshot.data ??
+                        PackageLocalizations.of(
+                          context,
+                        ).sNull;
+                    break;
+                  }
+                  break;
+                default:
+                  break;
+              }
+              return Text(text);
+            },
+          ),
+          contentPadding: EdgeInsets.only(
+            left: 24,
+            top: 8,
+            right: 24,
+            bottom: 0,
           ),
         ),
+        titlePadding: EdgeInsets.zero,
+        content: Text(
+          PackageLocalizations.of(
+            context,
+          ).aboutDialogLegalese,
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(
+              context,
+              rootNavigator: true,
+            ).pop(),
+            child: Text('许可'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(
+              context,
+              rootNavigator: true,
+            ).pop(),
+            child: Text('取消'),
+          ),
+        ],
       ),
     );
   }
@@ -588,10 +584,11 @@ class SystemDialog extends StatelessWidget {
                   context,
                   rootNavigator: true,
                 ).pop();
-                Navigator.of(
-                  context,
-                  rootNavigator: true,
-                ).pushNamed(routeAbout);
+                showDialog(
+                  context: context,
+                  useRootNavigator: true,
+                  builder: (context) => SystemAbout(),
+                );
               },
               icon: Icons.info_outline,
               label: '关于',
@@ -632,75 +629,6 @@ class SystemDialog extends StatelessWidget {
               child: Text('取消'),
             ),
           )
-        ],
-      ),
-    );
-  }
-}
-
-/// 系统菜单按钮
-class DialogButton extends StatelessWidget {
-  const DialogButton({
-    super.key,
-    required this.onTap,
-    required this.icon,
-    required this.label,
-    required this.tooltip,
-    required this.enabled,
-  });
-
-  final VoidCallback onTap;
-  final IconData icon;
-  final String label;
-  final String tooltip;
-  final bool enabled;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Tooltip(
-            message: tooltip,
-            child: Card(
-              margin: EdgeInsets.zero,
-              elevation: 0,
-              color: Theme.of(context).colorScheme.surfaceContainerHigh,
-              child: InkWell(
-                onTap: enabled ? onTap : null,
-                canRequestFocus: enabled,
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(12.0),
-                ),
-                child: SizedBox(
-                  width: 56,
-                  height: 56,
-                  child: Center(
-                    child: Opacity(
-                      opacity: enabled ? 1 : 0.5,
-                      child: Icon(
-                        icon,
-                        size: Theme.of(context).iconTheme.size,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 4),
-            child: Opacity(
-              opacity: enabled ? 1 : 0.5,
-              child: Text(
-                label,
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-            ),
-          ),
         ],
       ),
     );
@@ -893,7 +821,7 @@ class _SystemManagerState extends State<SystemManager> {
                 left: 8,
                 right: 12,
               ),
-              child: WindowPanel(),
+              child: WindowControlButtons(),
             ),
           ),
         ],
@@ -1062,10 +990,11 @@ class _HomePageState extends State<HomePage> {
                         message: '关于',
                         child: Card(
                           child: InkWell(
-                            onTap: () => Navigator.of(
-                              context,
-                              rootNavigator: true,
-                            ).pushNamed(routeAbout),
+                            onTap: () => showDialog(
+                              context: context,
+                              useRootNavigator: true,
+                              builder: (context) => SystemAbout(),
+                            ),
                             borderRadius: BorderRadius.circular(12),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
@@ -1391,10 +1320,11 @@ class _PluginPageState extends State<PluginPage> {
                               context,
                               rootNavigator: true,
                             ).pushNamed(routePlugin),
-                            () => Navigator.of(
-                              context,
-                              rootNavigator: true,
-                            ).pushNamed(routeAbout),
+                            () => showDialog(
+                              context: context,
+                              useRootNavigator: true,
+                              builder: (context) => SystemAbout(),
+                            ),
                             () => showDialog(
                               context: context,
                               useRootNavigator: true,
@@ -1610,10 +1540,11 @@ class _SettingsPageState extends State<SettingsPage> {
                                 title: Text('关于'),
                                 subtitle: Text('关于 FreeFEOS'),
                                 leading: Icon(Icons.info_outline),
-                                onTap: () => Navigator.of(
-                                  context,
-                                  rootNavigator: true,
-                                ).pushNamed(routeAbout),
+                                onTap: () => showDialog(
+                                  context: context,
+                                  useRootNavigator: true,
+                                  builder: (context) => SystemAbout(),
+                                ),
                                 contentPadding: const EdgeInsets.only(
                                   top: 6,
                                   left: 24,
@@ -1701,7 +1632,7 @@ class PluginUI extends StatelessWidget {
                   left: 8,
                   right: 12,
                 ),
-                child: WindowPanel(),
+                child: WindowControlButtons(),
               ),
             ),
           ],
@@ -1711,108 +1642,6 @@ class PluginUI extends StatelessWidget {
           viewModel.getCurrentDetails,
         ),
       ),
-    );
-  }
-}
-
-class AboutPage extends StatelessWidget {
-  const AboutPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('关于'),
-        actions: [
-          Visibility(
-            visible: WidgetUtil.kIsDesktopWithUI(context),
-            child: const Padding(
-              padding: EdgeInsets.only(
-                left: 8,
-                right: 12,
-              ),
-              child: WindowPanel(),
-            ),
-          ),
-        ],
-      ),
-      body: Consumer<SystemViewModel>(builder: (context, viewModel, child) {
-        return Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              FutureBuilder(
-                future: viewModel.getAppName(),
-                builder: (context, snapshot) {
-                  String appName = PackageLocalizations.of(
-                    context,
-                  ).unknown;
-                  switch (snapshot.connectionState) {
-                    case ConnectionState.waiting:
-                      appName = PackageLocalizations.of(
-                        context,
-                      ).waiting;
-                      break;
-                    case ConnectionState.done:
-                      if (snapshot.hasError) {
-                        appName = PackageLocalizations.of(
-                          context,
-                        ).error;
-                        break;
-                      }
-                      if (snapshot.hasData) {
-                        appName = snapshot.data ??
-                            PackageLocalizations.of(
-                              context,
-                            ).sNull;
-                        break;
-                      }
-                      break;
-                    default:
-                      break;
-                  }
-                  return Text(appName);
-                },
-              ),
-              FutureBuilder(
-                future: viewModel.getAppVersion(),
-                builder: (context, snapshot) {
-                  String appVersion = PackageLocalizations.of(
-                    context,
-                  ).unknown;
-                  switch (snapshot.connectionState) {
-                    case ConnectionState.waiting:
-                      appVersion = PackageLocalizations.of(
-                        context,
-                      ).waiting;
-                      break;
-                    case ConnectionState.done:
-                      if (snapshot.hasError) {
-                        appVersion = PackageLocalizations.of(
-                          context,
-                        ).error;
-                        break;
-                      }
-                      if (snapshot.hasData) {
-                        appVersion = snapshot.data ??
-                            PackageLocalizations.of(
-                              context,
-                            ).sNull;
-                        break;
-                      }
-                      break;
-                    default:
-                      break;
-                  }
-                  return Center(
-                    child: Text(appVersion),
-                  );
-                },
-              ),
-            ],
-          ),
-        );
-      }),
     );
   }
 }

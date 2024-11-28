@@ -55,7 +55,6 @@ flutter:
         ffiPlugin: true
       ios:
         dartPluginClass: FreeFEOSRegister
-        pluginClass: FreeFEOSEmbedder
         ffiPlugin: true
       linux:
         dartPluginClass: FreeFEOSRegister
