@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import '../plugin/plugin_type.dart';
 
 /// 插件详细信息
@@ -41,14 +43,15 @@ final class PluginDetails {
 
   /// 使用JSON解析插件详细信息
   factory PluginDetails.formJSON({
-    required Map<String, dynamic> json,
+    required String json,
     required PluginType type,
   }) {
+    final data = jsonDecode(json);
     return PluginDetails(
-      channel: json['channel'],
-      title: json['title'],
-      description: json['description'],
-      author: json['author'],
+      channel: data['channel'],
+      title: data['title'],
+      description: data['description'],
+      author: data['author'],
       type: type,
     );
   }

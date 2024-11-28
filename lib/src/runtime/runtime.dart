@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 
 import '../base/base.dart';
@@ -236,7 +234,7 @@ final class SystemRuntime extends SystemBase {
           // 添加到插件详细信息列表
           _pluginDetailsList.add(
             PluginDetails.formJSON(
-              json: jsonDecode(element),
+              json: element,
               type: PluginType.platform,
             ),
           );
@@ -246,7 +244,7 @@ final class SystemRuntime extends SystemBase {
       // 平台错误添加未知插件占位
       _pluginDetailsList.add(
         PluginDetails.formJSON(
-          json: jsonDecode(unknownPluginWithJSON),
+          json: unknownPluginWithJSON,
           type: PluginType.unknown,
         ),
       );

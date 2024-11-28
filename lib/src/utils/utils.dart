@@ -8,9 +8,6 @@ import '../framework/context.dart';
 final class PlatformUtil {
   const PlatformUtil();
 
-  /// 无角标
-  static bool get kNoBanner => !kDebugMode;
-
   /// 是否在浏览器中
   static bool get kIsWebBrowser => kIsWeb || kIsWasm;
 
@@ -46,6 +43,9 @@ final class WidgetUtil {
         Theme.of(context).platform == TargetPlatform.linux ||
         Theme.of(context).platform == TargetPlatform.macOS;
   }
+
+  /// 无角标
+  static bool get showBanner => kDebugMode;
 }
 
 class LogUtils {

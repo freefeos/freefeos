@@ -5,8 +5,10 @@ import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
 import '../components/window_control_buttons.dart';
 import '../intl/package_localizations.dart';
 import '../utils/utils.dart';
-import '../view/view.dart';
-import 'home_page.dart';
+import 'home.dart';
+import 'logcat.dart';
+import 'plugin.dart';
+import 'settings.dart';
 
 class ManagerPage extends StatefulWidget {
   const ManagerPage({super.key});

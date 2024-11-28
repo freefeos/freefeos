@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../components/app_banner.dart';
 import '../components/app_root_view.dart';
 import '../components/window_control_buttons.dart';
-import '../intl/package_localizations.dart';
 import '../utils/utils.dart';
 import '../view/view.dart';
 
@@ -19,17 +19,11 @@ class _IndexPageState extends State<IndexPage> {
     return Overlay(
       initialEntries: <OverlayEntry>[
         OverlayEntry(
-          builder: (context) => ConstrainedBox(
+          builder: (_) => ConstrainedBox(
             constraints: const BoxConstraints.expand(),
-            child: PlatformUtil.kNoBanner
-                ? AppRootView()
-                : Banner(
-                    message: PackageLocalizations.of(
-                      context,
-                    ).bannerTitle,
-                    location: BannerLocation.topStart,
-                    child: AppRootView(),
-                  ),
+            child: AppBanner(
+              child: AppRootView(),
+            ),
           ),
         ),
         OverlayEntry(
