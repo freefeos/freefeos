@@ -85,7 +85,7 @@ abstract interface class ISystemViewModel {
   /// 获取插件界面
   PluginWidgetGetter get getPluginWidget;
 
-  Widget get getChild;
+  Widget get getRootWidget;
 
   String get getPoem;
 }
@@ -101,7 +101,7 @@ final class SystemViewModel extends ContextWrapper
     required this.pluginGetter,
     required this.pluginWidgetGetter,
     required this.runtimeChecker,
-    required this.child,
+    required this.rootWidget,
   }) : super(attach: true) {
     attachBuildContext(context);
   }
@@ -121,7 +121,7 @@ final class SystemViewModel extends ContextWrapper
   /// 判断是否运行时
   final RuntimeChecker runtimeChecker;
 
-  final Widget child;
+  final Widget rootWidget;
 
   /// 当前插件的详细信息 [PluginUI] 用
   PluginDetails? _currentDetails;
@@ -450,7 +450,7 @@ final class SystemViewModel extends ContextWrapper
   PluginWidgetGetter get getPluginWidget => pluginWidgetGetter;
 
   @override
-  Widget get getChild => child;
+  Widget get getRootWidget => rootWidget;
 
   /// 鸡汤
   static const List<String> _list = [

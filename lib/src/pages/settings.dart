@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../view/view.dart';
+import '../components/system_about.dart';
 import '../view_model/view_model.dart';
 
 /// 设置页面布局

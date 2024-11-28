@@ -21,7 +21,7 @@ class _AppRootViewState extends State<AppRootView>
     super.build(context);
     return Consumer<SystemViewModel>(
       builder: (context, viewModel, _) => Container(
-        child: viewModel.getChild,
+        child: viewModel.getRootWidget,
       ),
     );
   }

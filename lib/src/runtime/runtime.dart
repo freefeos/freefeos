@@ -115,7 +115,7 @@ final class SystemRuntime extends SystemBase {
       pluginGetter: _getPlugin,
       pluginWidgetGetter: _getPluginWidget,
       runtimeChecker: _isRuntime,
-      child: child,
+      rootWidget: child,
     );
   }
 

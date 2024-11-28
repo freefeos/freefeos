@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../components/system_about.dart';
 import '../intl/package_localizations.dart';
 import '../values/route.dart';
-import '../view/view.dart';
 import '../view_model/view_model.dart';
 
 /// 主页页面布局
