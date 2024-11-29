@@ -1,5 +1,5 @@
-import '../values/channel.dart';
-import '../values/strings.dart';
+import '../common/values/channel.dart';
+import '../common/values/strings.dart';
 import 'method_call.dart';
 import 'result.dart';
 import 'engine_mixin.dart';

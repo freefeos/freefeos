@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:freefeos/src/interface/interface.dart';
 import 'package:freefeos/src/plugin/plugin_runtime.dart';
 import 'package:freefeos/src/common/types/types.dart';
-import 'package:freefeos/src/values/strings.dart';
+import 'package:freefeos/src/common/values/strings.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 final class MockFreeFEOSInterface

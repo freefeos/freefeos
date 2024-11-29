@@ -1,9 +1,9 @@
 import '../embedder/embedder_connection.dart';
 import '../embedder/platform_embedder.dart';
 import '../framework/want.dart';
-import '../values/channel.dart';
-import '../values/method.dart';
-import '../values/strings.dart';
+import '../common/values/channel.dart';
+import '../common/values/method.dart';
+import '../common/values/strings.dart';
 import 'binding.dart';
 import 'method_call.dart';
 import 'plugin_engine.dart';

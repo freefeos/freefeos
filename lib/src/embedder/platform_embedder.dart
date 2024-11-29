@@ -8,8 +8,8 @@ import '../framework/want.dart';
 import '../interface/interface.dart';
 import '../plugin/plugin_runtime.dart';
 import '../common/utils/utils.dart';
-import '../values/channel.dart';
-import '../values/strings.dart';
+import '../common/values/channel.dart';
+import '../common/values/strings.dart';
 import 'embedder_binder.dart';
 
 final class PlatformEmbedder extends Service

@@ -8,11 +8,11 @@ import '../common/model/plugin_details.dart';
 import '../plugin/plugin_runtime.dart';
 import '../plugin/plugin_type.dart';
 import '../common/types/types.dart';
-import '../values/channel.dart';
-import '../values/method.dart';
-import '../values/placeholder.dart';
-import '../values/strings.dart';
-import '../values/tag.dart';
+import '../common/values/channel.dart';
+import '../common/values/method.dart';
+import '../common/values/placeholder.dart';
+import '../common/values/strings.dart';
+import '../common/values/tag.dart';
 import '../app/view_model/view_model.dart';
 import '../app/view.dart';
 

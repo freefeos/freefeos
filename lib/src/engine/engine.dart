@@ -1,15 +1,15 @@
 import '../framework/context.dart';
 import '../framework/log.dart';
-import '../values/channel.dart';
-import '../values/method.dart';
-import '../values/strings.dart';
+import '../common/values/channel.dart';
+import '../common/values/method.dart';
+import '../common/values/strings.dart';
 import 'binding.dart';
 import 'engine_bridge.dart';
 import 'result.dart';
 import 'engine_wrapper.dart';
 import 'method_call.dart';
 import 'plugin_mixin.dart';
-import '../values/tag.dart';
+import '../common/values/tag.dart';
 import 'plugin_engine.dart';
 
 final class SystemEngine extends EnginePlugin

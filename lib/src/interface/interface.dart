@@ -3,7 +3,7 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import '../framework/log.dart';
 import '../common/types/types.dart';
-import '../values/tag.dart';
+import '../common/values/tag.dart';
 
 /// 实现平台接口的抽象类
 class FreeFEOSSystem extends PlatformInterface {

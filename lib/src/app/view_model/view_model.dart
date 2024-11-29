@@ -12,7 +12,7 @@ import '../../common/model/plugin_details.dart';
 import '../../plugin/plugin_type.dart';
 import '../../common/types/types.dart';
 import '../../common/utils/utils.dart';
-import '../../values/url.dart';
+import '../../common/values/url.dart';
 import '../intl/app_localizations.dart';
 
 abstract interface class ISystemViewModel {
