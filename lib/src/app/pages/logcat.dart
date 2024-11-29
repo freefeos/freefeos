@@ -3,7 +3,7 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 
-import '../../event/event.dart';
+import '../../common/event/event.dart';
 import '../../framework/ansi_parser.dart';
 import '../../framework/toast.dart';
 import '../intl/app_localizations.dart';

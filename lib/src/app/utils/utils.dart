@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 
 final class AppUtils {
+  const AppUtils();
+
   /// 是否为桌面端
   static bool kIsDesktopWithUI(BuildContext context) {
     return Theme.of(context).platform == TargetPlatform.windows ||

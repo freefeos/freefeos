@@ -7,7 +7,7 @@ import '../framework/service.dart';
 import '../framework/want.dart';
 import '../interface/interface.dart';
 import '../plugin/plugin_runtime.dart';
-import '../utils/utils.dart';
+import '../common/utils/utils.dart';
 import '../values/channel.dart';
 import '../values/strings.dart';
 import 'embedder_binder.dart';

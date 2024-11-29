@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import '../framework/log.dart';
-import '../type/types.dart';
+import '../common/types/types.dart';
 import '../values/tag.dart';
 
 /// 实现平台接口的抽象类

@@ -7,7 +7,7 @@ import 'src/embedder/platform_embedder.dart';
 import 'src/entry/entry.dart';
 import 'src/interface/interface.dart';
 import 'src/plugin/plugin_runtime.dart';
-import 'src/type/types.dart';
+import 'src/common/types/types.dart';
 
 /// 平台插件注册
 ///

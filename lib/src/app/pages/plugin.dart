@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../app.dart';
 import '../components/system_about.dart';
-import '../../model/plugin_details.dart';
+import '../../common/model/plugin_details.dart';
 import '../intl/app_localizations.dart';
-import '../route.dart';
 import '../view_model/view_model.dart';
 
 /// 插件页面布局

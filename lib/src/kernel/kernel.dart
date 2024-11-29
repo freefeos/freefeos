@@ -1,7 +1,7 @@
 import 'package:irondash_engine_context/irondash_engine_context.dart';
 
-import '../rust/export.dart';
-import '../rust/frb_generated.dart';
+import 'rust/export.dart';
+import 'rust/frb_generated.dart';
 
 /// 内核桥接混入
 base mixin KernelBridgeMixin {

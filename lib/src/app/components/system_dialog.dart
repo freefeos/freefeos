@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../app.dart';
 import '../intl/app_localizations.dart';
-import '../route.dart';
 import '../view_model/view_model.dart';
 import 'dialog_button.dart';
 import 'system_about.dart';

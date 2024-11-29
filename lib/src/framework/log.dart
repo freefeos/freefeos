@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:logging/logging.dart';
 
-import '../event/event.dart';
-import '../type/types.dart';
+import '../common/event/event.dart';
+import '../common/types/types.dart';
 
 final class Log {
   static bool _instanced = false;

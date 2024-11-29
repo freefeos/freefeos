@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
 
-
-import '../app/intl/app_localizations.dart';
-import '../app/pages/index.dart';
-import '../app/pages/manager.dart';
-import '../app/pages/plugin_ui.dart';
-import '../type/types.dart';
-import '../app/route.dart';
-import '../app/view_model/view_model.dart';
+import '../common/types/types.dart';
+import 'app.dart';
+import 'intl/app_localizations.dart';
+import 'pages/index.dart';
+import 'pages/manager.dart';
+import 'pages/plugin_ui.dart';
+import 'view_model/view_model.dart';
 
 /// 系统界面布局
 class SystemUI extends StatefulWidget {

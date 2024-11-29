@@ -4,7 +4,10 @@ import '../sdk/option.dart';
 import 'pages/index.dart';
 import 'pages/manager.dart';
 import 'pages/plugin_ui.dart';
-import 'route.dart';
+
+const String routeIndex = '/';
+const String routeManager = '/manager';
+const String routePlugin = '/manager/plugin';
 
 class App implements IAppOption {
   /// 页面
