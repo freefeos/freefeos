@@ -5,23 +5,23 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
-import 'package_localizations_zh.dart';
+import 'app_localizations_zh.dart';
 
 // ignore_for_file: type=lint
 
-/// Callers can lookup localized strings with an instance of PackageLocalizations
-/// returned by `PackageLocalizations.of(context)`.
+/// Callers can lookup localized strings with an instance of AppLocalizations
+/// returned by `AppLocalizations.of(context)`.
 ///
-/// Applications need to include `PackageLocalizations.delegate()` in their app's
+/// Applications need to include `AppLocalizations.delegate()` in their app's
 /// `localizationDelegates` list, and the locales they support in the app's
 /// `supportedLocales` list. For example:
 ///
 /// ```dart
-/// import 'intl/package_localizations.dart';
+/// import 'intl/app_localizations.dart';
 ///
 /// return MaterialApp(
-///   localizationsDelegates: PackageLocalizations.localizationsDelegates,
-///   supportedLocales: PackageLocalizations.supportedLocales,
+///   localizationsDelegates: AppLocalizations.localizationsDelegates,
+///   supportedLocales: AppLocalizations.supportedLocales,
 ///   home: MyApplicationHome(),
 /// );
 /// ```
@@ -58,21 +58,20 @@ import 'package_localizations_zh.dart';
 /// Select and expand the newly-created Localizations item then, for each
 /// locale your application supports, add a new item and select the locale
 /// you wish to add from the pop-up menu in the Value field. This list should
-/// be consistent with the languages listed in the PackageLocalizations.supportedLocales
+/// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
-abstract class PackageLocalizations {
-  PackageLocalizations(String locale)
+abstract class AppLocalizations {
+  AppLocalizations(String locale)
       : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
-  static PackageLocalizations of(BuildContext context) {
-    return Localizations.of<PackageLocalizations>(
-        context, PackageLocalizations)!;
+  static AppLocalizations of(BuildContext context) {
+    return Localizations.of<AppLocalizations>(context, AppLocalizations)!;
   }
 
-  static const LocalizationsDelegate<PackageLocalizations> delegate =
-      _PackageLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate =
+      _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -408,14 +407,13 @@ abstract class PackageLocalizations {
   String get managerPluginTooltipNoUI;
 }
 
-class _PackageLocalizationsDelegate
-    extends LocalizationsDelegate<PackageLocalizations> {
-  const _PackageLocalizationsDelegate();
+class _AppLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
+  const _AppLocalizationsDelegate();
 
   @override
-  Future<PackageLocalizations> load(Locale locale) {
-    return SynchronousFuture<PackageLocalizations>(
-        lookupPackageLocalizations(locale));
+  Future<AppLocalizations> load(Locale locale) {
+    return SynchronousFuture<AppLocalizations>(lookupAppLocalizations(locale));
   }
 
   @override
@@ -423,18 +421,18 @@ class _PackageLocalizationsDelegate
       <String>['zh'].contains(locale.languageCode);
 
   @override
-  bool shouldReload(_PackageLocalizationsDelegate old) => false;
+  bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
-PackageLocalizations lookupPackageLocalizations(Locale locale) {
+AppLocalizations lookupAppLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'zh':
-      return PackageLocalizationsZh();
+      return AppLocalizationsZh();
   }
 
   throw FlutterError(
-      'PackageLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
       'an issue with the localizations generation tool. Please file an issue '
       'on GitHub with a reproducible sample app and the gen-l10n configuration '
       'that was used.');

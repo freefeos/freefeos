@@ -8,12 +8,12 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:window_manager/window_manager.dart';
 
 import '../../framework/context.dart';
-import '../../intl/package_localizations.dart';
 import '../../model/plugin_details.dart';
 import '../../plugin/plugin_type.dart';
 import '../../type/types.dart';
 import '../../utils/utils.dart';
 import '../../values/url.dart';
+import '../intl/app_localizations.dart';
 
 abstract interface class ISystemViewModel {
   /// 附加构建上下文
@@ -302,47 +302,47 @@ final class SystemViewModel extends ContextWrapper
     switch (details.type) {
       // 框架运行时
       case PluginType.runtime:
-        return PackageLocalizations.of(
+        return AppLocalizations.of(
           context,
         ).managerPluginTypeRuntime;
       // 绑定通信层
       case PluginType.base:
-        return PackageLocalizations.of(
+        return AppLocalizations.of(
           context,
         ).managerPluginTypeBase;
       // 平台嵌入层
       case PluginType.embedder:
-        return PackageLocalizations.of(
+        return AppLocalizations.of(
           context,
         ).managerPluginTypeEmbedder;
       // 平台插件
       case PluginType.engine:
-        return PackageLocalizations.of(
+        return AppLocalizations.of(
           context,
         ).managerPluginTypeEngine;
       // 平台插件
       case PluginType.platform:
-        return PackageLocalizations.of(
+        return AppLocalizations.of(
           context,
         ).managerPluginTypePlatform;
       // 内核模块
       case PluginType.kernel:
-        return PackageLocalizations.of(
+        return AppLocalizations.of(
           context,
         ).managerPluginTypeKernel;
       // 普通插件
       case PluginType.flutter:
-        return PackageLocalizations.of(
+        return AppLocalizations.of(
           context,
         ).managerPluginTypeFlutter;
       // 未知类型插件
       case PluginType.unknown:
-        return PackageLocalizations.of(
+        return AppLocalizations.of(
           context,
         ).managerPluginTypeUnknown;
       // 未知
       default:
-        return PackageLocalizations.of(
+        return AppLocalizations.of(
           context,
         ).unknown;
     }
@@ -356,13 +356,13 @@ final class SystemViewModel extends ContextWrapper
   ) {
     return _isAllowPush(details)
         ? runtimeChecker(details)
-            ? PackageLocalizations.of(
+            ? AppLocalizations.of(
                 context,
               ).managerPluginTooltipAbout
-            : PackageLocalizations.of(
+            : AppLocalizations.of(
                 context,
               ).managerPluginTooltipOpen
-        : PackageLocalizations.of(
+        : AppLocalizations.of(
             context,
           ).managerPluginTooltipNoUI;
   }

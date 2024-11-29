@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../components/system_about.dart';
-import '../../intl/package_localizations.dart';
+import '../intl/app_localizations.dart';
 import '../route.dart';
 import '../view_model/view_model.dart';
 
@@ -68,25 +68,25 @@ class _HomePageState extends State<HomePage> {
                                 title: FutureBuilder(
                                   future: viewModel.getAppName(),
                                   builder: (context, snapshot) {
-                                    String text = PackageLocalizations.of(
+                                    String text = AppLocalizations.of(
                                       context,
                                     ).unknown;
                                     switch (snapshot.connectionState) {
                                       case ConnectionState.waiting:
-                                        text = PackageLocalizations.of(
+                                        text = AppLocalizations.of(
                                           context,
                                         ).waiting;
                                         break;
                                       case ConnectionState.done:
                                         if (snapshot.hasError) {
-                                          text = PackageLocalizations.of(
+                                          text = AppLocalizations.of(
                                             context,
                                           ).error;
                                           break;
                                         }
                                         if (snapshot.hasData) {
                                           text = snapshot.data ??
-                                              PackageLocalizations.of(
+                                              AppLocalizations.of(
                                                 context,
                                               ).sNull;
                                           break;
@@ -101,25 +101,25 @@ class _HomePageState extends State<HomePage> {
                                 subtitle: FutureBuilder(
                                   future: viewModel.getAppVersion(),
                                   builder: (context, snapshot) {
-                                    String text = PackageLocalizations.of(
+                                    String text = AppLocalizations.of(
                                       context,
                                     ).unknown;
                                     switch (snapshot.connectionState) {
                                       case ConnectionState.waiting:
-                                        text = PackageLocalizations.of(
+                                        text = AppLocalizations.of(
                                           context,
                                         ).waiting;
                                         break;
                                       case ConnectionState.done:
                                         if (snapshot.hasError) {
-                                          text = PackageLocalizations.of(
+                                          text = AppLocalizations.of(
                                             context,
                                           ).error;
                                           break;
                                         }
                                         if (snapshot.hasData) {
                                           text = snapshot.data ??
-                                              PackageLocalizations.of(
+                                              AppLocalizations.of(
                                                 context,
                                               ).sNull;
                                           break;
@@ -180,32 +180,32 @@ class _HomePageState extends State<HomePage> {
                                 children: [
                                   ListTile(
                                     title: Text(
-                                      PackageLocalizations.of(
+                                      AppLocalizations.of(
                                         context,
                                       ).managerHomeInfoAppName,
                                     ),
                                     subtitle: FutureBuilder(
                                       future: viewModel.getAppName(),
                                       builder: (context, snapshot) {
-                                        String text = PackageLocalizations.of(
+                                        String text = AppLocalizations.of(
                                           context,
                                         ).unknown;
                                         switch (snapshot.connectionState) {
                                           case ConnectionState.waiting:
-                                            text = PackageLocalizations.of(
+                                            text = AppLocalizations.of(
                                               context,
                                             ).waiting;
                                             break;
                                           case ConnectionState.done:
                                             if (snapshot.hasError) {
-                                              text = PackageLocalizations.of(
+                                              text = AppLocalizations.of(
                                                 context,
                                               ).error;
                                               break;
                                             }
                                             if (snapshot.hasData) {
                                               text = snapshot.data ??
-                                                  PackageLocalizations.of(
+                                                  AppLocalizations.of(
                                                     context,
                                                   ).sNull;
                                               break;
@@ -220,32 +220,32 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   ListTile(
                                     title: Text(
-                                      PackageLocalizations.of(
+                                      AppLocalizations.of(
                                         context,
                                       ).managerHomeInfoAppVersion,
                                     ),
                                     subtitle: FutureBuilder(
                                       future: viewModel.getAppVersion(),
                                       builder: (context, snapshot) {
-                                        String text = PackageLocalizations.of(
+                                        String text = AppLocalizations.of(
                                           context,
                                         ).unknown;
                                         switch (snapshot.connectionState) {
                                           case ConnectionState.waiting:
-                                            text = PackageLocalizations.of(
+                                            text = AppLocalizations.of(
                                               context,
                                             ).waiting;
                                             break;
                                           case ConnectionState.done:
                                             if (snapshot.hasError) {
-                                              text = PackageLocalizations.of(
+                                              text = AppLocalizations.of(
                                                 context,
                                               ).error;
                                               break;
                                             }
                                             if (snapshot.hasData) {
                                               text = snapshot.data ??
-                                                  PackageLocalizations.of(
+                                                  AppLocalizations.of(
                                                     context,
                                                   ).sNull;
                                               break;
@@ -260,7 +260,7 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   ListTile(
                                     title: Text(
-                                      PackageLocalizations.of(
+                                      AppLocalizations.of(
                                         context,
                                       ).managerHomeInfoPlatform,
                                     ),
@@ -270,7 +270,7 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                   ListTile(
                                     title: Text(
-                                      PackageLocalizations.of(
+                                      AppLocalizations.of(
                                         context,
                                       ).managerHomeInfoPluginCount,
                                     ),
@@ -288,7 +288,7 @@ class _HomePageState extends State<HomePage> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(12, 6, 12, 12),
                       child: Tooltip(
-                        message: PackageLocalizations.of(
+                        message: AppLocalizations.of(
                           context,
                         ).managerHomeLearnTooltip,
                         child: Card(
@@ -302,12 +302,12 @@ class _HomePageState extends State<HomePage> {
                               ),
                               child: ListTile(
                                 title: Text(
-                                  PackageLocalizations.of(
+                                  AppLocalizations.of(
                                     context,
                                   ).managerHomeLearnTitle,
                                 ),
                                 subtitle: Text(
-                                  PackageLocalizations.of(
+                                  AppLocalizations.of(
                                     context,
                                   ).managerHomeLearnDescription,
                                 ),

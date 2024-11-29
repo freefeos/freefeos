@@ -1,10 +1,10 @@
-import 'package_localizations.dart';
+import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
 
 /// The translations for Chinese (`zh`).
-class PackageLocalizationsZh extends PackageLocalizations {
-  PackageLocalizationsZh([String locale = 'zh']) : super(locale);
+class AppLocalizationsZh extends AppLocalizations {
+  AppLocalizationsZh([String locale = 'zh']) : super(locale);
 
   @override
   String get unknown => '未知';

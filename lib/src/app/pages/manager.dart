@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
 
 import '../components/window_control_buttons.dart';
-import '../../intl/package_localizations.dart';
-import '../../utils/utils.dart';
+import '../intl/app_localizations.dart';
+import '../utils/utils.dart';
 import 'home.dart';
 import 'logcat.dart';
 import 'plugin.dart';
@@ -28,10 +28,10 @@ class _ManagerPageState extends State<ManagerPage> {
         NavigationDestination(
           icon: const Icon(Icons.home_outlined),
           selectedIcon: const Icon(Icons.home),
-          label: PackageLocalizations.of(
+          label: AppLocalizations.of(
             context,
           ).managerDestinationHome,
-          tooltip: PackageLocalizations.of(
+          tooltip: AppLocalizations.of(
             context,
           ).managerDestinationHome,
           enabled: true,
@@ -39,10 +39,10 @@ class _ManagerPageState extends State<ManagerPage> {
         NavigationDestination(
           icon: const Icon(Icons.bug_report_outlined),
           selectedIcon: const Icon(Icons.bug_report),
-          label: PackageLocalizations.of(
+          label: AppLocalizations.of(
             context,
           ).managerDestinationLog,
-          tooltip: PackageLocalizations.of(
+          tooltip: AppLocalizations.of(
             context,
           ).managerDestinationLog,
           enabled: true,
@@ -50,10 +50,10 @@ class _ManagerPageState extends State<ManagerPage> {
         NavigationDestination(
           icon: const Icon(Icons.extension_outlined),
           selectedIcon: const Icon(Icons.extension),
-          label: PackageLocalizations.of(
+          label: AppLocalizations.of(
             context,
           ).managerDestinationPlugin,
-          tooltip: PackageLocalizations.of(
+          tooltip: AppLocalizations.of(
             context,
           ).managerDestinationPlugin,
           enabled: true,
@@ -61,10 +61,10 @@ class _ManagerPageState extends State<ManagerPage> {
         NavigationDestination(
           icon: const Icon(Icons.settings_outlined),
           selectedIcon: const Icon(Icons.settings),
-          label: PackageLocalizations.of(
+          label: AppLocalizations.of(
             context,
           ).managerDestinationSetting,
-          tooltip: PackageLocalizations.of(
+          tooltip: AppLocalizations.of(
             context,
           ).managerDestinationSetting,
           enabled: true,
@@ -109,13 +109,13 @@ class _ManagerPageState extends State<ManagerPage> {
       useDrawer: false,
       appBar: AppBar(
         title: Text(
-          PackageLocalizations.of(
+          AppLocalizations.of(
             context,
           ).managerTitle,
         ),
         actions: [
           // Tooltip(
-          //   message: PackageLocalizations.of(
+          //   message: AppLocalizations.of(
           //     context,
           //   ).bottomSheetTooltip,
           //   child: IconButton(
@@ -130,7 +130,7 @@ class _ManagerPageState extends State<ManagerPage> {
           //   ),
           // ),
           Visibility(
-            visible: WidgetUtil.kIsDesktopWithUI(context),
+            visible: AppUtils.kIsDesktopWithUI(context),
             child: const Padding(
               padding: EdgeInsets.only(
                 left: 8,

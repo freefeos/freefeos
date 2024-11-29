@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../intl/package_localizations.dart';
+import '../intl/app_localizations.dart';
 import '../view_model/view_model.dart';
 
 /// 退出对话框布局
@@ -13,18 +13,18 @@ class SystemExit extends StatelessWidget {
     return Consumer<SystemViewModel>(
       builder: (context, viewModel, child) => AlertDialog(
         title: Text(
-          PackageLocalizations.of(
+          AppLocalizations.of(
             context,
           ).closeDialogTitle,
         ),
         content: Text(
-          PackageLocalizations.of(
+          AppLocalizations.of(
             context,
           ).closeDialogMessage,
         ),
         actions: [
           Tooltip(
-            message: PackageLocalizations.of(
+            message: AppLocalizations.of(
               context,
             ).closeDialogCancelButton,
             child: TextButton(
@@ -33,14 +33,14 @@ class SystemExit extends StatelessWidget {
                 rootNavigator: true,
               ).pop(),
               child: Text(
-                PackageLocalizations.of(
+                AppLocalizations.of(
                   context,
                 ).closeDialogCancelButton,
               ),
             ),
           ),
           Tooltip(
-            message: PackageLocalizations.of(
+            message: AppLocalizations.of(
               context,
             ).closeDialogExitButton,
             child: TextButton(
@@ -52,7 +52,7 @@ class SystemExit extends StatelessWidget {
                 viewModel.exitApp();
               },
               child: Text(
-                PackageLocalizations.of(
+                AppLocalizations.of(
                   context,
                 ).closeDialogExitButton,
               ),

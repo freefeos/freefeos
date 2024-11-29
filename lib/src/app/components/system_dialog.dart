@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../intl/package_localizations.dart';
+import '../intl/app_localizations.dart';
 import '../route.dart';
 import '../view_model/view_model.dart';
 import 'dialog_button.dart';
@@ -31,25 +31,25 @@ class SystemDialog extends StatelessWidget {
             title: FutureBuilder(
               future: viewModel.getAppName(),
               builder: (context, snapshot) {
-                String text = PackageLocalizations.of(
+                String text = AppLocalizations.of(
                   context,
                 ).unknown;
                 switch (snapshot.connectionState) {
                   case ConnectionState.waiting:
-                    text = PackageLocalizations.of(
+                    text = AppLocalizations.of(
                       context,
                     ).waiting;
                     break;
                   case ConnectionState.done:
                     if (snapshot.hasError) {
-                      text = PackageLocalizations.of(
+                      text = AppLocalizations.of(
                         context,
                       ).error;
                       break;
                     }
                     if (snapshot.hasData) {
                       text = snapshot.data ??
-                          PackageLocalizations.of(
+                          AppLocalizations.of(
                             context,
                           ).sNull;
                       break;
@@ -64,25 +64,25 @@ class SystemDialog extends StatelessWidget {
             subtitle: FutureBuilder(
               future: viewModel.getAppVersion(),
               builder: (context, snapshot) {
-                String text = PackageLocalizations.of(
+                String text = AppLocalizations.of(
                   context,
                 ).unknown;
                 switch (snapshot.connectionState) {
                   case ConnectionState.waiting:
-                    text = PackageLocalizations.of(
+                    text = AppLocalizations.of(
                       context,
                     ).waiting;
                     break;
                   case ConnectionState.done:
                     if (snapshot.hasError) {
-                      text = PackageLocalizations.of(
+                      text = AppLocalizations.of(
                         context,
                       ).error;
                       break;
                     }
                     if (snapshot.hasData) {
                       text = snapshot.data ??
-                          PackageLocalizations.of(
+                          AppLocalizations.of(
                             context,
                           ).sNull;
                       break;
@@ -136,10 +136,10 @@ class SystemDialog extends StatelessWidget {
                 ).pushNamed(routeManager);
               },
               icon: Icons.manage_accounts_outlined,
-              label: PackageLocalizations.of(
+              label: AppLocalizations.of(
                 context,
               ).bottomSheetManager,
-              tooltip: PackageLocalizations.of(
+              tooltip: AppLocalizations.of(
                 context,
               ).bottomSheetManagerTooltip,
               enabled: !isManager,
@@ -174,10 +174,10 @@ class SystemDialog extends StatelessWidget {
                 );
               },
               icon: Icons.exit_to_app,
-              label: PackageLocalizations.of(
+              label: AppLocalizations.of(
                 context,
               ).bottomSheetExit,
-              tooltip: PackageLocalizations.of(
+              tooltip: AppLocalizations.of(
                 context,
               ).bottomSheetExitToolTip,
               enabled: true,

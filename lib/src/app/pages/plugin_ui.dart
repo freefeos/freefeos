@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../components/window_control_buttons.dart';
-import '../../utils/utils.dart';
+import '../utils/utils.dart';
 import '../view_model/view_model.dart';
 
 class PluginUiPage extends StatelessWidget {
@@ -36,7 +36,7 @@ class PluginUiPage extends StatelessWidget {
           ),
           actions: [
             Visibility(
-              visible: WidgetUtil.kIsDesktopWithUI(context),
+              visible: AppUtils.kIsDesktopWithUI(context),
               child: const Padding(
                 padding: EdgeInsets.only(
                   left: 8,

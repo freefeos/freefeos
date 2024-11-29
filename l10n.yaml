@@ -1,9 +1,9 @@
-arb-dir: lib/src/l10n
-output-dir: lib/src/intl
-template-arb-file: package_zh.arb
-output-localization-file: package_localizations.dart
+arb-dir: lib/src/app/l10n
+output-dir: lib/src/app/intl
+template-arb-file: app_zh.arb
+output-localization-file: app_localizations.dart
 synthetic-package: false
-output-class: PackageLocalizations
-preferred-supported-locales: [ zh ]
+output-class: AppLocalizations
+preferred-supported-locales: [zh]
 nullable-getter: false
 format: true

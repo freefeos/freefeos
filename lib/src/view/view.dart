@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
 
-import '../intl/package_localizations.dart';
+
+import '../app/intl/app_localizations.dart';
 import '../app/pages/index.dart';
 import '../app/pages/manager.dart';
 import '../app/pages/plugin_ui.dart';
@@ -53,13 +54,13 @@ class _SystemUIState extends State<SystemUI> {
         );
       },
       onGenerateTitle: (context) {
-        return PackageLocalizations.of(
+        return AppLocalizations.of(
           context,
         ).packageName;
       },
       color: Colors.transparent,
-      localizationsDelegates: PackageLocalizations.localizationsDelegates,
-      supportedLocales: PackageLocalizations.supportedLocales,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
     );
   }
@@ -107,7 +108,7 @@ class SystemUIBuilder extends StatelessWidget {
             assert(() {
               if (viewModel is! SystemViewModel) {
                 throw FlutterError(
-                  PackageLocalizations.of(
+                  AppLocalizations.of(
                     context,
                   ).viewModelTypeError,
                 );

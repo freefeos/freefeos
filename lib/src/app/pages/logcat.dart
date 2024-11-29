@@ -6,8 +6,8 @@ import 'package:logging/logging.dart';
 import '../../event/event.dart';
 import '../../framework/ansi_parser.dart';
 import '../../framework/toast.dart';
-import '../../intl/package_localizations.dart';
-import '../../utils/utils.dart';
+import '../intl/app_localizations.dart';
+import '../utils/utils.dart';
 
 /// 日志页面布局
 class LogcatPage extends StatefulWidget {
@@ -32,7 +32,7 @@ class _LogcatPageState extends State<LogcatPage> {
         context: context,
         showTips: () => Toast.makeToast(
           context: context,
-          text: PackageLocalizations.of(
+          text: AppLocalizations.of(
             context,
           ).managerLogCopyTips,
         ).show(),

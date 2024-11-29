@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../intl/package_localizations.dart';
-import '../../utils/utils.dart';
+import '../intl/app_localizations.dart';
+import '../utils/utils.dart';
 
 class AppBanner extends StatelessWidget {
   const AppBanner({
@@ -14,9 +14,9 @@ class AppBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget result = child;
-    if (WidgetUtil.showBanner) {
+    if (AppUtils.showBanner) {
       result = Banner(
-        message: PackageLocalizations.of(
+        message: AppLocalizations.of(
           context,
         ).bannerTitle,
         location: BannerLocation.topStart,

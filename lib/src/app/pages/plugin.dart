@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../components/system_about.dart';
-import '../../intl/package_localizations.dart';
 import '../../model/plugin_details.dart';
+import '../intl/app_localizations.dart';
 import '../route.dart';
 import '../view_model/view_model.dart';
 
@@ -143,7 +143,7 @@ class _PluginPageState extends State<PluginPage> {
                                               ),
                                             ),
                                             Text(
-                                              '${PackageLocalizations.of(context).managerPluginChannel}: ${details.channel}',
+                                              '${AppLocalizations.of(context).managerPluginChannel}: ${details.channel}',
                                               textAlign: TextAlign.start,
                                               style: TextStyle(
                                                 fontSize: Theme.of(
@@ -161,7 +161,7 @@ class _PluginPageState extends State<PluginPage> {
                                               ),
                                             ),
                                             Text(
-                                              '${PackageLocalizations.of(context).managerPluginAuthor}: ${details.author}',
+                                              '${AppLocalizations.of(context).managerPluginAuthor}: ${details.author}',
                                               textAlign: TextAlign.start,
                                               style: TextStyle(
                                                 fontSize: Theme.of(

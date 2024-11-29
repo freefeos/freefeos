@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../intl/package_localizations.dart';
+import '../intl/app_localizations.dart';
 import '../view_model/view_model.dart';
 
 class SystemAbout extends StatelessWidget {
@@ -15,25 +15,25 @@ class SystemAbout extends StatelessWidget {
           title: FutureBuilder(
             future: viewModel.getAppName(),
             builder: (context, snapshot) {
-              String text = PackageLocalizations.of(
+              String text = AppLocalizations.of(
                 context,
               ).unknown;
               switch (snapshot.connectionState) {
                 case ConnectionState.waiting:
-                  text = PackageLocalizations.of(
+                  text = AppLocalizations.of(
                     context,
                   ).waiting;
                   break;
                 case ConnectionState.done:
                   if (snapshot.hasError) {
-                    text = PackageLocalizations.of(
+                    text = AppLocalizations.of(
                       context,
                     ).error;
                     break;
                   }
                   if (snapshot.hasData) {
                     text = snapshot.data ??
-                        PackageLocalizations.of(
+                        AppLocalizations.of(
                           context,
                         ).sNull;
                     break;
@@ -48,25 +48,25 @@ class SystemAbout extends StatelessWidget {
           subtitle: FutureBuilder(
             future: viewModel.getAppVersion(),
             builder: (context, snapshot) {
-              String text = PackageLocalizations.of(
+              String text = AppLocalizations.of(
                 context,
               ).unknown;
               switch (snapshot.connectionState) {
                 case ConnectionState.waiting:
-                  text = PackageLocalizations.of(
+                  text = AppLocalizations.of(
                     context,
                   ).waiting;
                   break;
                 case ConnectionState.done:
                   if (snapshot.hasError) {
-                    text = PackageLocalizations.of(
+                    text = AppLocalizations.of(
                       context,
                     ).error;
                     break;
                   }
                   if (snapshot.hasData) {
                     text = snapshot.data ??
-                        PackageLocalizations.of(
+                        AppLocalizations.of(
                           context,
                         ).sNull;
                     break;
@@ -87,14 +87,13 @@ class SystemAbout extends StatelessWidget {
         ),
         titlePadding: EdgeInsets.zero,
         content: Text(
-          PackageLocalizations.of(
+          AppLocalizations.of(
             context,
           ).aboutDialogLegalese,
         ),
         actions: [
           TextButton(
             onPressed: () {
-
               showLicensePage(context: context);
             },
             child: Text('许可'),
