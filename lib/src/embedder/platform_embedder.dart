@@ -6,7 +6,6 @@ import '../engine/result.dart';
 import '../framework/service.dart';
 import '../framework/want.dart';
 import '../interface/interface.dart';
-import '../platform/freefeos.dart';
 import '../plugin/plugin_runtime.dart';
 import '../utils/utils.dart';
 import '../values/channel.dart';
@@ -112,6 +111,32 @@ final class PlatformEmbedder extends Service
     }
   }
 }
+
+class FreeFEOSLinker implements FreeFEOSPlatform {
+  @override
+  Future<bool?> closePlatformDialog() async => false;
+
+  @override
+  Future<List?> getPlatformPluginList() async => List.empty();
+
+  @override
+  Future<bool?> openPlatformDialog() async => false;
+}
+
+/// ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+
+final class MethodChannelFreeFEOS extends FreeFEOSPlatform {
+  
+  @override
+  Future<bool?> closePlatformDialog() async => false;
+
+  @override
+  Future<List?> getPlatformPluginList() async => List.empty();
+
+  @override
+  Future<bool?> openPlatformDialog() async => false;
+}
+
 
 final class FEPlugin extends Service {
   @override

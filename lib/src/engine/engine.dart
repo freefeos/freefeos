@@ -60,14 +60,6 @@ final class SystemEngine extends EnginePlugin
           _infoList,
         );
         break;
-      case engineGetPlatformPlugins:
-        result.success(
-          execPluginMethod(
-            connectChannel,
-            connectGetPlugin,
-          ),
-        );
-        break;
       default:
         result.notImplemented();
     }

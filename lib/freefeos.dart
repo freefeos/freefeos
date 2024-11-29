@@ -3,9 +3,9 @@ library;
 
 import 'package:flutter/widgets.dart';
 
+import 'src/embedder/platform_embedder.dart';
 import 'src/entry/entry.dart';
 import 'src/interface/interface.dart';
-import 'src/platform/method_channel.dart';
 import 'src/plugin/plugin_runtime.dart';
 import 'src/type/types.dart';
 
