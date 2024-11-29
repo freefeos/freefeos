@@ -129,6 +129,7 @@ class SystemUIBuilder extends StatelessWidget {
                     child: child,
                   ),
                 ),
+                /// TODO: 把拖动区域和窗口控制按钮封装分别放在每个页面实现与系统界面解藕
                 Positioned(
                   left: 0,
                   top: MediaQuery.paddingOf(context).top,
