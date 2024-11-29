@@ -49,9 +49,7 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.freefeos.freefeos
         dartPluginClass: FreeFEOSRegister
-        pluginClass: FreeFEOSEmbedder
         ffiPlugin: true
       ios:
         dartPluginClass: FreeFEOSRegister

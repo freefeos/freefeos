@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="android.permission.FAKE_PACKAGE_SIGNATURE" />
+<!--    <uses-permission android:name="android.permission.FAKE_PACKAGE_SIGNATURE" />-->
 
     <queries>
         <intent>
@@ -8,26 +8,26 @@
         </intent>
     </queries>
 
-    <application>
-        <meta-data
-            android:name="fake-signature"
-            android:value="@string/fake_signature" />
+<!--    <application>-->
+<!--        <meta-data-->
+<!--            android:name="fake-signature"-->
+<!--            android:value="@string/fake_signature" />-->
 
-        <service
-            android:name="com.freefeos.freefeos.FreeFEOSEmbedder"
-            android:enabled="true"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.freefeos.freefeos.action" />
-            </intent-filter>
-        </service>
+<!--        <service-->
+<!--            android:name="com.freefeos.freefeos.FreeFEOSEmbedder"-->
+<!--            android:enabled="true"-->
+<!--            android:exported="false">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="com.freefeos.freefeos.action" />-->
+<!--            </intent-filter>-->
+<!--        </service>-->
 
-        <provider
-            android:name="rikka.shizuku.ShizukuProvider"
-            android:authorities="${applicationId}.shizuku"
-            android:enabled="true"
-            android:exported="true"
-            android:multiprocess="false"
-            android:permission="android.permission.INTERACT_ACROSS_USERS_FULL" />
-    </application>
+<!--        <provider-->
+<!--            android:name="rikka.shizuku.ShizukuProvider"-->
+<!--            android:authorities="${applicationId}.shizuku"-->
+<!--            android:enabled="true"-->
+<!--            android:exported="true"-->
+<!--            android:multiprocess="false"-->
+<!--            android:permission="android.permission.INTERACT_ACROSS_USERS_FULL" />-->
+<!--    </application>-->
 </manifest>

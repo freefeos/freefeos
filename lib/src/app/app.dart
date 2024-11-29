@@ -1,19 +1,10 @@
 import 'package:flutter/widgets.dart';
-import 'package:freefeos/src/app/pages/index.dart';
 
+import '../sdk/option.dart';
+import 'pages/index.dart';
 import 'pages/manager.dart';
 import 'pages/plugin_ui.dart';
 import 'route.dart';
-
-abstract interface class IAppOption {
-  /// 页面
-  Map<String, WidgetBuilder> pages();
-  void onLaunch();
-  void onShow();
-  void onHide();
-  void onError();
-  void onPageNotFound();
-}
 
 class App implements IAppOption {
   /// 页面

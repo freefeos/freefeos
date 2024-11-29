@@ -59,11 +59,11 @@ final class SystemRuntime extends SystemBase {
           engineGetEnginePlugins,
           arguments,
         );
-      case runtimeGetPlatformPlugins:
-        return await super.execEngine(
-          engineGetPlatformPlugins,
-          arguments,
-        );
+      // case runtimeGetPlatformPlugins:
+      //   return await super.execEngine(
+      //     engineGetPlatformPlugins,
+      //     arguments,
+      //   );
       default:
         return await null;
     }
@@ -76,8 +76,8 @@ final class SystemRuntime extends SystemBase {
     await _initRuntime();
     // 初始化引擎插件
     await _initEnginePlugin();
-    // 初始化平台插件
-    await _initPlatformPlugin();
+    // // 初始化平台插件
+    // await _initPlatformPlugin();
     // 初始化普通插件
     await _initPlugins(plugins: plugins);
   }
@@ -219,38 +219,38 @@ final class SystemRuntime extends SystemBase {
     }
   }
 
-  /// 初始化平台层插件
-  Future<void> _initPlatformPlugin() async {
-    // 初始化平台插件
-    try {
-      dynamic plugins = await _exec(
-        pluginChannel,
-        runtimeGetPlatformPlugins,
-        true,
-      );
-      List list = plugins as List? ?? [unknownPluginWithJSON];
-      if (list.isNotEmpty) {
-        // 遍历原生插件
-        for (var element in list) {
-          // 添加到插件详细信息列表
-          _pluginDetailsList.add(
-            PluginDetails.formJSON(
-              json: element,
-              type: PluginType.platform,
-            ),
-          );
-        }
-      }
-    } catch (exception) {
-      // 平台错误添加未知插件占位
-      _pluginDetailsList.add(
-        PluginDetails.formJSON(
-          json: unknownPluginWithJSON,
-          type: PluginType.unknown,
-        ),
-      );
-    }
-  }
+  // /// 初始化平台层插件
+  // Future<void> _initPlatformPlugin() async {
+  //   // 初始化平台插件
+  //   try {
+  //     dynamic plugins = await _exec(
+  //       pluginChannel,
+  //       runtimeGetPlatformPlugins,
+  //       true,
+  //     );
+  //     List list = plugins as List? ?? [unknownPluginWithJSON];
+  //     if (list.isNotEmpty) {
+  //       // 遍历原生插件
+  //       for (var element in list) {
+  //         // 添加到插件详细信息列表
+  //         _pluginDetailsList.add(
+  //           PluginDetails.formJSON(
+  //             json: element,
+  //             type: PluginType.platform,
+  //           ),
+  //         );
+  //       }
+  //     }
+  //   } catch (exception) {
+  //     // 平台错误添加未知插件占位
+  //     _pluginDetailsList.add(
+  //       PluginDetails.formJSON(
+  //         json: unknownPluginWithJSON,
+  //         type: PluginType.unknown,
+  //       ),
+  //     );
+  //   }
+  // }
 
   /// 初始化普通插件
   Future<void> _initPlugins({
