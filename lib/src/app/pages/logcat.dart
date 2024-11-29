@@ -3,11 +3,11 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 
-import '../event/event.dart';
-import '../framework/ansi_parser.dart';
-import '../framework/toast.dart';
-import '../intl/package_localizations.dart';
-import '../utils/utils.dart';
+import '../../event/event.dart';
+import '../../framework/ansi_parser.dart';
+import '../../framework/toast.dart';
+import '../../intl/package_localizations.dart';
+import '../../utils/utils.dart';
 
 /// 日志页面布局
 class LogcatPage extends StatefulWidget {

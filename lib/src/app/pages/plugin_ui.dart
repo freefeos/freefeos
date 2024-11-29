@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../components/window_control_buttons.dart';
-import '../utils/utils.dart';
+import '../../utils/utils.dart';
 import '../view_model/view_model.dart';
 
 class PluginUiPage extends StatelessWidget {

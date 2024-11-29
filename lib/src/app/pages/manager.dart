@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
 
 import '../components/window_control_buttons.dart';
-import '../intl/package_localizations.dart';
-import '../utils/utils.dart';
+import '../../intl/package_localizations.dart';
+import '../../utils/utils.dart';
 import 'home.dart';
 import 'logcat.dart';
 import 'plugin.dart';

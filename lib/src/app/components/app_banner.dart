@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../intl/package_localizations.dart';
-import '../utils/utils.dart';
+import '../../intl/package_localizations.dart';
+import '../../utils/utils.dart';
 
 class AppBanner extends StatelessWidget {
   const AppBanner({

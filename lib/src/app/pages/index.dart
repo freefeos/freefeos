@@ -5,7 +5,7 @@ import '../components/app_root_view.dart';
 import '../components/system_dialog.dart';
 import '../components/system_exit.dart';
 import '../components/window_control_buttons.dart';
-import '../utils/utils.dart';
+import '../../utils/utils.dart';
 
 class IndexPage extends StatefulWidget {
   const IndexPage({super.key});

@@ -7,13 +7,13 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:window_manager/window_manager.dart';
 
-import '../framework/context.dart';
-import '../intl/package_localizations.dart';
-import '../model/plugin_details.dart';
-import '../plugin/plugin_type.dart';
-import '../type/types.dart';
-import '../utils/utils.dart';
-import '../values/url.dart';
+import '../../framework/context.dart';
+import '../../intl/package_localizations.dart';
+import '../../model/plugin_details.dart';
+import '../../plugin/plugin_type.dart';
+import '../../type/types.dart';
+import '../../utils/utils.dart';
+import '../../values/url.dart';
 
 abstract interface class ISystemViewModel {
   /// 附加构建上下文

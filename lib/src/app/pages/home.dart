@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../components/system_about.dart';
-import '../intl/package_localizations.dart';
-import '../values/route.dart';
+import '../../intl/package_localizations.dart';
+import '../route.dart';
 import '../view_model/view_model.dart';
 
 /// 主页页面布局
@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
                               context,
                               rootNavigator: true,
                             ).popUntil(
-                              ModalRoute.withName(routeRoot),
+                              ModalRoute.withName(routeIndex),
                             ),
                             borderRadius: BorderRadius.circular(12),
                             child: Padding(

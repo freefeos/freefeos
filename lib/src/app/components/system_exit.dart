@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../intl/package_localizations.dart';
+import '../../intl/package_localizations.dart';
 import '../view_model/view_model.dart';
 
 /// 退出对话框布局

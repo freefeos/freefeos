@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:freefeos/src/app/app.dart';
 
 import '../base/base.dart';
 import '../framework/context.dart';
@@ -13,7 +14,7 @@ import '../values/method.dart';
 import '../values/placeholder.dart';
 import '../values/strings.dart';
 import '../values/tag.dart';
-import '../view_model/view_model.dart';
+import '../app/view_model/view_model.dart';
 import '../view/view.dart';
 
 /// 运行时混入

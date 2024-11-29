@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../components/system_about.dart';
-import '../intl/package_localizations.dart';
-import '../model/plugin_details.dart';
-import '../values/route.dart';
+import '../../intl/package_localizations.dart';
+import '../../model/plugin_details.dart';
+import '../route.dart';
 import '../view_model/view_model.dart';
 
 /// 插件页面布局
