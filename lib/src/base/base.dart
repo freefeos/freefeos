@@ -16,7 +16,7 @@ import '../common/values/values.dart';
 import '../common/values/strings.dart';
 import '../common/values/tag.dart';
 import '../framework/log.dart';
-import '../interface/interface.dart';
+import '../common/interface/interface.dart';
 import '../server/server.dart';
 
 /// 绑定层包装器

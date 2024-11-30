@@ -5,7 +5,7 @@ import '../engine/plugin_engine.dart';
 import '../engine/result.dart';
 import '../framework/service.dart';
 import '../framework/want.dart';
-import '../interface/interface.dart';
+import '../common/interface/interface.dart';
 import '../plugin/plugin_runtime.dart';
 import '../common/utils/utils.dart';
 import '../common/values/channel.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:freefeos/src/embedder/platform_embedder.dart';
-import 'package:freefeos/src/interface/interface.dart';
+import 'package:freefeos/src/common/interface/interface.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 class MockFreeFEOSPlatform

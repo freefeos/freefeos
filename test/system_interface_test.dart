@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:freefeos/src/interface/interface.dart';
+import 'package:freefeos/src/common/interface/interface.dart';
 import 'package:freefeos/src/plugin/plugin_runtime.dart';
 import 'package:freefeos/src/common/types/types.dart';
 import 'package:freefeos/src/common/values/strings.dart';

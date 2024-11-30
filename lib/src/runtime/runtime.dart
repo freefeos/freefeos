@@ -4,7 +4,7 @@ import '../app/app.dart';
 import '../base/base.dart';
 import '../framework/context.dart';
 import '../framework/log.dart';
-import '../interface/interface.dart';
+import '../common/interface/interface.dart';
 import '../common/model/plugin_details.dart';
 import '../plugin/plugin_runtime.dart';
 import '../plugin/plugin_type.dart';
