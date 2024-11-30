@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:toastification/toastification.dart';
 
+import '../common/types/types.dart';
 import '../sdk/option.dart';
 import 'components/window_move_area.dart';
 import 'intl/app_localizations.dart';
 import 'pages/index.dart';
 import 'pages/manager.dart';
 import 'pages/plugin_ui.dart';
+import 'view_model/view_model.dart';
 
-const String routeIndex = '/';
-const String routeManager = '/manager';
-const String routePlugin = '/manager/plugin';
+class App extends StatelessWidget implements IAppOption {
+  const App({super.key, required this.builder});
 
-class App implements IAppOption {
+  final ViewModelBuilder builder;
+
   /// 页面
   @override
   Map<String, WidgetBuilder> pages() {
     return {
-      routeManager: (_) => ManagerPage(),
-      routePlugin: (_) => PluginUiPage(),
+      IndexPage.route: (_) => IndexPage(),
+      ManagerPage.route: (_) => ManagerPage(),
+      PluginUiPage.route: (_) => PluginUiPage(),
     };
-  }
-
-  @override
-  Widget index(BuildContext context) {
-    return IndexPage();
   }
 
   @override
@@ -58,14 +58,6 @@ class App implements IAppOption {
   }
 
   @override
-  PreferredSize moveArea(BuildContext context) {
-    return PreferredSize(
-      preferredSize: const Size.fromHeight(kToolbarHeight),
-      child: WindowMoveArea(),
-    );
-  }
-
-  @override
   void onError() {}
 
   @override
@@ -79,4 +71,51 @@ class App implements IAppOption {
 
   @override
   void onShow() {}
+
+  @override
+  Widget build(BuildContext context) {
+    return WidgetsApp(
+      pageRouteBuilder: <T>(
+        RouteSettings settings,
+        WidgetBuilder builder,
+      ) {
+        return MaterialPageRoute<T>(
+          builder: builder,
+          settings: settings,
+        );
+      },
+      routes: pages(),
+      builder: (context, child) {
+        return Theme(
+          data: style(context),
+          child: ToastificationWrapper(
+            child: ChangeNotifierProvider<SystemViewModel>(
+              create: (context) {
+                final ViewModel viewModel = builder(context);
+                assert(() {
+                  if (viewModel is! SystemViewModel) {
+                    throw FlutterError(
+                      AppLocalizations.of(
+                        context,
+                      ).viewModelTypeError,
+                    );
+                  }
+                  return true;
+                }());
+                return viewModel as SystemViewModel;
+              },
+              child: WindowMoveOverlay(
+                child: child,
+              ),
+            ),
+          ),
+        );
+      },
+      onGenerateTitle: title,
+      color: Colors.transparent,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      debugShowCheckedModeBanner: false,
+    );
+  }
 }

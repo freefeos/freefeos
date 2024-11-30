@@ -13,6 +13,8 @@ import 'settings.dart';
 class ManagerPage extends StatefulWidget {
   const ManagerPage({super.key});
 
+  static const String route = '/manager';
+
   @override
   State<ManagerPage> createState() => _ManagerPageState();
 }

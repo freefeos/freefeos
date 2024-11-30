@@ -13,7 +13,7 @@ final class AppUtils {
   }
 
   /// 无角标
-  static bool get showBanner => !kDebugMode;
+  static bool get showBanner => kDebugMode;
 }
 
 class LogUtils {

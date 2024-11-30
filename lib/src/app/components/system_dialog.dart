@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../app.dart';
 import '../intl/app_localizations.dart';
+import '../pages/manager.dart';
 import '../view_model/view_model.dart';
 import 'dialog_button.dart';
 import 'system_about.dart';
@@ -116,7 +116,9 @@ class SystemDialog extends StatelessWidget {
               Navigator.of(
                 context,
                 rootNavigator: true,
-              ).pushNamed(routeManager);
+              ).pushNamed(
+                ManagerPage.route,
+              );
             },
           ),
         ),
@@ -133,7 +135,9 @@ class SystemDialog extends StatelessWidget {
                 Navigator.of(
                   context,
                   rootNavigator: true,
-                ).pushNamed(routeManager);
+                ).pushNamed(
+                  ManagerPage.route,
+                );
               },
               icon: Icons.manage_accounts_outlined,
               label: AppLocalizations.of(

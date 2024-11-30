@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../app/app.dart';
 import '../base/base.dart';
 import '../framework/context.dart';
 import '../framework/log.dart';
@@ -14,7 +15,6 @@ import '../common/values/placeholder.dart';
 import '../common/values/strings.dart';
 import '../common/values/tag.dart';
 import '../app/view_model/view_model.dart';
-import '../app/view.dart';
 
 /// 运行时混入
 base mixin RuntimeMixin implements BaseWrapper {
@@ -116,7 +116,7 @@ final class SystemRuntime extends SystemBase {
   @override
   Layout buildSystemUI(ViewModelBuilder builder) {
     return resources.getLayout(
-      layout: SystemUI(
+      layout: App(
         builder: builder,
       ),
     );

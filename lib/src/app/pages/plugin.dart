@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../app.dart';
 import '../components/system_about.dart';
 import '../../common/model/plugin_details.dart';
 import '../intl/app_localizations.dart';
 import '../view_model/view_model.dart';
+import 'plugin_ui.dart';
 
 /// 插件页面布局
 class PluginPage extends StatefulWidget {
@@ -74,7 +74,7 @@ class _PluginPageState extends State<PluginPage> {
                             () => Navigator.of(
                               context,
                               rootNavigator: true,
-                            ).pushNamed(routePlugin),
+                            ).pushNamed(PluginUiPage.route),
                             () => showDialog(
                               context: context,
                               useRootNavigator: true,

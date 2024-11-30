@@ -8,6 +8,8 @@ import '../view_model/view_model.dart';
 class PluginUiPage extends StatelessWidget {
   const PluginUiPage({super.key});
 
+  static const String route = '/manager/plugin';
+
   @override
   Widget build(BuildContext context) {
     return Consumer<SystemViewModel>(

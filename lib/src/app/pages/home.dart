@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../app.dart';
 import '../components/system_about.dart';
 import '../intl/app_localizations.dart';
 import '../view_model/view_model.dart';
+import 'index.dart';
 
 /// 主页页面布局
 class HomePage extends StatefulWidget {
@@ -55,7 +55,9 @@ class _HomePageState extends State<HomePage> {
                               context,
                               rootNavigator: true,
                             ).popUntil(
-                              ModalRoute.withName(routeIndex),
+                              ModalRoute.withName(
+                                IndexPage.route,
+                              ),
                             ),
                             borderRadius: BorderRadius.circular(12),
                             child: Padding(
