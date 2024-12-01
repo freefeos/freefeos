@@ -11,8 +11,8 @@ import 'pages/manager.dart';
 import 'pages/plugin_ui.dart';
 import 'view_model/view_model.dart';
 
-class App extends StatelessWidget implements IAppOption {
-  const App({super.key, required this.builder});
+class Manager extends StatelessWidget implements IAppOption {
+  const Manager({super.key, required this.builder});
 
   final ViewModelBuilder builder;
 
