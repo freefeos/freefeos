@@ -249,7 +249,7 @@ base class SystemBase extends ContextWrapper
                       skipTaskbar: false,
                       title: null,
                       titleBarStyle: TitleBarStyle.hidden,
-                      windowButtonVisibility: false,
+                      windowButtonVisibility: true,
                     ),
                     () async {
                       await windowManager.show();
