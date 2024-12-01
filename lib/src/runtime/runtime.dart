@@ -5,7 +5,7 @@ import '../framework/context.dart';
 import '../framework/log.dart';
 import '../common/interface/interface.dart';
 import '../common/model/plugin_details.dart';
-import '../manager/app.dart';
+import '../manager/manager.dart';
 import '../manager/view_model/view_model.dart';
 import '../plugin/plugin_runtime.dart';
 import '../plugin/plugin_type.dart';
@@ -116,7 +116,7 @@ final class SystemRuntime extends SystemBase {
   @override
   Layout buildSystemUI(ViewModelBuilder builder) {
     return resources.getLayout(
-      layout: Manager(
+      layout: ManagerApp(
         builder: builder,
       ),
     );

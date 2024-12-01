@@ -7,6 +7,7 @@ abstract interface class IAppOption {
   String title(BuildContext context);
 
   /// TODO: ViewModule
+  /// ViewModel buildViewModel();
   void onLaunch();
   void onShow();
   void onHide();
