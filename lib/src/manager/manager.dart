@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:freefeos/src/manager/pages/licenses.dart';
 import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
 
@@ -8,6 +7,7 @@ import '../sdk/option.dart';
 import 'components/window_move_area.dart';
 import 'intl/app_localizations.dart';
 import 'pages/index.dart';
+import 'pages/licenses.dart';
 import 'pages/manager.dart';
 import 'pages/plugin_ui.dart';
 import 'view_model/view_model.dart';
