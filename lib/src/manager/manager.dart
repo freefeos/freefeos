@@ -74,6 +74,8 @@ class ManagerApp extends StatelessWidget implements IAppOption {
   @override
   void onShow() {}
 
+//  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
+
   @override
   Widget build(BuildContext context) {
     // view model
@@ -83,6 +85,43 @@ class ManagerApp extends StatelessWidget implements IAppOption {
     // navigation pop handler
     // navigation
     // Localizations
+
+    // return ChangeNotifierProvider<SystemViewModel>(
+    //   create: (context) {
+    //     final ViewModel viewModel = builder(context);
+    //     assert(() {
+    //       if (viewModel is! SystemViewModel) {
+    //         throw FlutterError(
+    //           AppLocalizations.of(
+    //             context,
+    //           ).viewModelTypeError,
+    //         );
+    //       }
+    //       return true;
+    //     }());
+    //     return viewModel as SystemViewModel;
+    //   },
+    //   child: Theme(
+    //     data: style(context),
+    //     child: ToastificationWrapper(
+    //       child: WindowMoveOverlay(
+    //         child: Localizations(
+    //           locale: Locale('zh', 'CH'),
+    //           delegates: AppLocalizations.localizationsDelegates,
+    //           child: NavigatorPopHandler(
+    //             onPop: () {
+    //               _navigatorKey.currentState!.maybePop();
+    //             },
+    //             child: Navigator(
+    //               key: _navigatorKey,
+    //               onGenerateRoute: (RouteSettings settings) {},
+    //             ),
+    //           ),
+    //         ),
+    //       ),
+    //     ),
+    //   ),
+    // );
     return WidgetsApp(
       pageRouteBuilder: <T>(
         RouteSettings settings,
