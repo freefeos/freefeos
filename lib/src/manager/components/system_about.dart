@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../intl/app_localizations.dart';
+import '../pages/licenses.dart';
 import '../view_model/view_model.dart';
 
 class SystemAbout extends StatelessWidget {
@@ -93,9 +94,12 @@ class SystemAbout extends StatelessWidget {
         ),
         actions: [
           TextButton(
-            onPressed: () {
-              showLicensePage(context: context);
-            },
+            onPressed: () => Navigator.of(
+              context,
+              rootNavigator: true,
+            ).pushNamed(
+              LicensesPage.route,
+            ),
             child: Text('许可'),
           ),
           TextButton(

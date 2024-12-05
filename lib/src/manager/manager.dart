@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:freefeos/src/manager/pages/licenses.dart';
 import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
 
@@ -23,6 +24,7 @@ class ManagerApp extends StatelessWidget implements IAppOption {
       IndexPage.route: (_) => IndexPage(),
       ManagerPage.route: (_) => ManagerPage(),
       PluginUiPage.route: (_) => PluginUiPage(),
+      LicensesPage.route: (_) => LicensesPage(),
     };
   }
 
@@ -74,6 +76,13 @@ class ManagerApp extends StatelessWidget implements IAppOption {
 
   @override
   Widget build(BuildContext context) {
+    // vm
+    // theme
+    // toast wrapper
+    // window move
+    // navigation pop handler
+    // navigation
+    // Localizations
     return WidgetsApp(
       pageRouteBuilder: <T>(
         RouteSettings settings,
