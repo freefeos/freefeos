@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version          = '0.0.1'
   s.summary          = 'FreeFEOS'
   s.description      = <<-DESC
-FreeFEOS is a Flutter plugin, a simple Flutter library operating system and an advanced Flutter development framework that can provide many advanced features for applications.
+FreeFEOS is a Flutter plugin, a simple Flutter library OS and an advanced Flutter development framework that can provide many advanced features for applications.
                        DESC
   s.homepage         = 'https://github.com/freefeos/freefeos'
   s.license          = { :file => '../LICENSE' }
