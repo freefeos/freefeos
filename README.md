@@ -64,7 +64,7 @@
 
 FreeFEOS 是一个 Flutter 插件, 也是一个简单的 Flutter 库操作系统和高级 Flutter 开发框架, 它能够为应用提供诸多高级功能.
 
-FreeFEOS is a Flutter plugin, a simple Flutter library operating system and an advanced Flutter development framework
+FreeFEOS is a Flutter plugin, a simple Flutter library OS and an advanced Flutter development framework
 that can provide many advanced features for applications.
 
 ## 截图
