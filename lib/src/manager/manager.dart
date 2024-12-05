@@ -76,7 +76,7 @@ class ManagerApp extends StatelessWidget implements IAppOption {
 
   @override
   Widget build(BuildContext context) {
-    // vm
+    // view model
     // theme
     // toast wrapper
     // window move
