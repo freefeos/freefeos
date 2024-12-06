@@ -31,4 +31,6 @@ typedef LoggerListener = void Function(LoggerRecord record);
 //------------UI--------
 typedef ViewModel = ChangeNotifier;
 typedef ViewModelBuilder = ViewModel Function(BuildContext context);
+
+typedef RouteName = String;
 //------------UI--------

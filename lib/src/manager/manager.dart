@@ -20,7 +20,7 @@ class ManagerApp extends StatelessWidget implements IAppOption {
   /// 页面
   @override
   Map<String, WidgetBuilder> pages() {
-    return {
+    return <String, WidgetBuilder>{
       IndexPage.route: (_) => IndexPage(),
       ManagerPage.route: (_) => ManagerPage(),
       PluginUiPage.route: (_) => PluginUiPage(),
@@ -74,8 +74,6 @@ class ManagerApp extends StatelessWidget implements IAppOption {
   @override
   void onShow() {}
 
-//  final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
-
   @override
   Widget build(BuildContext context) {
     // view model
@@ -106,14 +104,12 @@ class ManagerApp extends StatelessWidget implements IAppOption {
     //     child: ToastificationWrapper(
     //       child: WindowMoveOverlay(
     //         child: Localizations(
-    //           locale: Locale('zh', 'CH'),
+    //           locale: Localizations.localeOf(context),
     //           delegates: AppLocalizations.localizationsDelegates,
     //           child: NavigatorPopHandler(
-    //             onPop: () {
-    //               _navigatorKey.currentState!.maybePop();
-    //             },
+    //             onPop: () => Global.navigatorKey.currentState?.maybePop(),
     //             child: Navigator(
-    //               key: _navigatorKey,
+    //               key: Global.navigatorKey,
     //               onGenerateRoute: (RouteSettings settings) {},
     //             ),
     //           ),

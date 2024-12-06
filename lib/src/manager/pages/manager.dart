@@ -116,21 +116,6 @@ class _ManagerPageState extends State<ManagerPage> {
           ).managerTitle,
         ),
         actions: [
-          // Tooltip(
-          //   message: AppLocalizations.of(
-          //     context,
-          //   ).bottomSheetTooltip,
-          //   child: IconButton(
-          //     onPressed: () => showDialog(
-          //       context: context,
-          //       useRootNavigator: true,
-          //       builder: (_) => const SystemDialog(
-          //         isManager: true,
-          //       ),
-          //     ),
-          //     icon: const Icon(Icons.more_vert),
-          //   ),
-          // ),
           Visibility(
             visible: AppUtils.kIsDesktopWithUI(context),
             child: const Padding(
