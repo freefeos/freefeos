@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
             child: SingleChildScrollView(
               controller: _scrollController,
               padding: EdgeInsets.zero,
-              child: Consumer<SystemViewModel>(
+              child: Consumer<ManagerViewModel>(
                 builder: (context, viewModel, child) => Column(
                   children: [
                     Padding(
@@ -159,10 +159,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 6,
-                        horizontal: 12,
-                      ),
+                      padding: const EdgeInsets.fromLTRB(12, 6, 12, 12),
                       child: Tooltip(
                         message: '关于',
                         child: Card(
@@ -287,38 +284,38 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(12, 6, 12, 12),
-                      child: Tooltip(
-                        message: AppLocalizations.of(
-                          context,
-                        ).managerHomeLearnTooltip,
-                        child: Card(
-                          child: InkWell(
-                            onTap: viewModel.launchPubDev,
-                            borderRadius: BorderRadius.circular(12),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 12,
-                                horizontal: 6,
-                              ),
-                              child: ListTile(
-                                title: Text(
-                                  AppLocalizations.of(
-                                    context,
-                                  ).managerHomeLearnTitle,
-                                ),
-                                subtitle: Text(
-                                  AppLocalizations.of(
-                                    context,
-                                  ).managerHomeLearnDescription,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.fromLTRB(12, 6, 12, 12),
+                    //   child: Tooltip(
+                    //     message: AppLocalizations.of(
+                    //       context,
+                    //     ).managerHomeLearnTooltip,
+                    //     child: Card(
+                    //       child: InkWell(
+                    //         onTap: viewModel.launchPubDev,
+                    //         borderRadius: BorderRadius.circular(12),
+                    //         child: Padding(
+                    //           padding: const EdgeInsets.symmetric(
+                    //             vertical: 12,
+                    //             horizontal: 6,
+                    //           ),
+                    //           child: ListTile(
+                    //             title: Text(
+                    //               AppLocalizations.of(
+                    //                 context,
+                    //               ).managerHomeLearnTitle,
+                    //             ),
+                    //             subtitle: Text(
+                    //               AppLocalizations.of(
+                    //                 context,
+                    //               ).managerHomeLearnDescription,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

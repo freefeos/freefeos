@@ -13,31 +13,27 @@ class WindowMoveOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Overlay(
-      initialEntries: [
-        OverlayEntry(
-          builder: (_) => ConstrainedBox(
-            constraints: const BoxConstraints.expand(),
-            child: child,
-          ),
+    return Stack(
+      children: <Widget>[
+        ConstrainedBox(
+          constraints: const BoxConstraints.expand(),
+          child: child,
         ),
-        OverlayEntry(
-          builder: (_) => SafeArea(
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: PreferredSize(
-                preferredSize: const Size.fromHeight(
-                  kToolbarHeight,
-                ),
-                child: SizedBox(
-                  height: kToolbarHeight,
-                  child: Consumer<SystemViewModel>(
-                    builder: (_, viewModel, child) => GestureDetector(
-                      onDoubleTap: () => viewModel.maximizeWindow(),
-                      onPanStart: (_) => viewModel.startDragging(),
-                      behavior: HitTestBehavior.translucent,
-                      child: child,
-                    ),
+        SafeArea(
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: PreferredSize(
+              preferredSize: const Size.fromHeight(
+                kToolbarHeight,
+              ),
+              child: SizedBox(
+                height: kToolbarHeight,
+                child: Consumer<ManagerViewModel>(
+                  builder: (_, viewModel, child) => GestureDetector(
+                    onDoubleTap: () => viewModel.maximizeWindow(),
+                    onPanStart: (_) => viewModel.startDragging(),
+                    behavior: HitTestBehavior.translucent,
+                    child: child,
                   ),
                 ),
               ),

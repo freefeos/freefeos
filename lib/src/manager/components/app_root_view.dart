@@ -19,8 +19,8 @@ class _AppRootViewState extends State<AppRootView>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Consumer<SystemViewModel>(
-      builder: (context, viewModel, _) => Container(
+    return Consumer<ManagerViewModel>(
+      builder: (_, viewModel, __) => Container(
         child: viewModel.getRootWidget,
       ),
     );

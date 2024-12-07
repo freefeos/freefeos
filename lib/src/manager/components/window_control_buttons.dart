@@ -42,7 +42,7 @@ class _WindowControlButtonsState extends State<WindowControlButtons>
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<SystemViewModel>(
+    return Consumer<ManagerViewModel>(
       builder: (context, viewModel, _) => Container(
         height: 30,
         decoration: BoxDecoration(

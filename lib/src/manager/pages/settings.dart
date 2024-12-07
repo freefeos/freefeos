@@ -38,7 +38,7 @@ class _SettingsPageState extends State<SettingsPage> {
             constraints: const BoxConstraints(
               maxWidth: 840,
             ),
-            child: Consumer<SystemViewModel>(
+            child: Consumer<ManagerViewModel>(
               builder: (context, viewModel, child) => SingleChildScrollView(
                 controller: _scrollController,
                 padding: EdgeInsets.zero,

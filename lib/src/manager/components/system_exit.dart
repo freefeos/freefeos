@@ -10,7 +10,7 @@ class SystemExit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<SystemViewModel>(
+    return Consumer<ManagerViewModel>(
       builder: (context, viewModel, child) => AlertDialog(
         title: Text(
           AppLocalizations.of(

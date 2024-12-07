@@ -17,6 +17,9 @@ class ManagerApp extends StatelessWidget implements IAppOption {
 
   final ViewModelBuilder builder;
 
+  static final GlobalKey<NavigatorState> navigatorKey =
+      GlobalKey<NavigatorState>();
+
   /// 页面
   @override
   Map<String, WidgetBuilder> pages() {
@@ -84,40 +87,7 @@ class ManagerApp extends StatelessWidget implements IAppOption {
     // navigation
     // Localizations
 
-    // return ChangeNotifierProvider<SystemViewModel>(
-    //   create: (context) {
-    //     final ViewModel viewModel = builder(context);
-    //     assert(() {
-    //       if (viewModel is! SystemViewModel) {
-    //         throw FlutterError(
-    //           AppLocalizations.of(
-    //             context,
-    //           ).viewModelTypeError,
-    //         );
-    //       }
-    //       return true;
-    //     }());
-    //     return viewModel as SystemViewModel;
-    //   },
-    //   child: Theme(
-    //     data: style(context),
-    //     child: ToastificationWrapper(
-    //       child: WindowMoveOverlay(
-    //         child: Localizations(
-    //           locale: Localizations.localeOf(context),
-    //           delegates: AppLocalizations.localizationsDelegates,
-    //           child: NavigatorPopHandler(
-    //             onPop: () => Global.navigatorKey.currentState?.maybePop(),
-    //             child: Navigator(
-    //               key: Global.navigatorKey,
-    //               onGenerateRoute: (RouteSettings settings) {},
-    //             ),
-    //           ),
-    //         ),
-    //       ),
-    //     ),
-    //   ),
-    // );
+    // F
     return WidgetsApp(
       pageRouteBuilder: <T>(
         RouteSettings settings,
@@ -133,11 +103,11 @@ class ManagerApp extends StatelessWidget implements IAppOption {
         return Theme(
           data: style(context),
           child: ToastificationWrapper(
-            child: ChangeNotifierProvider<SystemViewModel>(
+            child: ChangeNotifierProvider<ManagerViewModel>(
               create: (context) {
                 final ViewModel viewModel = builder(context);
                 assert(() {
-                  if (viewModel is! SystemViewModel) {
+                  if (viewModel is! ManagerViewModel) {
                     throw FlutterError(
                       AppLocalizations.of(
                         context,
@@ -146,7 +116,7 @@ class ManagerApp extends StatelessWidget implements IAppOption {
                   }
                   return true;
                 }());
-                return viewModel as SystemViewModel;
+                return viewModel as ManagerViewModel;
               },
               child: WindowMoveOverlay(
                 child: child,

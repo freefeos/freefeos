@@ -15,7 +15,7 @@ import '../../common/utils/utils.dart';
 import '../../common/values/url.dart';
 import '../intl/app_localizations.dart';
 
-abstract interface class ISystemViewModel {
+abstract interface class IManagerViewModel {
   /// 附加构建上下文
   void attachBuildContext(BuildContext context);
 
@@ -90,11 +90,11 @@ abstract interface class ISystemViewModel {
   String get getPoem;
 }
 
-final class SystemViewModel extends ContextWrapper
+final class ManagerViewModel extends ContextWrapper
     with ViewModel
-    implements ISystemViewModel {
+    implements IManagerViewModel {
   /// 构造函数
-  SystemViewModel({
+  ManagerViewModel({
     required BuildContext context,
     required this.contextAttacher,
     required this.pluginDetailsList,

@@ -10,7 +10,7 @@ class SystemAbout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<SystemViewModel>(
+    return Consumer<ManagerViewModel>(
       builder: (context, viewModel, _) => AlertDialog(
         title: ListTile(
           title: FutureBuilder(
@@ -94,13 +94,19 @@ class SystemAbout extends StatelessWidget {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.of(
-              context,
-              rootNavigator: true,
-            ).pushNamed(
-              LicensesPage.route,
-            ),
-            child: Text('许可'),
+            onPressed: () {
+              Navigator.of(
+                context,
+                rootNavigator: true,
+              ).pop();
+              Navigator.of(
+                context,
+                rootNavigator: true,
+              ).pushNamed(
+                LicensesPage.route,
+              );
+            },
+            child: Text('开放源代码许可'),
           ),
           TextButton(
             onPressed: () => Navigator.of(

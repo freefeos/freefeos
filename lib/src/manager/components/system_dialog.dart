@@ -19,7 +19,7 @@ class SystemDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<SystemViewModel>(
+    return Consumer<ManagerViewModel>(
       builder: (context, viewModel, _) => AlertDialog(
         title: Tooltip(
           message: '打开管理器',

@@ -101,7 +101,7 @@ final class SystemRuntime extends SystemBase {
     ContextAttacher attach,
     Widget child,
   ) {
-    return SystemViewModel(
+    return ManagerViewModel(
       context: context,
       contextAttacher: attach,
       pluginDetailsList: _pluginDetailsList,

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../components/window_control_buttons.dart';
-import '../utils/utils.dart';
+import '../components/window_buttons_overlay.dart';
 import '../view_model/view_model.dart';
 
 class PluginUiPage extends StatelessWidget {
@@ -12,46 +11,36 @@ class PluginUiPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<SystemViewModel>(
-      builder: (context, viewModel, _) => Scaffold(
-        appBar: AppBar(
-          title: Row(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  right: 3,
+    return WindowButtonsOverlay(
+      child: Consumer<ManagerViewModel>(
+        builder: (context, viewModel, _) => Scaffold(
+          appBar: AppBar(
+            title: Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    right: 3,
+                  ),
+                  child: Icon(Icons.extension),
                 ),
-                child: Icon(Icons.extension),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 3,
-                ),
-                child: Text(
-                  viewModel.getCurrentDetails.title,
-                  textAlign: TextAlign.center,
-                ),
-              )
-            ],
-          ),
-          actions: [
-            Visibility(
-              visible: AppUtils.kIsDesktopWithUI(context),
-              child: const Padding(
-                padding: EdgeInsets.only(
-                  left: 8,
-                  right: 12,
-                ),
-                child: WindowControlButtons(),
-              ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 3,
+                  ),
+                  child: Text(
+                    viewModel.getCurrentDetails.title,
+                    textAlign: TextAlign.center,
+                  ),
+                )
+              ],
             ),
-          ],
-        ),
-        body: viewModel.getPluginWidget(
-          context,
-          viewModel.getCurrentDetails,
+          ),
+          body: viewModel.getPluginWidget(
+            context,
+            viewModel.getCurrentDetails,
+          ),
         ),
       ),
     );
