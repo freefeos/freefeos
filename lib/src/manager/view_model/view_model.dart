@@ -9,6 +9,7 @@ import 'package:window_manager/window_manager.dart';
 
 import '../../framework/context.dart';
 import '../../common/model/plugin_details.dart';
+import '../../framework/toast.dart';
 import '../../plugin/plugin_type.dart';
 import '../../common/types/types.dart';
 import '../../common/utils/utils.dart';
@@ -85,9 +86,16 @@ abstract interface class IManagerViewModel {
   /// 获取插件界面
   PluginWidgetGetter get getPluginWidget;
 
+  /// 获取应用根控件
   Widget get getRootWidget;
 
+  /// 获取每日一言
   String get getPoem;
+
+  void showToast(
+    BuildContext context,
+    String text,
+  );
 }
 
 final class ManagerViewModel extends ContextWrapper
@@ -490,4 +498,15 @@ final class ManagerViewModel extends ContextWrapper
   /// 随机抽取一句心灵鸡汤
   @override
   String get getPoem => _list[Random().nextInt(_list.length)];
+
+  @override
+  void showToast(
+    BuildContext context,
+    String text,
+  ) {
+    return Toast.makeToast(
+      context: context,
+      text: text,
+    ).show();
+  }
 }
