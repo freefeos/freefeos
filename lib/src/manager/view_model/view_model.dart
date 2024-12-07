@@ -61,7 +61,7 @@ abstract interface class IManagerViewModel {
     PluginDetails details,
     VoidCallback launchPlugin,
     VoidCallback launchAbout,
-    VoidCallback launchTip,
+    VoidCallback showTip,
   );
 
   /// 最大化窗口
@@ -121,7 +121,42 @@ final class ManagerViewModel extends ContextWrapper
   /// 判断是否运行时
   final RuntimeChecker runtimeChecker;
 
+  /// 应用根控件
   final Widget rootWidget;
+
+  /// 每日一言 - 心灵鸡汤
+  /// 来源网络, 如有侵权, 联系必删.
+  static const List<String> _list = [
+    '不向焦虑与抑郁投降, 这个世界终会有我们存在的地方.',
+    '把喜欢的一切留在身边, 这便是努力的意义.',
+    '治愈、温暖, 这就是我们最终幸福的结局.',
+    '我有一个梦, 也许有一天, 灿烂的阳光能照进黑暗森林.',
+    '如果必须要失去, 那么不如一开始就不曾拥有.',
+    '我们的终点就是与幸福同在.',
+    '孤独的人不会伤害别人, 只会不断地伤害自己罢了.',
+    '如果你能记住我的名字, 如果你们都能记住我的名字, 也许我或者我们, 终有一天能自由地生存着.',
+    '对于所有生命来说, 不会死亡的绝望, 是最可怕的审判.',
+    '我不曾活着, 又何必害怕死亡.',
+    '刚出生的婴儿会哭, 那是对生的喜悦, 还是对世界的恐惧?',
+    '很多人看不到未来, 其实是看到了未来.',
+    '当你想要测试一块玻璃的硬度时, 这块玻璃注定要碎, 换句话说, 怀疑一旦产生, 罪名便已成立了.',
+    '社会总是病态的, 越好的社会病情就越严重.',
+    '在所有失去的人中, 我最怀念我自己.',
+    '我是孤独大赛的第一名, 也是最后一名.',
+    '敬老院的新人都是老人, 这世界的大人都是小人.',
+    '这台手术很成功, 我失败的人生结束了.',
+    '会不会我已经死了, 而大家都瞒着我呢?',
+    '成年人的崩溃从算了开始, 计算机的崩溃从不算了开始.',
+    '要么庸俗, 要么孤独.',
+    '越身处底层的人越喜欢用自我牺牲来表达爱意.',
+    '只有建立在利益上的关系才是最牢固的.',
+    '可怜之人必有可恨之处, 可恨之人必有可悲之苦.',
+    '出生牛犊不怕虎, 待到长成反怕狼.',
+    '奇怪的动物都被保护起来, 奇怪的人却要遭受排挤.',
+    '枪响了. 你看到谁开的枪吗? 我看不清, 他站在道德的制高点, 他在阳光下.',
+    '一束光照进铁塔, 铁塔内肮脏龌龊被显现, 于是, 这束光便有了罪.',
+    '人病了吃药, 社会病了吃人.'
+  ];
 
   /// 当前插件的详细信息 [PluginUI] 用
   PluginDetails? _currentDetails;
@@ -374,7 +409,7 @@ final class ManagerViewModel extends ContextWrapper
     PluginDetails details,
     VoidCallback launchPlugin,
     VoidCallback launchAbout,
-    VoidCallback launchTip,
+    VoidCallback showTip,
   ) {
     if (!runtimeChecker(details)) {
       if (_isAllowPush(details)) {
@@ -383,7 +418,7 @@ final class ManagerViewModel extends ContextWrapper
         launchPlugin();
       } else {
         // 插件无界面时打开提示
-        launchTip();
+        showTip();
       }
     } else {
       // 运行时打开关于对话框
@@ -451,20 +486,6 @@ final class ManagerViewModel extends ContextWrapper
 
   @override
   Widget get getRootWidget => rootWidget;
-
-  /// 鸡汤
-  static const List<String> _list = [
-    '不向焦虑与抑郁投降，这个世界终会有我们存在的地方。',
-    '把喜欢的一切留在身边，这便是努力的意义。',
-    '治愈、温暖，这就是我们最终幸福的结局。',
-    '我有一个梦，也许有一天，灿烂的阳光能照进黑暗森林。',
-    '如果必须要失去，那么不如一开始就不曾拥有。',
-    '我们的终点就是与幸福同在。',
-    '孤独的人不会伤害别人，只会不断地伤害自己罢了。',
-    '如果你能记住我的名字，如果你们都能记住我的名字，也许我或者我们，终有一天能自由地生存着。',
-    '对于所有生命来说，不会死亡的绝望，是最可怕的审判。',
-    '我不曾活着，又何必害怕死亡。',
-  ];
 
   /// 随机抽取一句心灵鸡汤
   @override

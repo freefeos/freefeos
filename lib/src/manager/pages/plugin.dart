@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
 
+import '../../framework/toast.dart';
 import '../components/system_about.dart';
 import '../../common/model/plugin_details.dart';
 import '../intl/app_localizations.dart';
@@ -74,34 +76,18 @@ class _PluginPageState extends State<PluginPage> {
                             () => Navigator.of(
                               context,
                               rootNavigator: true,
-                            ).pushNamed(PluginUiPage.route),
+                            ).pushNamed(
+                              PluginUiPage.route,
+                            ),
                             () => showDialog(
                               context: context,
                               useRootNavigator: true,
                               builder: (context) => SystemAbout(),
                             ),
-                            () => showDialog(
+                            () => Toast.makeToast(
                               context: context,
-                              useRootNavigator: true,
-                              builder: (context) {
-                                return AlertDialog(
-                                  title: Text('无界面'),
-                                  content: Text('此插件未提供用户界面.'),
-                                  actions: [
-                                    Tooltip(
-                                      message: '确定',
-                                      child: TextButton(
-                                        onPressed: () => Navigator.of(
-                                          context,
-                                          rootNavigator: true,
-                                        ).pop(),
-                                        child: Text('确定'),
-                                      ),
-                                    )
-                                  ],
-                                );
-                              },
-                            ),
+                              text: '此插件未提供用户界面.',
+                            ).show(),
                           ),
                           borderRadius: BorderRadius.circular(12),
                           child: Padding(
