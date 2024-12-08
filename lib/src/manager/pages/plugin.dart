@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../framework/toast.dart';
-import '../components/system_about.dart';
+import '../components/about_dialog.dart';
 import '../../common/model/plugin_details.dart';
 import '../intl/app_localizations.dart';
 import '../view_model/view_model.dart';
@@ -82,7 +82,7 @@ class _PluginPageState extends State<PluginPage> {
                             () => showDialog(
                               context: context,
                               useRootNavigator: true,
-                              builder: (context) => SystemAbout(),
+                              builder: (context) => AboutAlertDialog(),
                             ),
                             () => Toast.makeToast(
                               context: context,

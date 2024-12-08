@@ -25,9 +25,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get bannerTitle => 'FREEFEOS';
 
   @override
-  String get viewModelTypeError => 'View Model 类型错误!';
-
-  @override
   String get bottomSheetTooltip => '菜单';
 
   @override
@@ -52,14 +49,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get bottomSheetExitToolTip => '退出应用';
 
   @override
-  String get aboutPackageName => 'FreeFEOS';
-
-  @override
-  String get aboutPackageDescription =>
-      'Free Flutter Embedded Operating System';
-
-  @override
-  String get aboutDialogLegalese => 'Powered by FreeFEOS';
+  String get aboutDialogLegalese => '使用 FreeFEOS 开发';
 
   @override
   String get closeDialogTitle => '退出应用';

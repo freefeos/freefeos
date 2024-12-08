@@ -82,7 +82,9 @@ class _LicensesPageState extends State<LicensesPage> {
                 return LicensePage(
                   applicationName: appName,
                   applicationVersion: appVersion,
-                  applicationLegalese: '使用 FreeFEOS 开发',
+                  applicationLegalese: AppLocalizations.of(
+                    context,
+                  ).aboutDialogLegalese,
                 );
               },
             );

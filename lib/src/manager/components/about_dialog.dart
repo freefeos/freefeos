@@ -5,8 +5,8 @@ import '../intl/app_localizations.dart';
 import '../pages/licenses.dart';
 import '../view_model/view_model.dart';
 
-class SystemAbout extends StatelessWidget {
-  const SystemAbout({super.key});
+class AboutAlertDialog extends StatelessWidget {
+  const AboutAlertDialog({super.key});
 
   @override
   Widget build(BuildContext context) {

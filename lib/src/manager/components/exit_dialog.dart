@@ -5,8 +5,8 @@ import '../intl/app_localizations.dart';
 import '../view_model/view_model.dart';
 
 /// 退出对话框布局
-class SystemExit extends StatelessWidget {
-  const SystemExit({super.key});
+class ExitDialog extends StatelessWidget {
+  const ExitDialog({super.key});
 
   @override
   Widget build(BuildContext context) {

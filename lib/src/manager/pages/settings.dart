@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../components/system_about.dart';
+import '../components/about_dialog.dart';
 import '../view_model/view_model.dart';
 
 /// 设置页面布局
@@ -63,7 +63,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                 onTap: () => showDialog(
                                   context: context,
                                   useRootNavigator: true,
-                                  builder: (context) => SystemAbout(),
+                                  builder: (context) => AboutAlertDialog(),
                                 ),
                                 contentPadding: const EdgeInsets.only(
                                   top: 6,

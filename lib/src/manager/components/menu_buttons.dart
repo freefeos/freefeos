@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'system_dialog.dart';
-import 'system_exit.dart';
+import 'menu_dialog.dart';
+import 'exit_dialog.dart';
 
 class MenuButtons extends StatelessWidget {
   const MenuButtons({super.key});
@@ -26,7 +26,7 @@ class MenuButtons extends StatelessWidget {
                 onTap: () => showDialog(
                   context: context,
                   useRootNavigator: true,
-                  builder: (_) => const SystemDialog(
+                  builder: (_) => const MenuDialog(
                     isManager: false,
                   ),
                 ),
@@ -60,7 +60,7 @@ class MenuButtons extends StatelessWidget {
                 onTap: () => showDialog(
                   context: context,
                   useRootNavigator: true,
-                  builder: (_) => const SystemExit(),
+                  builder: (_) => const ExitDialog(),
                 ),
                 borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(20),

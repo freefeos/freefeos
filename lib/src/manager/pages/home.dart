@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../components/system_about.dart';
+import '../components/about_dialog.dart';
 import '../intl/app_localizations.dart';
 import '../view_model/view_model.dart';
 import 'index.dart';
@@ -167,7 +167,7 @@ class _HomePageState extends State<HomePage> {
                             onTap: () => showDialog(
                               context: context,
                               useRootNavigator: true,
-                              builder: (context) => SystemAbout(),
+                              builder: (context) => AboutAlertDialog(),
                             ),
                             borderRadius: BorderRadius.circular(12),
                             child: Padding(

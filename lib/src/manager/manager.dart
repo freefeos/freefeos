@@ -109,9 +109,7 @@ class ManagerApp extends StatelessWidget implements IAppOption {
                 assert(() {
                   if (viewModel is! ManagerViewModel) {
                     throw FlutterError(
-                      AppLocalizations.of(
-                        context,
-                      ).viewModelTypeError,
+                      'ViewModel 类型错误.',
                     );
                   }
                   return true;

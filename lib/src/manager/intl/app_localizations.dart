@@ -94,25 +94,25 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[Locale('zh')];
 
-  /// No description provided for @unknown.
+  /// 用于FutureBuilder等组件.
   ///
   /// In zh, this message translates to:
   /// **'未知'**
   String get unknown;
 
-  /// No description provided for @waiting.
+  /// 用于FutureBuilder等组件.
   ///
   /// In zh, this message translates to:
   /// **'等待'**
   String get waiting;
 
-  /// No description provided for @error.
+  /// 用于FutureBuilder等组件.
   ///
   /// In zh, this message translates to:
   /// **'错误'**
   String get error;
 
-  /// No description provided for @sNull.
+  /// 用于FutureBuilder等组件.
   ///
   /// In zh, this message translates to:
   /// **'空'**
@@ -129,12 +129,6 @@ abstract class AppLocalizations {
   /// In zh, this message translates to:
   /// **'FREEFEOS'**
   String get bannerTitle;
-
-  /// No description provided for @viewModelTypeError.
-  ///
-  /// In zh, this message translates to:
-  /// **'View Model 类型错误!'**
-  String get viewModelTypeError;
 
   /// No description provided for @bottomSheetTooltip.
   ///
@@ -184,22 +178,10 @@ abstract class AppLocalizations {
   /// **'退出应用'**
   String get bottomSheetExitToolTip;
 
-  /// No description provided for @aboutPackageName.
-  ///
-  /// In zh, this message translates to:
-  /// **'FreeFEOS'**
-  String get aboutPackageName;
-
-  /// No description provided for @aboutPackageDescription.
-  ///
-  /// In zh, this message translates to:
-  /// **'Free Flutter Embedded Operating System'**
-  String get aboutPackageDescription;
-
   /// No description provided for @aboutDialogLegalese.
   ///
   /// In zh, this message translates to:
-  /// **'Powered by FreeFEOS'**
+  /// **'使用 FreeFEOS 开发'**
   String get aboutDialogLegalese;
 
   /// No description provided for @closeDialogTitle.

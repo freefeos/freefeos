@@ -5,12 +5,12 @@ import '../intl/app_localizations.dart';
 import '../pages/manager.dart';
 import '../view_model/view_model.dart';
 import 'dialog_button.dart';
-import 'system_about.dart';
-import 'system_exit.dart';
+import 'about_dialog.dart';
+import 'exit_dialog.dart';
 
-/// 系统菜单
-class SystemDialog extends StatelessWidget {
-  const SystemDialog({
+/// 菜单
+class MenuDialog extends StatelessWidget {
+  const MenuDialog({
     super.key,
     required this.isManager,
   });
@@ -157,7 +157,7 @@ class SystemDialog extends StatelessWidget {
                 showDialog(
                   context: context,
                   useRootNavigator: true,
-                  builder: (context) => SystemAbout(),
+                  builder: (context) => AboutAlertDialog(),
                 );
               },
               icon: Icons.info_outline,
@@ -174,7 +174,7 @@ class SystemDialog extends StatelessWidget {
                 showDialog(
                   context: context,
                   useRootNavigator: true,
-                  builder: (context) => const SystemExit(),
+                  builder: (context) => const ExitDialog(),
                 );
               },
               icon: Icons.exit_to_app,
