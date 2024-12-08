@@ -21,6 +21,9 @@
         "description": "管理器WidgetsApp的标题"
     },
     "bannerTitle": "FREEFEOS",
+    "@bannerTitle": {
+        "description": "App角标横幅文本"
+    },
     "bottomSheetTooltip": "菜单",
     "bottomSheetManager": "管理器",
     "bottomSheetManagerTooltip": "打开管理器",
