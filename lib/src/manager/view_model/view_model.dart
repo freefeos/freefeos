@@ -304,13 +304,7 @@ final class ManagerViewModel extends ContextWrapper
               size: Theme.of(context).iconTheme.size,
               color: Colors.blue,
             );
-          default:
-            return Icon(
-              Icons.question_mark,
-              size: Theme.of(context).iconTheme.size,
-              color: Colors.red,
-            );
-        }
+          }
       case PluginType.kernel:
         return Icon(
           Icons.memory,
@@ -329,13 +323,7 @@ final class ManagerViewModel extends ContextWrapper
           size: Theme.of(context).iconTheme.size,
           color: Theme.of(context).colorScheme.error,
         );
-      default:
-        return Icon(
-          Icons.error,
-          size: Theme.of(context).iconTheme.size,
-          color: Theme.of(context).colorScheme.error,
-        );
-    }
+      }
   }
 
   /// 获取插件类型
@@ -385,12 +373,7 @@ final class ManagerViewModel extends ContextWrapper
         return AppLocalizations.of(
           context,
         ).managerPluginTypeUnknown;
-      // 未知
-      default:
-        return AppLocalizations.of(
-          context,
-        ).unknown;
-    }
+      }
   }
 
   /// 获取插件的提示
