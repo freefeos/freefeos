@@ -30,7 +30,7 @@ class DialogButton extends StatelessWidget {
             child: Card(
               margin: EdgeInsets.zero,
               elevation: 0,
-              color: Theme.of(context).colorScheme.surfaceContainerHigh,
+              color: Theme.of(context).colorScheme.primaryContainer,
               child: InkWell(
                 onTap: enabled ? onTap : null,
                 canRequestFocus: enabled,
