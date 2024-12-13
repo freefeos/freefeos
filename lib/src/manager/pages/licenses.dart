@@ -8,7 +8,7 @@ import '../view_model/view_model.dart';
 class LicensesPage extends StatefulWidget {
   const LicensesPage({super.key});
 
-  static const String route = '/manager/licenses';
+  static const String route = '/licenses';
 
   @override
   State<LicensesPage> createState() => _LicensesPageState();

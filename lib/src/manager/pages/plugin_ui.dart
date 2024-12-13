@@ -7,7 +7,7 @@ import '../view_model/view_model.dart';
 class PluginUiPage extends StatelessWidget {
   const PluginUiPage({super.key});
 
-  static const String route = '/manager/plugin';
+  static const String route = '/plugin_ui';
 
   @override
   Widget build(BuildContext context) {

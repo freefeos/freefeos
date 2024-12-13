@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:freefeos/src/manager/pages/info.dart';
 import 'package:provider/provider.dart';
 
 import '../components/about_dialog.dart';
@@ -54,10 +55,8 @@ class _HomePageState extends State<HomePage> {
                             onTap: () => Navigator.of(
                               context,
                               rootNavigator: true,
-                            ).popUntil(
-                              ModalRoute.withName(
-                                IndexPage.route,
-                              ),
+                            ).pushNamed(
+                              InfoPage.route,
                             ),
                             borderRadius: BorderRadius.circular(12),
                             child: Padding(

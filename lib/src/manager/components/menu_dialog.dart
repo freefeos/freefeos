@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../intl/app_localizations.dart';
+import '../pages/info.dart';
 import '../pages/manager.dart';
 import '../view_model/view_model.dart';
 import 'dialog_button.dart';
@@ -24,10 +25,7 @@ class MenuDialog extends StatelessWidget {
         title: Tooltip(
           message: '打开管理器',
           child: ListTile(
-            leading: Opacity(
-              opacity: isManager ? 0.5 : 1,
-              child: FlutterLogo(),
-            ),
+            leading: FlutterLogo(),
             title: FutureBuilder(
               future: viewModel.getAppName(),
               builder: (context, snapshot) {
@@ -107,7 +105,6 @@ class MenuDialog extends StatelessWidget {
               right: 24,
               bottom: 0,
             ),
-            enabled: !isManager,
             onTap: () {
               Navigator.of(
                 context,
@@ -117,7 +114,7 @@ class MenuDialog extends StatelessWidget {
                 context,
                 rootNavigator: true,
               ).pushNamed(
-                ManagerPage.route,
+                InfoPage.route,
               );
             },
           ),
