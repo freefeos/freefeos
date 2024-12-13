@@ -160,7 +160,7 @@ final class FreeFEOSLauncher {
   /// FreeFEOS 启动器
   ///
   /// [FreeFEOSLauncher] 的工厂构造函数, 用于构建启动应用的应用启动器.</br>
-  /// 启动器需要使用异步功能, 请将main入口函数的void类型改为Future<void>并添加async标签转为异步函数.</br>
+  /// 启动器需要使用异步功能, 请将main入口函数的void类型改为Future并添加async标签转为异步函数.</br>
   ///
   /// * [runner] 为启动应用的函数, 如果传入null默认为 [runApp].
   /// * [plugins] 为应用的插件, 如果传入null默认为空列表.

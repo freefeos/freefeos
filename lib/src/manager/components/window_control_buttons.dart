@@ -47,8 +47,8 @@ class _WindowControlButtonsState extends State<WindowControlButtons>
         height: 30,
         decoration: BoxDecoration(
           color: Theme.of(context).brightness == Brightness.light
-              ? Colors.black.withOpacity(0.3)
-              : Colors.white.withOpacity(0.3),
+              ? Colors.black.withAlpha((255 * 0.3).toInt())
+              : Colors.white.withAlpha((255 * 0.3).toInt()),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Material(
@@ -81,7 +81,7 @@ class _WindowControlButtonsState extends State<WindowControlButtons>
                 indent: 6,
                 endIndent: 6,
                 width: 1,
-                color: Colors.white.withOpacity(0.3),
+                color: Colors.white.withAlpha((255 * 0.3).toInt()),
               ),
               Tooltip(
                 message: '最大化',
@@ -105,7 +105,7 @@ class _WindowControlButtonsState extends State<WindowControlButtons>
                 indent: 6,
                 endIndent: 6,
                 width: 1,
-                color: Colors.white.withOpacity(0.3),
+                color: Colors.white.withAlpha((255 * 0.3).toInt()),
               ),
               Tooltip(
                 message: '关闭窗口',
