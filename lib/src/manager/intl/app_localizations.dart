@@ -118,13 +118,13 @@ abstract class AppLocalizations {
   /// **'空'**
   String get sNull;
 
-  /// No description provided for @packageName.
+  /// 管理器WidgetsApp的标题
   ///
   /// In zh, this message translates to:
   /// **'freefeos'**
   String get packageName;
 
-  /// No description provided for @bannerTitle.
+  /// App角标横幅文本
   ///
   /// In zh, this message translates to:
   /// **'FREEFEOS'**
@@ -181,7 +181,7 @@ abstract class AppLocalizations {
   /// No description provided for @aboutDialogLegalese.
   ///
   /// In zh, this message translates to:
-  /// **'使用 FreeFEOS 开发'**
+  /// **'由 FreeFEOS 强力驱动'**
   String get aboutDialogLegalese;
 
   /// No description provided for @closeDialogTitle.

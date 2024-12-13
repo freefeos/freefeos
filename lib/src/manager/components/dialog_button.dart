@@ -27,10 +27,10 @@ class DialogButton extends StatelessWidget {
         children: [
           Tooltip(
             message: tooltip,
-            child: Card(
+            child: Card.outlined(
               margin: EdgeInsets.zero,
               elevation: 0,
-              color: Theme.of(context).colorScheme.primaryContainer,
+              color: Colors.transparent,
               child: InkWell(
                 onTap: enabled ? onTap : null,
                 canRequestFocus: enabled,

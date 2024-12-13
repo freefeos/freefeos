@@ -49,7 +49,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get bottomSheetExitToolTip => '退出应用';
 
   @override
-  String get aboutDialogLegalese => '使用 FreeFEOS 开发';
+  String get aboutDialogLegalese => '由 FreeFEOS 强力驱动';
 
   @override
   String get closeDialogTitle => '退出应用';

@@ -32,7 +32,7 @@
     "bottomSheetCloseTooltip": "关闭对话框",
     "bottomSheetExit": "退出",
     "bottomSheetExitToolTip": "退出应用",
-    "aboutDialogLegalese": "使用 FreeFEOS 开发",
+    "aboutDialogLegalese": "由 FreeFEOS 强力驱动",
     "closeDialogTitle": "退出应用",
     "closeDialogMessage": "是否退出应用?\n此功能在iOS下不可用,请直接退出.",
     "closeDialogCancelButton": "取消",
