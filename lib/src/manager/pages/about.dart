@@ -5,16 +5,16 @@ import 'details.dart';
 import 'index.dart';
 import 'licenses.dart';
 
-class InfoPage extends StatefulWidget {
-  const InfoPage({super.key});
+class AboutPage extends StatefulWidget {
+  const AboutPage({super.key});
 
-  static const String route = '/info';
+  static const String route = '/about';
 
   @override
-  State<InfoPage> createState() => _InfoPageState();
+  State<AboutPage> createState() => _AboutPageState();
 }
 
-class _InfoPageState extends State<InfoPage> {
+class _AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
     return WindowButtonsOverlay(

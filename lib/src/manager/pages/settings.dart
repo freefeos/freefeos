@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../components/about_dialog.dart';
 import '../view_model/view_model.dart';
+import 'about.dart';
 
 /// 设置页面布局
 class SettingsPage extends StatefulWidget {
@@ -60,10 +60,16 @@ class _SettingsPageState extends State<SettingsPage> {
                                 title: Text('关于'),
                                 subtitle: Text('关于 FreeFEOS'),
                                 leading: Icon(Icons.info_outline),
-                                onTap: () => showDialog(
-                                  context: context,
-                                  useRootNavigator: true,
-                                  builder: (context) => AboutAlertDialog(),
+                                // onTap: () => showDialog(
+                                //   context: context,
+                                //   useRootNavigator: true,
+                                //   builder: (context) => AboutAlertDialog(),
+                                // ),
+                                onTap: () => Navigator.of(
+                                  context,
+                                  rootNavigator: true,
+                                ).pushNamed(
+                                  AboutPage.route,
                                 ),
                                 contentPadding: const EdgeInsets.only(
                                   top: 6,

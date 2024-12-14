@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-
 import 'package:provider/provider.dart';
 
 import '../../framework/toast.dart';
-import '../components/about_dialog.dart';
 import '../../common/model/plugin_details.dart';
 import '../intl/app_localizations.dart';
 import '../view_model/view_model.dart';
+import 'about.dart';
 import 'plugin_ui.dart';
 
 /// 插件页面布局
@@ -79,10 +78,16 @@ class _PluginPageState extends State<PluginPage> {
                             ).pushNamed(
                               PluginUiPage.route,
                             ),
-                            () => showDialog(
-                              context: context,
-                              useRootNavigator: true,
-                              builder: (context) => AboutAlertDialog(),
+                            // () => showDialog(
+                            //   context: context,
+                            //   useRootNavigator: true,
+                            //   builder: (context) => AboutAlertDialog(),
+                            // ),
+                            () => Navigator.of(
+                              context,
+                              rootNavigator: true,
+                            ).pushNamed(
+                              AboutPage.route,
                             ),
                             () => Toast.makeToast(
                               context: context,

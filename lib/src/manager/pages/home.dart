@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../components/about_dialog.dart';
 import '../intl/app_localizations.dart';
 import '../view_model/view_model.dart';
-import 'info.dart';
+import 'about.dart';
 
 /// 主页页面布局
 class HomePage extends StatefulWidget {
@@ -48,14 +47,14 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.fromLTRB(12, 12, 12, 6),
                       child: Tooltip(
                         message: '打开应用',
-                        child: Card(
+                        child: Card.filled(
                           color: Theme.of(context).colorScheme.primaryContainer,
                           child: InkWell(
                             onTap: () => Navigator.of(
                               context,
                               rootNavigator: true,
                             ).pushNamed(
-                              InfoPage.route,
+                              AboutPage.route,
                             ),
                             borderRadius: BorderRadius.circular(12),
                             child: Padding(
@@ -162,10 +161,16 @@ class _HomePageState extends State<HomePage> {
                         message: '关于',
                         child: Card(
                           child: InkWell(
-                            onTap: () => showDialog(
-                              context: context,
-                              useRootNavigator: true,
-                              builder: (context) => AboutAlertDialog(),
+                            // onTap: () => showDialog(
+                            //   context: context,
+                            //   useRootNavigator: true,
+                            //   builder: (context) => AboutAlertDialog(),
+                            // ),
+                            onTap: () => Navigator.of(
+                              context,
+                              rootNavigator: true,
+                            ).pushNamed(
+                              AboutPage.route,
                             ),
                             borderRadius: BorderRadius.circular(12),
                             child: Padding(

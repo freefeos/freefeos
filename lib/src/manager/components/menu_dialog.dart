@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../intl/app_localizations.dart';
-import '../pages/info.dart';
+import '../pages/about.dart';
 import '../pages/manager.dart';
 import '../view_model/view_model.dart';
 import 'dialog_button.dart';
-import 'about_dialog.dart';
 import 'exit_dialog.dart';
 
 /// 菜单
@@ -114,7 +113,7 @@ class MenuDialog extends StatelessWidget {
                 context,
                 rootNavigator: true,
               ).pushNamed(
-                InfoPage.route,
+                AboutPage.route,
               );
             },
           ),
@@ -151,10 +150,16 @@ class MenuDialog extends StatelessWidget {
                   context,
                   rootNavigator: true,
                 ).pop();
-                showDialog(
-                  context: context,
-                  useRootNavigator: true,
-                  builder: (context) => AboutAlertDialog(),
+                // showDialog(
+                //   context: context,
+                //   useRootNavigator: true,
+                //   builder: (context) => AboutAlertDialog(),
+                // );
+                Navigator.of(
+                  context,
+                  rootNavigator: true,
+                ).pushNamed(
+                  AboutPage.route,
                 );
               },
               icon: Icons.info_outline,

@@ -7,9 +7,9 @@ import '../common/types/types.dart';
 import '../common/sdk/option.dart';
 import 'components/window_move_area.dart';
 import 'intl/app_localizations.dart';
+import 'pages/about.dart';
 import 'pages/details.dart';
 import 'pages/index.dart';
-import 'pages/info.dart';
 import 'pages/licenses.dart';
 import 'pages/manager.dart';
 import 'pages/plugin_ui.dart';
@@ -52,7 +52,7 @@ class ManagerApp extends StatelessWidget implements IAppOption {
       ManagerPage.route: (_) => ManagerPage(),
       PluginUiPage.route: (_) => PluginUiPage(),
       LicensesPage.route: (_) => LicensesPage(),
-      InfoPage.route: (_) => InfoPage(),
+      AboutPage.route: (_) => AboutPage(),
       DetailsPage.route: (_) => DetailsPage(),
     };
   }
@@ -115,6 +115,14 @@ class ManagerApp extends StatelessWidget implements IAppOption {
       },
       routes: buildPages(),
       builder: (context, child) {
+
+DynamicColorBuilder(
+  builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic,) {
+    return ;
+  }
+);
+
+
         return Theme(
           data: buildStyle(context),
           child: ToastificationWrapper(
