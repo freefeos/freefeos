@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:freefeos/src/manager/pages/details.dart';
 import 'package:freefeos/src/manager/pages/info.dart';
 import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
@@ -30,6 +31,7 @@ class ManagerApp extends StatelessWidget implements IAppOption {
       PluginUiPage.route: (_) => PluginUiPage(),
       LicensesPage.route: (_) => LicensesPage(),
       InfoPage.route: (_) => InfoPage(),
+      DetailsPage.route: (_) => DetailsPage(),
     };
   }
 

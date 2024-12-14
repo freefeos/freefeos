@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:freefeos/src/manager/pages/info.dart';
 import 'package:provider/provider.dart';
 
 import '../components/about_dialog.dart';
 import '../intl/app_localizations.dart';
 import '../view_model/view_model.dart';
-import 'index.dart';
+import 'info.dart';
 
 /// 主页页面布局
 class HomePage extends StatefulWidget {

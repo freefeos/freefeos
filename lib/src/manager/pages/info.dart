@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../components/window_buttons_overlay.dart';
+import 'details.dart';
 import 'index.dart';
 
 class InfoPage extends StatefulWidget {
@@ -32,7 +33,16 @@ class _InfoPageState extends State<InfoPage> {
                 ),
               ),
               child: Text('进入应用'),
-            )
+            ),
+            FilledButton(
+              onPressed: () => Navigator.of(
+                context,
+                rootNavigator: true,
+              ).pushNamed(
+                DetailsPage.route,
+              ),
+              child: Text('更多资料'),
+            ),
           ],
         ),
       ),
