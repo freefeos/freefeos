@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../components/window_buttons_overlay.dart';
 import 'details.dart';
 import 'index.dart';
+import 'licenses.dart';
 
 class InfoPage extends StatefulWidget {
   const InfoPage({super.key});
@@ -42,6 +43,15 @@ class _InfoPageState extends State<InfoPage> {
                 DetailsPage.route,
               ),
               child: Text('更多资料'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.of(
+                context,
+                rootNavigator: true,
+              ).pushNamed(
+                LicensesPage.route,
+              ),
+              child: Text('开放源代码许可'),
             ),
           ],
         ),
