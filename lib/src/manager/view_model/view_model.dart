@@ -7,12 +7,12 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:window_manager/window_manager.dart';
 
-import '../../common/model/plugin_details.dart';
+import '../../common/model/model.dart';
+import '../../common/plugin/plugin_type.dart';
 import '../../common/types/types.dart';
 import '../../common/utils/utils.dart';
 import '../../common/values/url.dart';
 import '../../framework/context.dart';
-import '../../plugin/plugin_type.dart';
 import '../intl/app_localizations.dart';
 
 abstract interface class IManagerViewModel {

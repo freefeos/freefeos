@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 
 import '../../framework/log.dart';
-import '../model/plugin_details.dart';
-import '../../plugin/plugin_runtime.dart';
+import '../model/model.dart';
+import '../plugin/plugin_runtime.dart';
 
 //--------------------  入口用  -------------------------------
 typedef ApiBuilder = Future<void> Function(MethodExecer exec);

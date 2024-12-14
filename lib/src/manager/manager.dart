@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
 
-import '../common/model/plugin_details.dart';
+import '../common/model/model.dart';
 import '../common/types/types.dart';
 import '../common/sdk/option.dart';
 import 'components/window_move_area.dart';
@@ -118,7 +118,8 @@ class ManagerApp extends StatelessWidget implements IAppOption {
         return Theme(
           data: buildStyle(context),
           child: ToastificationWrapper(
-            child: ScaffoldMessenger(child: ChangeNotifierProvider<ManagerViewModel>(
+            child: ScaffoldMessenger(
+                child: ChangeNotifierProvider<ManagerViewModel>(
               create: (context) {
                 final ViewModel viewModel = buildViewModel(context);
                 assert(() {

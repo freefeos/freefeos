@@ -1,12 +1,12 @@
 import 'package:flutter/widgets.dart';
 
+import '../common/plugin/plugin_runtime.dart';
 import '../engine/method_call.dart';
 import '../engine/plugin_engine.dart';
 import '../engine/result.dart';
 import '../framework/service.dart';
 import '../framework/want.dart';
 import '../common/interface/interface.dart';
-import '../plugin/plugin_runtime.dart';
 import '../common/utils/utils.dart';
 import '../common/values/channel.dart';
 import '../common/values/strings.dart';
@@ -126,7 +126,6 @@ class FreeFEOSLinker implements FreeFEOSPlatform {
 /// ⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
 
 final class MethodChannelFreeFEOS extends FreeFEOSPlatform {
-  
   @override
   Future<bool?> closePlatformDialog() async => false;
 
@@ -136,7 +135,6 @@ final class MethodChannelFreeFEOS extends FreeFEOSPlatform {
   @override
   Future<bool?> openPlatformDialog() async => false;
 }
-
 
 final class FEPlugin extends Service {
   @override

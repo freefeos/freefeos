@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:window_manager/window_manager.dart';
 
+import '../common/plugin/plugin_runtime.dart';
 import '../embedder/embedder_mixin.dart';
 import '../engine/bridge_mixin.dart';
 import '../framework/context.dart';
 import '../kernel/kernel.dart';
-import '../plugin/plugin_runtime.dart';
 import '../common/types/types.dart';
 import '../common/utils/utils.dart';
 import '../common/values/channel.dart';

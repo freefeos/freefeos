@@ -3,11 +3,11 @@ library;
 
 import 'package:flutter/widgets.dart';
 
+import 'src/common/interface/interface.dart';
+import 'src/common/plugin/plugin_runtime.dart';
+import 'src/common/types/types.dart';
 import 'src/embedder/platform_embedder.dart';
 import 'src/entry/entry.dart';
-import 'src/common/interface/interface.dart';
-import 'src/plugin/plugin_runtime.dart';
-import 'src/common/types/types.dart';
 
 /// 平台插件注册
 ///

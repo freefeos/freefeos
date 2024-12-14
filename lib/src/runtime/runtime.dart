@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../base/base.dart';
-import '../common/model/plugin_details.dart';
+import '../common/model/model.dart';
+import '../common/plugin/plugin_runtime.dart';
+import '../common/plugin/plugin_type.dart';
 import '../common/types/types.dart';
 import '../common/values/channel.dart';
 import '../common/values/method.dart';
@@ -11,8 +13,6 @@ import '../common/values/tag.dart';
 import '../framework/context.dart';
 import '../framework/log.dart';
 import '../manager/manager.dart';
-import '../plugin/plugin_runtime.dart';
-import '../plugin/plugin_type.dart';
 
 /// 运行时
 final class SystemRuntime extends SystemBase {
