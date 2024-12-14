@@ -8,7 +8,6 @@ import '../engine/bridge_mixin.dart';
 import '../framework/context.dart';
 import '../kernel/kernel.dart';
 import '../plugin/plugin_runtime.dart';
-import '../runtime/runtime.dart';
 import '../common/types/types.dart';
 import '../common/utils/utils.dart';
 import '../common/values/channel.dart';
@@ -17,10 +16,11 @@ import '../common/values/strings.dart';
 import '../common/values/tag.dart';
 import '../framework/log.dart';
 import '../common/interface/interface.dart';
+import '../runtime/runtime_mixin.dart';
 import '../server/server.dart';
 
 /// 绑定层包装器
-abstract interface class BaseWrapper {
+abstract interface class ISystemBase {
   /// 运行时入口
   FreeFEOSSystem call();
 
@@ -34,7 +34,7 @@ abstract interface class BaseWrapper {
   RuntimePlugin get embedder;
 
   /// 用户App
-  Widget get child;
+  Widget get rootWidget;
 
   /// 导入用户App
   Future<void> includeApp(Widget child);
@@ -48,15 +48,11 @@ abstract interface class BaseWrapper {
   /// 获取App
   Layout findApplication();
 
-  /// 构建View Model
-  ViewModel buildViewModel(
-    BuildContext context,
-    ContextAttacher attach,
-    Widget child,
-  );
-
   /// 构建App
-  Layout buildSystemUI(ViewModelBuilder builder);
+  Layout build(
+    ContextAttacher contextAttacher,
+    Widget rootWidget,
+  );
 
   /// 执行引擎插件方法
   Future<dynamic> execEngine(
@@ -73,17 +69,17 @@ abstract interface class BaseWrapper {
 }
 
 /// 应用混入
-base mixin AppMixin implements BaseWrapper {
+base mixin AppMixin implements ISystemBase {
   /// 应用
-  static late Widget _child;
+  static late Widget _root;
 
   /// 获取应用
   @override
-  Widget get child => _child;
+  Widget get rootWidget => _root;
 
   /// 导入应用
   @override
-  Future<void> includeApp(Widget child) async => _child = child;
+  Future<void> includeApp(Widget child) async => _root = child;
 }
 
 /// 入口混入
@@ -94,14 +90,14 @@ base mixin BaseEntry implements FreeFEOSSystem {
 }
 
 /// 绑定层混入
-base mixin BaseMixin implements BaseWrapper {
+base mixin BaseMixin implements ISystemBase {
   /// 获取绑定层实例
   @override
   RuntimePlugin get base => SystemBase();
 }
 
 /// 上下文混入
-base mixin ContextMixin on ContextWrapper implements BaseWrapper {
+base mixin ContextMixin on ContextWrapper implements ISystemBase {
   /// 获取带有导航主机的上下文
   @override
   BuildContext get context {
@@ -127,7 +123,7 @@ base class SystemBase extends ContextWrapper
         ServerBridgeMixin,
         EngineBridgeMixin,
         ViewModel
-    implements RuntimePlugin, FreeFEOSSystem, KernelModule, BaseWrapper {
+    implements RuntimePlugin, FreeFEOSSystem, KernelModule, ISystemBase {
   /// 构造函数
   SystemBase() : super(attach: true);
 
@@ -150,12 +146,9 @@ base class SystemBase extends ContextWrapper
   /// 插件界面
   @override
   Widget pluginWidget(BuildContext context) {
-    return buildSystemUI(
-      (context) => buildViewModel(
-        context,
-        super.attachContext,
-        super.child,
-      ),
+    return build(
+      super.attachContext,
+      super.rootWidget,
     );
   }
 
@@ -288,27 +281,18 @@ base class SystemBase extends ContextWrapper
   @override
   Layout findApplication() {
     return resources.getLayout(
-      layout: Builder(
-        builder: pluginWidget,
-      ),
+      builder: pluginWidget,
     );
-  }
-
-  /// 构建ViewModel
-  @override
-  ViewModel buildViewModel(
-    BuildContext context,
-    ContextAttacher attach,
-    Widget child,
-  ) {
-    return this;
   }
 
   /// 构建应用
   @override
-  Layout buildSystemUI(ViewModelBuilder builder) {
+  Layout build(
+    ContextAttacher contextAttacher,
+    Widget rootWidget,
+  ) {
     return resources.getLayout(
-      layout: const Placeholder(),
+      builder: (_) => const Placeholder(),
     );
   }
 

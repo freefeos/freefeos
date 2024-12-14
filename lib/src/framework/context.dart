@@ -59,10 +59,10 @@ final class Resources {
   const Resources();
 
   Layout getLayout({
-    required Widget layout,
+    required WidgetBuilder builder,
   }) {
     return Layout(
-      layout: layout,
+      layout: Builder(builder: builder),
     );
   }
 

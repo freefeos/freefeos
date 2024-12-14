@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:freefeos/src/common/types/types.dart';
 import 'package:provider/provider.dart';
 
 import '../components/app_banner.dart';
@@ -9,7 +10,7 @@ import '../view_model/view_model.dart';
 class IndexPage extends StatefulWidget {
   const IndexPage({super.key});
 
-  static const String route = '/';
+  static const RouteName route = '/';
 
   @override
   State<IndexPage> createState() => _IndexPageState();

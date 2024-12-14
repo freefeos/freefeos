@@ -1,27 +1,18 @@
 import 'package:flutter/material.dart';
 
 import '../base/base.dart';
-import '../framework/context.dart';
-import '../framework/log.dart';
-import '../common/interface/interface.dart';
 import '../common/model/plugin_details.dart';
-import '../manager/manager.dart';
-import '../manager/view_model/view_model.dart';
-import '../plugin/plugin_runtime.dart';
-import '../plugin/plugin_type.dart';
 import '../common/types/types.dart';
 import '../common/values/channel.dart';
 import '../common/values/method.dart';
 import '../common/values/placeholder.dart';
 import '../common/values/strings.dart';
 import '../common/values/tag.dart';
-
-/// 运行时混入
-base mixin RuntimeMixin implements BaseWrapper {
-  /// 获取运行时实例
-  @override
-  FreeFEOSSystem call() => SystemRuntime();
-}
+import '../framework/context.dart';
+import '../framework/log.dart';
+import '../manager/manager.dart';
+import '../plugin/plugin_runtime.dart';
+import '../plugin/plugin_type.dart';
 
 /// 运行时
 final class SystemRuntime extends SystemBase {
@@ -77,47 +68,37 @@ final class SystemRuntime extends SystemBase {
   /// 获取App
   @override
   Layout findApplication() {
+    // 遍历插件信息列表
     for (var element in _pluginDetailsList) {
+      // 判断当前信息是否为运行时
       if (_isRuntime(element)) {
+        // 返回运行时的界面
         return resources.getLayout(
-          layout: Builder(
-            builder: (context) {
-              return _getPluginWidget(
-                context,
-                element,
-              );
-            },
+          builder: (context) => _getPluginWidget(
+            context,
+            element,
           ),
         );
       }
     }
+    // 当插件信息列表中没有符合的项时直接调用父类方法
     return super.findApplication();
-  }
-
-  /// 构建View Model
-  @override
-  ViewModel buildViewModel(
-    BuildContext context,
-    ContextAttacher attach,
-    Widget child,
-  ) {
-    return ManagerViewModel(
-      context: context,
-      contextAttacher: attach,
-      pluginDetailsList: _pluginDetailsList,
-      pluginGetter: _getPlugin,
-      pluginWidgetGetter: _getPluginWidget,
-      runtimeChecker: _isRuntime,
-      rootWidget: child,
-    );
   }
 
   /// 构建应用
   @override
-  Layout buildSystemUI(ViewModelBuilder builder) {
+  Layout build(
+    ContextAttacher contextAttacher,
+    Widget rootWidget,
+  ) {
     return resources.getLayout(
-      layout: ManagerApp(
-        builder: builder,
+      builder: (_) => ManagerApp(
+        contextAttacher: contextAttacher,
+        pluginDetailsList: _pluginDetailsList,
+        pluginGetter: _getPlugin,
+        pluginWidgetGetter: _getPluginWidget,
+        runtimeChecker: _isRuntime,
+        rootWidget: rootWidget,
       ),
     );
   }

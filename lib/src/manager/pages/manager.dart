@@ -2,6 +2,7 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
 
+import '../../common/types/types.dart';
 import '../components/window_buttons_overlay.dart';
 import '../intl/app_localizations.dart';
 import 'home.dart';
@@ -12,7 +13,7 @@ import 'settings.dart';
 class ManagerPage extends StatefulWidget {
   const ManagerPage({super.key});
 
-  static const String route = '/manager';
+  static const RouteName route = '/manager';
 
   @override
   State<ManagerPage> createState() => _ManagerPageState();

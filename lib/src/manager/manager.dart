@@ -1,31 +1,53 @@
 import 'package:flutter/material.dart';
-import 'package:freefeos/src/manager/pages/details.dart';
-import 'package:freefeos/src/manager/pages/info.dart';
 import 'package:provider/provider.dart';
 import 'package:toastification/toastification.dart';
 
+import '../common/model/plugin_details.dart';
 import '../common/types/types.dart';
-import '../sdk/option.dart';
+import '../common/sdk/option.dart';
 import 'components/window_move_area.dart';
 import 'intl/app_localizations.dart';
+import 'pages/details.dart';
 import 'pages/index.dart';
+import 'pages/info.dart';
 import 'pages/licenses.dart';
 import 'pages/manager.dart';
 import 'pages/plugin_ui.dart';
 import 'view_model/view_model.dart';
 
 class ManagerApp extends StatelessWidget implements IAppOption {
-  const ManagerApp({super.key, required this.builder});
+  const ManagerApp({
+    super.key,
+    required this.contextAttacher,
+    required this.pluginDetailsList,
+    required this.pluginGetter,
+    required this.pluginWidgetGetter,
+    required this.runtimeChecker,
+    required this.rootWidget,
+  });
 
-  final ViewModelBuilder builder;
+  /// 上下文附加器
+  final ContextAttacher contextAttacher;
 
-  static final GlobalKey<NavigatorState> navigatorKey =
-      GlobalKey<NavigatorState>();
+  /// 插件列表
+  final List<PluginDetails> pluginDetailsList;
+
+  /// 获取插件
+  final PluginGetter pluginGetter;
+
+  /// 获取插件界面
+  final PluginWidgetGetter pluginWidgetGetter;
+
+  /// 判断是否运行时
+  final RuntimeChecker runtimeChecker;
+
+  /// 应用根控件
+  final Widget rootWidget;
 
   /// 页面
   @override
-  Map<String, WidgetBuilder> pages() {
-    return <String, WidgetBuilder>{
+  Map<RouteName, WidgetBuilder> buildPages() {
+    return <RouteName, WidgetBuilder>{
       IndexPage.route: (_) => IndexPage(),
       ManagerPage.route: (_) => ManagerPage(),
       PluginUiPage.route: (_) => PluginUiPage(),
@@ -36,7 +58,7 @@ class ManagerApp extends StatelessWidget implements IAppOption {
   }
 
   @override
-  ThemeData style(BuildContext context) {
+  ThemeData buildStyle(BuildContext context) {
     return ThemeData(
       useMaterial3: true,
       brightness: MediaQuery.platformBrightnessOf(
@@ -62,36 +84,25 @@ class ManagerApp extends StatelessWidget implements IAppOption {
   }
 
   @override
-  String title(BuildContext context) {
+  String buildTitle(BuildContext context) {
     return AppLocalizations.of(context).packageName;
   }
 
   @override
-  void onError() {}
-
-  @override
-  void onHide() {}
-
-  @override
-  void onLaunch() {}
-
-  @override
-  void onPageNotFound() {}
-
-  @override
-  void onShow() {}
+  ViewModel buildViewModel(BuildContext context) {
+    return ManagerViewModel(
+      context: context,
+      contextAttacher: contextAttacher,
+      pluginDetailsList: pluginDetailsList,
+      pluginGetter: pluginGetter,
+      pluginWidgetGetter: pluginWidgetGetter,
+      runtimeChecker: runtimeChecker,
+      rootWidget: rootWidget,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    // view model
-    // theme
-    // toast wrapper
-    // window move
-    // navigation pop handler
-    // navigation
-    // Localizations
-
-    // F
     return WidgetsApp(
       pageRouteBuilder: <T>(
         RouteSettings settings,
@@ -102,14 +113,14 @@ class ManagerApp extends StatelessWidget implements IAppOption {
           settings: settings,
         );
       },
-      routes: pages(),
+      routes: buildPages(),
       builder: (context, child) {
         return Theme(
-          data: style(context),
+          data: buildStyle(context),
           child: ToastificationWrapper(
             child: ChangeNotifierProvider<ManagerViewModel>(
               create: (context) {
-                final ViewModel viewModel = builder(context);
+                final ViewModel viewModel = buildViewModel(context);
                 assert(() {
                   if (viewModel is! ManagerViewModel) {
                     throw FlutterError(
@@ -127,11 +138,11 @@ class ManagerApp extends StatelessWidget implements IAppOption {
           ),
         );
       },
-      onGenerateTitle: title,
-      color: Colors.transparent,
+      onGenerateTitle: (context) => buildTitle(context), // 获取标题
+      color: Colors.transparent, // 透明
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false, // 隐藏调试角标
     );
   }
 }
