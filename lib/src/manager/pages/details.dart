@@ -21,7 +21,10 @@ class _DetailsPageState extends State<DetailsPage> {
       ),
       body: Center(
         child: Consumer<ManagerViewModel>(
-                builder: (context, viewModel, child) => Text(viewModel.pluginNames())),
+          builder: (context, viewModel, child) => Text(
+            viewModel.pluginNames(),
+          ),
+        ),
       ),
     );
   }
