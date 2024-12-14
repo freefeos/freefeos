@@ -7,13 +7,12 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:window_manager/window_manager.dart';
 
-import '../../framework/context.dart';
 import '../../common/model/plugin_details.dart';
-import '../../framework/toast.dart';
-import '../../plugin/plugin_type.dart';
 import '../../common/types/types.dart';
 import '../../common/utils/utils.dart';
 import '../../common/values/url.dart';
+import '../../framework/context.dart';
+import '../../plugin/plugin_type.dart';
 import '../intl/app_localizations.dart';
 
 abstract interface class IManagerViewModel {
@@ -91,11 +90,6 @@ abstract interface class IManagerViewModel {
 
   /// 获取每日一言
   String get getPoem;
-
-  void showToast(
-    BuildContext context,
-    String text,
-  );
 }
 
 final class ManagerViewModel extends ContextWrapper
@@ -304,7 +298,7 @@ final class ManagerViewModel extends ContextWrapper
               size: Theme.of(context).iconTheme.size,
               color: Colors.blue,
             );
-          }
+        }
       case PluginType.kernel:
         return Icon(
           Icons.memory,
@@ -323,7 +317,7 @@ final class ManagerViewModel extends ContextWrapper
           size: Theme.of(context).iconTheme.size,
           color: Theme.of(context).colorScheme.error,
         );
-      }
+    }
   }
 
   /// 获取插件类型
@@ -373,7 +367,7 @@ final class ManagerViewModel extends ContextWrapper
         return AppLocalizations.of(
           context,
         ).managerPluginTypeUnknown;
-      }
+    }
   }
 
   /// 获取插件的提示
@@ -483,15 +477,4 @@ final class ManagerViewModel extends ContextWrapper
   /// 随机抽取一句心灵鸡汤
   @override
   String get getPoem => _list[Random().nextInt(_list.length)];
-
-  @override
-  void showToast(
-    BuildContext context,
-    String text,
-  ) {
-    return Toast.makeToast(
-      context: context,
-      text: text,
-    ).show();
-  }
 }

@@ -115,18 +115,10 @@ class ManagerApp extends StatelessWidget implements IAppOption {
       },
       routes: buildPages(),
       builder: (context, child) {
-
-DynamicColorBuilder(
-  builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic,) {
-    return ;
-  }
-);
-
-
         return Theme(
           data: buildStyle(context),
           child: ToastificationWrapper(
-            child: ChangeNotifierProvider<ManagerViewModel>(
+            child: ScaffoldMessenger(child: ChangeNotifierProvider<ManagerViewModel>(
               create: (context) {
                 final ViewModel viewModel = buildViewModel(context);
                 assert(() {
@@ -142,7 +134,7 @@ DynamicColorBuilder(
               child: WindowMoveOverlay(
                 child: child,
               ),
-            ),
+            )),
           ),
         );
       },

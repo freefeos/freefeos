@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.fromLTRB(12, 12, 12, 6),
                       child: Tooltip(
                         message: '打开应用',
-                        child: Card.filled(
+                        child: Card(
                           color: Theme.of(context).colorScheme.primaryContainer,
                           child: InkWell(
                             onTap: () => Navigator.of(
@@ -159,7 +159,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.fromLTRB(12, 6, 12, 12),
                       child: Tooltip(
                         message: '关于',
-                        child: Card(
+                        child: Card.outlined(
                           child: InkWell(
                             // onTap: () => showDialog(
                             //   context: context,

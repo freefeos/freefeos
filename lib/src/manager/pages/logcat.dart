@@ -5,7 +5,6 @@ import 'package:logging/logging.dart';
 
 import '../../common/event/event.dart';
 import '../../framework/ansi_parser.dart';
-import '../../framework/toast.dart';
 import '../intl/app_localizations.dart';
 import '../utils/utils.dart';
 
@@ -30,12 +29,17 @@ class _LogcatPageState extends State<LogcatPage> {
     for (var event in EventBuffer.outputEventBuffer) {
       final IAnsiParser parser = AnsiParser(
         context: context,
-        showTips: () => Toast.makeToast(
-          context: context,
-          text: AppLocalizations.of(
-            context,
-          ).managerLogCopyTips,
-        ).show(),
+        showTips: () => ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(
+          SnackBar(
+            content: Text(
+              AppLocalizations.of(
+                context,
+              ).managerLogCopyTips,
+            ),
+          ),
+        ),
       );
       final String text = event.lines.join('\n');
       int currentId = 0;
