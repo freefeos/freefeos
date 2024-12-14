@@ -5,13 +5,11 @@ import 'package:freefeos/freefeos.dart';
 
 /// 入口函数
 Future<void> main() async {
-  // 初始化运行器
-  final FreeFEOSLauncher launch = FreeFEOSLauncher(
+  // 使用运行器启动应用
+  await FreeFEOSLauncher(
     plugins: <FreeFEOSPlugin>[ExamplePlugin()],
     initApi: (exec) async => Global.exec = exec,
-  );
-  // 使用运行器启动应用
-  await launch(const MyApp());
+  )(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
