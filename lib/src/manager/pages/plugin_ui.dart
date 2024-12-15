@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../common/types/types.dart';
 import '../components/window_buttons_overlay.dart';
 import '../view_model/view_model.dart';
 
 class PluginUiPage extends StatelessWidget {
   const PluginUiPage({super.key});
 
-  static const String route = '/plugin_ui';
+  static const RouteName route = '/plugin_ui';
 
   @override
   Widget build(BuildContext context) {

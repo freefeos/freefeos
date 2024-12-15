@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../common/types/types.dart';
 import '../components/window_buttons_overlay.dart';
 import '../view_model/view_model.dart';
 
 class DetailsPage extends StatefulWidget {
   const DetailsPage({super.key});
 
-  static const String route = '/details';
+  static const RouteName route = '/details';
 
   @override
   State<DetailsPage> createState() => _DetailsPageState();

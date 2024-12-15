@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:freefeos/src/common/types/types.dart';
 import 'package:provider/provider.dart';
 
+import '../../common/types/types.dart';
 import '../components/app_banner.dart';
 import '../components/app_root_view.dart';
 import '../components/window_buttons_overlay.dart';

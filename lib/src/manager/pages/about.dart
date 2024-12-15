@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../common/types/types.dart';
 import '../components/window_buttons_overlay.dart';
 import 'details.dart';
 import 'index.dart';
@@ -10,7 +11,7 @@ import 'settings.dart';
 class AboutPage extends StatefulWidget {
   const AboutPage({super.key});
 
-  static const String route = '/about';
+  static const RouteName route = '/about';
 
   @override
   State<AboutPage> createState() => _AboutPageState();

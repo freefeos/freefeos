@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../common/types/types.dart';
 import '../components/window_buttons_overlay.dart';
 import '../intl/app_localizations.dart';
 import '../view_model/view_model.dart';
@@ -8,7 +9,7 @@ import '../view_model/view_model.dart';
 class LicensesPage extends StatefulWidget {
   const LicensesPage({super.key});
 
-  static const String route = '/licenses';
+  static const RouteName route = '/licenses';
 
   @override
   State<LicensesPage> createState() => _LicensesPageState();
