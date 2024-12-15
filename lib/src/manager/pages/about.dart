@@ -4,6 +4,7 @@ import '../components/window_buttons_overlay.dart';
 import 'details.dart';
 import 'index.dart';
 import 'licenses.dart';
+import 'settings.dart';
 
 class AboutPage extends StatefulWidget {
   const AboutPage({super.key});
@@ -52,6 +53,15 @@ class _AboutPageState extends State<AboutPage> {
                 LicensesPage.route,
               ),
               child: Text('开放源代码许可'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.of(
+                context,
+                rootNavigator: true,
+              ).pushNamed(
+                SettingsPage.route,
+              ),
+              child: Text('设置'),
             ),
           ],
         ),
