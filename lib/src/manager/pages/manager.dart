@@ -100,7 +100,7 @@ class _ManagerPageState extends State<ManagerPage> {
             const HomePage(),
             const LogcatPage(),
             const PluginPage(),
-            const SettingsPage(),
+            const SettingsPage(isManager: true),
           ][_currentPage],
         ),
         transitionDuration: const Duration(

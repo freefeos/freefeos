@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:toastification/toastification.dart';
 
 import '../common/model/model.dart';
 import '../common/types/types.dart';
@@ -13,6 +12,7 @@ import 'pages/index.dart';
 import 'pages/licenses.dart';
 import 'pages/manager.dart';
 import 'pages/plugin_ui.dart';
+import 'pages/settings.dart';
 import 'view_model/view_model.dart';
 
 class ManagerApp extends StatelessWidget implements IAppOption {
@@ -54,6 +54,7 @@ class ManagerApp extends StatelessWidget implements IAppOption {
       LicensesPage.route: (_) => LicensesPage(),
       AboutPage.route: (_) => AboutPage(),
       DetailsPage.route: (_) => DetailsPage(),
+      SettingsPage.route: (_) => SettingsPage(),
     };
   }
 
@@ -117,9 +118,8 @@ class ManagerApp extends StatelessWidget implements IAppOption {
       builder: (context, child) {
         return Theme(
           data: buildStyle(context),
-          child: ToastificationWrapper(
-            child: ScaffoldMessenger(
-                child: ChangeNotifierProvider<ManagerViewModel>(
+          child: ScaffoldMessenger(
+            child: ChangeNotifierProvider<ManagerViewModel>(
               create: (context) {
                 final ViewModel viewModel = buildViewModel(context);
                 assert(() {
@@ -135,7 +135,7 @@ class ManagerApp extends StatelessWidget implements IAppOption {
               child: WindowMoveOverlay(
                 child: child,
               ),
-            )),
+            ),
           ),
         );
       },
