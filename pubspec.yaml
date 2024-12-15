@@ -19,7 +19,7 @@ dependencies:
   flutter_rust_bridge: ^2.7.0
   irondash_engine_context: ^0.5.4
   irondash_message_channel: ^0.7.0
-  vm_service: ^14.2.5
+  vm_service: ^14.3.0
   provider: ^6.1.2
   shared_preferences: ^2.3.3
   package_info_plus: ^8.1.1
