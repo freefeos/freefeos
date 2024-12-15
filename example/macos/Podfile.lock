@@ -1,6 +1,4 @@
 PODS:
-  - dynamic_color (0.0.2):
-    - FlutterMacOS
   - FlutterMacOS (1.0.0)
   - freefeos (0.0.1):
     - FlutterMacOS
@@ -19,7 +17,6 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
-  - dynamic_color (from `Flutter/ephemeral/.symlinks/plugins/dynamic_color/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
   - freefeos (from `Flutter/ephemeral/.symlinks/plugins/freefeos/macos`)
   - irondash_engine_context (from `Flutter/ephemeral/.symlinks/plugins/irondash_engine_context/macos`)
@@ -30,8 +27,6 @@ DEPENDENCIES:
   - window_manager (from `Flutter/ephemeral/.symlinks/plugins/window_manager/macos`)
 
 EXTERNAL SOURCES:
-  dynamic_color:
-    :path: Flutter/ephemeral/.symlinks/plugins/dynamic_color/macos
   FlutterMacOS:
     :path: Flutter/ephemeral
   freefeos:
@@ -50,7 +45,6 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/window_manager/macos
 
 SPEC CHECKSUMS:
-  dynamic_color: 2eaa27267de1ca20d879fbd6e01259773fb1670f
   FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
   freefeos: 76e2d0c8560e0bbafab912bd109480dd6c47df44
   irondash_engine_context: da62996ee25616d2f01bbeb85dc115d813359478

@@ -4,6 +4,7 @@ import '../components/window_buttons_overlay.dart';
 import 'details.dart';
 import 'index.dart';
 import 'licenses.dart';
+import 'manager.dart';
 import 'settings.dart';
 
 class AboutPage extends StatefulWidget {
@@ -62,6 +63,15 @@ class _AboutPageState extends State<AboutPage> {
                 SettingsPage.route,
               ),
               child: Text('设置'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.of(
+                context,
+                rootNavigator: true,
+              ).pushNamed(
+                ManagerPage.route,
+              ),
+              child: Text('管理器'),
             ),
           ],
         ),

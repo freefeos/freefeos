@@ -33,10 +33,10 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: widget.isManager
-          ? AppBar(
+          ? null
+          : AppBar(
               title: Text('设置'),
-            )
-          : null,
+            ),
       body: SafeArea(
         left: true,
         top: false,
