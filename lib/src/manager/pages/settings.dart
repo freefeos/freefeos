@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:freefeos/src/manager/utils/utils.dart';
 import 'package:provider/provider.dart';
 
 import '../../common/types/types.dart';
@@ -92,9 +93,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   rootNavigator: true,
                                 ).pushNamed(
                                   AboutPage.route,
-                                  arguments: {
+                                  arguments: AppUtils.setNavBoolValue({
                                     'hideManager': widget.isManager,
-                                  },
+                                  }),
                                 ),
                                 contentPadding: const EdgeInsets.only(
                                   top: 6,

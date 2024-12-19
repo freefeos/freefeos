@@ -98,7 +98,7 @@ class _LogcatPageState extends State<LogcatPage> {
                 key: Key(logEntry.id.toString()),
                 style: TextStyle(
                   fontSize: 14,
-                  color: LogUtils.level2Color(
+                  color: AppUtils.level2Color(
                     logEntry.level,
                     context,
                   ),

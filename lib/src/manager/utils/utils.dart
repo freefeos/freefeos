@@ -14,11 +14,20 @@ final class AppUtils {
 
   /// 无角标
   static bool get showBanner => kDebugMode;
-}
 
-class LogUtils {
-  const LogUtils();
+  /// 在新页面中获取携带参数跳转传入的参数
+  static bool getNavBoolValue(BuildContext context, String kay) {
+    final Object? obj = ModalRoute.of(context)?.settings.arguments;
+    final Map? map = obj as Map?;
+    return map?[kay] == true;
+  }
 
+  /// 传入参数
+  static Object? setNavBoolValue(Map<String, bool> map) {
+    return map as Object?;
+  }
+
+  /// 日志级别转颜色
   static Color level2Color(Level level, BuildContext context) {
     final dark = Theme.of(context).brightness == Brightness.dark;
     if (level == Level.CONFIG) {

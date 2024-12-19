@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:freefeos/src/manager/common/values.dart';
+import 'package:freefeos/src/manager/utils/utils.dart';
 
 import '../../common/types/types.dart';
 import '../components/window_buttons_overlay.dart';
@@ -66,18 +68,16 @@ class _AboutPageState extends State<AboutPage> {
               child: Text('设置'),
             ),
             FilledButton(
-              onPressed: (ModalRoute.of(context)?.settings.arguments
-                          as Map?)?['hideManager'] ==
-                      true
+              onPressed: AppUtils.getNavBoolValue(context, hideManager)
                   ? null
                   : () => Navigator.of(
                         context,
                         rootNavigator: true,
                       ).pushNamed(
                         ManagerPage.route,
-                        arguments: {
-                          'hideManager': true,
-                        },
+                        arguments: AppUtils.setNavBoolValue({
+                          hideManager: true,
+                        }),
                       ),
               child: Text('管理器'),
             ),
