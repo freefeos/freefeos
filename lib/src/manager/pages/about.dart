@@ -66,12 +66,19 @@ class _AboutPageState extends State<AboutPage> {
               child: Text('设置'),
             ),
             FilledButton(
-              onPressed: () => Navigator.of(
-                context,
-                rootNavigator: true,
-              ).pushNamed(
-                ManagerPage.route,
-              ),
+              onPressed: (ModalRoute.of(context)?.settings.arguments
+                          as Map?)?['hideManager'] ==
+                      true
+                  ? null
+                  : () => Navigator.of(
+                        context,
+                        rootNavigator: true,
+                      ).pushNamed(
+                        ManagerPage.route,
+                        arguments: {
+                          'hideManager': true,
+                        },
+                      ),
               child: Text('管理器'),
             ),
           ],
