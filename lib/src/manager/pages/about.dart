@@ -59,7 +59,7 @@ class _AboutPageState extends State<AboutPage> {
                   child: Consumer<ManagerViewModel>(
                     builder: (context, viewModel, _) => Column(
                       children: [
-                        Card(
+                        Card.filled(
                           color: Theme.of(context).colorScheme.primaryContainer,
                           margin: EdgeInsets.only(
                             left: 12,
