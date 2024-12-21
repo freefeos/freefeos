@@ -5,10 +5,10 @@ import '../../common/types/types.dart';
 import '../components/window_buttons_overlay.dart';
 import '../view_model/view_model.dart';
 
-class PluginUiPage extends StatelessWidget {
-  const PluginUiPage({super.key});
+class PluginPage extends StatelessWidget {
+  const PluginPage({super.key});
 
-  static const RouteName route = '/plugin_ui';
+  static const RouteName route = '/plugin';
 
   @override
   Widget build(BuildContext context) {

@@ -50,11 +50,11 @@ class ManagerApp extends StatelessWidget implements IAppOption {
     return <RouteName, WidgetBuilder>{
       IndexPage.route: (_) => IndexPage(),
       ManagerPage.route: (_) => ManagerPage(),
-      PluginUiPage.route: (_) => PluginUiPage(),
+      PluginPage.route: (_) => PluginPage(),
       LicensesPage.route: (_) => LicensesPage(),
       AboutPage.route: (_) => AboutPage(),
       DetailsPage.route: (_) => DetailsPage(),
-      SettingsPage.route: (_) => SettingsPage(),
+      SettingPage.route: (_) => SettingPage(),
     };
   }
 

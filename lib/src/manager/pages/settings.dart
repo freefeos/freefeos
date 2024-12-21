@@ -4,13 +4,14 @@ import 'package:provider/provider.dart';
 
 import '../../common/types/types.dart';
 import '../components/window_buttons_overlay.dart';
+import '../values/values.dart';
 import '../view_model/view_model.dart';
 import 'about.dart';
 
-class SettingsPage extends StatelessWidget {
-  const SettingsPage({super.key});
+class SettingPage extends StatelessWidget {
+  const SettingPage({super.key});
 
-  static const RouteName route = '/settings';
+  static const RouteName route = '/setting';
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class SettingsPage extends StatelessWidget {
         appBar: AppBar(
           title: Text('设置'),
         ),
-        body: SettingsScreen(
+        body: SettingScreen(
           isManager: false,
         ),
       ),
@@ -28,8 +29,8 @@ class SettingsPage extends StatelessWidget {
 }
 
 /// 设置页面布局
-class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({
+class SettingScreen extends StatefulWidget {
+  const SettingScreen({
     super.key,
     this.isManager = true,
   });
@@ -37,10 +38,10 @@ class SettingsScreen extends StatefulWidget {
   final bool isManager;
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
+  State<SettingScreen> createState() => _SettingScreenState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class _SettingScreenState extends State<SettingScreen> {
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -94,7 +95,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                 ).pushNamed(
                                   AboutPage.route,
                                   arguments: AppUtils.setNavBoolValue({
-                                    'hideManager': widget.isManager,
+                                    hideManager: widget.isManager,
+                                    hideSetting: true,
                                   }),
                                 ),
                                 contentPadding: const EdgeInsets.only(
@@ -109,6 +111,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                     topRight: Radius.circular(12),
                                   ),
                                 ),
+                                enabled: !AppUtils.getNavBoolValue(
+                                  context,
+                                  hideAbout,
+                                ),
                               ),
                             ),
                             Tooltip(
@@ -116,7 +122,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                               child: ListTile(
                                 title: Text('了解更多'),
                                 subtitle: Text('了解如何使用 FreeFEOS 进行开发'),
-                                leading: Icon(Icons.web),
+                                leading: Icon(Icons.open_in_browser),
                                 onTap: () => viewModel.launchPubDev(),
                                 contentPadding: const EdgeInsets.only(
                                   top: 3,

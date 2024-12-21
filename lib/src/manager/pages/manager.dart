@@ -99,8 +99,8 @@ class _ManagerPageState extends State<ManagerPage> {
           child: <Widget>[
             const HomePage(),
             const LogcatPage(),
-            const PluginPage(),
-            const SettingsScreen(),
+            const PluginScreen(),
+            const SettingScreen(),
           ][_currentPage],
         ),
         transitionDuration: const Duration(
