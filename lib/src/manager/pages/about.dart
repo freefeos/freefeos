@@ -187,6 +187,7 @@ class _AboutPageState extends State<AboutPage> {
                                             arguments:
                                                 AppUtils.setNavBoolValue({
                                               hideManager: true,
+                                              hideAbout: true,
                                             }),
                                           ),
                                   icon: Icon(Icons.manage_accounts),
