@@ -83,7 +83,6 @@ class _LicensesPageState extends State<LicensesPage> {
                 return LicensePage(
                   applicationName: appName,
                   applicationVersion: appVersion,
-                  applicationIcon: FlutterLogo(size: 60),
                   applicationLegalese: AppLocalizations.of(
                     context,
                   ).aboutDialogLegalese,

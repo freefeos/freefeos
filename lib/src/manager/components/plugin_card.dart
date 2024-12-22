@@ -13,14 +13,17 @@ class PluginCard extends StatelessWidget {
   const PluginCard({
     super.key,
     required this.details,
+    required this.margin,
   });
 
   final PluginDetails details;
+  final EdgeInsetsGeometry margin;
 
   @override
   Widget build(BuildContext context) {
     return Consumer<ManagerViewModel>(
       builder: (context, viewModel, child) => Card(
+        margin: margin,
         child: Tooltip(
           message: viewModel.getPluginTooltip(context, details),
           child: InkWell(

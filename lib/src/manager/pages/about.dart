@@ -62,16 +62,13 @@ class _AboutPageState extends State<AboutPage> {
                         Card(
                           color: Theme.of(context).colorScheme.primaryContainer,
                           margin: const EdgeInsets.only(
-                            left: 12,
-                            top: 12,
-                            right: 12,
-                            bottom: 6,
+                            left: 16,
+                            top: 16,
+                            right: 16,
+                            bottom: 8,
                           ),
                           child: ListTile(
-                            leading: FlutterLogo(
-                              size: 60,
-                              style: FlutterLogoStyle.stacked,
-                            ),
+                            leading: FlutterLogo(),
                             title: FutureBuilder(
                               future: viewModel.getAppName(),
                               builder: (context, snapshot) {
@@ -149,10 +146,10 @@ class _AboutPageState extends State<AboutPage> {
                             Expanded(
                               child: Padding(
                                 padding: const EdgeInsets.only(
-                                  left: 12,
-                                  top: 6,
-                                  right: 6,
-                                  bottom: 6,
+                                  left: 16,
+                                  top: 8,
+                                  right: 8,
+                                  bottom: 8,
                                 ),
                                 child: FilledButton.icon(
                                   onPressed: () => Navigator.of(
@@ -171,10 +168,10 @@ class _AboutPageState extends State<AboutPage> {
                             Expanded(
                               child: Padding(
                                 padding: const EdgeInsets.only(
-                                  left: 6,
-                                  top: 6,
-                                  right: 12,
-                                  bottom: 6,
+                                  left: 8,
+                                  top: 8,
+                                  right: 16,
+                                  bottom: 8,
                                 ),
                                 child: OutlinedButton.icon(
                                   onPressed: AppUtils.getNavBoolValue(
@@ -201,10 +198,10 @@ class _AboutPageState extends State<AboutPage> {
                         ),
                         Card.outlined(
                           margin: const EdgeInsets.only(
-                            left: 12,
-                            top: 6,
-                            right: 12,
-                            bottom: 12,
+                            left: 16,
+                            top: 8,
+                            right: 16,
+                            bottom: 16,
                           ),
                           child: Column(
                             children: [

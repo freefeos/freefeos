@@ -45,21 +45,19 @@ class _PluginScreenState extends State<PluginScreen> {
                 itemCount: viewModel.getPluginDetailsList.length,
                 padding: EdgeInsets.zero,
                 itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.only(
+                  return PluginCard(
+                    details: viewModel.getPluginDetailsList[index],
+                    margin: EdgeInsets.only(
                       top: viewModel.getPluginDetailsList.first ==
                               viewModel.getPluginDetailsList[index]
-                          ? 12
-                          : 6,
+                          ? 16
+                          : 8,
                       bottom: viewModel.getPluginDetailsList.last ==
                               viewModel.getPluginDetailsList[index]
-                          ? 12
-                          : 6,
-                      left: 12,
-                      right: 12,
-                    ),
-                    child: PluginCard(
-                      details: viewModel.getPluginDetailsList[index],
+                          ? 16
+                          : 8,
+                      left: 16,
+                      right: 16,
                     ),
                   );
                 },

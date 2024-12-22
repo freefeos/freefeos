@@ -50,10 +50,10 @@ class _HomePageState extends State<HomePage> {
                       child: Card(
                         color: Theme.of(context).colorScheme.primaryContainer,
                         margin: const EdgeInsets.only(
-                          left: 12,
-                          top: 12,
-                          right: 12,
-                          bottom: 6,
+                          left: 16,
+                          top: 16,
+                          right: 16,
+                          bottom: 8,
                         ),
                         child: InkWell(
                           borderRadius: BorderRadius.circular(12),
@@ -148,8 +148,8 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Card(
                       margin: const EdgeInsets.symmetric(
-                        vertical: 6,
-                        horizontal: 12,
+                        vertical: 8,
+                        horizontal: 16,
                       ),
                       child: ListTile(
                         title: Text('随机一言'),
@@ -162,10 +162,10 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Card.outlined(
                       margin: const EdgeInsets.only(
-                        left: 12,
-                        top: 6,
-                        right: 12,
-                        bottom: 12,
+                        left: 16,
+                        top: 8,
+                        right: 16,
+                        bottom: 16,
                       ),
                       child: InkWell(
                         onTap: () => Navigator.of(
