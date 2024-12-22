@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../components/plugin_card.dart';
+import '../utils/utils.dart';
+import '../values/values.dart';
 import '../view_model/view_model.dart';
 
 /// 插件页面布局
@@ -58,6 +60,10 @@ class _PluginScreenState extends State<PluginScreen> {
                           : 8,
                       left: 16,
                       right: 16,
+                    ),
+                    enableAbout: !AppUtils.getNavBoolValue(
+                      context,
+                      hideManager,
                     ),
                   );
                 },

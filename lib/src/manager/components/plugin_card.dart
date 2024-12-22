@@ -14,10 +14,12 @@ class PluginCard extends StatelessWidget {
     super.key,
     required this.details,
     required this.margin,
+    required this.enableAbout,
   });
 
   final PluginDetails details;
   final EdgeInsetsGeometry margin;
+  final bool enableAbout;
 
   @override
   Widget build(BuildContext context) {
@@ -36,15 +38,25 @@ class PluginCard extends StatelessWidget {
               ).pushNamed(
                 PluginPage.route,
               ),
-              () => Navigator.of(
-                context,
-                rootNavigator: true,
-              ).pushNamed(
-                AboutPage.route,
-                arguments: AppUtils.setNavBoolValue({
-                  hideManager: true,
-                }),
-              ),
+              enableAbout
+                  ? () => Navigator.of(
+                        context,
+                        rootNavigator: true,
+                      ).pushNamed(
+                        AboutPage.route,
+                        arguments: AppUtils.setNavBoolValue({
+                          hideManager: true,
+                        }),
+                      )
+                  : () => ScaffoldMessenger.of(
+                        context,
+                      ).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            '此插件未提供用户界面.',
+                          ),
+                        ),
+                      ),
               () => ScaffoldMessenger.of(
                 context,
               ).showSnackBar(

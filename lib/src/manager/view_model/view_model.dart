@@ -60,7 +60,7 @@ abstract interface class IManagerViewModel {
     BuildContext context,
     PluginDetails details,
     VoidCallback launchPlugin,
-    VoidCallback launchAbout,
+    VoidCallback? launchAbout,
     VoidCallback showTip,
   );
 
@@ -395,7 +395,7 @@ final class ManagerViewModel extends ContextWrapper
     BuildContext context,
     PluginDetails details,
     VoidCallback launchPlugin,
-    VoidCallback launchAbout,
+    VoidCallback? launchAbout,
     VoidCallback showTip,
   ) {
     if (!runtimeChecker(details)) {
@@ -409,7 +409,7 @@ final class ManagerViewModel extends ContextWrapper
       }
     } else {
       // 运行时打开关于对话框
-      launchAbout();
+      (launchAbout ?? () {})();
     }
   }
 

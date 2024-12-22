@@ -133,6 +133,10 @@ class _HomePageState extends State<HomePage> {
                               vertical: 12,
                               horizontal: 24,
                             ),
+                            enabled: !AppUtils.getNavBoolValue(
+                              context,
+                              hideManager,
+                            ),
                             onTap: () => Navigator.of(
                               context,
                               rootNavigator: true,
