@@ -98,7 +98,7 @@ class MenuDialog extends StatelessWidget {
                 topRight: Radius.circular(28),
               ),
             ),
-            contentPadding: EdgeInsets.only(
+            contentPadding: const EdgeInsets.only(
               left: 24,
               top: 8,
               right: 24,

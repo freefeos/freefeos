@@ -61,7 +61,7 @@ class _AboutPageState extends State<AboutPage> {
                       children: [
                         Card(
                           color: Theme.of(context).colorScheme.primaryContainer,
-                          margin: EdgeInsets.only(
+                          margin: const EdgeInsets.only(
                             left: 12,
                             top: 12,
                             right: 12,
@@ -138,11 +138,9 @@ class _AboutPageState extends State<AboutPage> {
                                 return Text(text);
                               },
                             ),
-                            contentPadding: EdgeInsets.only(
-                              left: 24,
-                              top: 12,
-                              right: 24,
-                              bottom: 12,
+                            contentPadding: const EdgeInsets.symmetric(
+                              vertical: 12,
+                              horizontal: 24,
                             ),
                           ),
                         ),
@@ -150,7 +148,7 @@ class _AboutPageState extends State<AboutPage> {
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: EdgeInsets.only(
+                                padding: const EdgeInsets.only(
                                   left: 12,
                                   top: 6,
                                   right: 6,
@@ -172,7 +170,7 @@ class _AboutPageState extends State<AboutPage> {
                             ),
                             Expanded(
                               child: Padding(
-                                padding: EdgeInsets.only(
+                                padding: const EdgeInsets.only(
                                   left: 6,
                                   top: 6,
                                   right: 12,
@@ -202,7 +200,7 @@ class _AboutPageState extends State<AboutPage> {
                           ],
                         ),
                         Card.outlined(
-                          margin: EdgeInsets.only(
+                          margin: const EdgeInsets.only(
                             left: 12,
                             top: 6,
                             right: 12,
@@ -220,7 +218,7 @@ class _AboutPageState extends State<AboutPage> {
                                     topRight: Radius.circular(12),
                                   ),
                                 ),
-                                contentPadding: EdgeInsets.only(
+                                contentPadding: const EdgeInsets.only(
                                   left: 12,
                                   right: 12,
                                 ),
@@ -240,7 +238,7 @@ class _AboutPageState extends State<AboutPage> {
                                 leading: Icon(Icons.copyright_outlined),
                                 title: Text('开放源代码许可'),
                                 trailing: Icon(Icons.keyboard_arrow_right),
-                                contentPadding: EdgeInsets.only(
+                                contentPadding: const EdgeInsets.only(
                                   left: 12,
                                   right: 12,
                                 ),
@@ -266,7 +264,7 @@ class _AboutPageState extends State<AboutPage> {
                                     bottomRight: Radius.circular(12),
                                   ),
                                 ),
-                                contentPadding: EdgeInsets.only(
+                                contentPadding: const EdgeInsets.only(
                                   left: 12,
                                   right: 12,
                                 ),

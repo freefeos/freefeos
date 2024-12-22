@@ -139,7 +139,7 @@ class PluginCard extends StatelessWidget {
                   Row(
                     children: [
                       Padding(
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                           vertical: 8,
                         ),
                         child: Text(

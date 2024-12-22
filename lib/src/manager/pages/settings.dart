@@ -74,7 +74,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                         left: 12,
                         right: 12,
                         top: 12,
