@@ -11,7 +11,7 @@ import 'details.dart';
 import 'index.dart';
 import 'licenses.dart';
 import 'manager.dart';
-import 'settings.dart';
+import 'setting.dart';
 
 class AboutPage extends StatefulWidget {
   const AboutPage({super.key});

@@ -12,7 +12,7 @@ import 'pages/index.dart';
 import 'pages/licenses.dart';
 import 'pages/manager.dart';
 import 'pages/plugin_ui.dart';
-import 'pages/settings.dart';
+import 'pages/setting.dart';
 import 'view_model/view_model.dart';
 
 class ManagerApp extends StatelessWidget implements IAppOption {

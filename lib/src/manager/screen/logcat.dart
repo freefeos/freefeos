@@ -9,14 +9,14 @@ import '../intl/app_localizations.dart';
 import '../utils/utils.dart';
 
 /// 日志页面布局
-class LogcatPage extends StatefulWidget {
-  const LogcatPage({super.key});
+class LogcatScreen extends StatefulWidget {
+  const LogcatScreen({super.key});
 
   @override
-  State<LogcatPage> createState() => _LogcatPageState();
+  State<LogcatScreen> createState() => _LogcatScreenState();
 }
 
-class _LogcatPageState extends State<LogcatPage> {
+class _LogcatScreenState extends State<LogcatScreen> {
   final ListQueue<RenderedEvent> _renderedBuffer = ListQueue();
   final ScrollController _scrollController = ScrollController();
   final StringBuffer _logs = StringBuffer('Start: ');

@@ -1,32 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:freefeos/src/manager/utils/utils.dart';
 import 'package:provider/provider.dart';
 
-import '../../common/types/types.dart';
-import '../components/window_buttons_overlay.dart';
+import '../pages/about.dart';
+import '../utils/utils.dart';
 import '../values/values.dart';
 import '../view_model/view_model.dart';
-import 'about.dart';
-
-class SettingPage extends StatelessWidget {
-  const SettingPage({super.key});
-
-  static const RouteName route = '/setting';
-
-  @override
-  Widget build(BuildContext context) {
-    return WindowButtonsOverlay(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('设置'),
-        ),
-        body: SettingScreen(
-          isManager: false,
-        ),
-      ),
-    );
-  }
-}
 
 /// 设置页面布局
 class SettingScreen extends StatefulWidget {

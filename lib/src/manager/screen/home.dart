@@ -5,17 +5,17 @@ import '../intl/app_localizations.dart';
 import '../utils/utils.dart';
 import '../values/values.dart';
 import '../view_model/view_model.dart';
-import 'about.dart';
+import '../pages/about.dart';
 
 /// 主页页面布局
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeScreenState extends State<HomeScreen> {
   final ScrollController _scrollController = ScrollController();
 
   @override

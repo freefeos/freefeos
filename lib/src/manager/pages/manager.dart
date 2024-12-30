@@ -5,10 +5,10 @@ import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
 import '../../common/types/types.dart';
 import '../components/window_buttons_overlay.dart';
 import '../intl/app_localizations.dart';
-import 'home.dart';
-import 'logcat.dart';
-import 'plugin.dart';
-import 'settings.dart';
+import '../screen/plugin.dart';
+import '../screen/setting.dart';
+import '../screen/home.dart';
+import '../screen/logcat.dart';
 
 class ManagerPage extends StatefulWidget {
   const ManagerPage({super.key});
@@ -21,7 +21,7 @@ class ManagerPage extends StatefulWidget {
 
 class _ManagerPageState extends State<ManagerPage> {
   /// 当前页面
-  int _currentPage = 0;
+  int _currentScreen = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +83,7 @@ class _ManagerPageState extends State<ManagerPage> {
         largeBreakpoint: const Breakpoint(
           beginWidth: 840,
         ),
-        selectedIndex: _currentPage,
+        selectedIndex: _currentScreen,
         body: (_) => PageTransitionSwitcher(
           duration: const Duration(
             milliseconds: 300,
@@ -97,17 +97,17 @@ class _ManagerPageState extends State<ManagerPage> {
             );
           },
           child: <Widget>[
-            const HomePage(),
-            const LogcatPage(),
+            const HomeScreen(),
+            const LogcatScreen(),
             const PluginScreen(),
             const SettingScreen(),
-          ][_currentPage],
+          ][_currentScreen],
         ),
         transitionDuration: const Duration(
           milliseconds: 500,
         ),
         onSelectedIndexChange: (index) => setState(
-          () => _currentPage = index,
+          () => _currentScreen = index,
         ),
         useDrawer: false,
         appBar: AppBar(
