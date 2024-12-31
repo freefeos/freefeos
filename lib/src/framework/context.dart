@@ -136,9 +136,7 @@ base class ContextWrapper extends Context {
   Context get baseContext {
     assert(() {
       if (mBase == null) {
-        throw FlutterError(
-          '基本上下文为空!',
-        );
+        throw FlutterError('异常: 基本上下文为空!');
       }
       return true;
     }());
@@ -149,9 +147,7 @@ base class ContextWrapper extends Context {
   BuildContext get buildContext {
     assert(() {
       if (mBuild == null) {
-        throw FlutterError(
-          '构建上下文为空!',
-        );
+        throw FlutterError('异常: 构建上下文为空!');
       }
       return true;
     }());

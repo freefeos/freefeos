@@ -94,14 +94,14 @@ class FreeFEOSPlatform extends PlatformInterface {
   }
 
   Future<List?> getPlatformPluginList() async {
-    throw UnimplementedError('未实现getPlatformPluginList()接口.');
+    throw UnimplementedError('异常: 未实现getPlatformPluginList()接口!');
   }
 
   Future<bool?> openPlatformDialog() async {
-    throw UnimplementedError('未实现openPlatformDialog()接口.');
+    throw UnimplementedError('异常: 未实现openPlatformDialog()接口!');
   }
 
   Future<bool?> closePlatformDialog() async {
-    throw UnimplementedError('未实现closePlatformDialog()接口.');
+    throw UnimplementedError('异常: 未实现closePlatformDialog()接口!');
   }
 }

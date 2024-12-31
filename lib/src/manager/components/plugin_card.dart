@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../../common/model/model.dart';
 import '../intl/app_localizations.dart';
 import '../pages/about.dart';
-import '../pages/plugin_ui.dart';
+import '../pages/plugin.dart';
 import '../utils/utils.dart';
 import '../values/values.dart';
 import '../view_model/view_model.dart';

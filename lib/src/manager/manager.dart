@@ -11,7 +11,7 @@ import 'pages/details.dart';
 import 'pages/index.dart';
 import 'pages/licenses.dart';
 import 'pages/manager.dart';
-import 'pages/plugin_ui.dart';
+import 'pages/plugin.dart';
 import 'pages/setting.dart';
 import 'view_model/view_model.dart';
 
@@ -48,13 +48,13 @@ class ManagerApp extends StatelessWidget implements IAppOption {
   @override
   Map<RouteName, WidgetBuilder> buildPages() {
     return <RouteName, WidgetBuilder>{
-      IndexPage.route: (_) => IndexPage(),
-      ManagerPage.route: (_) => ManagerPage(),
-      PluginPage.route: (_) => PluginPage(),
-      LicensesPage.route: (_) => LicensesPage(),
-      AboutPage.route: (_) => AboutPage(),
-      DetailsPage.route: (_) => DetailsPage(),
-      SettingPage.route: (_) => SettingPage(),
+      IndexPage.route: (_) => IndexPage(), // 主页
+      ManagerPage.route: (_) => ManagerPage(), // 管理器
+      PluginPage.route: (_) => PluginPage(), // 插件
+      LicensesPage.route: (_) => LicensesPage(), // 许可
+      AboutPage.route: (_) => AboutPage(), // 许可
+      DetailsPage.route: (_) => DetailsPage(), // 更多资料
+      SettingPage.route: (_) => SettingPage(), // 设置
     };
   }
 
@@ -124,9 +124,7 @@ class ManagerApp extends StatelessWidget implements IAppOption {
                 final ViewModel viewModel = buildViewModel(context);
                 assert(() {
                   if (viewModel is! ManagerViewModel) {
-                    throw FlutterError(
-                      'ViewModel 类型错误.',
-                    );
+                    throw FlutterError('异常: ViewModel类型错误!');
                   }
                   return true;
                 }());

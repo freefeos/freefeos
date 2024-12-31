@@ -258,7 +258,7 @@ base class SystemBase extends ContextWrapper
                 // 断言没有传入异常
                 assert(() {
                   if (error != null) {
-                    throw FlutterError('error not is null.');
+                    throw FlutterError('异常: 错误信息不为空!');
                   }
                   return true;
                 }());

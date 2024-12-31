@@ -8,7 +8,7 @@ abstract interface class IBinder {
 base class Binder extends IBinder {
   @override
   Service get getService {
-    throw UnimplementedError('未实现getService方法');
+    throw UnimplementedError('异常: 未实现getService方法!');
   }
 }
 

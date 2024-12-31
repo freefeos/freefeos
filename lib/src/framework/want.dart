@@ -11,7 +11,7 @@ class Want {
     if (classes is Service) {
       return classes;
     } else {
-      throw FlutterError('这他妈不是服务啊老弟');
+      throw FlutterError('异常: 非Service类型!');
     }
   }
 }

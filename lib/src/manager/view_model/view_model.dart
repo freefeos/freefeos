@@ -398,16 +398,22 @@ final class ManagerViewModel extends ContextWrapper
     VoidCallback? launchAbout,
     VoidCallback showTip,
   ) {
+    // 判断当前运行时插件是否为运行时本身
     if (!runtimeChecker(details)) {
+      // 非运行时打开插件页面
       if (_isAllowPush(details)) {
-        // 非运行时打开插件页面
+        // 插件允许打开
+        // 设置要打开的插件为当前插件
         _currentDetails = details;
+        // 打开插件页面
         launchPlugin();
       } else {
         // 插件无界面时打开提示
         showTip();
       }
     } else {
+      // 因为整个应用布局为运行时的UI
+      // 重复打开会出现不可预知的异常
       // 运行时打开关于对话框
       (launchAbout ?? () {})();
     }
@@ -420,6 +426,7 @@ final class ManagerViewModel extends ContextWrapper
         pluginGetter(details) != null;
   }
 
+  /// 最大化/最小化窗口
   @override
   void maximizeWindow() async {
     if (PlatformUtil.kIsDesktop) {
@@ -429,6 +436,7 @@ final class ManagerViewModel extends ContextWrapper
     }
   }
 
+  /// 移动窗口
   @override
   void startDragging() async {
     if (PlatformUtil.kIsDesktop) {
@@ -436,6 +444,7 @@ final class ManagerViewModel extends ContextWrapper
     }
   }
 
+  /// 关闭窗口
   @override
   void closeWindow() async {
     if (PlatformUtil.kIsDesktop) {
@@ -443,6 +452,7 @@ final class ManagerViewModel extends ContextWrapper
     }
   }
 
+  /// 最小化窗口
   @override
   void minimizeWindow() async {
     if (PlatformUtil.kIsDesktop) {
@@ -450,6 +460,7 @@ final class ManagerViewModel extends ContextWrapper
     }
   }
 
+  /// 退出App
   @override
   void exitApp() async {
     return PlatformUtil.kIsDesktop
@@ -457,20 +468,23 @@ final class ManagerViewModel extends ContextWrapper
         : await SystemNavigator.pop();
   }
 
+  /// 获取当前插件信息
   @override
   PluginDetails get getCurrentDetails {
     assert(() {
       if (_currentDetails == null) {
-        throw Exception('currentDetails is null.');
+        throw Exception('异常: 当前插件信息为空!');
       }
       return true;
     }());
     return _currentDetails!;
   }
 
+  /// 获取插件控件
   @override
   PluginWidgetGetter get getPluginWidget => pluginWidgetGetter;
 
+  /// 获取应用根控件
   @override
   Widget get getRootWidget => rootWidget;
 
