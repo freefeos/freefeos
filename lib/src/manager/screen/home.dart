@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../intl/app_localizations.dart';
+import '../pages/details.dart';
 import '../utils/utils.dart';
 import '../values/values.dart';
 import '../view_model/view_model.dart';
@@ -176,7 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           context,
                           rootNavigator: true,
                         ).pushNamed(
-                          AboutPage.route,
+                          DetailsPage.route,
                           arguments: AppUtils.setNavBoolValue({
                             hideManager: true,
                           }),
