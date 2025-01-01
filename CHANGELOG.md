@@ -1,3 +1,8 @@
+## 0.3.2
+* Fix some bugs.
+* Improve the function.
+* Update Dependencies.
+
 ## 0.3.1
 * Fix some bugs.
 * Improve the function.
