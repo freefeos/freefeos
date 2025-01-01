@@ -234,8 +234,7 @@ base class SystemBase extends ContextWrapper
                     const WindowOptions(
                       size: null,
                       center: true,
-                      // minimumSize: Size(600, 400),
-                      minimumSize: Size(0, 0),
+                      minimumSize: Size(600, 400),
                       maximumSize: null,
                       alwaysOnTop: false,
                       fullScreen: false,
