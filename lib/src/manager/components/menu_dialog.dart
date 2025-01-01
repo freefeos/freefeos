@@ -48,7 +48,9 @@ class _MenuDialogState extends State<MenuDialog> {
                     right: 16,
                     bottom: 8,
                   ),
-                  child: ListTile(
+                  child: Tooltip(
+                    message: '关于',
+                    child: ListTile(
                     leading: const FlutterLogo(),
                     title: const AppTitle(),
                     subtitle: const AppSubTitle(),
@@ -75,10 +77,12 @@ class _MenuDialogState extends State<MenuDialog> {
                       horizontal: 16,
                     ),
                   ),
+                  ),
                 ),
                 //Divider(height: 0),
                 Expanded(
-                  child: Card.filled(
+                  child: Card.outlined(
+                    //color: Colors.transparent,
                     margin: EdgeInsets.only(
                       left: 16,
                       top: 8,
@@ -124,11 +128,6 @@ class _MenuDialogState extends State<MenuDialog> {
                                       context,
                                       rootNavigator: true,
                                     ).pop();
-                                    // showDialog(
-                                    //   context: context,
-                                    //   useRootNavigator: true,
-                                    //   builder: (context) => AboutAlertDialog(),
-                                    // );
                                     Navigator.of(
                                       context,
                                       rootNavigator: true,
@@ -178,9 +177,11 @@ class _MenuDialogState extends State<MenuDialog> {
             indent: 16,
             endIndent: 16,
           ),
-          ListTile(
+          Tooltip(
+            message: '取消',
+            child: ListTile(
             title: const Text(
-              'cancel',
+              '取消',
               textAlign: TextAlign.center,
             ),
             onTap: () => Navigator.of(
@@ -194,6 +195,7 @@ class _MenuDialogState extends State<MenuDialog> {
             ),
             titleAlignment: ListTileTitleAlignment.center,
           ),
+          )
         ],
       ),
     );

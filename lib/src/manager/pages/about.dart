@@ -48,8 +48,8 @@ class _AboutPageState extends State<AboutPage> {
               child: Consumer<ManagerViewModel>(
                 builder: (context, viewModel, _) => Column(
                   children: [
-                    Card(
-                      //color: Theme.of(context).colorScheme.primaryContainer,
+                    Card.filled(
+                      color: Theme.of(context).colorScheme.primaryContainer,
                       margin: const EdgeInsets.only(
                         left: 16,
                         top: 16,
