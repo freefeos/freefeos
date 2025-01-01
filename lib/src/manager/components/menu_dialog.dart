@@ -28,7 +28,6 @@ class _MenuDialogState extends State<MenuDialog> {
   final ScrollController _scrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
-    // BottomSheet(onClosing: onClosing, builder: builder)
     return Consumer<ManagerViewModel>(
       builder: (context, viewModel, _) => Column(
         children: [
