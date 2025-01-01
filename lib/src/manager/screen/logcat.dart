@@ -5,6 +5,7 @@ import 'package:logging/logging.dart';
 
 import '../../common/event/event.dart';
 import '../../framework/ansi_parser.dart';
+import '../components/screen_adapter.dart';
 import '../intl/app_localizations.dart';
 import '../utils/utils.dart';
 
@@ -75,37 +76,28 @@ class _LogcatScreenState extends State<LogcatScreen> {
   @override
   Widget build(BuildContext context) {
     _logs.clear();
-    return SafeArea(
-      left: true,
-      top: false,
-      right: true,
-      bottom: false,
-      minimum: EdgeInsets.zero,
-      maintainBottomViewPadding: true,
-      child: Align(
-        alignment: Alignment.topCenter,
-        child: Scrollbar(
+    return ScreenAdapter(
+      child: Scrollbar(
+        controller: _scrollController,
+        child: ListView.builder(
           controller: _scrollController,
-          child: ListView.builder(
-            controller: _scrollController,
-            padding: EdgeInsets.zero,
-            itemCount: _filteredBuffer.length,
-            itemBuilder: (context, index) {
-              final RenderedEvent logEntry = _filteredBuffer[index];
-              _logs.write("${logEntry.lowerCaseText}\n");
-              return Text.rich(
-                logEntry.span,
-                key: Key(logEntry.id.toString()),
-                style: TextStyle(
-                  fontSize: 14,
-                  color: AppUtils.level2Color(
-                    logEntry.level,
-                    context,
-                  ),
+          padding: EdgeInsets.zero,
+          itemCount: _filteredBuffer.length,
+          itemBuilder: (context, index) {
+            final RenderedEvent logEntry = _filteredBuffer[index];
+            _logs.write("${logEntry.lowerCaseText}\n");
+            return Text.rich(
+              logEntry.span,
+              key: Key(logEntry.id.toString()),
+              style: TextStyle(
+                fontSize: 14,
+                color: AppUtils.level2Color(
+                  logEntry.level,
+                  context,
                 ),
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
       ),
     );

@@ -23,12 +23,10 @@ class MenuButtons extends StatelessWidget {
             Tooltip(
               message: '系统菜单',
               child: InkWell(
-                onTap: () => showDialog(
+                onTap: () => showModalBottomSheet(
                   context: context,
                   useRootNavigator: true,
-                  builder: (_) => const MenuDialog(
-                    isManager: false,
-                  ),
+                  builder: (_) => const MenuDialog(),
                 ),
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(20),
