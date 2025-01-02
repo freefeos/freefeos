@@ -51,32 +51,32 @@ class _MenuDialogState extends State<MenuDialog> {
                   child: Tooltip(
                     message: '关于',
                     child: ListTile(
-                    leading: const FlutterLogo(),
-                    title: const AppTitle(),
-                    subtitle: const AppSubTitle(),
-                    trailing: const Icon(Icons.keyboard_arrow_right),
-                    onTap: () {
-                      Navigator.of(
-                        context,
-                        rootNavigator: true,
-                      ).pop();
-                      Navigator.of(
-                        context,
-                        rootNavigator: true,
-                      ).pushNamed(
-                        AboutPage.route,
-                      );
-                    },
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(16.0),
-                        bottom: Radius.circular(12.0),
+                      leading: const FlutterLogo(),
+                      title: const AppTitle(),
+                      subtitle: const AppSubTitle(),
+                      trailing: const Icon(Icons.keyboard_arrow_right),
+                      onTap: () {
+                        Navigator.of(
+                          context,
+                          rootNavigator: true,
+                        ).pop();
+                        Navigator.of(
+                          context,
+                          rootNavigator: true,
+                        ).pushNamed(
+                          AboutPage.route,
+                        );
+                      },
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(16.0),
+                          bottom: Radius.circular(12.0),
+                        ),
+                      ),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16,
                       ),
                     ),
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                    ),
-                  ),
                   ),
                 ),
                 //Divider(height: 0),
@@ -180,21 +180,21 @@ class _MenuDialogState extends State<MenuDialog> {
           Tooltip(
             message: '取消',
             child: ListTile(
-            title: const Text(
-              '取消',
-              textAlign: TextAlign.center,
+              title: const Text(
+                '取消',
+                textAlign: TextAlign.center,
+              ),
+              onTap: () => Navigator.of(
+                context,
+                rootNavigator: true,
+              ).pop(),
+              contentPadding: EdgeInsets.only(
+                left: 16.0,
+                right: 16.0,
+                bottom: MediaQuery.paddingOf(context).bottom,
+              ),
+              titleAlignment: ListTileTitleAlignment.center,
             ),
-            onTap: () => Navigator.of(
-              context,
-              rootNavigator: true,
-            ).pop(),
-            contentPadding: EdgeInsets.only(
-              left: 16.0,
-              right: 16.0,
-              bottom: MediaQuery.paddingOf(context).bottom,
-            ),
-            titleAlignment: ListTileTitleAlignment.center,
-          ),
           )
         ],
       ),
