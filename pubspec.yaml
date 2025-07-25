@@ -1,0 +1,47 @@
+name: freefeos
+description: "FreeFEOS is a Flutter plugin, a simple Flutter library OS and an advanced Flutter development framework that can provide many advanced features for applications."
+version: 0.4.0
+homepage: https://github.com/freefeos/freefeos
+repository: https://github.com/freefeos/freefeos
+issue_tracker: https://github.com/freefeos/freefeos/issues
+documentation: https://github.com/freefeos/freefeos/blob/master/README.md
+
+environment:
+  sdk: ^3.8.1
+  flutter: ">=3.3.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  plugin_platform_interface: ^2.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  generate: true
+  plugin:
+    platforms:
+      android:
+        dartPluginClass: FreeFEOSRegister
+      ios:
+        dartPluginClass: FreeFEOSRegister
+      linux:
+        dartPluginClass: FreeFEOSRegister
+      macos:
+        dartPluginClass: FreeFEOSRegister
+      windows:
+        dartPluginClass: FreeFEOSRegister
+      web:
+        pluginClass: FreeFEOSWebRegister
+        fileName: freefeos_web.dart
+
+topics:
+  - framework
+  - flutter
+  - libraryos
