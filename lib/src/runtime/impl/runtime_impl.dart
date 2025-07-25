@@ -23,7 +23,8 @@ final class OSRuntimeState<T extends OSRuntime> extends OSBaseState<T> {
   /// 内部模块列表
   List<OSModule> get innerList {
     return [
-      super.base, // 基础层
+      // OSBaseState(),
+      // super.base, // 基础层
       this, // 运行时
       super.engine, // 引擎层
     ];
@@ -156,6 +157,7 @@ final class OSRuntimeState<T extends OSRuntime> extends OSBaseState<T> {
             type: type,
           ),
         );
+        Log.d(tag: _tag, message: _moduleList.toString());
       }
     } catch (exception) {
       Log.e(tag: _tag, message: exception.toString());

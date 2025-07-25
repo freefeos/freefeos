@@ -93,7 +93,7 @@ base class OSBaseState<T extends OSBase> extends ContextStateWrapper<T>
   /// 获取应用
   @override
   Layout findMiniProgram() {
-    return widget.resources.getLayout(builder: moduleWidget);
+    return widget.resources.getLayout(builder: (context) => Placeholder());
   }
 
   @override
@@ -147,23 +147,22 @@ base class OSBaseState<T extends OSBase> extends ContextStateWrapper<T>
     return null;
   }
 
-  // @override
-  // void initState() async {
-  //   super.initState();
-  //   await _init().then((result) {
-  //     // 处理结果，例如更新状态
-  //     setState(() {
-  //       // 更新状态变量
-  //     });
-  //   });
-  // }
+  @override
+  void initState() {
+    super.initState();
+    _init().then((result) {
+      setState(() {
+        flag = true;
+      });
+    });
+  }
 
   bool flag = false;
 
-  Future<Widget?> _init() async {
+  Future<void> _init() async {
     if (flag == false) {
       try {
-        await includeApp(widget.child ?? Placeholder());
+        // await includeApp(widget.child ?? Placeholder());
         // 初始化日志
         Log.init();
         // 打印横幅
@@ -191,15 +190,6 @@ base class OSBaseState<T extends OSBase> extends ContextStateWrapper<T>
         //     'shell': WidgetUtil.layout2Widget(layout: findMiniProgram()),
         //   },
         // );
-        flag = true;
-        return execModuleAsyncMethodCall<Widget>(
-          widget.resources.getValues(value: V.channels.engineChannel),
-          widget.resources.getValues(value: 'execKernelStartup'),
-          {
-            'id': widget.resources.getValues(value: V.channels.engineChannel),
-            'shell': WidgetUtil.layout2Widget(layout: findMiniProgram()),
-          },
-        );
       } catch (exception) {
         Log.e(tag: _tag, message: exception.toString());
       }
@@ -213,31 +203,44 @@ base class OSBaseState<T extends OSBase> extends ContextStateWrapper<T>
 
   @override
   TransitionBuilder entryPoint() {
-    return (context, child) => Container(child: child);
+    return (_, child) => Container(child: child);
   }
 
   @override
   Widget build(BuildContext context) {
-    return WidgetUtil.layout2Widget(layout: findMiniProgram());
+    if (flag) {
+      return WidgetUtil.layout2Widget(layout: findMiniProgram());
+    } else {
+      return Center(child: CircularProgressIndicator.adaptive());
+    }
+
     // return Banner(
     //   message: 'FUCK',
     //   location: BannerLocation.topStart,
     //   child: widget.child,
     // );
-    return FutureBuilder<Widget?>(
-      future: _init(),
-      initialData: widget.child,
-      builder: (context, snapshot) {
-        switch (snapshot.connectionState) {
-          case ConnectionState.none:
-          case ConnectionState.active:
-          case ConnectionState.waiting:
-            return CircularProgressIndicator.adaptive();
-          case ConnectionState.done:
-            if (snapshot.hasError) return Text('Error: ${snapshot.error}');
-            return Container(color: Color(0xFFFFFFFF), child: snapshot.data);
-        }
-      },
-    );
+
+    // return FutureBuilder<Widget?>(
+    //   future: execModuleAsyncMethodCall<Widget>(
+    //     widget.resources.getValues(value: V.channels.engineChannel),
+    //     widget.resources.getValues(value: 'execKernelStartup'),
+    //     {
+    //       'id': widget.resources.getValues(value: V.channels.engineChannel),
+    //       'shell': WidgetUtil.layout2Widget(layout: findMiniProgram()),
+    //     },
+    //   ),
+    //   initialData: widget.child,
+    //   builder: (context, snapshot) {
+    //     switch (snapshot.connectionState) {
+    //       case ConnectionState.none:
+    //       case ConnectionState.active:
+    //       case ConnectionState.waiting:
+    //         return CircularProgressIndicator.adaptive();
+    //       case ConnectionState.done:
+    //         if (snapshot.hasError) return Text('Error: ${snapshot.error}');
+    //         return Container(color: Color(0xFFFFFFFF), child: snapshot.data);
+    //     }
+    //   },
+    // );
   }
 }
