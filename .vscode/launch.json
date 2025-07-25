@@ -2,20 +2,20 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "example",
+            "name": "debug",
             "cwd": "example",
             "request": "launch",
             "type": "dart"
         },
         {
-            "name": "example (profile mode)",
+            "name": "profile",
             "cwd": "example",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"
         },
         {
-            "name": "example (release mode)",
+            "name": "release",
             "cwd": "example",
             "request": "launch",
             "type": "dart",
