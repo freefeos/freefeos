@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WidgetsApp(
-      color: Color(0xFFFFFFFF),
+      color: Color(0x00000000),
       builder: FreeFEOS.builder,
       pageRouteBuilder: <T>(settings, builder) {
         return PageRouteBuilder<T>(
