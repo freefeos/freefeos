@@ -1,0 +1,228 @@
+{
+    "@@locale": "zh",
+    "@@author": "wyq0918dev",
+    "selfAppName": "FreeFEOS",
+    "@selfAppName": {
+        "description": "feOS 应用名称"
+    },
+    "componentHeaderTitleFreeFEOS": "FreeFEOS",
+    "@componentHeaderTitleFreeFEOS": {
+        "description": "FreeFEOS 应用名称"
+    },
+    "componentHeaderTitleEcosedKit": "EcosedKit",
+    "@componentHeaderTitleEcosedKit": {
+        "description": "EcosedKit 应用名称"
+    },
+    "componentHeaderTitleWeChat": "WeChat",
+    "@componentHeaderTitleWeChat": {
+        "description": "微信应用名称"
+    },
+    "componentHeaderTitleClock": "Clock",
+    "@componentHeaderTitleClock": {
+        "description": "时钟应用名称"
+    },
+    "componentHeaderTitleCalculator": "Calculator",
+    "@componentHeaderTitleCalculator": {
+        "description": "计算器应用名称"
+    },
+    "componentFooterMadeMPFlutter": "基于 MPFlutter 构建",
+    "@componentFooterMadeMPFlutter": {
+        "description": "构建信息"
+    },
+    "componentFooterMadeUniAppX": "基于 UniAppX 构建",
+    "@componentFooterMadeUniAppX": {
+        "description": "构建信息"
+    },
+    "componentFooterCopyright": "Copyright © {date} wyq0918dev. All Rights Reserved.",
+    "@componentFooterCopyright": {
+        "description": "版权信息",
+        "placeholders": {
+            "date": {
+                "type": "String",
+                "example": "#Date"
+            }
+        }
+    },
+    "indexNavBarTitle": "feOS",
+    "@indexNavBarTitle": {
+        "description": "feOS 应用名称"
+    },
+    "indexTabBarHomeTitle": "首页",
+    "@indexTabBarHomeTitle": {
+        "description": "首页"
+    },
+    "indexTabBarHomeTooltip": "首页",
+    "@indexTabBarHomeTooltip": {
+        "description": "首页页提示"
+    },
+    "indexTabBarLogcatTitle": "日志",
+    "@indexTabBarLogcatTitle": {
+        "description": "日志"
+    },
+    "indexTabBarLogcatTooltip": "日志",
+    "@indexTabBarLogcatTooltip": {
+        "description": "日志页提示"
+    },
+    "indexTabBarModuleTitle": "模块",
+    "@indexTabBarModuleTitle": {
+        "description": "模块TabBar标题"
+    },
+    "indexTabBarModuleTooltip": "模块",
+    "@indexTabBarModuleTooltip": {
+        "description": "模块页提示"
+    },
+    "indexTabBarSettingTitle": "设置",
+    "@indexTabBarSettingTitle": {
+        "description": "设置TabBar标题"
+    },
+    "indexTabBarSettingTooltip": "设置",
+    "@indexTabBarSettingTooltip": {
+        "description": "设置页提示"
+    },
+    "indexHomeStatuesCardTooltip": "小程序状态",
+    "@indexHomeStatuesCardTooltip": {
+        "description": "小程序状态卡片的提示"
+    },
+    "indexHomeStatuesCardTitle": "FreeFEOS MiniApp",
+    "@indexHomeStatuesCardTitle": {
+        "description": "小程序状态卡片的标题"
+    },
+    "indexHomeStatuesCardAppId": "AppID: {appId}",
+    "@indexHomeStatuesCardAppId": {
+        "description": "小程序状态卡片的小程序AppID",
+        "placeholders": {
+            "appId": {
+                "type": "String",
+                "example": "#AppID"
+            }
+        }
+    },
+    "indexHomeStatuesCardAppVersion": "版本号: {appVersion}",
+    "@indexHomeStatuesCardAppVersion": {
+        "description": "小程序状态卡片的小程序版本",
+        "placeholders": {
+            "appVersion": {
+                "type": "String",
+                "example": "#AppVersion"
+            }
+        }
+    },
+    "indexHomeStatuesCardEnvVersion": "环境版本: {envVersion}",
+    "@indexHomeStatuesCardEnvVersion": {
+        "description": "小程序状态卡片的环境版本",
+        "placeholders": {
+            "envVersion": {
+                "type": "String",
+                "example": "#EnvVersion"
+            }
+        }
+    },
+    "indexHomeInfoCardHostAppTooltip": "客户端版本",
+    "@indexHomeInfoCardHostAppTooltip": {
+        "description": "小程序信息卡片的客户端版本提示"
+    },
+    "indexHomeInfoCardHostAppTitle": "客户端版本",
+    "@indexHomeInfoCardHostAppTitle": {
+        "description": "小程序信息卡片的客户端版本"
+    },
+    "indexHomeInfoCardBaseSdkTooltip": "基础库版本",
+    "@indexHomeInfoCardBaseSdkTooltip": {
+        "description": "小程序信息卡片的基础库版本提示"
+    },
+    "indexHomeInfoCardBaseSdkTitle": "基础库版本",
+    "@indexHomeInfoCardBaseSdkTitle": {
+        "description": "小程序信息卡片的基础库版本"
+    },
+    "indexHomeInfoCardVersionTooltip": "小程序版本",
+    "@indexHomeInfoCardVersionTooltip": {
+        "description": "小程序信息卡片的小程序版本提示"
+    },
+    "indexHomeInfoCardVersionTitle": "小程序版本",
+    "@indexHomeInfoCardVersionTitle": {
+        "description": "小程序信息卡片的小程序版本"
+    },
+    "indexHomeAppsCardTitle": "feOS 应用",
+    "@indexHomeAppsCardTitle": {
+        "description": "小程序应用卡片的标题"
+    },
+    "indexHomeAppsCardBanner": "工具箱",
+    "@indexHomeAppsCardBanner": {
+        "description": "小程序应用卡片的横幅"
+    },
+    "indexHomeAppsCardEKitAppName": "EKit",
+    "@indexHomeAppsCardEKitAppName": {
+        "description": "小程序应用卡片的EKit应用"
+    },
+    "indexHomeAppsCardEKitAppTooltip": "EKit",
+    "@indexHomeAppsCardEKitAppTooltip": {
+        "description": "小程序应用卡片的EKit应用提示"
+    },
+    "indexHomeAppsCardWeChatAppName": "微信",
+    "@indexHomeAppsCardWeChatAppName": {
+        "description": "小程序应用卡片的微信应用"
+    },
+    "indexHomeAppsCardWeChatAppTooltip": "微信",
+    "@indexHomeAppsCardWeChatAppTooltip": {
+        "description": "小程序应用卡片的微信应用提示"
+    },
+    "indexHomeAppsCardClockAppName": "时钟",
+    "@indexHomeAppsCardClockAppName": {
+        "description": "小程序应用卡片的时钟应用"
+    },
+    "indexHomeAppsCardClockAppTooltip": "时钟",
+    "@indexHomeAppsCardClockAppTooltip": {
+        "description": "小程序应用卡片的时钟应用提示"
+    },
+    "indexHomeAppsCardCalculatorAppName": "计算器",
+    "@indexHomeAppsCardCalculatorAppName": {
+        "description": "小程序应用卡片的计算器应用"
+    },
+    "indexHomeAppsCardCalculatorAppTooltip": "计算器",
+    "@indexHomeAppsCardCalculatorAppTooltip": {
+        "description": "小程序应用卡片的计算器应用提示"
+    },
+    "indexLogcatItemCopyTips": "已复制到剪贴板",
+    "@indexLogcatItemCopyTips": {
+        "description": "复制到剪贴板提示"
+    },
+    "indexLogcatSnackBarAction": "确定",
+    "@indexLogcatSnackBarAction": {
+        "description": "确定按钮"
+    },
+    "indexModuleTypeTextBase": "基础层",
+    "@indexModuleTypeTextBase": {
+        "description": "基础层模块标题"
+    },
+    "indexModuleTypeTextRuntime": "运行时",
+    "@indexModuleTypeTextRuntime": {
+        "description": "运行时模块标题"
+    },
+    "indexModuleTypeTextEngine": "引擎层",
+    "@indexModuleTypeTextEngine": {
+        "description": "引擎模块标题"
+    },
+    "indexModuleTypeTextComponent": "系统组件",
+    "@indexModuleTypeTextComponent": {
+        "description": "系统组件模块标题"
+    },
+    "indexModuleTypeTextUnknown": "未知",
+    "@indexModuleTypeTextUnknown": {
+        "description": "未知类型模块"
+    },
+    "appsWeChatDialogCancelTitle": "取消",
+    "@appsWeChatDialogCancelTitle": {
+        "description": "取消按钮"
+    },
+    "appsWeChatDialogCancelTooltip": "取消",
+    "@appsWeChatDialogCancelTooltip": {
+        "description": "取消按钮提示"
+    },
+    "appsWeChatDialogExitTitle": "退出",
+    "@appsWeChatDialogExitTitle": {
+        "description": "退出按钮"
+    },
+    "appsWeChatDialogExitTooltip": "退出",
+    "@appsWeChatDialogExitTooltip": {
+        "description": "退出按钮提示"
+    }
+}

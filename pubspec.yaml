@@ -15,7 +15,15 @@ dependencies:
     sdk: flutter
   flutter_web_plugins:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   plugin_platform_interface: ^2.0.2
+  vm_service: ^15.0.0
+  shared_preferences: ^2.5.3
+  logging: ^1.3.0
+  animations: ^2.0.11
+  provider: ^6.1.5
+  intl: ^0.20.2
 
 dev_dependencies:
   flutter_test:
@@ -28,17 +36,17 @@ flutter:
   plugin:
     platforms:
       android:
-        dartPluginClass: FreeFEOSRegister
+        dartPluginClass: FreeFEOS
       ios:
-        dartPluginClass: FreeFEOSRegister
+        dartPluginClass: FreeFEOS
       linux:
-        dartPluginClass: FreeFEOSRegister
+        dartPluginClass: FreeFEOS
       macos:
-        dartPluginClass: FreeFEOSRegister
+        dartPluginClass: FreeFEOS
       windows:
-        dartPluginClass: FreeFEOSRegister
+        dartPluginClass: FreeFEOS
       web:
-        pluginClass: FreeFEOSWebRegister
+        pluginClass: FreeFEOSWeb
         fileName: freefeos_web.dart
 
 topics:

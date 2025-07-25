@@ -1,0 +1,9 @@
+arb-dir: lib/src/miniprogram/l10n
+output-dir: lib/src/miniprogram/intl
+template-arb-file: app_zh.arb
+output-localization-file: app_localizations.dart
+synthetic-package: false
+output-class: AppLocalizations
+preferred-supported-locales: [zh]
+nullable-getter: false
+format: true
