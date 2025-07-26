@@ -37,7 +37,7 @@ class CapsuleButton extends StatelessWidget {
             alignment: Alignment.topRight,
             child: Padding(
               padding: EdgeInsets.only(
-                right: 6.0,
+                right: 16.0,
                 top:
                     (Theme.of(context).appBarTheme.toolbarHeight ??
                         kToolbarHeight - 32.0) /

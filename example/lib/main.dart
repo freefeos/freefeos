@@ -9,7 +9,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      routes: {'/': (context) => MyHomePage()},
+      routes: {
+        '/': (context) => MyHomePage(),
+        '/test': (context) => TestPage(),
+      },
       builder: FreeFEOS.builder,
       theme: ThemeData(
         useMaterial3: true,
@@ -46,6 +49,10 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             const Text('You have pushed the button this many times:'),
             Text('$_counter', style: const TextStyle(fontSize: 32)),
+            FilledButton(
+              onPressed: () => Navigator.of(context).pushNamed('/test'),
+              child: Text('路由测试'),
+            ),
           ],
         ),
       ),
@@ -57,24 +64,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.onPressed, required this.child});
-
-  final VoidCallback onPressed;
-  final Widget child;
+class TestPage extends StatelessWidget {
+  const TestPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-        decoration: BoxDecoration(
-          color: const Color(0xFF0000FF),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: child,
-      ),
-    );
+    return Scaffold(appBar: AppBar(title: Text('路由测试')));
   }
 }

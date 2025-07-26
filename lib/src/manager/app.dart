@@ -20,7 +20,7 @@ final class App extends UiApp implements IAppOption {
       useMaterial3: true, // Material3
       brightness: MediaQuery.platformBrightnessOf(context),
       colorScheme: ColorScheme.fromSeed(
-        seedColor: V.colors.freefeosBlue, // 蓝色主题
+        seedColor: Colors.blue, // 蓝色主题
         brightness: MediaQuery.platformBrightnessOf(context),
       ), // 主题颜色
       pageTransitionsTheme: const PageTransitionsTheme(
@@ -66,26 +66,28 @@ class _AppState extends State<App> {
         return MaterialPageRoute<T>(builder: builder, settings: settings);
       },
       routes: widget.buildPages,
-      builder: (_, child) => Theme(
-        data: widget.buildStyle(context),
-        child: ScaffoldMessenger(
-          child: MultiProvider(
-            providers: [
-              OSAbilityProvider(viewModel: widget.buildViewModel),
-              ViewModelProvider<HomeViewModel>(create: (_) => HomeViewModel()),
-              ViewModelProvider<LogcatViewModel>(
-                create: (_) => LogcatViewModel(),
-              ),
-              ViewModelProvider<ModuleViewModel>(
-                create: (_) => ModuleViewModel(),
-              ),
-              ViewModelProvider<CalculatorViewModel>(
-                create: (_) => CalculatorViewModel(),
-              ),
-            ],
-            child: Banner(
-              message: 'FREEFEOS',
-              location: BannerLocation.topStart,
+      builder: (context, child) => Banner(
+        message: 'FREEFEOS',
+        location: BannerLocation.topStart,
+        child: Theme(
+          data: widget.buildStyle(context),
+          child: ScaffoldMessenger(
+            child: MultiProvider(
+              providers: [
+                OSAbilityProvider(viewModel: widget.buildViewModel),
+                ViewModelProvider<HomeViewModel>(
+                  create: (_) => HomeViewModel(),
+                ),
+                ViewModelProvider<LogcatViewModel>(
+                  create: (_) => LogcatViewModel(),
+                ),
+                ViewModelProvider<ModuleViewModel>(
+                  create: (_) => ModuleViewModel(),
+                ),
+                ViewModelProvider<CalculatorViewModel>(
+                  create: (_) => CalculatorViewModel(),
+                ),
+              ],
               child: child,
             ),
           ),
