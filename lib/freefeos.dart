@@ -4,7 +4,6 @@ library;
 import 'package:flutter/widgets.dart';
 
 import 'src/common/common.dart';
-import 'src/loader/loader.dart';
 
 /// 平台插件注册
 final class FreeFEOS {
@@ -24,11 +23,11 @@ final class FreeFEOS {
   /// 为了代码稳定起见还是别不信邪了. 实在不信邪也可以试试,
   /// 崩了跟我可无关. ╮(╯_╰)╭
   static void registerWith() {
-    FreeFEOSSystem.instance = OSEntry();
+    FreeFEOSLoader.instance.registerWith();
   }
 
   /// FreeFEOS
   static TransitionBuilder get builder {
-    return FreeFEOSSystem.instance.builder;
+    return FreeFEOSLoader.instance.builder;
   }
 }

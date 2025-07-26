@@ -1,4 +1,4 @@
-part of 'loader.dart';
+part of '../loader.dart';
 
 final class OSEntry extends FreeFEOSSystem with BaseEntry {
   OSEntry();

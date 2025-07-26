@@ -4,7 +4,6 @@ library;
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 import 'src/common/common.dart';
-import 'src/loader/loader.dart';
 
 /// Web 插件注册
 final class FreeFEOSWeb {
@@ -23,7 +22,7 @@ final class FreeFEOSWeb {
   /// 虽然说不听老人言开心好几年, 但是你不听确实会有不可预测的情况出现,
   /// 为了代码稳定起见还是别不信邪了. 实在不信邪也可以试试,
   /// 崩了跟我可无关. ╮(╯_╰)╭
-  static void registerWith(Registrar registrar) {
-    FreeFEOSSystem.instance = OSEntry();
+  static void registerWith(Registrar _) {
+    FreeFEOSLoader.instance.registerWith();
   }
 }

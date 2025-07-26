@@ -8,6 +8,5 @@ import '../common/common.dart';
 import '../compat/compat.dart';
 
 /// OSLoader
-part 'loader_entry.dart';
-part 'loader_impl.dart';
-part 'loader_interface.dart';
+part 'entry/loader_entry.dart';
+part 'impl/loader_impl.dart';

@@ -9,8 +9,11 @@ class FreeFEOSLoader extends PlatformInterface {
   /// 获取接口实例
   static FreeFEOSLoader get instance => OSLoader();
 
-  /// 启动
-  Future<void> boot(List<String> args) {
-    throw UnimplementedError('异常: 未实现boot()接口！');
+  void registerWith() {
+    throw UnimplementedError('异常: 未实现registerWith()接口!');
+  }
+
+  TransitionBuilder get builder {
+    throw UnimplementedError('异常: 未实现builder接口!');
   }
 }
