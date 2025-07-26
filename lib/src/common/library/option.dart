@@ -6,7 +6,7 @@ abstract interface class IAppOption {
   Map<RouteName, UiPageBuilder> get buildPages;
 
   /// 样式
-  ThemeData buildStyle(Brightness brightness, AppBarTheme appBarTheme);
+  ThemeData buildStyle(BuildContext context);
 
   /// 标题
   String buildTitle(BuildContext context);

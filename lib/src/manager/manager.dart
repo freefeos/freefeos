@@ -6,7 +6,6 @@ import 'dart:collection';
 import 'dart:math';
 
 import 'package:animations/animations.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +18,7 @@ import 'intl/app_localizations.dart';
 
 /// Components 组件
 part 'components/calculator_button.dart';
+part 'components/capsule_button.dart';
 part 'components/clock_view.dart';
 part 'components/footer.dart';
 part 'components/header.dart';
@@ -39,12 +39,12 @@ part 'pages/apps/ecosed.dart';
 part 'pages/apps/wechat.dart';
 part 'pages/apps/clock.dart';
 part 'pages/apps/calculator.dart';
-part 'pages/exhibit/exhibit.dart';
 part 'pages/index/index.dart';
-part 'pages/index/home.dart';
-part 'pages/index/logcat.dart';
-part 'pages/index/module.dart';
-part 'pages/index/setting.dart';
+part 'pages/manager/manager.dart';
+part 'pages/manager/home.dart';
+part 'pages/manager/logcat.dart';
+part 'pages/manager/module.dart';
+part 'pages/manager/setting.dart';
 
 /// Utils 工具
 part 'utils/utils.dart';

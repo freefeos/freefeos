@@ -38,10 +38,7 @@ base class OSBaseState<W extends OSBase> extends ContextStateWrapper<W>
   /// 模块界面
   @override
   Layout moduleWidget(BuildContext context) {
-    return buildManager(
-      viewModel(context, execSdk),
-      widget.child ?? Placeholder(),
-    );
+    return buildManager(viewModel(context, execSdk, widget.child));
   }
 
   /// 方法调用
@@ -71,13 +68,17 @@ base class OSBaseState<W extends OSBase> extends ContextStateWrapper<W>
   }
 
   @override
-  ViewModel viewModel(BuildContext buildContext, SdkInvoker sdkInstance) {
+  ViewModel viewModel(
+    BuildContext buildContext,
+    SdkInvoker sdkInstance,
+    Widget? child,
+  ) {
     return this;
   }
 
   /// 构建应用
   @override
-  Layout buildManager(ViewModel viewModel, Widget userApp) {
+  Layout buildManager(ViewModel viewModel) {
     return widget.resources.getLayout(builder: (_) => const Placeholder());
   }
 

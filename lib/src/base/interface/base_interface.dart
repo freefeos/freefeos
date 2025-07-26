@@ -18,10 +18,14 @@ abstract interface class IBase {
   Layout findMiniProgram();
 
   /// 系统能力ViewModel
-  ViewModel viewModel(BuildContext buildContext, SdkInvoker sdkInstance);
+  ViewModel viewModel(
+    BuildContext buildContext,
+    SdkInvoker sdkInstance,
+    Widget? child,
+  );
 
   /// 构建App
-  Layout buildManager(ViewModel viewModel, Widget userApp);
+  Layout buildManager(ViewModel viewModel);
 
   /// 系统组件列表
   Future<T?> getComponentsList<T>();

@@ -106,17 +106,19 @@ final class OSRuntimeState<W extends OSRuntime> extends OSBaseState<W> {
   ViewModel viewModel(
     BuildContext buildContext,
     SdkInvoker sdkInstance,
+    Widget? child,
   ) {
     return OSViewModel(
       context: buildContext,
       sdkInvoker: sdkInstance,
       detailsList: _moduleDetailsList,
+      child: child,
     );
   }
 
   /// 构建应用
   @override
-  Layout buildManager(ViewModel viewModel, Widget userApp) {
+  Layout buildManager(ViewModel viewModel) {
     return resources.getLayout(builder: (_) => App(viewModel: viewModel));
   }
 

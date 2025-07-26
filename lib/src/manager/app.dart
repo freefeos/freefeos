@@ -1,32 +1,38 @@
 part of 'manager.dart';
 
-/// 操作系统Shell
 final class App extends UiApp implements IAppOption {
-  /// 构造函数
   const App({super.key, required super.viewModel});
 
   /// 页面
   @override
   Map<RouteName, UiPageBuilder> get buildPages {
     return <RouteName, UiPageBuilder>{
-      IndexPage.route: (_) => IndexPage(), // 管理器
+      IndexPage.route: (_) => IndexPage(), // 首页
+      ManagerPage.route: (_) => ManagerPage(), // 管理器
       AppsPage.route: (_) => AppsPage(), // 应用列表
-      ExhibitPage.route: (_) => ExhibitPage(), // 单页模式展示页面
     };
   }
 
   /// 样式
   @override
-  ThemeData buildStyle(Brightness brightness, AppBarTheme appBarTheme) {
+  ThemeData buildStyle(BuildContext context) {
     return ThemeData(
       useMaterial3: true, // Material3
-      brightness: brightness, // 深浅色模式
+      brightness: MediaQuery.platformBrightnessOf(context),
       colorScheme: ColorScheme.fromSeed(
         seedColor: V.colors.freefeosBlue, // 蓝色主题
-        brightness: brightness, // 深浅色模式
+        brightness: MediaQuery.platformBrightnessOf(context),
       ), // 主题颜色
-      // platform: TargetPlatform.iOS, // 微信小程序为iOS平台样式
-      appBarTheme: appBarTheme, // AppBar主题
+      pageTransitionsTheme: const PageTransitionsTheme(
+        builders: <TargetPlatform, PageTransitionsBuilder>{
+          TargetPlatform.android: PredictiveBackPageTransitionsBuilder(),
+          TargetPlatform.fuchsia: ZoomPageTransitionsBuilder(),
+          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          TargetPlatform.linux: ZoomPageTransitionsBuilder(),
+          TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
+          TargetPlatform.windows: ZoomPageTransitionsBuilder(),
+        },
+      ),
     );
   }
 
@@ -55,48 +61,41 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        // 用于调用系统能力的ViewModel
-        OSAbilityProvider(viewModel: widget.buildViewModel),
-        // 主页ViewModel
-        ViewModelProvider<HomeViewModel>(create: (_) => HomeViewModel()),
-        // 日志ViewModel
-        ViewModelProvider<LogcatViewModel>(create: (_) => LogcatViewModel()),
-        // 模块列表ViewModel
-        ViewModelProvider<ModuleViewModel>(create: (_) => ModuleViewModel()),
-        // 计算器ViewModel
-        ViewModelProvider<CalculatorViewModel>(
-          create: (_) => CalculatorViewModel(),
-        ),
-      ],
-      // builder: (context, child) {
-      //   return Consumer<OSAbility>(
-      //     builder: (context, ability, child) {
-      //       // 附加根构建上下文
-      //       ability.attachRootBuildContext(context);
-      //       // 返回原Widget
-      //       return AppUtils.nonNullWidget(child: child);
-      //     },
-      //     child: child,
-      //   );
-      // },
-      child: Shell(
-        builder: (context, appBarTheme, themeMode, navigatorObserver) {
-          return MaterialApp(
-            routes: widget.buildPages,
-            theme: widget.buildStyle(Brightness.light, appBarTheme),
-            darkTheme: widget.buildStyle(Brightness.dark, appBarTheme),
-            themeMode: themeMode,
-            onGenerateTitle: (context) => widget.buildTitle(context),
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            supportedLocales: AppLocalizations.supportedLocales,
-            navigatorObservers: AppUtils.observer2ObserverList(
-              observer: navigatorObserver,
+    return WidgetsApp(
+      pageRouteBuilder: <T>(RouteSettings settings, WidgetBuilder builder) {
+        return MaterialPageRoute<T>(builder: builder, settings: settings);
+      },
+      routes: widget.buildPages,
+      builder: (_, child) => Theme(
+        data: widget.buildStyle(context),
+        child: ScaffoldMessenger(
+          child: MultiProvider(
+            providers: [
+              OSAbilityProvider(viewModel: widget.buildViewModel),
+              ViewModelProvider<HomeViewModel>(create: (_) => HomeViewModel()),
+              ViewModelProvider<LogcatViewModel>(
+                create: (_) => LogcatViewModel(),
+              ),
+              ViewModelProvider<ModuleViewModel>(
+                create: (_) => ModuleViewModel(),
+              ),
+              ViewModelProvider<CalculatorViewModel>(
+                create: (_) => CalculatorViewModel(),
+              ),
+            ],
+            child: Banner(
+              message: 'FREEFEOS',
+              location: BannerLocation.topStart,
+              child: child,
             ),
-          );
-        },
+          ),
+        ),
       ),
+      onGenerateTitle: (context) => widget.buildTitle(context),
+      color: Colors.transparent,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

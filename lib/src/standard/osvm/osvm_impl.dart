@@ -7,13 +7,10 @@ final class OSViewModel extends ContextWrapper
   /// 构造函数
   OSViewModel({
     required BuildContext context,
-    // required this.contextAttacher,
     required this.sdkInvoker,
     required this.detailsList,
+    required this.child,
   });
-
-  /// 上下文附加器
-  // final ContextAttacher contextAttacher;
 
   /// SDK调用器
   final SdkInvoker sdkInvoker;
@@ -21,17 +18,16 @@ final class OSViewModel extends ContextWrapper
   /// 模块列表
   final List<ModuleDetails> detailsList;
 
+  final Widget? child;
+
+  @override
+  Widget? get getChild => child;
+
   /// 获取SDK调用器
   @override
   SdkInvoker get getSdkInvoker {
     return sdkInvoker;
   }
-
-  /// 附加构建上下文
-  // @override
-  // void attachRootBuildContext(BuildContext context) {
-  //   return contextAttacher(context);
-  // }
 
   @override
   void addThemeModeChangeListener(VoidCallback callback) {
