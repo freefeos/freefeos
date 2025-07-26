@@ -23,7 +23,6 @@ final class OSRuntimeState<W extends OSRuntime> extends OSBaseState<W> {
   /// 内部模块列表
   List<OSModule> get innerList {
     return [
-      // OSBaseState(),
       // super.base, // 基础层
       this, // 运行时
       super.engine, // 引擎层
@@ -106,12 +105,10 @@ final class OSRuntimeState<W extends OSRuntime> extends OSBaseState<W> {
   @override
   ViewModel viewModel(
     BuildContext buildContext,
-    // ContextAttacher contextAttacher,
     SdkInvoker sdkInstance,
   ) {
     return OSViewModel(
       context: buildContext,
-      // contextAttacher: contextAttacher,
       sdkInvoker: sdkInstance,
       detailsList: _moduleDetailsList,
     );

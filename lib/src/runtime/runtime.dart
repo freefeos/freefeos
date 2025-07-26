@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../base/base.dart';
 import '../common/common.dart';
 import '../framework/framework.dart';
-import '../miniprogram/miniprogram.dart';
+import '../manager/manager.dart';
 import '../standard/standard.dart';
 
 /// OSRuntime 系统运行时

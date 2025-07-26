@@ -9,8 +9,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WidgetsApp(
-      color: Color(0xFFFFFFFF),
-      builder: FreeFEOS.builder,
       pageRouteBuilder: <T>(settings, builder) {
         return PageRouteBuilder<T>(
           settings: settings,
@@ -22,15 +20,15 @@ class MyApp extends StatelessWidget {
           },
         );
       },
-      home: MyHomePage(title: 'Demo'),
+      routes: {'/': (context) => MyHomePage()},
+      builder: FreeFEOS.builder,
+      color: Color(0xFFFFFFFF),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -38,12 +36,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,10 +51,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               '$_counter',
-              style: TextStyle(fontSize: 32, color: Color(0xFF000000)),
+              style: const TextStyle(fontSize: 32, color: Color(0xFF000000)),
             ),
             CustomButton(
-              onPressed: _incrementCounter,
+              onPressed: () => setState(() => _counter++),
               child: const Text("Add"),
             ),
           ],
@@ -73,9 +65,11 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class CustomButton extends StatelessWidget {
-  final Widget child;
+  const CustomButton({super.key, required this.onPressed, required this.child});
+
   final VoidCallback onPressed;
-  const CustomButton({super.key, required this.child, required this.onPressed});
+  final Widget child;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -83,7 +77,7 @@ class CustomButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         decoration: BoxDecoration(
-          color: Color(0xff0000ff),
+          color: const Color(0xFF0000FF),
           borderRadius: BorderRadius.circular(8),
         ),
         child: child,
