@@ -3,13 +3,12 @@ part of 'loader.dart';
 final class OSEntry extends FreeFEOSSystem with BaseEntry {
   OSEntry();
 
-  /// 入口函数
   @override
-  TransitionBuilder entryPoint() {
+  TransitionBuilder get builder {
     try {
-      return interface.entryPoint();
+      return interface.builder;
     } catch (_) {
-      return super.entryPoint();
+      return super.builder;
     }
   }
 }

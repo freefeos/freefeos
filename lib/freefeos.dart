@@ -28,6 +28,6 @@ final class FreeFEOS {
 
   /// FreeFEOS
   static TransitionBuilder get builder {
-    return FreeFEOSSystem.instance.entryPoint();
+    return FreeFEOSSystem.instance.builder;
   }
 }

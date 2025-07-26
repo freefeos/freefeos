@@ -49,7 +49,7 @@ final class OSRuntimeState<T extends OSRuntime> extends OSBaseState<T> {
   }
 
   @override
-  TransitionBuilder entryPoint() {
+  TransitionBuilder get builder {
     return (_, child) => OSRuntime(child: child);
   }
 

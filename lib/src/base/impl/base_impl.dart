@@ -202,7 +202,7 @@ base class OSBaseState<T extends OSBase> extends ContextStateWrapper<T>
   }
 
   @override
-  TransitionBuilder entryPoint() {
+  TransitionBuilder get builder {
     return (_, child) => Container(child: child);
   }
 

@@ -25,6 +25,6 @@ final class OSLoader extends IOSLoader {
 
   @override
   TransitionBuilder entryPoint() {
-    return FreeFEOSSystem.instance.entryPoint();
+    return FreeFEOSSystem.instance.builder;
   }
 }
