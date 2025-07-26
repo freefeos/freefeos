@@ -39,10 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("FreeFEOS Demo"),
-        // backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-      ),
+      appBar: AppBar(title: Text("FreeFEOS Demo")),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
