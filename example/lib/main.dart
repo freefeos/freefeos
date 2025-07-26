@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:freefeos/freefeos.dart';
 
 void main() => runApp(const MyApp());
@@ -8,21 +8,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WidgetsApp(
-      pageRouteBuilder: <T>(settings, builder) {
-        return PageRouteBuilder<T>(
-          settings: settings,
-          pageBuilder: (context, animation, secondaryAnimation) {
-            return builder(context);
-          },
-          transitionsBuilder: (context, animation, secondaryAnimation, child) {
-            return FadeTransition(opacity: animation, child: child);
-          },
-        );
-      },
+    return MaterialApp(
       routes: {'/': (context) => MyHomePage()},
       builder: FreeFEOS.builder,
-      color: Color(0xFFFFFFFF),
+      theme: ThemeData(
+        useMaterial3: true,
+        brightness: MediaQuery.platformBrightnessOf(context),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.blue,
+          brightness: MediaQuery.platformBrightnessOf(context),
+        ),
+      ),
     );
   }
 }
@@ -39,26 +35,23 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Color(0xFFFFFFFF),
-      child: Center(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("FreeFEOS Demo"),
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      ),
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-              style: TextStyle(color: Color(0xFF000000)),
-            ),
-            Text(
-              '$_counter',
-              style: const TextStyle(fontSize: 32, color: Color(0xFF000000)),
-            ),
-            CustomButton(
-              onPressed: () => setState(() => _counter++),
-              child: const Text("Add"),
-            ),
+            const Text('You have pushed the button this many times:'),
+            Text('$_counter', style: const TextStyle(fontSize: 32)),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => setState(() => _counter++),
+        child: const Icon(Icons.add),
       ),
     );
   }
