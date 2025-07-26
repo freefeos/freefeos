@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("FreeFEOS Demo"),
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        // backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       ),
       body: Center(
         child: Column(
