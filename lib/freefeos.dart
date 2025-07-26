@@ -2,8 +2,9 @@
 library;
 
 import 'package:flutter/widgets.dart';
-import 'package:freefeos/src/common/common.dart';
-import 'package:freefeos/src/loader/loader.dart';
+
+import 'src/common/common.dart';
+import 'src/loader/loader.dart';
 
 /// 平台插件注册
 final class FreeFEOS {

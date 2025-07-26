@@ -14,21 +14,11 @@ abstract interface class IBase {
   /// 平台嵌入层模块
   OSModule get engine;
 
-  // /// 获取带有导航主机的上下文
-  // BuildContext get context;
-
-  // /// 附加带有导航主机的上下文
-  // void attachContext(BuildContext host);
-
   /// 图形界面
   Layout findMiniProgram();
 
   /// 系统能力ViewModel
-  ViewModel viewModel(
-    BuildContext buildContext,
-    // ContextAttacher contextAttacher,
-    SdkInvoker sdkInstance,
-  );
+  ViewModel viewModel(BuildContext buildContext, SdkInvoker sdkInstance);
 
   /// 构建App
   Layout buildManager(ViewModel viewModel, Widget userApp);
@@ -46,10 +36,4 @@ abstract interface class IBase {
   ]);
 
   T? execModuleSyncMethodCall<T>(String id, String method, [dynamic arguments]);
-
-  /// 用户App
-  Widget get rootWidget;
-
-  /// 导入用户App
-  Future<void> includeApp(Widget child);
 }

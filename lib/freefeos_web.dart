@@ -2,8 +2,9 @@
 library;
 
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
-import 'package:freefeos/src/common/common.dart';
-import 'package:freefeos/src/loader/loader.dart';
+
+import 'src/common/common.dart';
+import 'src/loader/loader.dart';
 
 /// Web 插件注册
 final class FreeFEOSWeb {

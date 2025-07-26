@@ -8,7 +8,7 @@ final class OSRuntime extends OSBase {
   ContextStateWrapper<OSRuntime> createState() => OSRuntimeState<OSRuntime>();
 }
 
-final class OSRuntimeState<T extends OSRuntime> extends OSBaseState<T> {
+final class OSRuntimeState<W extends OSRuntime> extends OSBaseState<W> {
   OSRuntimeState();
 
   /// Logcat 标签

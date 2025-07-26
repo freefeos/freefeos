@@ -25,7 +25,7 @@ final class App extends UiApp implements IAppOption {
         seedColor: V.colors.freefeosBlue, // 蓝色主题
         brightness: brightness, // 深浅色模式
       ), // 主题颜色
-      platform: TargetPlatform.iOS, // 微信小程序为iOS平台样式
+      // platform: TargetPlatform.iOS, // 微信小程序为iOS平台样式
       appBarTheme: appBarTheme, // AppBar主题
     );
   }

@@ -1,19 +1,5 @@
 part of '../base.dart';
 
-/// 应用混入
-base mixin AppMixin implements IBase {
-  /// 应用
-  static late Widget _root;
-
-  /// 获取应用
-  @override
-  Widget get rootWidget => _root;
-
-  /// 导入应用
-  @override
-  Future<void> includeApp(Widget child) async => _root = child;
-}
-
 base class OSBase extends ContextThemeWrapper {
   /// 构造函数
   const OSBase({super.key, this.child});
@@ -24,16 +10,11 @@ base class OSBase extends ContextThemeWrapper {
   ContextStateWrapper<OSBase> createState() => OSBaseState<OSBase>();
 }
 
-base class OSBaseState<T extends OSBase> extends ContextStateWrapper<T>
-    with
-        BaseMixin,
-        BaseEntry,
-        AppMixin,
-        // ContextMixin,
-        BridgeMixin,
-        RuntimeMixin,
-        ViewModel
+base class OSBaseState<W extends OSBase> extends ContextStateWrapper<W>
+    with BaseMixin, BaseEntry, BridgeMixin, RuntimeMixin, ViewModel
     implements OSModule, FreeFEOSSystem, IBase {
+  OSBaseState();
+
   static const String _tag = 'OSBase';
 
   /// 模块通道
@@ -77,13 +58,6 @@ base class OSBaseState<T extends OSBase> extends ContextStateWrapper<T>
     return null;
   }
 
-  // /// 运行应用
-  // @protected
-  // @override
-  // Future<void> entryPoint(List<String> args) async {
-
-  // }
-
   /// 初始化应用
   @override
   Future<void> init() async {
@@ -97,11 +71,7 @@ base class OSBaseState<T extends OSBase> extends ContextStateWrapper<T>
   }
 
   @override
-  ViewModel viewModel(
-    BuildContext buildContext,
-    // ContextAttacher contextAttacher,
-    SdkInvoker sdkInstance,
-  ) {
+  ViewModel viewModel(BuildContext buildContext, SdkInvoker sdkInstance) {
     return this;
   }
 
@@ -150,11 +120,7 @@ base class OSBaseState<T extends OSBase> extends ContextStateWrapper<T>
   @override
   void initState() {
     super.initState();
-    _init().then((result) {
-      setState(() {
-        flag = true;
-      });
-    });
+    _init().then((_) => setState(() => flag = true));
   }
 
   bool flag = false;
@@ -162,7 +128,6 @@ base class OSBaseState<T extends OSBase> extends ContextStateWrapper<T>
   Future<void> _init() async {
     if (flag == false) {
       try {
-        // await includeApp(widget.child ?? Placeholder());
         // 初始化日志
         Log.init();
         // 打印横幅
@@ -177,11 +142,10 @@ base class OSBaseState<T extends OSBase> extends ContextStateWrapper<T>
           (_) => bridgeScope.onCreateEngine(widget.baseContext),
           onError: (error) => Log.e(tag: _tag, message: error.toString()),
         );
-
         // 初始化应用
         await init();
 
-        // 启动
+        // // 启动
         // await execModuleAsyncMethodCall(
         //   widget.resources.getValues(value: V.channels.engineChannel),
         //   widget.resources.getValues(value: 'execKernelStartup'),
@@ -208,39 +172,8 @@ base class OSBaseState<T extends OSBase> extends ContextStateWrapper<T>
 
   @override
   Widget build(BuildContext context) {
-    if (flag) {
-      return WidgetUtil.layout2Widget(layout: findMiniProgram());
-    } else {
-      return Center(child: CircularProgressIndicator.adaptive());
-    }
-
-    // return Banner(
-    //   message: 'FUCK',
-    //   location: BannerLocation.topStart,
-    //   child: widget.child,
-    // );
-
-    // return FutureBuilder<Widget?>(
-    //   future: execModuleAsyncMethodCall<Widget>(
-    //     widget.resources.getValues(value: V.channels.engineChannel),
-    //     widget.resources.getValues(value: 'execKernelStartup'),
-    //     {
-    //       'id': widget.resources.getValues(value: V.channels.engineChannel),
-    //       'shell': WidgetUtil.layout2Widget(layout: findMiniProgram()),
-    //     },
-    //   ),
-    //   initialData: widget.child,
-    //   builder: (context, snapshot) {
-    //     switch (snapshot.connectionState) {
-    //       case ConnectionState.none:
-    //       case ConnectionState.active:
-    //       case ConnectionState.waiting:
-    //         return CircularProgressIndicator.adaptive();
-    //       case ConnectionState.done:
-    //         if (snapshot.hasError) return Text('Error: ${snapshot.error}');
-    //         return Container(color: Color(0xFFFFFFFF), child: snapshot.data);
-    //     }
-    //   },
-    // );
+    return flag
+        ? WidgetUtil.layout2Widget(layout: findMiniProgram())
+        : Center(child: CircularProgressIndicator.adaptive());
   }
 }
