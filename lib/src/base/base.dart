@@ -12,4 +12,5 @@ import '../runtime/runtime.dart';
 
 part 'entry/base_entry.dart'; // 基础层入口
 part 'impl/base_impl.dart'; // 基础层实现
+part 'impl/base_state_impl.dart'; // 基础层状态实现
 part 'interface/base_interface.dart'; // 基础层接口
