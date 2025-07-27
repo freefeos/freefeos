@@ -1,22 +1,26 @@
 part of '../framework.dart';
 
 final class ContextImpl implements Context {
-  static const res = Resources();
+  const ContextImpl();
+
+  static const Resources _resources = Resources();
 
   @override
   void startService(Want want) {
-    want.getService().onCreate();
+    return want.getService().onCreate();
   }
 
   @override
   void stopService(Want want) {
-    want.getService().onDestroy();
+    return want.getService().onDestroy();
   }
 
   @override
   void bindService(Want want, ServiceConnection connect) {
-    var a = want.getService().onBind(want);
-    connect.onServiceConnected(want.classes.toString(), a);
+    return connect.onServiceConnected(
+      want.classes.toString(),
+      want.getService().onBind(want),
+    );
   }
 
   @override
@@ -25,5 +29,12 @@ final class ContextImpl implements Context {
   }
 
   @override
-  Resources get resources => res;
+  Resources get resources {
+    return _resources;
+  }
+
+  @override
+  Context get baseContext {
+    return this;
+  }
 }

@@ -15,4 +15,6 @@ abstract interface class Context {
 
   /// 获取资源
   Resources get resources;
+
+  Context get baseContext;
 }

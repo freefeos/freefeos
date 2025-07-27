@@ -1,7 +1,7 @@
 part of '../engine.dart';
 
 abstract base class OSComponent extends ContextWrapper {
-  OSComponent({bool? attach}) : super();
+  OSComponent({bool? attach});
 
   /// 组件通道
   late ComponentChannel _componentChannel;

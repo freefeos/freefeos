@@ -1,6 +1,6 @@
 part of '../framework.dart';
 
-final class LayoutFrame extends StatelessWidget {
+final class LayoutFrame extends ContextStatelessWrapper {
   const LayoutFrame({super.key, required this.layout});
 
   final Layout layout;

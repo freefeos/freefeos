@@ -1,36 +1,37 @@
 part of '../framework.dart';
 
 abstract base mixin class ContextWrapper implements Context {
-  /// 基本上下文
-  static final Context _base = ContextImpl();
+  const ContextWrapper();
 
-  /// 获取基本上下文
-  Context get baseContext {
-    return _base;
-  }
+  static const Context _base = ContextImpl();
 
   @override
   void startService(Want want) {
-    _base.startService(want);
+    return _base.startService(want);
   }
 
   @override
   void stopService(Want want) {
-    _base.stopService(want);
+    return _base.stopService(want);
   }
 
   @override
   void bindService(Want want, ServiceConnection connect) {
-    _base.bindService(want, connect);
+    return _base.bindService(want, connect);
   }
 
   @override
   void unbindService(Want want) {
-    _base.unbindService(want);
+    return _base.unbindService(want);
   }
 
   @override
   Resources get resources {
     return _base.resources;
+  }
+
+  @override
+  Context get baseContext {
+    return _base.baseContext;
   }
 }

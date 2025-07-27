@@ -1,8 +1,8 @@
 part of '../framework.dart';
 
-abstract base class ContextThemeWrapper extends StatefulWidget
+abstract base class ContextStatefulWrapper extends StatefulWidget
     with ContextWrapper {
-  const ContextThemeWrapper({super.key});
+  const ContextStatefulWrapper({super.key});
 
   @protected
   @factory

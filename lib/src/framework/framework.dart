@@ -13,7 +13,8 @@ import '../common/common.dart';
 /// Context 上下文
 part 'context/context_impl.dart';
 part 'context/context_state_wrapper.dart';
-part 'context/context_theme_wrapper.dart';
+part 'context/context_stateful_wrapper.dart';
+part 'context/context_stateless_wrapper.dart';
 part 'context/context_wrapper.dart';
 part 'context/context.dart';
 
