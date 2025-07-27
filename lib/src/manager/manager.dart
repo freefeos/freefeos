@@ -55,14 +55,14 @@ part 'view_model/apps/calculator_interface.dart';
 part 'view_model/apps/calculator_vm.dart';
 part 'view_model/apps/operator_type.dart';
 
-part 'view_model/index/home_interface.dart';
-part 'view_model/index/home_vm.dart';
+part 'view_model/manager/home_interface.dart';
+part 'view_model/manager/home_vm.dart';
 
-part 'view_model/index/logcat_interface.dart';
-part 'view_model/index/logcat_vm.dart';
+part 'view_model/manager/logcat_interface.dart';
+part 'view_model/manager/logcat_vm.dart';
 
-part 'view_model/index/module_interface.dart';
-part 'view_model/index/module_vm.dart';
+part 'view_model/manager/module_interface.dart';
+part 'view_model/manager/module_vm.dart';
 
 /// App
 part 'app.dart';

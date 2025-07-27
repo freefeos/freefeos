@@ -27,26 +27,46 @@ class _IndexPageState extends State<IndexPage> {
 
   @override
   Widget build(BuildContext context) {
-    return CapsuleButton(
-      firstIcon: Icons.more_horiz,
-      lastIcon: Icons.adjust,
-      firstTooltip: '',
-      lastTooltip: '',
-      onFirstTap: () {
-        Navigator.of(context).pushNamed(ManagerPage.route);
-      },
-      onLastTap: () async {
-        final shouldExit = await _shouldExit();
-        if (shouldExit) {
-          // SystemNavigator.pop();
-        }
-      },
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Consumer<OSAbility>(
-          builder: (context, ability, child) {
-            return ability.getChild ?? const Placeholder();
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: Builder(
+        builder: (context) => CapsuleButton(
+          firstIcon: Icons.more_horiz,
+          lastIcon: Icons.adjust,
+          firstTooltip: '',
+          lastTooltip: '',
+          onFirstTap: () {
+            showModalBottomSheet(
+              context: context,
+              builder: (context) {
+                return BottomSheet(
+                  showDragHandle: true,
+                  onClosing: () {},
+                  builder: (context) {
+                    return FilledButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        Navigator.of(context).pushNamed(ManagerPage.route);
+                      },
+                      child: Text('Manager'),
+                    );
+                  },
+                );
+              },
+            );
           },
+          onLastTap: () async {
+            final shouldExit = await _shouldExit();
+            if (shouldExit) {
+              // SystemNavigator.pop();
+            }
+          },
+          child: Consumer<OSAbility>(
+            builder: (context, ability, child) {
+              return ability.getChild ?? child!;
+            },
+            child: const Placeholder(),
+          ),
         ),
       ),
     );
