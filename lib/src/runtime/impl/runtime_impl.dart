@@ -20,14 +20,6 @@ final class OSRuntimeState<W extends OSRuntime> extends OSBaseState<W> {
   /// 模块详细信息列表
   final List<ModuleDetails> _moduleDetailsList = [];
 
-  /// 内部模块列表
-  List<OSModule> get innerList {
-    return [
-      this, // 运行时
-      super.engine, // 引擎层
-    ];
-  }
-
   /// 模块通道
   @override
   String get moduleChannel {
@@ -129,7 +121,7 @@ final class OSRuntimeState<W extends OSRuntime> extends OSBaseState<W> {
         value: V.channels.engineChannel,
       );
       // 初始化运行时
-      for (var element in innerList) {
+      for (var element in [this, super.engine]) {
         // 类型
         ModuleType type = ModuleType.unknown;
         if (element.moduleChannel == base) {

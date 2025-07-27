@@ -11,7 +11,7 @@ base class OSBase extends ContextStatefulWrapper {
 }
 
 base class OSBaseState<W extends OSBase> extends ContextStateWrapper<W>
-    with BaseMixin, BaseEntry, BridgeMixin, RuntimeMixin, ViewModel
+    with BaseEntry, BridgeMixin, RuntimeMixin, ViewModel
     implements OSModule, FreeFEOSSystem, IBase {
   OSBaseState();
 

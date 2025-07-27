@@ -8,9 +8,6 @@ abstract interface class IBase {
   /// 初始化
   Future<void> init();
 
-  /// 绑定通信层模块
-  OSModule get base;
-
   /// 平台嵌入层模块
   OSModule get engine;
 
