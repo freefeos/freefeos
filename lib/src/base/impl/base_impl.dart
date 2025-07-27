@@ -16,23 +16,24 @@ base class OSBaseState<W extends OSBase> extends ContextStateWrapper<W>
   OSBaseState();
 
   static const String _tag = 'OSBase';
+  bool _initializationFlag = false;
 
   /// 模块通道
   @override
   String get moduleChannel {
-    return widget.resources.getValues(value: V.channels.baseChannel);
+    return resources.getValues(value: V.channels.baseChannel);
   }
 
   /// 模块描述
   @override
   String get moduleDescription {
-    return widget.resources.getValues(value: V.strings.baseDescription);
+    return resources.getValues(value: V.strings.baseDescription);
   }
 
   /// 模块名称
   @override
   String get moduleName {
-    return widget.resources.getValues(value: V.strings.baseName);
+    return resources.getValues(value: V.strings.baseName);
   }
 
   /// 模块界面
@@ -64,7 +65,7 @@ base class OSBaseState<W extends OSBase> extends ContextStateWrapper<W>
   /// 获取应用
   @override
   Layout findMiniProgram() {
-    return widget.resources.getLayout(builder: (context) => Placeholder());
+    return resources.getLayout(builder: (context) => const Placeholder());
   }
 
   @override
@@ -79,25 +80,25 @@ base class OSBaseState<W extends OSBase> extends ContextStateWrapper<W>
   /// 构建应用
   @override
   Layout buildManager(ViewModel viewModel) {
-    return widget.resources.getLayout(builder: (_) => const Placeholder());
+    return resources.getLayout(builder: (_) => const Placeholder());
   }
 
   @override
   Future<T?> getComponentsList<T>() {
     return execModuleAsyncMethodCall(
-      widget.resources.getValues(value: V.channels.engineChannel),
-      widget.resources.getValues(value: V.methods.engineGetEngineModules),
-      {'id': widget.resources.getValues(value: V.channels.engineChannel)},
+      resources.getValues(value: V.channels.engineChannel),
+      resources.getValues(value: V.methods.engineGetEngineModules),
+      {'id': resources.getValues(value: V.channels.engineChannel)},
     );
   }
 
   @override
   T? execSdk<T>(String apiId, [dynamic arguments]) {
     return execModuleSyncMethodCall(
-      widget.resources.getValues(value: V.channels.engineChannel),
+      resources.getValues(value: V.channels.engineChannel),
       'execSdkInvoke',
       {
-        'id': widget.resources.getValues(value: V.channels.engineChannel),
+        'id': resources.getValues(value: V.channels.engineChannel),
         'apiId': apiId,
         'apiArguments': arguments,
       },
@@ -121,60 +122,53 @@ base class OSBaseState<W extends OSBase> extends ContextStateWrapper<W>
   @override
   void initState() {
     super.initState();
-    _init().then((_) => setState(() => flag = true));
-  }
-
-  bool flag = false;
-
-  Future<void> _init() async {
-    if (flag == false) {
-      try {
-        // 初始化日志
-        Log.init();
-        // 打印横幅
-        Log.i(
-          tag: _tag,
-          message: utf8.decode(
-            base64Decode(widget.resources.getValues(value: V.drawable.banner)),
-          ),
-        );
-        // 初始化引擎
-        await initEngineBridge().then(
-          (_) => bridgeScope.onCreateEngine(widget.baseContext),
-          onError: (error) => Log.e(tag: _tag, message: error.toString()),
-        );
-        // 初始化应用
-        await init();
-
-        // // 启动
-        // await execModuleAsyncMethodCall(
-        //   widget.resources.getValues(value: V.channels.engineChannel),
-        //   widget.resources.getValues(value: 'execKernelStartup'),
-        //   {
-        //     'id': widget.resources.getValues(value: V.channels.engineChannel),
-        //     'shell': WidgetUtil.layout2Widget(layout: findMiniProgram()),
-        //   },
-        // );
-      } catch (exception) {
-        Log.e(tag: _tag, message: exception.toString());
-      }
+    if (!_initializationFlag) {
+      (() async {
+        try {
+          // 初始化日志
+          Log.init();
+          // 打印横幅
+          Log.i(
+            tag: _tag,
+            message: utf8.decode(
+              base64Decode(resources.getValues(value: V.drawable.banner)),
+            ),
+          );
+          // 初始化引擎
+          await initEngineBridge().then(
+            (_) => bridgeScope.onCreateEngine(baseContext),
+            onError: (error) => Log.e(tag: _tag, message: error.toString()),
+          );
+          // 初始化应用
+          await init();
+        } catch (exception) {
+          Log.e(tag: _tag, message: exception.toString());
+        }
+      })().then((_) {
+        if (mounted) {
+          setState(() {
+            _initializationFlag = true;
+          });
+        }
+      });
     }
   }
 
   @override
   void dispose() {
     super.dispose();
+    bridgeScope.onDestroyEngine();
   }
 
   @override
   TransitionBuilder get builder {
-    return (_, child) => Container(child: child);
+    return (_, child) => OSBase(child: child);
   }
 
   @override
   Widget build(BuildContext context) {
-    return flag
+    return _initializationFlag
         ? WidgetUtil.layout2Widget(layout: findMiniProgram())
-        : Center(child: CircularProgressIndicator.adaptive());
+        : const Center(child: CircularProgressIndicator.adaptive());
   }
 }

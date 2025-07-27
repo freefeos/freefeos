@@ -23,7 +23,6 @@ final class OSRuntimeState<W extends OSRuntime> extends OSBaseState<W> {
   /// 内部模块列表
   List<OSModule> get innerList {
     return [
-      // super.base, // 基础层
       this, // 运行时
       super.engine, // 引擎层
     ];
@@ -74,11 +73,8 @@ final class OSRuntimeState<W extends OSRuntime> extends OSBaseState<W> {
   /// 初始化应用
   @override
   Future<void> init() async {
-    Log.d(tag: _tag, message: 'init()');
-    Log.d(tag: _tag, message: '_initRuntime()');
     // 初始化运行时
     await _initRuntime();
-    Log.d(tag: _tag, message: '_initComponent()');
     // 初始化引擎模块
     await _initComponent();
   }
@@ -156,7 +152,6 @@ final class OSRuntimeState<W extends OSRuntime> extends OSBaseState<W> {
             type: type,
           ),
         );
-        Log.d(tag: _tag, message: _moduleList.toString());
       }
     } catch (exception) {
       Log.e(tag: _tag, message: exception.toString());
@@ -257,7 +252,6 @@ final class OSRuntimeState<W extends OSRuntime> extends OSBaseState<W> {
     String method, [
     dynamic arguments,
   ]) async {
-    Log.d(tag: _tag, message: 'execModuleAsyncMethodCall');
     // 判断模块列表是否非空
     if (_moduleList.isNotEmpty) {
       // 遍历模块列表

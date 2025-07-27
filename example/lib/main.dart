@@ -13,7 +13,10 @@ class MyApp extends StatelessWidget {
         '/': (context) => MyHomePage(),
         '/test': (context) => TestPage(),
       },
-      builder: FreeFEOS.builder,
+      builder: (context, child) {
+        child = FreeFEOS.builder(context, child);
+        return child;
+      },
       theme: ThemeData(
         useMaterial3: true,
         brightness: MediaQuery.platformBrightnessOf(context),
@@ -40,8 +43,14 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        // backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         title: Text("FreeFEOS Demo"),
-        actions: [SizedBox(width: 103)],
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(right: 99),
+            child: IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
+          ),
+        ],
       ),
       body: Center(
         child: Column(

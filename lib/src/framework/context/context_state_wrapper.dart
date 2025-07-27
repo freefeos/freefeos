@@ -25,4 +25,9 @@ abstract class ContextStateWrapper<T extends ContextThemeWrapper>
 
   @override
   Resources get resources => widget.resources;
+
+  /// 获取基本上下文
+  Context get baseContext {
+    return widget.baseContext;
+  }
 }

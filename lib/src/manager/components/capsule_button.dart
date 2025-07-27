@@ -36,10 +36,8 @@ class CapsuleButton extends StatelessWidget {
           child: Align(
             alignment: Alignment.topRight,
             child: Padding(
-              padding: EdgeInsets.only(
-                right: 16.0,
-                top:
-                    (Theme.of(context).appBarTheme.toolbarHeight ??
+              padding: EdgeInsets.all(
+                (Theme.of(context).appBarTheme.toolbarHeight ??
                         kToolbarHeight - 32.0) /
                     2,
               ),
@@ -52,7 +50,7 @@ class CapsuleButton extends StatelessWidget {
                       : Colors.black.withAlpha((255 * 0.15).toInt()),
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
-                    width: 0.2,
+                    width: 0.5,
                     color: Theme.of(context).brightness == Brightness.light
                         ? Colors.black.withAlpha(25)
                         : Colors.white.withAlpha(25),
