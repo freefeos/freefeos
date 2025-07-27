@@ -50,10 +50,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       bottom: 8,
                     ),
                     child: Tooltip(
-                      message:
-                          AppLocalizations.of(
-                            context,
-                          ).indexHomeStatuesCardTooltip,
+                      message: AppLocalizations.of(
+                        context,
+                      ).indexHomeStatuesCardTooltip,
                       child: ListTile(
                         leading: Icon(
                           widget.isExhibit
@@ -65,39 +64,38 @@ class _HomeScreenState extends State<HomeScreen> {
                               ? 'FreeFEOS'
                               : hvm.getStateCardTitle(context, ability),
                         ),
-                        subtitle:
-                            widget.isExhibit
-                                ? Text(
-                                  'FreeFEOS 是一款综合工具类小程序, 使用MPFlutter框架进行开发, 为用户提供时钟、计算器等功能.',
-                                )
-                                : Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      AppLocalizations.of(
-                                        context,
-                                      ).indexHomeStatuesCardAppId(
-                                        ability.getAppId,
-                                      ),
+                        subtitle: widget.isExhibit
+                            ? Text(
+                                'FreeFEOS 是一款综合工具类小程序, 使用MPFlutter框架进行开发, 为用户提供时钟、计算器等功能.',
+                              )
+                            : Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    AppLocalizations.of(
+                                      context,
+                                    ).indexHomeStatuesCardAppId(
+                                      ability.getAppId,
                                     ),
-                                    Text(
-                                      AppLocalizations.of(
-                                        context,
-                                      ).indexHomeStatuesCardEnvVersion(
-                                        hvm.getStateCardEnv(context, ability),
-                                      ),
+                                  ),
+                                  Text(
+                                    AppLocalizations.of(
+                                      context,
+                                    ).indexHomeStatuesCardEnvVersion(
+                                      hvm.getStateCardEnv(context, ability),
                                     ),
-                                    Text(
-                                      AppLocalizations.of(
-                                        context,
-                                      ).indexHomeStatuesCardAppVersion(
-                                        ability.getVersionName,
-                                      ),
+                                  ),
+                                  Text(
+                                    AppLocalizations.of(
+                                      context,
+                                    ).indexHomeStatuesCardAppVersion(
+                                      ability.getVersionName,
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
+                              ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -121,10 +119,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     children: [
                       Tooltip(
-                        message:
-                            AppLocalizations.of(
-                              context,
-                            ).indexHomeInfoCardHostAppTooltip,
+                        message: AppLocalizations.of(
+                          context,
+                        ).indexHomeInfoCardHostAppTooltip,
                         child: ListTile(
                           leading: const Icon(Icons.app_shortcut),
                           title: Text(
@@ -146,10 +143,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       Tooltip(
-                        message:
-                            AppLocalizations.of(
-                              context,
-                            ).indexHomeInfoCardBaseSdkTooltip,
+                        message: AppLocalizations.of(
+                          context,
+                        ).indexHomeInfoCardBaseSdkTooltip,
                         child: ListTile(
                           leading: const Icon(Icons.code),
                           title: Text(
@@ -171,10 +167,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       Tooltip(
-                        message:
-                            AppLocalizations.of(
-                              context,
-                            ).indexHomeInfoCardVersionTooltip,
+                        message: AppLocalizations.of(
+                          context,
+                        ).indexHomeInfoCardVersionTooltip,
                         child: ListTile(
                           leading: const Icon(Icons.web),
                           title: Text(
@@ -212,19 +207,21 @@ class _HomeScreenState extends State<HomeScreen> {
                   ), // 裁剪右上角角标多余部分 12 为与OutlineCard相同大小的圆角
                   child: Banner(
                     shadow: BoxShadow(),
-                    message:
-                        AppLocalizations.of(context).indexHomeAppsCardBanner,
+                    message: AppLocalizations.of(
+                      context,
+                    ).indexHomeAppsCardBanner,
                     color: Theme.of(context).colorScheme.primary,
-                    textStyle: (Theme.of(context).textTheme.labelSmall ??
-                            TextStyle(
-                              color: Colors.white,
-                              fontSize: 10.2,
-                              fontWeight: FontWeight.w900,
-                              height: 1.0,
-                            ))
-                        .copyWith(
-                          color: Theme.of(context).colorScheme.onPrimary,
-                        ),
+                    textStyle:
+                        (Theme.of(context).textTheme.labelSmall ??
+                                TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 10.2,
+                                  fontWeight: FontWeight.w900,
+                                  height: 1.0,
+                                ))
+                            .copyWith(
+                              color: Theme.of(context).colorScheme.onPrimary,
+                            ),
                     location: BannerLocation.topEnd, // 角标位于右上角
                     child: Card.filled(
                       margin: EdgeInsets.zero,
@@ -251,14 +248,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                       AppLocalizations.of(
                                         context,
                                       ).indexHomeAppsCardTitle,
-                                      style: Theme.of(
-                                        context,
-                                      ).textTheme.titleMedium?.copyWith(
-                                        color:
-                                            Theme.of(
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium
+                                          ?.copyWith(
+                                            color: Theme.of(
                                               context,
                                             ).colorScheme.primary,
-                                      ),
+                                          ),
                                     ),
                                   ],
                                 ),
@@ -270,12 +267,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Expanded(
                                       flex:
                                           AppUtils.getNavValue(
-                                                    context,
-                                                    'showBack',
-                                                  ) ==
-                                                  true
-                                              ? 1
-                                              : 0,
+                                                context,
+                                                'showBack',
+                                              ) ==
+                                              true
+                                          ? 1
+                                          : 0,
                                       child: Offstage(
                                         offstage:
                                             AppUtils.getNavValue(
@@ -291,22 +288,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                             },
                                             label: Text(
                                               '返回',
-                                              style: Theme.of(
-                                                context,
-                                              ).textTheme.labelMedium?.copyWith(
-                                                fontWeight: FontWeight.bold,
-                                                color:
-                                                    Theme.of(
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .labelMedium
+                                                  ?.copyWith(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Theme.of(
                                                       context,
                                                     ).colorScheme.primary,
-                                              ),
+                                                  ),
                                             ),
                                             icon: Icon(
                                               Icons.arrow_back_ios_new,
-                                              color:
-                                                  Theme.of(
-                                                    context,
-                                                  ).colorScheme.primary,
+                                              color: Theme.of(
+                                                context,
+                                              ).colorScheme.primary,
                                             ),
                                           ),
                                         ),
@@ -327,16 +323,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Expanded(
                                       flex: 1,
                                       child: Tooltip(
-                                        message:
-                                            AppLocalizations.of(
-                                              context,
-                                            ).indexHomeAppsCardEKitAppTooltip,
+                                        message: AppLocalizations.of(
+                                          context,
+                                        ).indexHomeAppsCardEKitAppTooltip,
                                         child: Theme(
                                           data: Theme.of(context).copyWith(
                                             colorScheme: ColorScheme.fromSeed(
                                               seedColor: V.colors.ecosedPurple,
-                                              brightness:
-                                                  Theme.of(context).brightness,
+                                              brightness: Theme.of(
+                                                context,
+                                              ).brightness,
                                             ),
                                           ),
                                           child: Builder(
@@ -366,18 +362,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       ?.copyWith(
                                                         fontWeight:
                                                             FontWeight.bold,
-                                                        color:
-                                                            Theme.of(context)
-                                                                .colorScheme
-                                                                .primary,
+                                                        color: Theme.of(
+                                                          context,
+                                                        ).colorScheme.primary,
                                                       ),
                                                 ),
                                                 icon: Icon(
                                                   Icons.keyboard_command_key,
-                                                  color:
-                                                      Theme.of(
-                                                        context,
-                                                      ).colorScheme.primary,
+                                                  color: Theme.of(
+                                                    context,
+                                                  ).colorScheme.primary,
                                                 ),
                                               );
                                             },
@@ -392,16 +386,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Expanded(
                                       flex: 1,
                                       child: Tooltip(
-                                        message:
-                                            AppLocalizations.of(
-                                              context,
-                                            ).indexHomeAppsCardWeChatAppTooltip,
+                                        message: AppLocalizations.of(
+                                          context,
+                                        ).indexHomeAppsCardWeChatAppTooltip,
                                         child: Theme(
                                           data: Theme.of(context).copyWith(
                                             colorScheme: ColorScheme.fromSeed(
                                               seedColor: V.colors.wechatGreen,
-                                              brightness:
-                                                  Theme.of(context).brightness,
+                                              brightness: Theme.of(
+                                                context,
+                                              ).brightness,
                                             ),
                                           ),
                                           child: Builder(
@@ -431,18 +425,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       ?.copyWith(
                                                         fontWeight:
                                                             FontWeight.bold,
-                                                        color:
-                                                            Theme.of(context)
-                                                                .colorScheme
-                                                                .primary,
+                                                        color: Theme.of(
+                                                          context,
+                                                        ).colorScheme.primary,
                                                       ),
                                                 ),
                                                 icon: Icon(
                                                   Icons.wechat,
-                                                  color:
-                                                      Theme.of(
-                                                        context,
-                                                      ).colorScheme.primary,
+                                                  color: Theme.of(
+                                                    context,
+                                                  ).colorScheme.primary,
                                                 ),
                                               );
                                             },
@@ -457,10 +449,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           Divider(height: 1),
                           Tooltip(
-                            message:
-                                AppLocalizations.of(
-                                  context,
-                                ).indexHomeAppsCardClockAppTooltip,
+                            message: AppLocalizations.of(
+                              context,
+                            ).indexHomeAppsCardClockAppTooltip,
                             child: ListTile(
                               leading: const Icon(Icons.access_time),
                               title: Text(
@@ -472,23 +463,20 @@ class _HomeScreenState extends State<HomeScreen> {
                               contentPadding: const EdgeInsets.symmetric(
                                 horizontal: 16,
                               ),
-                              onTap:
-                                  () => Navigator.of(context).pushNamed(
-                                    AppsPage.route,
-                                    arguments: AppUtils.setNavValue({
-                                      AppsPage.pageArgument: AppsPage.clock,
-                                      AppsPage.exhibitArgumgent:
-                                          widget.isExhibit,
-                                    }),
-                                  ),
+                              onTap: () => Navigator.of(context).pushNamed(
+                                AppsPage.route,
+                                arguments: AppUtils.setNavValue({
+                                  AppsPage.pageArgument: AppsPage.clock,
+                                  AppsPage.exhibitArgumgent: widget.isExhibit,
+                                }),
+                              ),
                             ),
                           ),
                           Divider(height: 1, indent: 16, endIndent: 16),
                           Tooltip(
-                            message:
-                                AppLocalizations.of(
-                                  context,
-                                ).indexHomeAppsCardCalculatorAppTooltip,
+                            message: AppLocalizations.of(
+                              context,
+                            ).indexHomeAppsCardCalculatorAppTooltip,
                             child: ListTile(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.only(
@@ -506,16 +494,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               contentPadding: const EdgeInsets.symmetric(
                                 horizontal: 16,
                               ),
-                              onTap:
-                                  () => Navigator.of(context).pushNamed(
-                                    AppsPage.route,
-                                    arguments: AppUtils.setNavValue({
-                                      AppsPage.pageArgument:
-                                          AppsPage.calculator,
-                                      AppsPage.exhibitArgumgent:
-                                          widget.isExhibit,
-                                    }),
-                                  ),
+                              onTap: () => Navigator.of(context).pushNamed(
+                                AppsPage.route,
+                                arguments: AppUtils.setNavValue({
+                                  AppsPage.pageArgument: AppsPage.calculator,
+                                  AppsPage.exhibitArgumgent: widget.isExhibit,
+                                }),
+                              ),
                             ),
                           ),
                         ],

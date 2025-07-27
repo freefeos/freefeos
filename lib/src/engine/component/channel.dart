@@ -18,14 +18,13 @@ final class ComponentChannel {
     _component = handler;
   }
 
-  /// 获取上下文
-  Context getContext() {
-    return binding.getContext();
-  }
-
   /// 获取组件ID
   String getId() {
     return component.id;
+  }
+
+  Context getContext() {
+    return binding.getContext();
   }
 
   /// 获取引擎

@@ -227,10 +227,9 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                                                 Expanded(
                                                   child: Text(
                                                     '历史记录',
-                                                    style:
-                                                        Theme.of(
-                                                          context,
-                                                        ).textTheme.titleMedium,
+                                                    style: Theme.of(
+                                                      context,
+                                                    ).textTheme.titleMedium,
                                                   ),
                                                 ),
                                                 IconButton(
@@ -247,11 +246,10 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                                                             Tooltip(
                                                               message: '取消',
                                                               child: TextButton(
-                                                                onPressed:
-                                                                    () =>
-                                                                        Navigator.of(
-                                                                          context,
-                                                                        ).pop(),
+                                                                onPressed: () =>
+                                                                    Navigator.of(
+                                                                      context,
+                                                                    ).pop(),
                                                                 child: Text(
                                                                   '取消',
                                                                 ),
@@ -259,35 +257,38 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                                                             ),
                                                             Tooltip(
                                                               message: '确定',
-                                                              child: Consumer<
-                                                                CalculatorViewModel
-                                                              >(
-                                                                builder: (
-                                                                  context,
-                                                                  cvm,
-                                                                  _,
-                                                                ) {
-                                                                  return TextButton(
-                                                                    onPressed: () {
-                                                                      cvm.clearHistory(); // 清除历史记录
-                                                                      for (
-                                                                        int i =
-                                                                            0;
-                                                                        i < 2;
-                                                                        i++
-                                                                      ) {
-                                                                        // 执行两次,一次关对话框,一次关底部弹出菜单
-                                                                        Navigator.of(
+                                                              child:
+                                                                  Consumer<
+                                                                    CalculatorViewModel
+                                                                  >(
+                                                                    builder:
+                                                                        (
                                                                           context,
-                                                                        ).pop();
-                                                                      }
-                                                                    },
-                                                                    child: Text(
-                                                                      '确定',
-                                                                    ),
-                                                                  );
-                                                                },
-                                                              ),
+                                                                          cvm,
+                                                                          _,
+                                                                        ) {
+                                                                          return TextButton(
+                                                                            onPressed: () {
+                                                                              cvm.clearHistory(); // 清除历史记录
+                                                                              for (
+                                                                                int
+                                                                                i = 0;
+                                                                                i <
+                                                                                    2;
+                                                                                i++
+                                                                              ) {
+                                                                                // 执行两次,一次关对话框,一次关底部弹出菜单
+                                                                                Navigator.of(
+                                                                                  context,
+                                                                                ).pop();
+                                                                              }
+                                                                            },
+                                                                            child: Text(
+                                                                              '确定',
+                                                                            ),
+                                                                          );
+                                                                        },
+                                                                  ),
                                                             ),
                                                           ],
                                                         );
@@ -307,17 +308,12 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                                           ),
                                           Divider(height: 1),
                                           Expanded(
-                                            child: Consumer<
-                                              CalculatorViewModel
-                                            >(
+                                            child: Consumer<CalculatorViewModel>(
                                               builder: (context, cvm, _) {
                                                 return ListView.builder(
                                                   itemCount:
                                                       cvm.getHistory.length,
-                                                  itemBuilder: (
-                                                    context,
-                                                    index,
-                                                  ) {
+                                                  itemBuilder: (context, index) {
                                                     return ListTile(
                                                       onLongPress: () {},
                                                       title: Text(

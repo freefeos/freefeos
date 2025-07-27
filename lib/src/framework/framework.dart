@@ -12,11 +12,12 @@ import '../common/common.dart';
 
 /// Context 上下文
 part 'context/context_impl.dart';
-part 'context/context_state_wrapper.dart';
-part 'context/context_stateful_wrapper.dart';
-part 'context/context_stateless_wrapper.dart';
+part 'context/context_interface.dart';
+part 'context/context_state_proxy.dart';
+part 'context/context_widget_mixin.dart';
 part 'context/context_wrapper.dart';
 part 'context/context.dart';
+part 'context/wrapper_construct.dart';
 
 /// Layout 布局
 part 'layout/layout.dart';
@@ -41,3 +42,9 @@ part 'service/service.dart';
 
 /// Want 意图
 part 'want/want.dart';
+
+/// Widget 组件
+part 'widget/context_basic_wrapper.dart';
+part 'widget/context_state_wrapper.dart';
+part 'widget/context_stateful_wrapper.dart';
+part 'widget/context_stateless_wrapper.dart';

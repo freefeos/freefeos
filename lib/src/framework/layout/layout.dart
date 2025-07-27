@@ -1,6 +1,6 @@
 part of '../framework.dart';
 
-final class Layout extends Widget {
+final class Layout extends ContextBasicWrapper {
   const Layout({super.key, required this.layout});
 
   /// Widget

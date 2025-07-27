@@ -32,9 +32,4 @@ final class ContextImpl implements Context {
   Resources get resources {
     return _resources;
   }
-
-  @override
-  Context get baseContext {
-    return this;
-  }
 }

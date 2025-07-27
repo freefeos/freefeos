@@ -124,11 +124,10 @@ final class AnsiParser implements IAnsiParser {
         color: _foregroundColor,
         backgroundColor: _backgroundColor,
       ),
-      recognizer:
-          LongPressGestureRecognizer()
-            ..onLongPress = () {
-              return copy(text);
-            },
+      recognizer: LongPressGestureRecognizer()
+        ..onLongPress = () {
+          return copy(text);
+        },
     );
   }
 }

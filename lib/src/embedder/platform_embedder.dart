@@ -34,8 +34,8 @@ final class PlatformEmbedder extends Service implements FreeFEOSCompat {
   AppBarTheme get getAppBarTheme {
     return _invoke<AppBarTheme>(
       donut: (linker) => linker.getAppBarTheme,
-      origin:
-          () => AppBarTheme(centerTitle: false, toolbarHeight: kToolbarHeight),
+      origin: () =>
+          AppBarTheme(centerTitle: false, toolbarHeight: kToolbarHeight),
       error: (exception) {
         Log.e(tag: tag, message: exception.toString());
         return AppBarTheme();

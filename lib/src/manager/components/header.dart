@@ -100,83 +100,79 @@ class _HeaderState extends State<Header> {
         transitionBuilder: (Widget child, Animation<double> animation) {
           return FadeTransition(opacity: animation, child: child);
         },
-        child:
-            <Widget>[
-              Center(
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Offstage(
-                      offstage: !widget.showBack,
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 12),
-                        child: FloatingActionButton.small(
-                          elevation: 0.0,
-                          focusElevation: 0.0,
-                          hoverElevation: 0.0,
-                          highlightElevation: 0.0,
-                          disabledElevation: 0.0,
-                          tooltip: 'Back',
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Icon(Icons.arrow_back_ios_new),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 6),
-                      child: Icon(
-                        getIconData,
-                        size: 38,
-                        color: getColor(context),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 6),
-                      child: Text(
-                        getTitle(context),
-                        style: Theme.of(context).textTheme.headlineMedium
-                            ?.copyWith(color: getColor(context)),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Scrollbar(
-                  controller: _scrollController,
-                  child: SingleChildScrollView(
-                    controller: _scrollController,
-                    padding: EdgeInsets.zero,
-                    child: Padding(
-                      padding: EdgeInsets.all(16),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            widget.displayText ?? '',
-                            style: TextStyle(fontSize: 20),
-                          ),
-                          SizedBox(height: 12),
-                          Text(
-                            widget.outputText ?? '',
-                            style: TextStyle(
-                              fontSize: 36,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
+        child: <Widget>[
+          Center(
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Offstage(
+                  offstage: !widget.showBack,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: FloatingActionButton.small(
+                      elevation: 0.0,
+                      focusElevation: 0.0,
+                      hoverElevation: 0.0,
+                      highlightElevation: 0.0,
+                      disabledElevation: 0.0,
+                      tooltip: 'Back',
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Icon(Icons.arrow_back_ios_new),
                     ),
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 6),
+                  child: Icon(getIconData, size: 38, color: getColor(context)),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 6),
+                  child: Text(
+                    getTitle(context),
+                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                      color: getColor(context),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: Scrollbar(
+              controller: _scrollController,
+              child: SingleChildScrollView(
+                controller: _scrollController,
+                padding: EdgeInsets.zero,
+                child: Padding(
+                  padding: EdgeInsets.all(16),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        widget.displayText ?? '',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      SizedBox(height: 12),
+                      Text(
+                        widget.outputText ?? '',
+                        style: TextStyle(
+                          fontSize: 36,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            ][getCount],
+            ),
+          ),
+        ][getCount],
       ),
     );
   }

@@ -158,11 +158,10 @@ class _SettingScreenState extends State<SettingScreen> {
                         children: [
                           Icon(
                             Icons.keyboard_command_key,
-                            color:
-                                ColorScheme.fromSeed(
-                                  seedColor: V.colors.ecosedPurple,
-                                  brightness: Theme.of(context).brightness,
-                                ).primary,
+                            color: ColorScheme.fromSeed(
+                              seedColor: V.colors.ecosedPurple,
+                              brightness: Theme.of(context).brightness,
+                            ).primary,
                           ),
                           const Icon(Icons.keyboard_arrow_right),
                         ],

@@ -33,10 +33,9 @@ final class LogcatViewModel with ViewModel implements ILogcatViewModel {
         ),
       );
     }
-    _filteredBuffer =
-        _renderedBuffer
-            .where((it) => it.level.value >= Level.CONFIG.value)
-            .toList();
+    _filteredBuffer = _renderedBuffer
+        .where((it) => it.level.value >= Level.CONFIG.value)
+        .toList();
   }
 
   /// 获取日志列表长度

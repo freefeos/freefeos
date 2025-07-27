@@ -50,10 +50,10 @@ final class ModuleViewModel with ViewModel implements IModuleViewModel {
               context,
               () => showDetail(
                 context,
-                _componentList[i].title,
-                _componentList[i].id,
+                _moduleList[i].title,
+                _moduleList[i].id,
                 _getIcon(_moduleList, i),
-                _componentList[i].description,
+                _moduleList[i].description,
               ),
               _moduleList[i].title,
               _getIcon(_moduleList, i),

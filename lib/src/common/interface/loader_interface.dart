@@ -1,6 +1,6 @@
 part of '../common.dart';
 
-class FreeFEOSLoader extends PlatformInterface {
+abstract base class FreeFEOSLoader extends PlatformInterface {
   FreeFEOSLoader() : super(token: _token);
 
   /// 接口标志

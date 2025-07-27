@@ -1,10 +1,7 @@
 part of '../framework.dart';
 
-abstract base class ContextStateWrapper<T extends ContextStatefulWrapper>
-    extends State<T>
-    implements Context {
-  ContextStateWrapper();
-
+base mixin ContextStateProxy<T extends ContextStatefulWrapper> on State<T>
+    implements IContent {
   @override
   void bindService(Want want, ServiceConnection connect) {
     return widget.bindService(want, connect);
@@ -30,9 +27,23 @@ abstract base class ContextStateWrapper<T extends ContextStatefulWrapper>
     return widget.resources;
   }
 
-  /// 获取基本上下文
+  @override
+  void attachBaseContext(Context base) {
+    return widget.attachBaseContext(base);
+  }
+
+  @override
+  void attachBuildContext(BuildContext context) {
+    return widget.attachBuildContext(context);
+  }
+
   @override
   Context get baseContext {
     return widget.baseContext;
+  }
+
+  @override
+  BuildContext get buildContext {
+    return widget.buildContext;
   }
 }

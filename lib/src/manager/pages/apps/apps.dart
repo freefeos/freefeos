@@ -68,13 +68,12 @@ class _AppsPageState extends State<AppsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          AppUtils.getNavValue(context, AppsPage.exhibitArgumgent) != true
-              ? AppBar(
-                centerTitle: true,
-                title: NavTitle(navController: _navController),
-              )
-              : null,
+      appBar: AppUtils.getNavValue(context, AppsPage.exhibitArgumgent) != true
+          ? AppBar(
+              centerTitle: true,
+              title: NavTitle(navController: _navController),
+            )
+          : null,
       body: NavHost(navController: _navController),
     );
   }

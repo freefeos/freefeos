@@ -61,8 +61,9 @@ class _EcosedScreenState extends State<EcosedScreen> {
                           ),
                           child: Icon(
                             Icons.keyboard_command_key,
-                            color:
-                                Theme.of(context).colorScheme.primaryContainer,
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.primaryContainer,
                           ),
                         ),
                         contentPadding: const EdgeInsets.symmetric(

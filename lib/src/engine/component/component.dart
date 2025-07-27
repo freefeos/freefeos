@@ -1,7 +1,7 @@
 part of '../engine.dart';
 
 abstract base class OSComponent extends ContextWrapper {
-  OSComponent({bool? attach});
+  OSComponent({super.attach = false});
 
   /// 组件通道
   late ComponentChannel _componentChannel;
@@ -26,7 +26,7 @@ abstract base class OSComponent extends ContextWrapper {
     // 初始化组件通道
     _componentChannel = ComponentChannel(binding: binding, component: this);
     // 附加基础上下文
-    // attachBaseContext(_componentChannel.getContext());
+    attachBaseContext(_componentChannel.getContext());
     // 获取引擎
     _engine = _componentChannel.getEngine();
     // 设置方法回调

@@ -1,7 +1,7 @@
 part of '../framework.dart';
 
 abstract base class ContextStatefulWrapper extends StatefulWidget
-    with ContextWrapper {
+    with ContextWidgetMixin {
   const ContextStatefulWrapper({super.key});
 
   @protected
