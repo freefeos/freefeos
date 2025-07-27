@@ -10,6 +10,21 @@ final class IndexPage extends UiPage {
 }
 
 class _IndexPageState extends State<IndexPage> {
+  DateTime? _lastBackPressTime;
+
+  Future<bool> _shouldExit() async {
+    final now = DateTime.now();
+    if (_lastBackPressTime == null ||
+        now.difference(_lastBackPressTime!) > const Duration(seconds: 2)) {
+      _lastBackPressTime = now;
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('再按一次退出应用')));
+      return false;
+    }
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return CapsuleButton(
@@ -20,11 +35,19 @@ class _IndexPageState extends State<IndexPage> {
       onFirstTap: () {
         Navigator.of(context).pushNamed(ManagerPage.route);
       },
-      onLastTap: () {},
-      child: Consumer<OSAbility>(
-        builder: (context, ability, child) {
-          return ability.getChild ?? const Placeholder();
-        },
+      onLastTap: () async {
+        final shouldExit = await _shouldExit();
+        if (shouldExit) {
+          // SystemNavigator.pop();
+        }
+      },
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Consumer<OSAbility>(
+          builder: (context, ability, child) {
+            return ability.getChild ?? const Placeholder();
+          },
+        ),
       ),
     );
   }

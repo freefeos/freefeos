@@ -7,7 +7,7 @@ import 'src/common/common.dart';
 
 /// 平台插件注册
 final class FreeFEOS {
-  const FreeFEOS();
+  const FreeFEOS._();
 
   /// 平台插件注册
   ///

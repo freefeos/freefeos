@@ -20,6 +20,12 @@ class CapsuleButton extends StatelessWidget {
   final VoidCallback onLastTap;
   final Widget child;
 
+  /// 胶囊按钮宽度
+  final double _width = 87.0;
+
+  /// 胶囊按钮高度
+  final double _height = 32.0;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -38,12 +44,12 @@ class CapsuleButton extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.all(
                 (Theme.of(context).appBarTheme.toolbarHeight ??
-                        kToolbarHeight - 32.0) /
+                        kToolbarHeight - _height) /
                     2,
               ),
               child: Container(
-                width: 87.0,
-                height: 32.0,
+                width: _width,
+                height: _height,
                 decoration: BoxDecoration(
                   color: Theme.of(context).brightness == Brightness.light
                       ? Colors.white.withAlpha((255 * 0.6).toInt())

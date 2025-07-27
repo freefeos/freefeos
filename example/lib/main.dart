@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// 导入 FreeFEOS 库
 import 'package:freefeos/freefeos.dart';
 
 void main() => runApp(const MyApp());
@@ -10,15 +11,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/': (context) => MyHomePage(),
-        '/test': (context) => TestPage(),
+        '/': (context) => const HomePage(),
+        '/details': (context) => const DetailsPage(),
       },
-      builder: (context, child) {
-        child = FreeFEOS.builder(context, child);
-        return child;
-      },
+      // 关键在这里, 一行代码接入 FreeFEOS 库
+      builder: FreeFEOS.builder,
       theme: ThemeData(
-        useMaterial3: true,
         brightness: MediaQuery.platformBrightnessOf(context),
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.blue,
@@ -29,28 +27,22 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _HomePageState extends State<HomePage> {
   int _counter = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-        title: Text("FreeFEOS Demo"),
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(right: 99),
-            child: IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
-          ),
-        ],
+        title: const Text('FreeFEOS Demo'),
+        actions: const [CapsulePlaceholder()],
       ),
       body: Center(
         child: Column(
@@ -59,8 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
             const Text('You have pushed the button this many times:'),
             Text('$_counter', style: const TextStyle(fontSize: 32)),
             FilledButton(
-              onPressed: () => Navigator.of(context).pushNamed('/test'),
-              child: Text('路由测试'),
+              onPressed: () => Navigator.of(context).pushNamed('/details'),
+              child: const Text('路由测试'),
             ),
           ],
         ),
@@ -73,11 +65,41 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class TestPage extends StatelessWidget {
-  const TestPage({super.key});
+class DetailsPage extends StatelessWidget {
+  const DetailsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text('路由测试')));
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('路由测试'),
+        actions: const [CapsulePlaceholder()],
+      ),
+      body: Center(
+        child: FilledButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: const Text('返回'),
+        ),
+      ),
+    );
+  }
+}
+
+/// 胶囊按钮占位符示例, 用于顶部应用栏Actino按钮占位
+class CapsulePlaceholder extends StatelessWidget {
+  const CapsulePlaceholder({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    /// 胶囊按钮宽度为87.0, 胶囊按钮高度为32.0
+    /// 胶囊按钮填充数值计算方式:
+    /// (顶部应用栏默认高度 - 胶囊按钮高度) / 2
+    /// 由于顶部应用栏默认高度为56, 所以原式为:
+    /// (56.0 - 32.0) / 2 = 12.0
+    /// 所以 width=87.0, height=32.0, padding=12.0
+    return const Padding(
+      padding: EdgeInsets.all(12.0),
+      child: SizedBox(width: 87.0, height: 32.0),
+    );
   }
 }
