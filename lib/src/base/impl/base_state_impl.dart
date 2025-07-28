@@ -1,7 +1,7 @@
 part of '../base.dart';
 
 base class OSBaseState<W extends OSBase> extends ContextStateWrapper<W>
-    with BaseEntry, BridgeMixin, RuntimeMixin, ViewModel
+    with BaseEntry, BridgeMixin, RuntimeMixin
     implements OSModule, FreeFEOSSystem, IBase {
   OSBaseState();
 
@@ -64,7 +64,7 @@ base class OSBaseState<W extends OSBase> extends ContextStateWrapper<W>
     SdkInvoker sdkInstance,
     Widget? child,
   ) {
-    return this;
+    return ViewModel();
   }
 
   /// 构建应用
@@ -75,7 +75,7 @@ base class OSBaseState<W extends OSBase> extends ContextStateWrapper<W>
 
   @override
   Future<T?> getComponentsList<T>() {
-    return execModuleAsyncMethodCall(
+    return execModuleAsyncMethodCall<T>(
       resources.getValues(value: V.channels.engineChannel),
       resources.getValues(value: V.methods.engineGetEngineModules),
       {'id': resources.getValues(value: V.channels.engineChannel)},
@@ -116,17 +116,10 @@ base class OSBaseState<W extends OSBase> extends ContextStateWrapper<W>
       (() async {
         try {
           // 初始化日志
-          Log.init();
-          // 打印横幅
-          Log.i(
-            tag: _tag,
-            message: utf8.decode(
-              base64Decode(resources.getValues(value: V.drawable.banner)),
-            ),
-          );
+          await Log.init();
           // 初始化引擎
           await initEngineBridge().then(
-            (_) => bridgeScope.onCreateEngine(baseContext),
+            (_) => bridgeScope?.onCreateEngine(baseContext),
             onError: (error) => Log.e(tag: _tag, message: error.toString()),
           );
           // 初始化应用
@@ -146,8 +139,19 @@ base class OSBaseState<W extends OSBase> extends ContextStateWrapper<W>
 
   @override
   void dispose() {
+    if (_initializationFlag) {
+      (() async {
+        await Log.dispose();
+        await bridgeScope?.onDestroyEngine();
+      })().then((_) {
+        if (mounted) {
+          setState(() {
+            _initializationFlag = false;
+          });
+        }
+      });
+    }
     super.dispose();
-    bridgeScope.onDestroyEngine();
   }
 
   @override

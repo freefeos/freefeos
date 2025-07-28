@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 // 导入 FreeFEOS 库
 import 'package:freefeos/freefeos.dart';
@@ -9,19 +10,35 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: {
-        '/': (context) => const HomePage(),
-        '/details': (context) => const DetailsPage(),
-      },
-      // 关键在这里, 一行代码接入 FreeFEOS 库
-      builder: FreeFEOS.builder,
-      theme: ThemeData(
-        brightness: MediaQuery.platformBrightnessOf(context),
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.blue,
+    return DevicePreview(
+      enabled: true,
+      builder: (context) => MaterialApp(
+        routes: {
+          '/': (context) => const HomePage(),
+          '/details': (context) => const DetailsPage(),
+        },
+        builder: [
+          // 生命周期监听器, 用于调试 device_preview 的 bug, 与 freefeos 无关.
+          LifecycleListener.builder,
+          // bug: https://github.com/aloisdeniel/flutter_device_preview/issues/252
+          // device_preview 的 Bug, 导致父级 Widget 生命周期错乱, initState会执行两次,
+          // 而且会在 dispose() 后继续执行代码, 导致抛出异常.
+          // 如果与 device_preview 同时使用, 请将 freefeos 置于其后方.
+          DevicePreview.appBuilder,
+          // 关键在这里, 一行代码接入 FreeFEOS 库
+          FreeFEOS.builder,
+        ].toBuilder,
+        theme: ThemeData(
           brightness: MediaQuery.platformBrightnessOf(context),
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.blue,
+            brightness: MediaQuery.platformBrightnessOf(context),
+          ),
         ),
+        locale: DevicePreview.locale(context),
+        // 为了与 device_preview 兼容, 需要将 useInheritedMediaQuery 设置为 true.
+        // ignore: deprecated_member_use
+        useInheritedMediaQuery: true,
       ),
     );
   }
@@ -85,8 +102,20 @@ class DetailsPage extends StatelessWidget {
   }
 }
 
+/// 多构造器实现示例
+extension MultiBuilder on List<TransitionBuilder> {
+  TransitionBuilder get toBuilder {
+    return (context, child) {
+      for (var builder in this) {
+        child = builder(context, child);
+      }
+      return Container(child: child);
+    };
+  }
+}
+
 /// 胶囊按钮占位符示例, 用于顶部应用栏Actino按钮占位
-class CapsulePlaceholder extends StatelessWidget {
+final class CapsulePlaceholder extends StatelessWidget {
   const CapsulePlaceholder({super.key});
 
   @override
@@ -101,5 +130,50 @@ class CapsulePlaceholder extends StatelessWidget {
       padding: EdgeInsets.all(12.0),
       child: SizedBox(width: 87.0, height: 32.0),
     );
+  }
+}
+
+/// 生命周期监听器, 用于调试 device_preview 的 bug, 与 freefeos 无关.
+final class LifecycleListener extends StatefulWidget {
+  const LifecycleListener({super.key, required this.child});
+
+  final Widget? child;
+
+  static TransitionBuilder get builder {
+    return (context, child) => LifecycleListener(child: child);
+  }
+
+  @override
+  State<LifecycleListener> createState() => _LifecycleListenerState();
+}
+
+final class _LifecycleListenerState extends State<LifecycleListener> {
+  @override
+  void initState() {
+    super.initState();
+    debugPrint("initState#${DateTime.now()}");
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    debugPrint("didChangeDependencies#${DateTime.now()}");
+  }
+
+  @override
+  void didUpdateWidget(covariant LifecycleListener oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    debugPrint("didUpdateWidget#${DateTime.now()}");
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    debugPrint("dispose#${DateTime.now()}");
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(child: widget.child);
   }
 }

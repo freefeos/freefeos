@@ -104,69 +104,81 @@ final class OSRuntimeState<W extends OSRuntime> extends OSBaseState<W> {
 
   /// 初始化运行时
   Future<void> _initRuntime() async {
-    try {
-      final String base = resources.getValues(value: V.channels.baseChannel);
-      final String runtime = resources.getValues(
-        value: V.channels.runtimeChannel,
-      );
-      final String engine = resources.getValues(
-        value: V.channels.engineChannel,
-      );
-      // 初始化运行时
-      for (var element in [this, super.engine]) {
-        // 类型
-        ModuleType type = ModuleType.unknown;
-        if (element.moduleChannel == base) {
-          type = ModuleType.base;
-        } else if (element.moduleChannel == runtime) {
-          type = ModuleType.runtime;
-        } else if (element.moduleChannel == engine) {
-          type = ModuleType.engine;
-        } else {
-          type = ModuleType.unknown;
-        }
-        // 添加到内置模块列表
-        _moduleList.add(element);
-        // 添加到模块详细信息列表
-        _moduleDetailsList.add(
-          ModuleDetails(
-            id: element.moduleChannel,
-            title: element.moduleName,
-            description: element.moduleDescription,
-            type: type,
-          ),
+    if (_moduleList.isEmpty && _moduleDetailsList.isEmpty) {
+      try {
+        final String base = resources.getValues(value: V.channels.baseChannel);
+        final String runtime = resources.getValues(
+          value: V.channels.runtimeChannel,
         );
+        final String engine = resources.getValues(
+          value: V.channels.engineChannel,
+        );
+        // 初始化运行时
+        for (var element in [this, ?super.engine]) {
+          // 类型
+          ModuleType type = ModuleType.unknown;
+          if (element.moduleChannel == base) {
+            type = ModuleType.base;
+          } else if (element.moduleChannel == runtime) {
+            type = ModuleType.runtime;
+          } else if (element.moduleChannel == engine) {
+            type = ModuleType.engine;
+          } else {
+            type = ModuleType.unknown;
+          }
+          // 添加到内置模块列表
+          _moduleList.add(element);
+          // 添加到模块详细信息列表
+          _moduleDetailsList.add(
+            ModuleDetails(
+              id: element.moduleChannel,
+              title: element.moduleName,
+              description: element.moduleDescription,
+              type: type,
+            ),
+          );
+        }
+        // Log.d(tag: '_moduleList', message: _moduleList.toString());
+        // Log.d(
+        //   tag: '_moduleDetailsList',
+        //   message: _moduleDetailsList.toString(),
+        // );
+      } catch (exception) {
+        Log.e(tag: _tag, message: exception.toString());
       }
-    } catch (exception) {
-      Log.e(tag: _tag, message: exception.toString());
+    } else {
+      Log.w(tag: _tag, message: '请勿重复初始化运行时!');
     }
   }
 
   /// 初始化系统组件
   Future<void> _initComponent() async {
-    try {
-      List<Map<String, dynamic>>? result =
-          await execModuleAsyncMethodCall<List<Map<String, dynamic>>>(
-            moduleChannel,
-            resources.getValues(value: V.methods.runtimeGetEngineModules),
-          );
-      final List<Map<String, dynamic>> placeholder = [
-        resources.getValues(value: V.placeholder.component),
-      ];
-      assert(result is List<Map<String, dynamic>>, '错误: 数据类型不符合!');
-      List<Map<String, dynamic>> componentsList = result ?? placeholder;
-      // 判断列表是否为空
-      if (componentsList.isNotEmpty) {
-        // 遍历系统组件
-        for (var component in componentsList) {
-          // 添加到详细信息列表
-          _moduleDetailsList.add(
-            ModuleDetails.formMap(map: component, type: ModuleType.component),
-          );
+    if (_moduleDetailsList.length <= _moduleList.length) {
+      try {
+        List<Map<String, String>>? result =
+            await execModuleAsyncMethodCall<List<Map<String, String>>>(
+              moduleChannel,
+              resources.getValues(value: V.methods.runtimeGetEngineModules),
+            );
+        final List<Map<String, String>> placeholder = [
+          resources.getValues(value: V.placeholder.component),
+        ];
+        List<Map<String, String>> componentsList = result ?? placeholder;
+        // 判断列表是否为空
+        if (componentsList.isNotEmpty) {
+          // 遍历系统组件
+          for (var component in componentsList) {
+            // 添加到详细信息列表
+            _moduleDetailsList.add(
+              ModuleDetails.formMap(map: component, type: ModuleType.component),
+            );
+          }
         }
+      } catch (exception) {
+        Log.e(tag: _tag, message: exception.toString());
       }
-    } catch (exception) {
-      Log.e(tag: _tag, message: exception.toString());
+    } else {
+      Log.w(tag: _tag, message: '请勿重复初始化系统组件!');
     }
   }
 

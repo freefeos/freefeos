@@ -12,7 +12,7 @@ final class OSEngine extends OSComponent
   final List<OSComponent> _componentList = [];
 
   /// 组件信息列表
-  final List<Map<String, dynamic>> _componentInfoList = [];
+  final List<Map<String, String>> _componentInfoList = [];
 
   /// 组件绑定
   late ComponentBinding _binding;
@@ -149,7 +149,7 @@ final class OSEngine extends OSComponent
       initialized = true;
     } else {
       // 打印提示
-      Log.e(tag: _tag, message: '请勿重复执行onCreateEngine!');
+      Log.w(tag: _tag, message: '请勿重复执行onCreateEngine!');
     }
   }
 

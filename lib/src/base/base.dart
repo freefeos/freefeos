@@ -1,8 +1,6 @@
 /// Base 基础层
 library;
 
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 
 import '../common/common.dart';

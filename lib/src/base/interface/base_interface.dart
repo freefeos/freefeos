@@ -9,7 +9,7 @@ abstract interface class IBase {
   Future<void> init();
 
   /// 平台嵌入层模块
-  OSModule get engine;
+  OSModule? get engine;
 
   /// 图形界面
   Layout findMiniProgram();

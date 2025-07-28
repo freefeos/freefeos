@@ -9,5 +9,5 @@ abstract interface class IBridgeMixin implements IBase {
   Future<void> initEngineBridge();
 
   /// 引擎桥接域
-  OSBridge get bridgeScope;
+  OSBridge? get bridgeScope;
 }

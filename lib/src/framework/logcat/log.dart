@@ -2,24 +2,47 @@ part of '../framework.dart';
 
 final class Log {
   static bool _instanced = false;
+  static const String _tag = 'Log';
 
   /// 初始化日志
-  static void init() {
-    Logger.root.level = Level.ALL;
-    if (kDebugMode) {
-      Log.registerListener(
-        (record) => log(record.printable(), stackTrace: record.stackTrace),
+  static Future<void> init() async {
+    if (!_instanced) {
+      (() async {
+        Logger.root.level = Level.ALL;
+        if (kDebugMode) {
+          Log._registerListener(
+            (record) => log(record.printable(), stackTrace: record.stackTrace),
+          );
+        }
+        Log._registerListener((record) {
+          while (EventBuffer.outputEventBuffer.length >= 1000) {
+            EventBuffer.outputEventBuffer.removeFirst();
+          }
+          EventBuffer.outputEventBuffer.add(
+            OutputEvent(record.level, [record.printable()]),
+          );
+        });
+      })().then(
+        (_) => Log.i(
+          tag: _tag,
+          message: utf8.decode(base64Decode(V.drawable.banner)),
+        ),
       );
+    } else {
+      Log.w(tag: _tag, message: '请勿重复初始化日志!');
     }
-    Log.registerListener((record) {
-      while (EventBuffer.outputEventBuffer.length >= 1000) {
-        EventBuffer.outputEventBuffer.removeFirst();
-      }
-      EventBuffer.outputEventBuffer.add(
-        OutputEvent(record.level, [record.printable()]),
-      );
-    });
     _instanced = true;
+  }
+
+  static Future<void> dispose() async {
+    if (_instanced) {
+      (() async {
+        _clearListeners();
+      })().then((_) => Log.d(tag: _tag, message: 'system exit.'));
+    } else {
+      Log.w(tag: _tag, message: '请勿重复销毁日志!');
+    }
+    _instanced = false;
   }
 
   /// Debug级别
@@ -66,19 +89,20 @@ final class Log {
     } else {
       return debugPrint(
         'tag: $tag, '
+        'level: $level, '
         'message: $message, '
         'error: $error',
       );
     }
   }
 
-  static void registerListener(LoggerListener onRecord) {
+  static void _registerListener(LoggerListener onRecord) {
     Logger.root.onRecord
         .map((e) => LoggerRecord.fromLogger(e))
         .listen(onRecord);
   }
 
-  static void clearListeners() {
+  static void _clearListeners() {
     Logger.root.clearListeners();
   }
 }
