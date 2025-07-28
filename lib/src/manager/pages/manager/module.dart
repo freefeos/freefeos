@@ -20,10 +20,10 @@ class _ModuleScreenState extends State<ModuleScreen> {
   final ScrollController _scrollController = ScrollController();
 
   /// 模块列表
-  late final List<Widget> _moduleList;
+  final List<Widget> _moduleList = [];
 
   /// 组件列表
-  late final List<Widget> _componentList;
+  final List<Widget> _componentList = [];
 
   @override
   void initState() {
@@ -43,18 +43,24 @@ class _ModuleScreenState extends State<ModuleScreen> {
       context,
       listen: false,
     );
-    _moduleList = module.moduleList(
+    final List<Widget> modules = module.moduleList(
       context: context,
       showDetail: _showDetail,
       dividerBuilder: _divider,
       itemBuilder: _listItem,
     );
-    _componentList = module.componentList(
+    final List<Widget> components = module.componentList(
       context: context,
       showDetail: _showDetail,
       dividerBuilder: _divider,
       itemBuilder: _listItem,
     );
+    if (modules.length > _moduleList.length) {
+      _moduleList.addAll(modules);
+    }
+    if (components.length > _componentList.length) {
+      _componentList.addAll(components);
+    }
   }
 
   @override

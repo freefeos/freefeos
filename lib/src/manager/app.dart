@@ -66,6 +66,7 @@ class _AppState extends State<App> {
         return MaterialPageRoute<T>(builder: builder, settings: settings);
       },
       routes: widget.buildPages,
+      initialRoute: IndexPage.route,
       builder: (context, child) => Banner(
         message: 'FREEFEOS',
         location: BannerLocation.topStart,

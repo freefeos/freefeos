@@ -12,19 +12,6 @@ final class IndexPage extends UiPage {
 class _IndexPageState extends State<IndexPage> {
   DateTime? _lastBackPressTime;
 
-  Future<bool> _shouldExit() async {
-    final now = DateTime.now();
-    if (_lastBackPressTime == null ||
-        now.difference(_lastBackPressTime!) > const Duration(seconds: 2)) {
-      _lastBackPressTime = now;
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('再按一次退出应用')));
-      return false;
-    }
-    return true;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,10 +42,23 @@ class _IndexPageState extends State<IndexPage> {
               },
             );
           },
-          onLastTap: () async {
-            final shouldExit = await _shouldExit();
-            if (shouldExit) {
-              // SystemNavigator.pop();
+          onLastTap: () {
+            final now = DateTime.now();
+            if (_lastBackPressTime == null ||
+                now.difference(_lastBackPressTime!) >
+                    const Duration(seconds: 2)) {
+              _lastBackPressTime = now;
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('再按一次退出应用'),
+                  action: SnackBarAction(
+                    label: '退出',
+                    onPressed: () => SystemNavigator.pop(),
+                  ),
+                ),
+              );
+            } else {
+              SystemNavigator.pop();
             }
           },
           child: Consumer<OSAbility>(
