@@ -1,7 +1,6 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
-// 导入 FreeFEOS 库
-import 'package:freefeos/freefeos.dart';
+import 'package:freefeos/freefeos.dart'; // 导入 FreeFEOS 库
 
 void main() => runApp(const MyApp());
 
@@ -19,15 +18,16 @@ class MyApp extends StatelessWidget {
         },
         builder: [
           // 生命周期监听器, 用于调试 device_preview 的 bug, 与 freefeos 无关.
+          // 日志会显示 initState 被执行两次, 然后 dispose, 然后继续执行. 逆天.
           LifecycleListener.builder,
           // bug: https://github.com/aloisdeniel/flutter_device_preview/issues/252
-          // device_preview 的 Bug, 导致父级 Widget 生命周期错乱, initState会执行两次,
+          // device_preview 的逆天 Bug, 导致父级 Widget 生命周期错乱, initState会执行两次,
           // 而且会在 dispose() 后继续执行代码, 导致抛出异常.
           // 如果与 device_preview 同时使用, 请将 freefeos 置于其后方.
           DevicePreview.appBuilder,
           // 关键在这里, 一行代码接入 FreeFEOS 库
           FreeFEOS.builder,
-        ].toBuilder,
+        ].toBuilder, // 多构造器
         theme: ThemeData(
           brightness: MediaQuery.platformBrightnessOf(context),
           colorScheme: ColorScheme.fromSeed(
