@@ -1,11 +1,10 @@
-/// 平台插件注册和API
+/// freefeos
 library;
 
 import 'package:flutter/widgets.dart';
 
 import 'src/common/common.dart';
 
-/// 平台插件注册
 final class FreeFEOS {
   const FreeFEOS._();
 

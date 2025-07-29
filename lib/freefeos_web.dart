@@ -1,11 +1,10 @@
-/// Web 插件注册
+/// freefeos_web
 library;
 
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 import 'src/common/common.dart';
 
-/// Web 插件注册
 final class FreeFEOSWeb {
   const FreeFEOSWeb();
 
