@@ -3,7 +3,7 @@ part of '../../manager.dart';
 final class IndexPage extends UiPage {
   const IndexPage({super.key});
 
-  static const RouteName route = '/';
+  static const RouteName route = '/app';
 
   @override
   State<IndexPage> createState() => _IndexPageState();
@@ -20,8 +20,8 @@ class _IndexPageState extends State<IndexPage> {
         builder: (context) => CapsuleButton(
           firstIcon: Icons.more_horiz,
           lastIcon: Icons.adjust,
-          firstTooltip: '',
-          lastTooltip: '',
+          firstTooltip: '系统彩蛋',
+          lastTooltip: '退出应用',
           onFirstTap: () {
             showModalBottomSheet(
               context: context,

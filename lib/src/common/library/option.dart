@@ -12,5 +12,5 @@ abstract interface class IAppOption {
   String buildTitle(BuildContext context);
 
   /// ViewModel
-  ViewModel get buildViewModel;
+  List<ViewModelProvider> get buildViewModel;
 }

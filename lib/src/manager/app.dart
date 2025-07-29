@@ -44,8 +44,17 @@ final class App extends UiApp implements IAppOption {
 
   /// ViewModel
   @override
-  ViewModel get buildViewModel {
-    return super.viewModel;
+  List<ViewModelProvider> get buildViewModel {
+    return [
+      OSAbilityProvider(viewModel: viewModel),
+      ViewModelProvider<IndexViewModule>(create: (_) => IndexViewModule()),
+      ViewModelProvider<HomeViewModel>(create: (_) => HomeViewModel()),
+      ViewModelProvider<LogcatViewModel>(create: (_) => LogcatViewModel()),
+      ViewModelProvider<ModuleViewModel>(create: (_) => ModuleViewModel()),
+      ViewModelProvider<CalculatorViewModel>(
+        create: (_) => CalculatorViewModel(),
+      ),
+    ];
   }
 
   /// 构建应用
@@ -55,18 +64,17 @@ final class App extends UiApp implements IAppOption {
   }
 }
 
-class _AppState extends State<App> {
-  /// 构造函数
+final class _AppState extends State<App> {
   _AppState();
 
   @override
   Widget build(BuildContext context) {
     return WidgetsApp(
+      initialRoute: IndexPage.route,
       pageRouteBuilder: <T>(RouteSettings settings, WidgetBuilder builder) {
         return MaterialPageRoute<T>(builder: builder, settings: settings);
       },
       routes: widget.buildPages,
-      initialRoute: IndexPage.route,
       builder: (context, child) => Banner(
         message: 'FREEFEOS',
         location: BannerLocation.topStart,
@@ -74,21 +82,7 @@ class _AppState extends State<App> {
           data: widget.buildStyle(context),
           child: ScaffoldMessenger(
             child: MultiProvider(
-              providers: [
-                OSAbilityProvider(viewModel: widget.buildViewModel),
-                ViewModelProvider<HomeViewModel>(
-                  create: (_) => HomeViewModel(),
-                ),
-                ViewModelProvider<LogcatViewModel>(
-                  create: (_) => LogcatViewModel(),
-                ),
-                ViewModelProvider<ModuleViewModel>(
-                  create: (_) => ModuleViewModel(),
-                ),
-                ViewModelProvider<CalculatorViewModel>(
-                  create: (_) => CalculatorViewModel(),
-                ),
-              ],
+              providers: widget.buildViewModel,
               child: child,
             ),
           ),

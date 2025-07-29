@@ -47,10 +47,14 @@ part 'pages/manager/logcat.dart';
 part 'pages/manager/module.dart';
 part 'pages/manager/setting.dart';
 
+part 'sheet/system_sheet.dart';
+
 /// Utils 工具
 part 'utils/utils.dart';
 
 /// ViewModel 视图模型
+part 'view_model/index/index_vm.dart';
+
 part 'view_model/apps/calculator_interface.dart';
 part 'view_model/apps/calculator_vm.dart';
 part 'view_model/apps/operator_type.dart';
