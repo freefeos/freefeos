@@ -146,7 +146,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(icon, color: Theme.of(context).colorScheme.primary),
-          Icon(Icons.keyboard_arrow_right),
+          const Icon(Icons.keyboard_arrow_right),
         ],
       ),
       shape: RoundedRectangleBorder(
