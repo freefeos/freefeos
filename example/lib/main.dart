@@ -1,6 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:freefeos/freefeos.dart'; // 导入 FreeFEOS 库
+import 'package:multi_builder/multi_builder.dart';
 
 void main() => runApp(const MyApp());
 
@@ -99,18 +100,6 @@ class DetailsPage extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-/// 多构造器实现示例
-extension MultiBuilder on List<TransitionBuilder> {
-  TransitionBuilder get toBuilder {
-    return (context, child) {
-      for (var builder in this) {
-        child = builder(context, child);
-      }
-      return Container(child: child);
-    };
   }
 }
 
