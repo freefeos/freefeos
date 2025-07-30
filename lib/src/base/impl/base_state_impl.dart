@@ -129,9 +129,7 @@ base class OSBaseState<W extends OSBase> extends ContextStateWrapper<W>
         }
       })().then((_) {
         if (mounted) {
-          setState(() {
-            _initializationFlag = true;
-          });
+          setState(() => _initializationFlag = true);
         }
       });
     }
@@ -145,9 +143,7 @@ base class OSBaseState<W extends OSBase> extends ContextStateWrapper<W>
         await bridgeScope?.onDestroyEngine();
       })().then((_) {
         if (mounted) {
-          setState(() {
-            _initializationFlag = false;
-          });
+          setState(() => _initializationFlag = false);
         }
       });
     }

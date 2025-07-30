@@ -20,7 +20,7 @@ class _IndexPageState extends State<IndexPage> {
         builder: (context) => CapsuleButton(
           firstIcon: Icons.more_horiz,
           lastIcon: Icons.adjust,
-          firstTooltip: '系统彩蛋',
+          firstTooltip: '系统菜单',
           lastTooltip: '退出应用',
           onFirstTap: () {
             showModalBottomSheet(

@@ -138,11 +138,6 @@ final class OSRuntimeState<W extends OSRuntime> extends OSBaseState<W> {
             ),
           );
         }
-        // Log.d(tag: '_moduleList', message: _moduleList.toString());
-        // Log.d(
-        //   tag: '_moduleDetailsList',
-        //   message: _moduleDetailsList.toString(),
-        // );
       } catch (exception) {
         Log.e(tag: _tag, message: exception.toString());
       }

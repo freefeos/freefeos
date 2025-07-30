@@ -27,7 +27,6 @@ part 'components/nav_bar.dart';
 part 'components/nav_drawer.dart';
 part 'components/nav_host.dart';
 part 'components/screen_adapter.dart';
-part 'components/shell_builder.dart';
 part 'components/text_clock.dart';
 part 'components/nav_title.dart';
 

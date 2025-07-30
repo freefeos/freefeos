@@ -35,15 +35,6 @@ typedef OSAbility = OSViewModel;
 /// 计算器执行计算回调
 typedef CalculatorExecCallback = void Function(CalculatorButtonContent content);
 
-/// Shell构建器
-typedef ShellBuilder =
-    Widget Function(
-      BuildContext context,
-      AppBarTheme appBarTheme,
-      ThemeMode themeMode,
-      NavigatorObserver navigatorObserver,
-    );
-
 /// 日志复制回调
 typedef LogcatCopyCallback = void Function(String text);
 

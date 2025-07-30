@@ -22,7 +22,7 @@ final class FreeFEOS {
   /// 为了代码稳定起见还是别不信邪了. 实在不信邪也可以试试,
   /// 崩了跟我可无关. ╮(╯_╰)╭
   static void registerWith() {
-    FreeFEOSLoader.instance.registerWith();
+    return FreeFEOSLoader.instance.registerWith();
   }
 
   /// FreeFEOS
