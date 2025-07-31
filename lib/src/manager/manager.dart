@@ -20,6 +20,7 @@ import 'intl/app_localizations.dart';
 /// Components 组件
 part 'components/calculator_button.dart';
 part 'components/capsule_button.dart';
+part 'components/capsult_placeholder.dart';
 part 'components/clock_view.dart';
 part 'components/footer.dart';
 part 'components/header.dart';
