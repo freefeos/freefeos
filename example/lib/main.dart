@@ -3,8 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:freefeos/freefeos.dart'; // 导入 FreeFEOS 库
 import 'package:multi_builder/multi_builder.dart';
 
-void main() => runApp(const MyApp());
-// void main() => runApp(MaterialApp(builder: FreeFEOS.builder));
+// void main() => runApp(const MyApp());
+void main() => runApp(
+  Builder(
+    builder: (context) {
+      return FreeFEOS.builder(context, null);
+    },
+  ),
+);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -12,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DevicePreview(
-      enabled: false,
+      enabled: true,
       builder: (context) => MaterialApp(
         routes: {
           '/': (context) => const HomePage(),
@@ -31,10 +37,17 @@ class MyApp extends StatelessWidget {
           FreeFEOS.builder,
         ].toBuilder, // 多构造器
         theme: ThemeData(
-          brightness: MediaQuery.platformBrightnessOf(context),
+          brightness: Brightness.light,
           colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.blue,
-            brightness: MediaQuery.platformBrightnessOf(context),
+            seedColor: Colors.red,
+            brightness: Brightness.light,
+          ),
+        ),
+        darkTheme: ThemeData(
+          brightness: Brightness.dark,
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.red,
+            brightness: Brightness.dark,
           ),
         ),
         locale: DevicePreview.locale(context),

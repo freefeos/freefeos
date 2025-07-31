@@ -75,24 +75,46 @@ final class _AppState extends State<App> {
         return MaterialPageRoute<T>(builder: builder, settings: settings);
       },
       routes: widget.buildPages,
-      builder: (context, child) => Banner(
-        message: 'FREEFEOS',
-        location: BannerLocation.topStart,
-        child: Theme(
-          data: widget.buildStyle(context),
-          child: ScaffoldMessenger(
-            child: MultiProvider(
-              providers: widget.buildViewModel,
-              child: child,
+      builder: (context, child) {
+        return Banner(
+          message: 'FREEFEOS',
+          location: BannerLocation.topStart,
+          child: RootTheme(
+            themeData: Theme.of(context),
+            child: Theme(
+              data: widget.buildStyle(context),
+              child: ScaffoldMessenger(
+                child: MultiProvider(
+                  providers: widget.buildViewModel,
+                  child: child,
+                ),
+              ),
             ),
           ),
-        ),
-      ),
-      onGenerateTitle: (context) => widget.buildTitle(context),
+        );
+      },
+      onGenerateTitle: (context) {
+        return widget.buildTitle(context);
+      },
       color: Colors.transparent,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       debugShowCheckedModeBanner: false,
     );
+  }
+}
+
+class RootTheme extends InheritedWidget {
+  const RootTheme({super.key, required this.themeData, required super.child});
+
+  final ThemeData themeData;
+
+  static ThemeData? of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<RootTheme>()?.themeData;
+  }
+
+  @override
+  bool updateShouldNotify(covariant RootTheme oldWidget) {
+    return themeData != oldWidget.themeData;
   }
 }

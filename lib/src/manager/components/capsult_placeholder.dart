@@ -1,8 +1,13 @@
 part of '../manager.dart';
 
-final class CapsulePlaceholder extends StatelessWidget {
+final class CapsulePlaceholder extends UiComponent {
   const CapsulePlaceholder({super.key});
 
+  @override
+  State<CapsulePlaceholder> createState() => _CapsulePlaceholderState();
+}
+
+class _CapsulePlaceholderState extends State<CapsulePlaceholder> {
   @override
   Widget build(BuildContext context) {
     return const Padding(

@@ -20,28 +20,44 @@ class _IndexPageState extends State<IndexPage> {
   Widget build(BuildContext context) {
     return Consumer2<IndexViewModule, OSAbility>(
       builder: (context, index, ability, child) {
-        return CapsuleButton(
-          firstIcon: Icons.more_horiz,
-          lastIcon: Icons.adjust,
-          firstTooltip: '系统菜单',
-          lastTooltip: '退出应用',
-          onFirstTap: () => showModalBottomSheet(
-            context: context,
-            useRootNavigator: false,
-            builder: (context) {
-              return SystemSheet();
-            },
-          ),
-          onLastTap: () => index.back(
-            showTips: (exit) => ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('再按一次退出应用'),
-                action: SnackBarAction(label: '退出', onPressed: exit),
+        return Stack(
+          children: [
+            ConstrainedBox(
+              constraints: BoxConstraints.expand(),
+              child: ability.getChild != null
+                  ? Theme(
+                      data: RootTheme.of(context) ?? Theme.of(context),
+                      child: Container(child: ability.getChild),
+                    )
+                  : Theme(
+                      data: Theme.of(context),
+                      child: Container(child: child),
+                    ),
+            ),
+
+            CapsuleButton(
+              firstIcon: Icons.more_horiz,
+              lastIcon: Icons.adjust,
+              firstTooltip: '系统菜单',
+              lastTooltip: '退出应用',
+              onFirstTap: () => showModalBottomSheet(
+                context: context,
+                useRootNavigator: false,
+                builder: (context) {
+                  return SystemSheet();
+                },
+              ),
+              onLastTap: () => index.back(
+                showTips: (exit) => ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('再按一次退出应用'),
+                    action: SnackBarAction(label: '退出', onPressed: exit),
+                  ),
+                ),
+                exit: () => SystemNavigator.pop(),
               ),
             ),
-            exit: () => SystemNavigator.pop(),
-          ),
-          child: Container(child: ability.getChild ?? child),
+          ],
         );
       },
       child: Scaffold(

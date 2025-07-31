@@ -1,6 +1,6 @@
 part of '../manager.dart';
 
-class CapsuleButton extends StatelessWidget {
+final class CapsuleButton extends UiComponent {
   const CapsuleButton({
     super.key,
     required this.firstIcon,
@@ -9,7 +9,6 @@ class CapsuleButton extends StatelessWidget {
     required this.lastTooltip,
     required this.onFirstTap,
     required this.onLastTap,
-    required this.child,
   });
 
   final IconData firstIcon;
@@ -18,8 +17,12 @@ class CapsuleButton extends StatelessWidget {
   final String lastTooltip;
   final VoidCallback onFirstTap;
   final VoidCallback onLastTap;
-  final Widget child;
 
+  @override
+  State<CapsuleButton> createState() => _CapsuleButtonState();
+}
+
+class _CapsuleButtonState extends State<CapsuleButton> {
   /// 胶囊按钮宽度
   final double _width = 87.0;
 
@@ -28,129 +31,121 @@ class CapsuleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        ConstrainedBox(
-          constraints: const BoxConstraints.expand(),
-          child: child,
-        ),
-        SafeArea(
-          left: false,
-          top: true,
-          right: true,
-          bottom: false,
-          child: Align(
-            alignment: Alignment.topRight,
-            child: Padding(
-              padding: EdgeInsets.all(
-                (Theme.of(context).appBarTheme.toolbarHeight ??
-                        kToolbarHeight - _height) /
-                    2,
+    return SafeArea(
+      left: false,
+      top: true,
+      right: true,
+      bottom: false,
+      child: Align(
+        alignment: Alignment.topRight,
+        child: Padding(
+          padding: EdgeInsets.all(
+            (Theme.of(context).appBarTheme.toolbarHeight ??
+                    kToolbarHeight - _height) /
+                2,
+          ),
+          child: Container(
+            width: _width,
+            height: _height,
+            decoration: BoxDecoration(
+              color: Theme.of(context).brightness == Brightness.light
+                  ? Colors.white.withAlpha((255 * 0.6).toInt())
+                  : Colors.black.withAlpha((255 * 0.15).toInt()),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                width: 0.5,
+                color: Theme.of(context).brightness == Brightness.light
+                    ? Colors.black.withAlpha(25)
+                    : Colors.white.withAlpha(25),
               ),
-              child: Container(
-                width: _width,
-                height: _height,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).brightness == Brightness.light
-                      ? Colors.white.withAlpha((255 * 0.6).toInt())
-                      : Colors.black.withAlpha((255 * 0.15).toInt()),
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    width: 0.5,
+            ),
+            child: Material(
+              color: Colors.transparent,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                    child: Tooltip(
+                      message: widget.firstTooltip,
+                      child: InkWell(
+                        onTap: widget.onFirstTap,
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          bottomLeft: Radius.circular(20),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Opacity(
+                              opacity:
+                                  Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? 1.0
+                                  : 0.8,
+                              child: Icon(
+                                widget.firstIcon,
+                                color:
+                                    Theme.of(context).brightness ==
+                                        Brightness.light
+                                    ? Colors.black
+                                    : Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  VerticalDivider(
+                    indent: 6,
+                    endIndent: 6,
+                    width: 0.2,
+                    thickness: 0.2,
                     color: Theme.of(context).brightness == Brightness.light
-                        ? Colors.black.withAlpha(25)
-                        : Colors.white.withAlpha(25),
+                        ? Colors.black.withAlpha((255 * 0.3).toInt())
+                        : Colors.white.withAlpha((255 * 0.3).toInt()),
                   ),
-                ),
-                child: Material(
-                  color: Colors.transparent,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: Tooltip(
-                          message: firstTooltip,
-                          child: InkWell(
-                            onTap: onFirstTap,
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              bottomLeft: Radius.circular(20),
+                  Expanded(
+                    child: Tooltip(
+                      message: widget.lastTooltip,
+                      child: InkWell(
+                        onTap: widget.onLastTap,
+                        borderRadius: const BorderRadius.only(
+                          topRight: Radius.circular(20),
+                          bottomRight: Radius.circular(20),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Opacity(
+                              opacity:
+                                  Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? 1.0
+                                  : 0.8,
+                              child: Icon(
+                                widget.lastIcon,
+                                color:
+                                    Theme.of(context).brightness ==
+                                        Brightness.light
+                                    ? Colors.black
+                                    : Colors.white,
+                              ),
                             ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Opacity(
-                                  opacity:
-                                      Theme.of(context).brightness ==
-                                          Brightness.light
-                                      ? 1.0
-                                      : 0.8,
-                                  child: Icon(
-                                    firstIcon,
-                                    color:
-                                        Theme.of(context).brightness ==
-                                            Brightness.light
-                                        ? Colors.black
-                                        : Colors.white,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                          ],
                         ),
                       ),
-                      VerticalDivider(
-                        indent: 6,
-                        endIndent: 6,
-                        width: 0.2,
-                        thickness: 0.2,
-                        color: Theme.of(context).brightness == Brightness.light
-                            ? Colors.black.withAlpha((255 * 0.3).toInt())
-                            : Colors.white.withAlpha((255 * 0.3).toInt()),
-                      ),
-                      Expanded(
-                        child: Tooltip(
-                          message: lastTooltip,
-                          child: InkWell(
-                            onTap: onLastTap,
-                            borderRadius: const BorderRadius.only(
-                              topRight: Radius.circular(20),
-                              bottomRight: Radius.circular(20),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Opacity(
-                                  opacity:
-                                      Theme.of(context).brightness ==
-                                          Brightness.light
-                                      ? 1.0
-                                      : 0.8,
-                                  child: Icon(
-                                    lastIcon,
-                                    color:
-                                        Theme.of(context).brightness ==
-                                            Brightness.light
-                                        ? Colors.black
-                                        : Colors.white,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
             ),
           ),
         ),
-      ],
+      ),
     );
   }
 }
