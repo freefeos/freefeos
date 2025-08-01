@@ -6,7 +6,6 @@ import 'dart:collection';
 import 'dart:math';
 
 import 'package:animations/animations.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:logging/logging.dart';
@@ -21,16 +20,16 @@ import 'intl/app_localizations.dart';
 /// Components 组件
 part 'components/calculator_button.dart';
 part 'components/capsule_button.dart';
-part 'components/capsult_placeholder.dart';
 part 'components/clock_view.dart';
 part 'components/footer.dart';
 part 'components/header.dart';
 part 'components/nav_bar.dart';
 part 'components/nav_drawer.dart';
 part 'components/nav_host.dart';
+part 'components/nav_title.dart';
+part 'components/root_theme.dart';
 part 'components/screen_adapter.dart';
 part 'components/text_clock.dart';
-part 'components/nav_title.dart';
 
 /// Controllers 控制器
 part 'controllers/nav_controller.dart';

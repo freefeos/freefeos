@@ -24,69 +24,88 @@ class _IndexPageState extends State<IndexPage> {
           children: [
             ConstrainedBox(
               constraints: BoxConstraints.expand(),
-              child: ability.getChild != null
-                  ? Theme(
-                      data: RootTheme.of(context) ?? Theme.of(context),
-                      child: Container(child: ability.getChild),
-                    )
-                  : Theme(
-                      data: Theme.of(context),
-                      child: Container(child: child),
-                    ),
-            ),
-
-            CapsuleButton(
-              firstIcon: Icons.more_horiz,
-              lastIcon: Icons.adjust,
-              firstTooltip: '系统菜单',
-              lastTooltip: '退出应用',
-              onFirstTap: () => showModalBottomSheet(
-                context: context,
-                useRootNavigator: false,
-                builder: (context) {
-                  return SystemSheet();
-                },
+              child: Theme(
+                data: RootTheme.of(context),
+                child: Container(child: ability.getChild),
               ),
-              onLastTap: () => index.back(
-                showTips: (exit) => ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('再按一次退出应用'),
-                    action: SnackBarAction(label: '退出', onPressed: exit),
+            ),
+            Scaffold(
+              backgroundColor: index.defaultOffstage(ability)
+                  ? Colors.transparent
+                  : null,
+              appBar: AppBar(
+                backgroundColor: index.defaultOffstage(ability)
+                    ? Colors.transparent
+                    : null,
+                title: Offstage(
+                  offstage: index.defaultOffstage(ability),
+                  child: Text('untitled'),
+                ),
+                actions: [
+                  Builder(
+                    builder: (context) => CapsuleButton(
+                      firstIcon: Icons.more_horiz,
+                      lastIcon: Icons.adjust,
+                      firstTooltip: '系统菜单',
+                      lastTooltip: '退出应用',
+                      onFirstTap: () => showModalBottomSheet(
+                        context: context,
+                        useRootNavigator: false,
+                        builder: (context) {
+                          return SystemSheet();
+                        },
+                      ),
+                      onLastTap: () => index.back(
+                        showTips: (exit) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('再按一次退出应用'),
+                              action: SnackBarAction(
+                                label: '退出',
+                                onPressed: exit,
+                              ),
+                            ),
+                          );
+                        },
+                        exit: () {
+                          SystemNavigator.pop();
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              body: Offstage(
+                offstage: index.defaultOffstage(ability),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('You have pushed the button this many times:'),
+                      ValueListenableBuilder(
+                        valueListenable: _counter,
+                        builder: (_, value, _) {
+                          return Text(
+                            value.toString(),
+                            style: const TextStyle(fontSize: 32),
+                          );
+                        },
+                      ),
+                    ],
                   ),
                 ),
-                exit: () => SystemNavigator.pop(),
+              ),
+              floatingActionButton: Offstage(
+                offstage: index.defaultOffstage(ability),
+                child: FloatingActionButton(
+                  onPressed: () => _counter.value++,
+                  child: const Icon(Icons.add),
+                ),
               ),
             ),
           ],
         );
       },
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('untitled'),
-          actions: const [CapsulePlaceholder()],
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text('You have pushed the button this many times:'),
-              ValueListenableBuilder(
-                valueListenable: _counter,
-                builder: (_, value, _) {
-                  return Text(
-                    value.toString(),
-                    style: const TextStyle(fontSize: 32),
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => _counter.value++,
-          child: const Icon(Icons.add),
-        ),
-      ),
     );
   }
 }

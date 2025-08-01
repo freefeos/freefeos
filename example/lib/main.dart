@@ -5,11 +5,8 @@ import 'package:multi_builder/multi_builder.dart';
 
 // void main() => runApp(const MyApp());
 void main() => runApp(
-  Builder(
-    builder: (context) {
-      return FreeFEOS.builder(context, null);
-    },
-  ),
+  Builder(builder: (context) => FreeFEOS.builder(context, null)),
+  // MaterialApp(builder: FreeFEOS.builder, home: Placeholder()),
 );
 
 class MyApp extends StatelessWidget {
