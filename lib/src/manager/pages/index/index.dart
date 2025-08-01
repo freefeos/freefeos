@@ -30,7 +30,9 @@ class _IndexPageState extends State<IndexPage> {
                 useRootNavigator: false,
                 // showDragHandle: true,
                 shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(28.0)),
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(28.0),
+                  ),
                 ),
                 builder: (context) {
                   return SystemSheet();
