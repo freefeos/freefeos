@@ -29,6 +29,9 @@ class _IndexPageState extends State<IndexPage> {
                 context: context,
                 useRootNavigator: false,
                 // showDragHandle: true,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(28.0)),
+                ),
                 builder: (context) {
                   return SystemSheet();
                 },
