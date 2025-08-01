@@ -43,31 +43,36 @@ class _LogcatScreenState extends State<LogcatScreen> {
       child: ScreenAdapter(
         child: Consumer<LogcatViewModel>(
           builder: (context, logcat, _) {
-            return ListView.builder(
-              controller: _scrollController,
-              padding: EdgeInsets.zero,
-              itemCount: logcat.getItemCount,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  contentPadding: EdgeInsets.only(
-                    left: 16,
-                    top: logcat.isTop(index) ? 16 : 0,
-                    right: 16,
-                    bottom: logcat.isBottom(index) ? 16 : 0,
-                  ),
-                  title: Text.rich(
-                    logcat.getTextSpan(index),
-                    key: Key(logcat.getKey(index)),
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: AppUtils.level2Color(
-                        logcat.getLevel(index),
-                        context,
+            return ScrollConfiguration(
+              behavior: ScrollConfiguration.of(
+                context,
+              ).copyWith(scrollbars: false),
+              child: ListView.builder(
+                controller: _scrollController,
+                padding: EdgeInsets.zero,
+                itemCount: logcat.getItemCount,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    contentPadding: EdgeInsets.only(
+                      left: 16,
+                      top: logcat.isTop(index) ? 16 : 0,
+                      right: 16,
+                      bottom: logcat.isBottom(index) ? 16 : 0,
+                    ),
+                    title: Text.rich(
+                      logcat.getTextSpan(index),
+                      key: Key(logcat.getKey(index)),
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: AppUtils.level2Color(
+                          logcat.getLevel(index),
+                          context,
+                        ),
                       ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             );
           },
         ),

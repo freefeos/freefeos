@@ -32,174 +32,140 @@ class _SettingScreenState extends State<SettingScreen> {
     return Scrollbar(
       controller: _scrollController,
       child: ScreenAdapter(
-        child: SingleChildScrollView(
-          controller: _scrollController,
-          padding: EdgeInsets.zero,
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 16,
-                  top: 16,
-                  right: 16,
-                  bottom: 8,
-                ),
-                child: Row(
-                  children: [
-                    Container(
-                      alignment: Alignment.center,
-                      width: 62,
-                      height: 62,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                      child: Text(
-                        'Fe',
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.primaryContainer,
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
+        child: ScrollConfiguration(
+          behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+          child: SingleChildScrollView(
+            controller: _scrollController,
+            padding: EdgeInsets.zero,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 16,
+                    top: 16,
+                    right: 16,
+                    bottom: 8,
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
+                        width: 62,
+                        height: 62,
+                        clipBehavior: Clip.antiAlias,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        child: Text(
+                          'Fe',
+                          style: TextStyle(
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.primaryContainer,
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                    ),
-                    Expanded(
-                      child: ListTile(
-                        title: Text('FreeFEOS'),
-                        subtitle: Text('wyq0918dev'),
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 16,
+                      Expanded(
+                        child: ListTile(
+                          title: Text('FreeFEOS'),
+                          subtitle: Text('wyq0918dev'),
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 16,
-                  top: 8,
-                  right: 16,
-                  bottom: 8,
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 16,
+                    top: 8,
+                    right: 16,
+                    bottom: 8,
+                  ),
+                  child: Text(
+                    'FreeFEOS 是一款综合工具类小程序, 使用MPFlutter框架进行开发, 为用户提供时钟、计算器等功能.',
+                  ),
                 ),
-                child: Text(
-                  'FreeFEOS 是一款综合工具类小程序, 使用MPFlutter框架进行开发, 为用户提供时钟、计算器等功能.',
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 16,
-                  top: 8,
-                  right: 16,
-                  bottom: 8,
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(
-                      child: Tooltip(
-                        message: '进入小程序',
-                        child: FilledButton(
-                          onPressed: () {
-                            widget.navController.animateToFirst();
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 16,
+                    top: 8,
+                    right: 16,
+                    bottom: 8,
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Tooltip(
+                          message: '进入小程序',
+                          child: FilledButton(
+                            onPressed: () {
+                              widget.navController.animateToFirst();
+                            },
+                            child: Text('进入小程序'),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Consumer<OSAbility>(
+                          builder: (context, ability, child) {
+                            return ability.openCustomer(
+                              child: AppUtils.nonNullWidget(child: child),
+                            );
                           },
-                          child: Text('进入小程序'),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: Consumer<OSAbility>(
-                        builder: (context, ability, child) {
-                          return ability.openCustomer(
-                            child: AppUtils.nonNullWidget(child: child),
-                          );
-                        },
-                        child: SizedBox(
-                          width: double.infinity,
-                          child: Tooltip(
-                            message: '客服',
-                            child: OutlinedButton(
-                              onPressed: () {},
-                              child: Text('客服'),
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: Tooltip(
+                              message: '客服',
+                              child: OutlinedButton(
+                                onPressed: () {},
+                                child: Text('客服'),
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              Card.filled(
-                margin: const EdgeInsets.only(
-                  left: 16,
-                  top: 8,
-                  right: 16,
-                  bottom: 8,
+                Card.filled(
+                  margin: const EdgeInsets.only(
+                    left: 16,
+                    top: 8,
+                    right: 16,
+                    bottom: 8,
+                  ),
+                  color: Theme.of(context).colorScheme.surfaceContainerHigh,
+                  child: ListTile(title: Text('Card')),
                 ),
-                color: Theme.of(context).colorScheme.surfaceContainerHigh,
-                child: ListTile(title: Text('Card')),
-              ),
-              Card.filled(
-                margin: const EdgeInsets.only(
-                  left: 16,
-                  top: 8,
-                  right: 16,
-                  bottom: 8,
-                ),
-                color: Theme.of(context).colorScheme.surfaceContainerHigh,
-                child: Column(
-                  children: [
-                    ListTile(
-                      title: Text('相关小程序'),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            Icons.keyboard_command_key,
-                            color: ColorScheme.fromSeed(
-                              seedColor: V.colors.ecosedPurple,
-                              brightness: Theme.of(context).brightness,
-                            ).primary,
-                          ),
-                          const Icon(Icons.keyboard_arrow_right),
-                        ],
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(12),
-                          topRight: Radius.circular(12),
-                        ),
-                      ),
-                      onTap: () {
-                        Navigator.of(context).pushNamed(
-                          AppsPage.route,
-                          arguments: AppUtils.setNavValue({
-                            AppsPage.pageArgument: AppsPage.ekit,
-                            AppsPage.exhibitArgumgent: false,
-                          }),
-                        );
-                      },
-                    ),
-                    const Divider(height: 1, indent: 16, endIndent: 16),
-                    Consumer<OSAbility>(
-                      builder: (context, ability, child) {
-                        return ability.openSetting(
-                          child: AppUtils.nonNullWidget(child: child),
-                        );
-                      },
-                      child: ListTile(
-                        title: Text('小程序设置'),
+                Card.filled(
+                  margin: const EdgeInsets.only(
+                    left: 16,
+                    top: 8,
+                    right: 16,
+                    bottom: 8,
+                  ),
+                  color: Theme.of(context).colorScheme.surfaceContainerHigh,
+                  child: Column(
+                    children: [
+                      ListTile(
+                        title: Text('相关小程序'),
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Icon(
-                              Icons.settings,
-                              color: Theme.of(context).colorScheme.primary,
+                              Icons.keyboard_command_key,
+                              color: ColorScheme.fromSeed(
+                                seedColor: V.colors.ecosedPurple,
+                                brightness: Theme.of(context).brightness,
+                              ).primary,
                             ),
                             const Icon(Icons.keyboard_arrow_right),
                           ],
@@ -209,26 +175,65 @@ class _SettingScreenState extends State<SettingScreen> {
                         ),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(12),
-                            bottomRight: Radius.circular(12),
+                            topLeft: Radius.circular(12),
+                            topRight: Radius.circular(12),
                           ),
                         ),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).pushNamed(
+                            AppsPage.route,
+                            arguments: AppUtils.setNavValue({
+                              AppsPage.pageArgument: AppsPage.ekit,
+                              AppsPage.exhibitArgumgent: false,
+                            }),
+                          );
+                        },
                       ),
-                    ),
-                  ],
+                      const Divider(height: 1, indent: 16, endIndent: 16),
+                      Consumer<OSAbility>(
+                        builder: (context, ability, child) {
+                          return ability.openSetting(
+                            child: AppUtils.nonNullWidget(child: child),
+                          );
+                        },
+                        child: ListTile(
+                          title: Text('小程序设置'),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.settings,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                              const Icon(Icons.keyboard_arrow_right),
+                            ],
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(12),
+                              bottomRight: Radius.circular(12),
+                            ),
+                          ),
+                          onTap: () {},
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(
-                  left: 16,
-                  top: 8,
-                  right: 16,
-                  bottom: 16,
+                const Padding(
+                  padding: EdgeInsets.only(
+                    left: 16,
+                    top: 8,
+                    right: 16,
+                    bottom: 16,
+                  ),
+                  child: Footer(style: FooterStyle.freefeos),
                 ),
-                child: Footer(style: FooterStyle.freefeos),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

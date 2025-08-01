@@ -74,53 +74,59 @@ class _ModuleScreenState extends State<ModuleScreen> {
     return Scrollbar(
       controller: _scrollController,
       child: ScreenAdapter(
-        child: SingleChildScrollView(
-          controller: _scrollController,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 32,
-                  top: 16,
-                  right: 32,
-                  bottom: 8,
-                ),
-                child: Text(
-                  '模块',
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.primary,
+        child: ScrollConfiguration(
+          behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+          child: SingleChildScrollView(
+            controller: _scrollController,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 32,
+                    top: 16,
+                    right: 32,
+                    bottom: 8,
+                  ),
+                  child: Text(
+                    '模块',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
                   ),
                 ),
-              ),
-              Card.filled(
-                margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                color: Theme.of(context).colorScheme.surfaceContainerHigh,
-                child: Column(children: _moduleList),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 8,
-                  horizontal: 32,
+                Card.filled(
+                  margin: const EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 16,
+                  ),
+                  color: Theme.of(context).colorScheme.surfaceContainerHigh,
+                  child: Column(children: _moduleList),
                 ),
-                child: Text(
-                  '组件',
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.primary,
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 32,
+                  ),
+                  child: Text(
+                    '组件',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
                   ),
                 ),
-              ),
-              Card.filled(
-                margin: const EdgeInsets.only(
-                  left: 16,
-                  top: 8,
-                  right: 16,
-                  bottom: 16,
+                Card.filled(
+                  margin: const EdgeInsets.only(
+                    left: 16,
+                    top: 8,
+                    right: 16,
+                    bottom: 16,
+                  ),
+                  color: Theme.of(context).colorScheme.surfaceContainerHigh,
+                  child: Column(children: _componentList),
                 ),
-                color: Theme.of(context).colorScheme.surfaceContainerHigh,
-                child: Column(children: _componentList),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
