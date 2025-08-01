@@ -15,24 +15,26 @@ class _IndexPageState extends State<IndexPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer2<IndexViewModule, OSAbility>(
-      builder: (context, index, ability, child) {
-        return Scaffold(
-          backgroundColor: Colors.transparent,
-          body: Builder(
-            builder: (context) => CapsuleButton(
-              firstIcon: Icons.more_horiz,
-              lastIcon: Icons.adjust,
-              firstTooltip: '系统菜单',
-              lastTooltip: '退出应用',
-              onFirstTap: () => showModalBottomSheet(
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: Consumer2<IndexViewModule, OSAbility>(
+        builder: (context, index, ability, child) {
+          return CapsuleButton(
+            firstIcon: Icons.more_horiz,
+            lastIcon: Icons.adjust,
+            firstTooltip: '系统菜单',
+            lastTooltip: '退出应用',
+            onFirstTap: () {
+              showModalBottomSheet(
                 context: context,
                 useRootNavigator: false,
                 builder: (context) {
                   return SystemSheet();
                 },
-              ),
-              onLastTap: () => index.doubleExit(
+              );
+            },
+            onLastTap: () {
+              index.doubleExit(
                 showTips: (exit) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
@@ -44,15 +46,15 @@ class _IndexPageState extends State<IndexPage> {
                 exit: () {
                   SystemNavigator.pop();
                 },
-              ),
-              child: Theme(
-                data: RootTheme.of(context),
-                child: index.getUserApp(ability),
-              ),
+              );
+            },
+            child: Theme(
+              data: RootTheme.of(context),
+              child: index.getUserApp(ability),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }
