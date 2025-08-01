@@ -36,7 +36,7 @@ class _IndexPageState extends State<IndexPage> {
               appBar: AppBar(
                 backgroundColor: index.defaultOffstage(ability)
                     ? Colors.transparent
-                    : null,
+                    : Theme.of(context).colorScheme.primaryContainer,
                 title: Offstage(
                   offstage: index.defaultOffstage(ability),
                   child: Text('untitled'),
