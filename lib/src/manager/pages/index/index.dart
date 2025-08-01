@@ -13,8 +13,23 @@ final class IndexPage extends UiPage {
 class _IndexPageState extends State<IndexPage> {
   _IndexPageState();
 
+  /// 滚动控制器
+  final ScrollController _scrollController = ScrollController();
+
   /// 计数器
   final ValueNotifier<int> _counter = ValueNotifier(0);
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _scrollController.dispose();
+    _counter.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +38,7 @@ class _IndexPageState extends State<IndexPage> {
         return Stack(
           children: [
             ConstrainedBox(
-              constraints: BoxConstraints.expand(),
+              constraints: const BoxConstraints.expand(),
               child: Theme(
                 data: RootTheme.of(context),
                 child: Container(child: ability.getChild),
@@ -34,12 +49,16 @@ class _IndexPageState extends State<IndexPage> {
                   ? Colors.transparent
                   : null,
               appBar: AppBar(
+                leading: IconButton(
+                  onPressed: () {},
+                  icon: const FlutterLogo(),
+                ),
                 backgroundColor: index.defaultOffstage(ability)
                     ? Colors.transparent
                     : Theme.of(context).colorScheme.primaryContainer,
                 title: Offstage(
                   offstage: index.defaultOffstage(ability),
-                  child: Text('untitled'),
+                  child: Text('默认页'),
                 ),
                 actions: [
                   Builder(
@@ -77,27 +96,40 @@ class _IndexPageState extends State<IndexPage> {
               ),
               body: Offstage(
                 offstage: index.defaultOffstage(ability),
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text('You have pushed the button this many times:'),
-                      ValueListenableBuilder(
-                        valueListenable: _counter,
-                        builder: (_, value, _) {
-                          return Text(
-                            value.toString(),
-                            style: const TextStyle(fontSize: 32),
-                          );
-                        },
+                child: Scrollbar(
+                  controller: _scrollController,
+                  child: ScrollConfiguration(
+                    behavior: ScrollConfiguration.of(context).copyWith(
+                      scrollbars: false, // 禁用默认滚动条
+                    ),
+                    child: SingleChildScrollView(
+                      controller: _scrollController,
+                      child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              '此页面为freefeos的默认页面, 如果您在开发过程中看到了此页面,说明您没有正确配置App, MaterialApp, CupertinoApp, WidgetsApp的home或route为空',
+                            ),
+                            const Text('您已经按下按钮多次了:'),
+                            ValueListenableBuilder(
+                              valueListenable: _counter,
+                              builder: (_, value, _) => Text(
+                                value.toString(),
+                                style: const TextStyle(fontSize: 32),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),
               floatingActionButton: Offstage(
                 offstage: index.defaultOffstage(ability),
                 child: FloatingActionButton(
+                  tooltip: '增加',
                   onPressed: () => _counter.value++,
                   child: const Icon(Icons.add),
                 ),

@@ -76,11 +76,11 @@ final class _AppState extends State<App> {
       },
       routes: widget.buildPages,
       builder: (context, child) {
-        return RootTheme(
-          data: Theme.of(context),
-          child: Theme(
-            data: widget.buildStyle(context),
-            child: ScaffoldMessenger(
+        return ScaffoldMessenger(
+          child: RootTheme(
+            data: Theme.of(context),
+            child: Theme(
+              data: widget.buildStyle(context),
               child: MultiProvider(
                 providers: widget.buildViewModel,
                 child: child,
