@@ -28,6 +28,7 @@ class _IndexPageState extends State<IndexPage> {
               showModalBottomSheet(
                 context: context,
                 useRootNavigator: false,
+                // showDragHandle: true,
                 builder: (context) {
                   return SystemSheet();
                 },

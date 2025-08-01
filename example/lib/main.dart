@@ -33,17 +33,18 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           brightness: Brightness.light,
           colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.red,
+            seedColor: Colors.purple,
             brightness: Brightness.light,
           ),
         ),
         darkTheme: ThemeData(
           brightness: Brightness.dark,
           colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.red,
+            seedColor: Colors.purple,
             brightness: Brightness.dark,
           ),
         ),
+        themeMode: ThemeMode.system,
         locale: DevicePreview.locale(context),
         // 为了与 device_preview 兼容, 需要将 useInheritedMediaQuery 设置为 true.
         // ignore: deprecated_member_use
