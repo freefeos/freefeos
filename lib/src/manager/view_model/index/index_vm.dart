@@ -3,11 +3,11 @@ part of '../../manager.dart';
 final class IndexViewModule with ViewModel {
   DateTime? _lastBackPressTime;
 
-  bool defaultOffstage(OSAbility ability) {
-    return ability.getChild != null;
+  Widget getUserApp(OSAbility ability) {
+    return Container(child: ability.getChild);
   }
 
-  void back({
+  void doubleExit({
     required void Function(VoidCallback exit) showTips,
     required VoidCallback exit,
   }) {
