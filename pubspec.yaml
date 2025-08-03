@@ -46,6 +46,7 @@ flutter:
         pluginClass: FreeFEOSWeb
         fileName: freefeos_web.dart
   assets:
+    - assets/icon.png
     - README.md
     - CHANGELOG.md
     - LICENSE

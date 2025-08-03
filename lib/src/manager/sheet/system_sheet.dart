@@ -42,6 +42,18 @@ class _SystemSheetState extends State<SystemSheet> {
                   },
                 ),
               ),
+              FilledButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return AboutPage();
+                      },
+                    ),
+                  );
+                },
+                child: Text('About'),
+              ),
             ],
           ),
         ),
