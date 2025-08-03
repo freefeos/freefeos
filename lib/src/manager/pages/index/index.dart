@@ -28,7 +28,7 @@ class _IndexPageState extends State<IndexPage> {
               showModalBottomSheet(
                 context: context,
                 useRootNavigator: false,
-                // showDragHandle: true,
+                showDragHandle: true,
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.vertical(
                     top: Radius.circular(28.0),

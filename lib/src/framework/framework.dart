@@ -46,6 +46,5 @@ part 'want/want.dart';
 
 /// Widget 组件
 part 'widget/context_basic_wrapper.dart';
-part 'widget/context_state_wrapper.dart';
 part 'widget/context_stateful_wrapper.dart';
 part 'widget/context_stateless_wrapper.dart';
