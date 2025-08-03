@@ -45,6 +45,11 @@ flutter:
       web:
         pluginClass: FreeFEOSWeb
         fileName: freefeos_web.dart
+  assets:
+    - README.md
+    - CHANGELOG.md
+    - LICENSE
+    - AUTHORS
 
 topics:
   - framework
