@@ -10,6 +10,7 @@ final class App extends UiApp implements IAppOption {
       IndexPage.route: (_) => IndexPage(), // 首页
       ManagerPage.route: (_) => ManagerPage(), // 管理器
       AppsPage.route: (_) => AppsPage(), // 应用列表
+      AboutPage.route: (_) => AboutPage(), // 关于
     };
   }
 

@@ -1,4 +1,4 @@
-part of '../../manager.dart';
+part of '../manager.dart';
 
 /// 模块页面布局
 final class ModuleScreen extends UiScreen {

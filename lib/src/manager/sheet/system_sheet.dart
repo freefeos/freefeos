@@ -20,7 +20,7 @@ class _SystemSheetState extends State<SystemSheet> {
               Card.filled(
                 margin: const EdgeInsets.only(
                   left: 16,
-                  top: 16,
+                  top: 0,
                   right: 16,
                   bottom: 8,
                 ),
@@ -37,20 +37,21 @@ class _SystemSheetState extends State<SystemSheet> {
                     borderRadius: BorderRadius.all(Radius.circular(12.0)),
                   ),
                   onTap: () {
-                    Navigator.of(context).pop();
-                    Navigator.of(context).pushNamed(ManagerPage.route);
+                    Navigator.of(context, rootNavigator: false).pop();
+                    Navigator.of(
+                      context,
+                      rootNavigator: false,
+                    ).pushNamed(ManagerPage.route);
                   },
                 ),
               ),
               FilledButton(
                 onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return AboutPage();
-                      },
-                    ),
-                  );
+                  Navigator.of(context, rootNavigator: false).pop();
+                  Navigator.of(
+                    context,
+                    rootNavigator: false,
+                  ).pushNamed(AboutPage.route);
                 },
                 child: Text('About'),
               ),

@@ -1,4 +1,4 @@
-part of '../../manager.dart';
+part of '../manager.dart';
 
 /// 主页页面布局
 final class HomeScreen extends UiScreen {

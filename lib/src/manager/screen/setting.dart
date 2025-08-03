@@ -1,4 +1,4 @@
-part of '../../manager.dart';
+part of '../manager.dart';
 
 /// 设置页面布局
 final class SettingScreen extends UiScreen {

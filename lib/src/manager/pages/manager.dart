@@ -1,4 +1,4 @@
-part of '../../manager.dart';
+part of '../manager.dart';
 
 final class ManagerPage extends UiPage {
   const ManagerPage({super.key});

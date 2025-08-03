@@ -1,4 +1,4 @@
-part of '../../manager.dart';
+part of '../manager.dart';
 
 final class IndexPage extends UiPage {
   const IndexPage({super.key});
@@ -65,18 +65,3 @@ class _IndexPageState extends State<IndexPage> {
   }
 }
 
-final class AboutPage extends UiPage {
-  const AboutPage({super.key});
-
-  @override
-  State<AboutPage> createState() => _AboutPageState();
-}
-
-class _AboutPageState extends State<AboutPage> {
-  @override
-  Widget build(BuildContext context) {
-    return LicensePage(
-      applicationIcon: Image.asset(package: 'freefeos', 'assets/icon.png'),
-    );
-  }
-}

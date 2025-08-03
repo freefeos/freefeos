@@ -40,12 +40,14 @@ part 'pages/apps/ecosed.dart';
 part 'pages/apps/wechat.dart';
 part 'pages/apps/clock.dart';
 part 'pages/apps/calculator.dart';
-part 'pages/index/index.dart';
-part 'pages/manager/manager.dart';
-part 'pages/manager/home.dart';
-part 'pages/manager/logcat.dart';
-part 'pages/manager/module.dart';
-part 'pages/manager/setting.dart';
+part 'pages/index.dart';
+part 'pages/manager.dart';
+part 'screen/home.dart';
+part 'screen/logcat.dart';
+part 'screen/module.dart';
+part 'screen/setting.dart';
+
+part 'pages/about.dart';
 
 part 'sheet/system_sheet.dart';
 

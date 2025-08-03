@@ -1,4 +1,4 @@
-part of '../../manager.dart';
+part of '../manager.dart';
 
 /// 日志页面布局
 final class LogcatScreen extends UiScreen {
