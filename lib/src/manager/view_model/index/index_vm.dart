@@ -11,7 +11,7 @@ final class IndexViewModule with ViewModel {
     required void Function(VoidCallback exit) showTips,
     required VoidCallback exit,
   }) {
-    final now = DateTime.now();
+    final DateTime now = DateTime.now();
     if (_lastBackPressTime == null ||
         now.difference(_lastBackPressTime!) > const Duration(seconds: 2)) {
       _lastBackPressTime = now;
