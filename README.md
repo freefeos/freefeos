@@ -2,7 +2,7 @@
 <p align="center">
     <!-- Logo -->
     <a href="https://pub.dev/packages/freefeos">
-        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/icon.png" alt="FreeFEOS" width="96">
+        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/icon.png" alt="FreeFEOS" width="96">
     </a>
     <br>
     <br>
