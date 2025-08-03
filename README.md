@@ -2,7 +2,7 @@
 <p align="center">
     <!-- Logo -->
     <a href="https://pub.dev/packages/freefeos">
-        <img alt="FreeFEOS">
+        <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/icon.png" alt="FreeFEOS" width="96">
     </a>
     <br>
     <br>
@@ -180,7 +180,7 @@ that can provide many advanced features for applications.
 
 ```yaml
 dependencies:
-    freefeos: ^这里写最新版本
+freefeos: ^这里写最新版本
 ```
 
 * 在终端中更新依赖:
