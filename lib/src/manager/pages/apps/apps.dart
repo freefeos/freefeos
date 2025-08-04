@@ -8,7 +8,6 @@ final class AppsPage extends UiPage {
   static const int ekit = 0;
   static const int wechat = 1;
   static const int clock = 2;
-  static const int calculator = 3;
 
   static const String pageArgument = 'index';
   static const String exhibitArgumgent = 'exhibit';
@@ -39,12 +38,6 @@ class _AppsPageState extends State<AppsPage> {
         },
         (context) {
           return const ClockScreen(title: '时钟', index: AppsPage.clock);
-        },
-        (context) {
-          return const CalculatorScreen(
-            title: '计算器',
-            index: AppsPage.calculator,
-          );
         },
       ],
     );

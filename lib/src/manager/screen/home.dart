@@ -198,327 +198,327 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: 16,
-                    top: 8,
-                    right: 16,
-                    bottom: widget.isExhibit ? 8 : 16,
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(12.0),
-                    ), // 裁剪右上角角标多余部分 12 为与OutlineCard相同大小的圆角
-                    child: Banner(
-                      shadow: BoxShadow(),
-                      message: AppLocalizations.of(
-                        context,
-                      ).indexHomeAppsCardBanner,
-                      color: Theme.of(context).colorScheme.primary,
-                      textStyle:
-                          (Theme.of(context).textTheme.labelSmall ??
-                                  TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 10.2,
-                                    fontWeight: FontWeight.w900,
-                                    height: 1.0,
-                                  ))
-                              .copyWith(
-                                color: Theme.of(context).colorScheme.onPrimary,
-                              ),
-                      location: BannerLocation.topEnd, // 角标位于右上角
-                      child: Card.filled(
-                        margin: EdgeInsets.zero,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                        ),
-                        color: Theme.of(
-                          context,
-                        ).colorScheme.surfaceContainerHigh,
-                        child: Column(
-                          children: [
-                            Column(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                    left: 16,
-                                    top: 8,
-                                    right: 16,
-                                    bottom: 4,
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        AppLocalizations.of(
-                                          context,
-                                        ).indexHomeAppsCardTitle,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .titleMedium
-                                            ?.copyWith(
-                                              color: Theme.of(
-                                                context,
-                                              ).colorScheme.primary,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 16),
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        flex:
-                                            AppUtils.getNavValue(
-                                                  context,
-                                                  'showBack',
-                                                ) ==
-                                                true
-                                            ? 1
-                                            : 0,
-                                        child: Offstage(
-                                          offstage:
-                                              AppUtils.getNavValue(
-                                                context,
-                                                'showBack',
-                                              ) !=
-                                              true,
-                                          child: Tooltip(
-                                            message: 'Back',
-                                            child: TextButton.icon(
-                                              onPressed: () {
-                                                Navigator.of(context).pop();
-                                              },
-                                              label: Text(
-                                                '返回',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .labelMedium
-                                                    ?.copyWith(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Theme.of(
-                                                        context,
-                                                      ).colorScheme.primary,
-                                                    ),
-                                              ),
-                                              icon: Icon(
-                                                Icons.arrow_back_ios_new,
-                                                color: Theme.of(
-                                                  context,
-                                                ).colorScheme.primary,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 0,
-                                        child: Offstage(
-                                          offstage:
-                                              AppUtils.getNavValue(
-                                                context,
-                                                'showBack',
-                                              ) !=
-                                              true,
-                                          child: SizedBox(width: 12),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 1,
-                                        child: Tooltip(
-                                          message: AppLocalizations.of(
-                                            context,
-                                          ).indexHomeAppsCardEKitAppTooltip,
-                                          child: Theme(
-                                            data: Theme.of(context).copyWith(
-                                              colorScheme: ColorScheme.fromSeed(
-                                                seedColor:
-                                                    V.colors.ecosedPurple,
-                                                brightness: Theme.of(
-                                                  context,
-                                                ).brightness,
-                                              ),
-                                            ),
-                                            child: Builder(
-                                              builder: (context) {
-                                                return TextButton.icon(
-                                                  onPressed: () {
-                                                    Navigator.of(
-                                                      context,
-                                                    ).pushNamed(
-                                                      AppsPage.route,
-                                                      arguments:
-                                                          AppUtils.setNavValue({
-                                                            AppsPage.pageArgument:
-                                                                AppsPage.ekit,
-                                                            AppsPage.exhibitArgumgent:
-                                                                widget
-                                                                    .isExhibit,
-                                                          }),
-                                                    );
-                                                  },
-                                                  label: Text(
-                                                    AppLocalizations.of(
-                                                      context,
-                                                    ).indexHomeAppsCardEKitAppName,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .labelMedium
-                                                        ?.copyWith(
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          color: Theme.of(
-                                                            context,
-                                                          ).colorScheme.primary,
-                                                        ),
-                                                  ),
-                                                  icon: Icon(
-                                                    Icons.keyboard_command_key,
-                                                    color: Theme.of(
-                                                      context,
-                                                    ).colorScheme.primary,
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 0,
-                                        child: SizedBox(width: 12),
-                                      ),
-                                      Expanded(
-                                        flex: 1,
-                                        child: Tooltip(
-                                          message: AppLocalizations.of(
-                                            context,
-                                          ).indexHomeAppsCardWeChatAppTooltip,
-                                          child: Theme(
-                                            data: Theme.of(context).copyWith(
-                                              colorScheme: ColorScheme.fromSeed(
-                                                seedColor: V.colors.wechatGreen,
-                                                brightness: Theme.of(
-                                                  context,
-                                                ).brightness,
-                                              ),
-                                            ),
-                                            child: Builder(
-                                              builder: (context) {
-                                                return TextButton.icon(
-                                                  onPressed: () {
-                                                    Navigator.of(
-                                                      context,
-                                                    ).pushNamed(
-                                                      AppsPage.route,
-                                                      arguments:
-                                                          AppUtils.setNavValue({
-                                                            AppsPage.pageArgument:
-                                                                AppsPage.wechat,
-                                                            AppsPage.exhibitArgumgent:
-                                                                widget
-                                                                    .isExhibit,
-                                                          }),
-                                                    );
-                                                  },
-                                                  label: Text(
-                                                    AppLocalizations.of(
-                                                      context,
-                                                    ).indexHomeAppsCardWeChatAppName,
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .labelMedium
-                                                        ?.copyWith(
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          color: Theme.of(
-                                                            context,
-                                                          ).colorScheme.primary,
-                                                        ),
-                                                  ),
-                                                  icon: Icon(
-                                                    Icons.wechat,
-                                                    color: Theme.of(
-                                                      context,
-                                                    ).colorScheme.primary,
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Divider(height: 1),
-                            Tooltip(
-                              message: AppLocalizations.of(
-                                context,
-                              ).indexHomeAppsCardClockAppTooltip,
-                              child: ListTile(
-                                leading: const Icon(Icons.access_time),
-                                title: Text(
-                                  AppLocalizations.of(
-                                    context,
-                                  ).indexHomeAppsCardClockAppName,
-                                ),
-                                trailing: Icon(Icons.keyboard_arrow_right),
-                                contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 16,
-                                ),
-                                onTap: () => Navigator.of(context).pushNamed(
-                                  AppsPage.route,
-                                  arguments: AppUtils.setNavValue({
-                                    AppsPage.pageArgument: AppsPage.clock,
-                                    AppsPage.exhibitArgumgent: widget.isExhibit,
-                                  }),
-                                ),
-                              ),
-                            ),
-                            Divider(height: 1, indent: 16, endIndent: 16),
-                            Tooltip(
-                              message: AppLocalizations.of(
-                                context,
-                              ).indexHomeAppsCardCalculatorAppTooltip,
-                              child: ListTile(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(12),
-                                    bottomRight: Radius.circular(12),
-                                  ),
-                                ),
-                                leading: const Icon(Icons.calculate),
-                                title: Text(
-                                  AppLocalizations.of(
-                                    context,
-                                  ).indexHomeAppsCardCalculatorAppName,
-                                ),
-                                trailing: Icon(Icons.keyboard_arrow_right),
-                                contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 16,
-                                ),
-                                onTap: () => Navigator.of(context).pushNamed(
-                                  AppsPage.route,
-                                  arguments: AppUtils.setNavValue({
-                                    AppsPage.pageArgument: AppsPage.calculator,
-                                    AppsPage.exhibitArgumgent: widget.isExhibit,
-                                  }),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                // Padding(
+                //   padding: EdgeInsets.only(
+                //     left: 16,
+                //     top: 8,
+                //     right: 16,
+                //     bottom: widget.isExhibit ? 8 : 16,
+                //   ),
+                //   child: ClipRRect(
+                //     borderRadius: BorderRadius.only(
+                //       topRight: Radius.circular(12.0),
+                //     ), // 裁剪右上角角标多余部分 12 为与OutlineCard相同大小的圆角
+                //     child: Banner(
+                //       shadow: BoxShadow(),
+                //       message: AppLocalizations.of(
+                //         context,
+                //       ).indexHomeAppsCardBanner,
+                //       color: Theme.of(context).colorScheme.primary,
+                //       textStyle:
+                //           (Theme.of(context).textTheme.labelSmall ??
+                //                   TextStyle(
+                //                     color: Colors.white,
+                //                     fontSize: 10.2,
+                //                     fontWeight: FontWeight.w900,
+                //                     height: 1.0,
+                //                   ))
+                //               .copyWith(
+                //                 color: Theme.of(context).colorScheme.onPrimary,
+                //               ),
+                //       location: BannerLocation.topEnd, // 角标位于右上角
+                //       child: Card.filled(
+                //         margin: EdgeInsets.zero,
+                //         shape: const RoundedRectangleBorder(
+                //           borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                //         ),
+                //         color: Theme.of(
+                //           context,
+                //         ).colorScheme.surfaceContainerHigh,
+                //         child: Column(
+                //           children: [
+                //             Column(
+                //               children: [
+                //                 Padding(
+                //                   padding: EdgeInsets.only(
+                //                     left: 16,
+                //                     top: 8,
+                //                     right: 16,
+                //                     bottom: 4,
+                //                   ),
+                //                   child: Row(
+                //                     mainAxisSize: MainAxisSize.max,
+                //                     mainAxisAlignment: MainAxisAlignment.start,
+                //                     children: [
+                //                       Text(
+                //                         AppLocalizations.of(
+                //                           context,
+                //                         ).indexHomeAppsCardTitle,
+                //                         style: Theme.of(context)
+                //                             .textTheme
+                //                             .titleMedium
+                //                             ?.copyWith(
+                //                               color: Theme.of(
+                //                                 context,
+                //                               ).colorScheme.primary,
+                //                             ),
+                //                       ),
+                //                     ],
+                //                   ),
+                //                 ),
+                //                 Padding(
+                //                   padding: EdgeInsets.symmetric(horizontal: 16),
+                //                   child: Row(
+                //                     children: [
+                //                       Expanded(
+                //                         flex:
+                //                             AppUtils.getNavValue(
+                //                                   context,
+                //                                   'showBack',
+                //                                 ) ==
+                //                                 true
+                //                             ? 1
+                //                             : 0,
+                //                         child: Offstage(
+                //                           offstage:
+                //                               AppUtils.getNavValue(
+                //                                 context,
+                //                                 'showBack',
+                //                               ) !=
+                //                               true,
+                //                           child: Tooltip(
+                //                             message: 'Back',
+                //                             child: TextButton.icon(
+                //                               onPressed: () {
+                //                                 Navigator.of(context).pop();
+                //                               },
+                //                               label: Text(
+                //                                 '返回',
+                //                                 style: Theme.of(context)
+                //                                     .textTheme
+                //                                     .labelMedium
+                //                                     ?.copyWith(
+                //                                       fontWeight:
+                //                                           FontWeight.bold,
+                //                                       color: Theme.of(
+                //                                         context,
+                //                                       ).colorScheme.primary,
+                //                                     ),
+                //                               ),
+                //                               icon: Icon(
+                //                                 Icons.arrow_back_ios_new,
+                //                                 color: Theme.of(
+                //                                   context,
+                //                                 ).colorScheme.primary,
+                //                               ),
+                //                             ),
+                //                           ),
+                //                         ),
+                //                       ),
+                //                       Expanded(
+                //                         flex: 0,
+                //                         child: Offstage(
+                //                           offstage:
+                //                               AppUtils.getNavValue(
+                //                                 context,
+                //                                 'showBack',
+                //                               ) !=
+                //                               true,
+                //                           child: SizedBox(width: 12),
+                //                         ),
+                //                       ),
+                //                       Expanded(
+                //                         flex: 1,
+                //                         child: Tooltip(
+                //                           message: AppLocalizations.of(
+                //                             context,
+                //                           ).indexHomeAppsCardEKitAppTooltip,
+                //                           child: Theme(
+                //                             data: Theme.of(context).copyWith(
+                //                               colorScheme: ColorScheme.fromSeed(
+                //                                 seedColor:
+                //                                     V.colors.ecosedPurple,
+                //                                 brightness: Theme.of(
+                //                                   context,
+                //                                 ).brightness,
+                //                               ),
+                //                             ),
+                //                             child: Builder(
+                //                               builder: (context) {
+                //                                 return TextButton.icon(
+                //                                   onPressed: () {
+                //                                     Navigator.of(
+                //                                       context,
+                //                                     ).pushNamed(
+                //                                       AppsPage.route,
+                //                                       arguments:
+                //                                           AppUtils.setNavValue({
+                //                                             AppsPage.pageArgument:
+                //                                                 AppsPage.ekit,
+                //                                             AppsPage.exhibitArgumgent:
+                //                                                 widget
+                //                                                     .isExhibit,
+                //                                           }),
+                //                                     );
+                //                                   },
+                //                                   label: Text(
+                //                                     AppLocalizations.of(
+                //                                       context,
+                //                                     ).indexHomeAppsCardEKitAppName,
+                //                                     style: Theme.of(context)
+                //                                         .textTheme
+                //                                         .labelMedium
+                //                                         ?.copyWith(
+                //                                           fontWeight:
+                //                                               FontWeight.bold,
+                //                                           color: Theme.of(
+                //                                             context,
+                //                                           ).colorScheme.primary,
+                //                                         ),
+                //                                   ),
+                //                                   icon: Icon(
+                //                                     Icons.keyboard_command_key,
+                //                                     color: Theme.of(
+                //                                       context,
+                //                                     ).colorScheme.primary,
+                //                                   ),
+                //                                 );
+                //                               },
+                //                             ),
+                //                           ),
+                //                         ),
+                //                       ),
+                //                       Expanded(
+                //                         flex: 0,
+                //                         child: SizedBox(width: 12),
+                //                       ),
+                //                       Expanded(
+                //                         flex: 1,
+                //                         child: Tooltip(
+                //                           message: AppLocalizations.of(
+                //                             context,
+                //                           ).indexHomeAppsCardWeChatAppTooltip,
+                //                           child: Theme(
+                //                             data: Theme.of(context).copyWith(
+                //                               colorScheme: ColorScheme.fromSeed(
+                //                                 seedColor: V.colors.wechatGreen,
+                //                                 brightness: Theme.of(
+                //                                   context,
+                //                                 ).brightness,
+                //                               ),
+                //                             ),
+                //                             child: Builder(
+                //                               builder: (context) {
+                //                                 return TextButton.icon(
+                //                                   onPressed: () {
+                //                                     Navigator.of(
+                //                                       context,
+                //                                     ).pushNamed(
+                //                                       AppsPage.route,
+                //                                       arguments:
+                //                                           AppUtils.setNavValue({
+                //                                             AppsPage.pageArgument:
+                //                                                 AppsPage.wechat,
+                //                                             AppsPage.exhibitArgumgent:
+                //                                                 widget
+                //                                                     .isExhibit,
+                //                                           }),
+                //                                     );
+                //                                   },
+                //                                   label: Text(
+                //                                     AppLocalizations.of(
+                //                                       context,
+                //                                     ).indexHomeAppsCardWeChatAppName,
+                //                                     style: Theme.of(context)
+                //                                         .textTheme
+                //                                         .labelMedium
+                //                                         ?.copyWith(
+                //                                           fontWeight:
+                //                                               FontWeight.bold,
+                //                                           color: Theme.of(
+                //                                             context,
+                //                                           ).colorScheme.primary,
+                //                                         ),
+                //                                   ),
+                //                                   icon: Icon(
+                //                                     Icons.wechat,
+                //                                     color: Theme.of(
+                //                                       context,
+                //                                     ).colorScheme.primary,
+                //                                   ),
+                //                                 );
+                //                               },
+                //                             ),
+                //                           ),
+                //                         ),
+                //                       ),
+                //                     ],
+                //                   ),
+                //                 ),
+                //               ],
+                //             ),
+                //             Divider(height: 1),
+                //             Tooltip(
+                //               message: AppLocalizations.of(
+                //                 context,
+                //               ).indexHomeAppsCardClockAppTooltip,
+                //               child: ListTile(
+                //                 leading: const Icon(Icons.access_time),
+                //                 title: Text(
+                //                   AppLocalizations.of(
+                //                     context,
+                //                   ).indexHomeAppsCardClockAppName,
+                //                 ),
+                //                 trailing: Icon(Icons.keyboard_arrow_right),
+                //                 contentPadding: const EdgeInsets.symmetric(
+                //                   horizontal: 16,
+                //                 ),
+                //                 onTap: () => Navigator.of(context).pushNamed(
+                //                   AppsPage.route,
+                //                   arguments: AppUtils.setNavValue({
+                //                     AppsPage.pageArgument: AppsPage.clock,
+                //                     AppsPage.exhibitArgumgent: widget.isExhibit,
+                //                   }),
+                //                 ),
+                //               ),
+                //             ),
+                //             Divider(height: 1, indent: 16, endIndent: 16),
+                //             Tooltip(
+                //               message: AppLocalizations.of(
+                //                 context,
+                //               ).indexHomeAppsCardCalculatorAppTooltip,
+                //               child: ListTile(
+                //                 shape: RoundedRectangleBorder(
+                //                   borderRadius: BorderRadius.only(
+                //                     bottomLeft: Radius.circular(12),
+                //                     bottomRight: Radius.circular(12),
+                //                   ),
+                //                 ),
+                //                 leading: const Icon(Icons.calculate),
+                //                 title: Text(
+                //                   AppLocalizations.of(
+                //                     context,
+                //                   ).indexHomeAppsCardCalculatorAppName,
+                //                 ),
+                //                 trailing: Icon(Icons.keyboard_arrow_right),
+                //                 contentPadding: const EdgeInsets.symmetric(
+                //                   horizontal: 16,
+                //                 ),
+                //                 onTap: () => Navigator.of(context).pushNamed(
+                //                   AppsPage.route,
+                //                   arguments: AppUtils.setNavValue({
+                //                     AppsPage.pageArgument: AppsPage.calculator,
+                //                     AppsPage.exhibitArgumgent: widget.isExhibit,
+                //                   }),
+                //                 ),
+                //               ),
+                //             ),
+                //           ],
+                //         ),
+                //       ),
+                //     ),
+                //   ),
+                // ),
                 Offstage(
                   offstage: !widget.isExhibit,
                   child: Padding(
