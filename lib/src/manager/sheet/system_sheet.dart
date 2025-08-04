@@ -61,13 +61,11 @@ class _SystemSheetState extends State<SystemSheet> {
         Divider(height: 1),
         ListTile(
           onTap: () => Navigator.of(context).pop(),
-          title: Text('Cancel', textAlign: TextAlign.center,),
+          title: Text('Cancel', textAlign: TextAlign.center),
           textColor: Theme.of(context).colorScheme.primary,
           titleAlignment: ListTileTitleAlignment.center,
           contentPadding: EdgeInsets.only(
             bottom: MediaQuery.of(context).padding.bottom,
-            // left: MediaQuery.of(context).padding.left,
-            // right: MediaQuery.of(context).padding.right,
           ),
         ),
       ],
