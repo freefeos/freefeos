@@ -32,27 +32,19 @@ class _SystemSheetState extends State<SystemSheet> {
                   leading: const FlutterLogo(),
                   title: Text('appName'),
                   subtitle: Text('subtitle'),
-                  trailing: Icon(Icons.arrow_right_rounded),
+                  trailing: const Icon(Icons.arrow_right_rounded),
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(12.0)),
                   ),
-                  onTap: () {
-                    Navigator.of(context, rootNavigator: false).pop();
-                    Navigator.of(
-                      context,
-                      rootNavigator: false,
-                    ).pushNamed(ManagerPage.route);
-                  },
+                  onTap: () => Navigator.of(context, rootNavigator: false)
+                    ..pop()
+                    ..pushNamed(ManagerPage.route),
                 ),
               ),
               FilledButton(
-                onPressed: () {
-                  Navigator.of(context, rootNavigator: false).pop();
-                  Navigator.of(
-                    context,
-                    rootNavigator: false,
-                  ).pushNamed(AboutPage.route);
-                },
+                onPressed: () => Navigator.of(context, rootNavigator: false)
+                  ..pop()
+                  ..pushNamed(AboutPage.route),
                 child: Text('About'),
               ),
             ],
@@ -60,7 +52,7 @@ class _SystemSheetState extends State<SystemSheet> {
         ),
         Divider(height: 1),
         ListTile(
-          onTap: () => Navigator.of(context).pop(),
+          onTap: () => Navigator.of(context, rootNavigator: false).pop(),
           title: Text('Cancel', textAlign: TextAlign.center),
           textColor: Theme.of(context).colorScheme.primary,
           titleAlignment: ListTileTitleAlignment.center,

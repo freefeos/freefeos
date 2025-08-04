@@ -1,5 +1,7 @@
 part of '../../manager.dart';
 
+
+
 final class IndexViewModule with ViewModel {
   DateTime? _lastBackPressTime;
 
@@ -8,7 +10,7 @@ final class IndexViewModule with ViewModel {
   }
 
   void doubleExit({
-    required void Function(VoidCallback exit) showTips,
+    required ExitCallback showTips,
     required VoidCallback exit,
   }) {
     final DateTime now = DateTime.now();

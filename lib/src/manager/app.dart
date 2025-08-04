@@ -9,7 +9,6 @@ final class App extends UiApp {
     return <RouteName, UiPageBuilder>{
       IndexPage.route: (_) => IndexPage(),
       ManagerPage.route: (_) => ManagerPage(),
-      AppsPage.route: (_) => AppsPage(),
       AboutPage.route: (_) => AboutPage(),
       LicensesPage.route: (_) => LicensesPage(),
     };
@@ -53,9 +52,6 @@ final class App extends UiApp {
       ViewModelProvider<HomeViewModel>(create: (_) => HomeViewModel()),
       ViewModelProvider<LogcatViewModel>(create: (_) => LogcatViewModel()),
       ViewModelProvider<ModuleViewModel>(create: (_) => ModuleViewModel()),
-      ViewModelProvider<CalculatorViewModel>(
-        create: (_) => CalculatorViewModel(),
-      ),
     ];
   }
 

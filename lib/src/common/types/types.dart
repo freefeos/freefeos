@@ -32,9 +32,6 @@ typedef SdkInvoker = T? Function<T>(String apiId, [dynamic arguments]);
 /// 系统能力
 typedef OSAbility = OSViewModel;
 
-/// 计算器执行计算回调
-typedef CalculatorExecCallback = void Function(CalculatorButtonContent content);
-
 /// 日志复制回调
 typedef LogcatCopyCallback = void Function(String text);
 
@@ -49,6 +46,7 @@ typedef DetailDialogLauncher =
       IconData icon,
       String description,
     );
+
 typedef ModuleItemBuilder =
     Widget Function(
       BuildContext content,
@@ -58,3 +56,5 @@ typedef ModuleItemBuilder =
       bool isTop,
       bool isBottom,
     );
+
+typedef ExitCallback = void Function(VoidCallback exit);

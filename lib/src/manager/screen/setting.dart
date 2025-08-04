@@ -180,13 +180,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           ),
                         ),
                         onTap: () {
-                          Navigator.of(context).pushNamed(
-                            AppsPage.route,
-                            arguments: AppUtils.setNavValue({
-                              AppsPage.pageArgument: AppsPage.ekit,
-                              AppsPage.exhibitArgumgent: false,
-                            }),
-                          );
+                         
                         },
                       ),
                       const Divider(height: 1, indent: 16, endIndent: 16),
