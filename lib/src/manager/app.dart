@@ -11,6 +11,8 @@ final class App extends UiApp {
       ManagerPage.route: (_) => ManagerPage(),
       AboutPage.route: (_) => AboutPage(),
       LicensesPage.route: (_) => LicensesPage(),
+      DetailsPage.route: (_) => DetailsPage(),
+      SettingsPage.route: (_) => SettingsPage(),
     };
   }
 

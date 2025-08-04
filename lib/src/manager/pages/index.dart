@@ -27,7 +27,6 @@ class _IndexPageState extends State<IndexPage> {
             onFirstTap: () {
               showModalBottomSheet(
                 context: context,
-                useRootNavigator: false,
                 showDragHandle: true,
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.vertical(

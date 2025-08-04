@@ -34,14 +34,15 @@ part 'controllers/nav_controller.dart';
 /// Pages 页面
 part 'pages/index.dart';
 part 'pages/manager.dart';
+part 'pages/licenses.dart';
+part 'pages/about.dart';
+part 'pages/details.dart';
+part 'pages/settings.dart';
+
 part 'screen/home.dart';
 part 'screen/logcat.dart';
 part 'screen/module.dart';
 part 'screen/setting.dart';
-
-part 'pages/licenses.dart';
-
-part 'pages/about.dart';
 
 part 'sheet/system_sheet.dart';
 

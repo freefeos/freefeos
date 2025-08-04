@@ -176,7 +176,6 @@ class _ModuleScreenState extends State<ModuleScreen> {
   ) async {
     await showDialog(
       context: context,
-      useRootNavigator: false,
       builder: (context) {
         return AlertDialog(
           titlePadding: EdgeInsets.zero,
