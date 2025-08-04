@@ -2,7 +2,7 @@ part of '../manager.dart';
 
 enum HeaderStyle { ecosedkit, wechat, clock, calculator }
 
-final class Header extends UiComponent {
+final class Header extends UiStatefulComponent {
   const Header({
     super.key,
     required this.style,

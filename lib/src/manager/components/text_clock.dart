@@ -1,7 +1,7 @@
 part of '../manager.dart';
 
 /// 文本时钟组件
-final class TextClock extends UiComponent {
+final class TextClock extends UiStatefulComponent {
   const TextClock({super.key});
 
   @override

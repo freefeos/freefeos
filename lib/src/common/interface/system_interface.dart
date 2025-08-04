@@ -27,6 +27,6 @@ class FreeFEOSSystem extends PlatformInterface {
 
   /// 入口函数
   TransitionBuilder get builder {
-    throw UnimplementedError('异常: 未实现entryPoint()接口！');
+    throw UnimplementedError('异常: 未实现builder接口!');
   }
 }

@@ -1,6 +1,6 @@
-part of '../common.dart';
+part of '../framework.dart';
 
-abstract base class UiApp extends UiComponent {
+abstract base class UiApp extends UiStatelessComponent {
   const UiApp({super.key, required this.viewModel});
 
   final ViewModel viewModel;

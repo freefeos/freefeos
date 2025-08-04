@@ -7,10 +7,11 @@ final class App extends UiApp implements IAppOption {
   @override
   Map<RouteName, UiPageBuilder> get buildPages {
     return <RouteName, UiPageBuilder>{
-      IndexPage.route: (_) => IndexPage(), // 首页
-      ManagerPage.route: (_) => ManagerPage(), // 管理器
-      AppsPage.route: (_) => AppsPage(), // 应用列表
-      AboutPage.route: (_) => AboutPage(), // 关于
+      IndexPage.route: (_) => IndexPage(),
+      ManagerPage.route: (_) => ManagerPage(),
+      AppsPage.route: (_) => AppsPage(),
+      AboutPage.route: (_) => AboutPage(),
+      LicensesPage.route: (_) => LicensesPage(),
     };
   }
 
@@ -58,16 +59,6 @@ final class App extends UiApp implements IAppOption {
     ];
   }
 
-  /// 构建应用
-  @override
-  State<App> createState() {
-    return _AppState();
-  }
-}
-
-final class _AppState extends State<App> {
-  _AppState();
-
   @override
   Widget build(BuildContext context) {
     return WidgetsApp(
@@ -75,23 +66,20 @@ final class _AppState extends State<App> {
       pageRouteBuilder: <T>(RouteSettings settings, WidgetBuilder builder) {
         return MaterialPageRoute<T>(builder: builder, settings: settings);
       },
-      routes: widget.buildPages,
+      routes: buildPages,
       builder: (context, child) {
         return ScaffoldMessenger(
           child: RootTheme(
             data: Theme.of(context),
             child: Theme(
-              data: widget.buildStyle(context),
-              child: MultiProvider(
-                providers: widget.buildViewModel,
-                child: child,
-              ),
+              data: buildStyle(context),
+              child: MultiProvider(providers: buildViewModel, child: child),
             ),
           ),
         );
       },
       onGenerateTitle: (context) {
-        return widget.buildTitle(context);
+        return buildTitle(context);
       },
       color: Colors.transparent,
       localizationsDelegates: AppLocalizations.localizationsDelegates,

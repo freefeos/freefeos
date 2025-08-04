@@ -1,4 +1,4 @@
-part of '../common.dart';
+part of '../framework.dart';
 
 /// 系统能力调用的ViewModel的专用Provider
 final class OSAbilityProvider extends ViewModelProvider<OSAbility> {

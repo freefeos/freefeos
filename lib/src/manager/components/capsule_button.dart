@@ -1,6 +1,6 @@
 part of '../manager.dart';
 
-final class CapsuleButton extends UiComponent {
+final class CapsuleButton extends UiStatefulComponent {
   const CapsuleButton({
     super.key,
     required this.firstIcon,

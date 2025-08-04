@@ -1,6 +1,6 @@
 part of '../manager.dart';
 
-final class ScreenAdapter extends UiComponent {
+final class ScreenAdapter extends UiStatefulComponent {
   const ScreenAdapter({super.key, required this.child});
 
   final Widget child;

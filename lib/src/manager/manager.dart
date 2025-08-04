@@ -47,6 +47,8 @@ part 'screen/logcat.dart';
 part 'screen/module.dart';
 part 'screen/setting.dart';
 
+part 'pages/licenses.dart';
+
 part 'pages/about.dart';
 
 part 'sheet/system_sheet.dart';

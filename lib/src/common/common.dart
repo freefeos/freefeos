@@ -24,14 +24,6 @@ part 'interface/loader_interface.dart';
 part 'interface/compat_interface.dart';
 part 'interface/system_interface.dart';
 
-/// Library 库
-part 'library/app.dart';
-part 'library/component.dart';
-part 'library/option.dart';
-part 'library/page.dart';
-part 'library/provider.dart';
-part 'library/screen.dart';
-
 /// Manifest 清单
 part 'manifest/manifest_ecosedkit.dart';
 part 'manifest/manifest_freefeos.dart';
@@ -45,7 +37,7 @@ part 'model/module_details.dart';
 part 'types/types.dart';
 
 /// Utils 工具
-part 'utils/utils.dart';
+part 'utils/widget_utils.dart';
 
 /// Values 值
 part 'values/channel.dart';

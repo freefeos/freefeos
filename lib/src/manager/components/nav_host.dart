@@ -1,6 +1,6 @@
 part of '../manager.dart';
 
-final class NavHost extends UiComponent {
+final class NavHost extends UiStatefulComponent {
   const NavHost({super.key, required this.navController});
 
   final NavController navController;

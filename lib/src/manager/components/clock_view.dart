@@ -1,6 +1,6 @@
 part of '../manager.dart';
 
-final class ClockView extends UiComponent {
+final class ClockView extends UiStatefulComponent {
   const ClockView({super.key});
 
   @override

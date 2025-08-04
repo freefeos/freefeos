@@ -1,11 +1,11 @@
 part of '../compat.dart';
 
-/// Donut平台兼容层
-final class DonutCompat extends FreeFEOSCompat {
-  DonutCompat();
+/// Flutter平台兼容层
+final class FlutterCompat extends FreeFEOSCompat {
+  FlutterCompat();
 
   /// 兼容层的日志标签
-  static const String _tag = 'DonutCompat';
+  static const String _tag = 'FlutterCompat';
 
   /// 初始化微信接口
   /// 务必保留这段代码，否则第一次调用 wx 接口会提示异常。

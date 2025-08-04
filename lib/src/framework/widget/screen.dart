@@ -1,4 +1,4 @@
-part of '../common.dart';
+part of '../framework.dart';
 
 abstract base class UiScreen extends UiPage {
   const UiScreen({

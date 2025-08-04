@@ -1,6 +1,6 @@
 part of '../common.dart';
 
-/// Donut兼容层接口
+/// Flutter兼容层接口
 class FreeFEOSCompat extends PlatformInterface {
   FreeFEOSCompat() : super(token: _token);
 

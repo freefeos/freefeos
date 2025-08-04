@@ -1,4 +1,4 @@
-part of '../common.dart';
+part of '../framework.dart';
 
 /// 应用选项接口
 abstract interface class IAppOption {

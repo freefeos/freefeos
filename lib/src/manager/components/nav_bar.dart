@@ -1,6 +1,6 @@
 part of '../manager.dart';
 
-final class NavBar extends UiComponent {
+final class NavBar extends UiStatefulComponent {
   const NavBar({super.key, required this.navController});
 
   final NavController navController;

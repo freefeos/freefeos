@@ -6,7 +6,7 @@ final class OSLoader extends FreeFEOSLoader {
 
   @override
   void registerWith() {
-    FreeFEOSCompat.instance = DonutCompat();
+    FreeFEOSCompat.instance = FlutterCompat();
     FreeFEOSSystem.instance = OSEntry();
   }
 

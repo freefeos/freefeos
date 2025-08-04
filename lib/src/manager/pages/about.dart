@@ -12,6 +12,19 @@ final class AboutPage extends UiPage {
 class _AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar());
+    return Scaffold(
+      appBar: AppBar(title: Text('About')),
+      body: Column(
+        children: [
+          FilledButton(
+            onPressed: () => Navigator.of(
+              context,
+              rootNavigator: false,
+            ).pushNamed(LicensesPage.route),
+            child: Text('开放源代码协议'),
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -22,7 +22,7 @@ final class PlatformEmbedder extends Service implements FreeFEOSCompat {
   @override
   void addThemeModeChangeListener(VoidCallback callback) {
     return _invoke<void>(
-      donut: (linker) => linker.addThemeModeChangeListener(callback),
+      flutter: (linker) => linker.addThemeModeChangeListener(callback),
       origin: () async {},
       error: (exception) async {
         Log.e(tag: tag, message: exception.toString());
@@ -33,7 +33,7 @@ final class PlatformEmbedder extends Service implements FreeFEOSCompat {
   @override
   AppBarTheme get getAppBarTheme {
     return _invoke<AppBarTheme>(
-      donut: (linker) => linker.getAppBarTheme,
+      flutter: (linker) => linker.getAppBarTheme,
       origin: () =>
           AppBarTheme(centerTitle: false, toolbarHeight: kToolbarHeight),
       error: (exception) {
@@ -46,7 +46,7 @@ final class PlatformEmbedder extends Service implements FreeFEOSCompat {
   @override
   String get getBaseSdkVersion {
     return _invoke<String>(
-      donut: (linker) => linker.getBaseSdkVersion,
+      flutter: (linker) => linker.getBaseSdkVersion,
       origin: () => '0.0.0',
       error: (exception) {
         Log.e(tag: tag, message: exception.toString());
@@ -58,7 +58,7 @@ final class PlatformEmbedder extends Service implements FreeFEOSCompat {
   @override
   String get getHostAppVersion {
     return _invoke<String>(
-      donut: (linker) => linker.getHostAppVersion,
+      flutter: (linker) => linker.getHostAppVersion,
       origin: () => '0.0.0',
       error: (exception) {
         Log.e(tag: tag, message: exception.toString());
@@ -70,7 +70,7 @@ final class PlatformEmbedder extends Service implements FreeFEOSCompat {
   @override
   NavigatorObserver get getNavigatorObserver {
     return _invoke<NavigatorObserver>(
-      donut: (linker) => linker.getNavigatorObserver,
+      flutter: (linker) => linker.getNavigatorObserver,
       origin: () => NavigatorObserver(),
       error: (exception) {
         Log.e(tag: tag, message: exception.toString());
@@ -82,7 +82,7 @@ final class PlatformEmbedder extends Service implements FreeFEOSCompat {
   @override
   ThemeMode get getThemeMode {
     return _invoke<ThemeMode>(
-      donut: (linker) => linker.getThemeMode,
+      flutter: (linker) => linker.getThemeMode,
       origin: () => ThemeMode.system,
       error: (exception) {
         Log.e(tag: tag, message: exception.toString());
@@ -94,7 +94,7 @@ final class PlatformEmbedder extends Service implements FreeFEOSCompat {
   @override
   Future<void> initDelegate() {
     return _invoke<Future<void>>(
-      donut: (linker) => linker.initDelegate(),
+      flutter: (linker) => linker.initDelegate(),
       origin: () async {},
       error: (exception) async {
         Log.e(tag: tag, message: exception.toString());
@@ -105,7 +105,7 @@ final class PlatformEmbedder extends Service implements FreeFEOSCompat {
   @override
   Future<void> initDonutApi() {
     return _invoke<Future<void>>(
-      donut: (linker) => linker.initDonutApi(),
+      flutter: (linker) => linker.initDonutApi(),
       origin: () async {},
       error: (exception) async {
         Log.e(tag: tag, message: exception.toString());
@@ -116,7 +116,7 @@ final class PlatformEmbedder extends Service implements FreeFEOSCompat {
   @override
   Future<void> runDonutApp(Widget app) {
     return _invoke<Future<void>>(
-      donut: (linker) => linker.runDonutApp(app),
+      flutter: (linker) => linker.runDonutApp(app),
       origin: () async => runApp(app),
       error: (exception) async {
         Log.e(tag: tag, message: exception.toString());
@@ -131,7 +131,7 @@ final class PlatformEmbedder extends Service implements FreeFEOSCompat {
     required Map query,
   }) {
     return _invoke<void>(
-      donut: (linker) {
+      flutter: (linker) {
         return linker.setAppShareInfo(
           context: context,
           title: title,
@@ -148,7 +148,7 @@ final class PlatformEmbedder extends Service implements FreeFEOSCompat {
   @override
   void setClipboardData(String text, VoidCallback showTips) {
     return _invoke<void>(
-      donut: (linker) => linker.setClipboardData(text, showTips),
+      flutter: (linker) => linker.setClipboardData(text, showTips),
       origin: () async {
         return Clipboard.setData(
           ClipboardData(text: text),
@@ -163,7 +163,7 @@ final class PlatformEmbedder extends Service implements FreeFEOSCompat {
   @override
   bool get checkEnv {
     return _invoke<bool>(
-      donut: (linker) => linker.checkEnv,
+      flutter: (linker) => linker.checkEnv,
       origin: () => false, // 非微信环境直接返回否
       error: (exception) {
         Log.e(tag: tag, message: exception.toString());
@@ -175,7 +175,7 @@ final class PlatformEmbedder extends Service implements FreeFEOSCompat {
   @override
   Widget openEKit({required Widget child}) {
     return _invoke<Widget>(
-      donut: (linker) => linker.openEKit(child: child),
+      flutter: (linker) => linker.openEKit(child: child),
       origin: () => Container(child: child),
       error: (exception) {
         Log.e(tag: tag, message: exception.toString());
@@ -187,7 +187,7 @@ final class PlatformEmbedder extends Service implements FreeFEOSCompat {
   @override
   Widget openWeChat({required Widget child}) {
     return _invoke<Widget>(
-      donut: (linker) => linker.openWeChat(child: child),
+      flutter: (linker) => linker.openWeChat(child: child),
       origin: () => Container(child: child),
       error: (exception) {
         Log.e(tag: tag, message: exception.toString());
@@ -199,7 +199,7 @@ final class PlatformEmbedder extends Service implements FreeFEOSCompat {
   @override
   Widget openSetting({required Widget child}) {
     return _invoke<Widget>(
-      donut: (linker) => linker.openSetting(child: child),
+      flutter: (linker) => linker.openSetting(child: child),
       origin: () => Container(child: child),
       error: (exception) {
         Log.e(tag: tag, message: exception.toString());
@@ -211,7 +211,7 @@ final class PlatformEmbedder extends Service implements FreeFEOSCompat {
   @override
   Widget openCustomer({required Widget child}) {
     return _invoke<Widget>(
-      donut: (linker) => linker.openCustomer(child: child),
+      flutter: (linker) => linker.openCustomer(child: child),
       origin: () => Container(child: child),
       error: (exception) {
         Log.e(tag: tag, message: exception.toString());
@@ -223,7 +223,7 @@ final class PlatformEmbedder extends Service implements FreeFEOSCompat {
   @override
   String get getAppId {
     return _invoke<String>(
-      donut: (linker) => linker.getAppId,
+      flutter: (linker) => linker.getAppId,
       origin: () => 'com.freefeos.core',
       error: (exception) {
         Log.e(tag: tag, message: exception.toString());
@@ -235,7 +235,7 @@ final class PlatformEmbedder extends Service implements FreeFEOSCompat {
   @override
   String get getVersionStage {
     return _invoke<String>(
-      donut: (linker) => linker.getVersionStage,
+      flutter: (linker) => linker.getVersionStage,
       origin: () => '',
       error: (exception) {
         Log.e(tag: tag, message: exception.toString());
@@ -247,7 +247,7 @@ final class PlatformEmbedder extends Service implements FreeFEOSCompat {
   @override
   String get getVersionName {
     return _invoke<String>(
-      donut: (linker) => linker.getVersionName,
+      flutter: (linker) => linker.getVersionName,
       origin: () => '0.0.0',
       error: (exception) {
         Log.e(tag: tag, message: exception.toString());
@@ -258,13 +258,13 @@ final class PlatformEmbedder extends Service implements FreeFEOSCompat {
 
   /// 调用
   T _invoke<T>({
-    required T Function(FreeFEOSCompat linker) donut,
+    required T Function(FreeFEOSCompat linker) flutter,
     required T Function() origin,
     required T Function(dynamic exception) error,
   }) {
     try {
       if (_linker.checkEnv) {
-        return donut(_linker);
+        return flutter(_linker);
       } else {
         return origin();
       }

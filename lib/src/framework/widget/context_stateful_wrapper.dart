@@ -1,6 +1,6 @@
 part of '../framework.dart';
 
-abstract base class ContextStatefulWrapper extends StatefulWidget
+abstract base class ContextStatefulWrapper extends UiStatefulComponent
     with ContextWidgetMixin {
   const ContextStatefulWrapper({super.key});
 
@@ -8,10 +8,4 @@ abstract base class ContextStatefulWrapper extends StatefulWidget
   @factory
   @override
   ContextStateWrapper createState();
-}
-
-abstract base class ContextStateWrapper<T extends ContextStatefulWrapper>
-    extends State<T>
-    with ContextStateProxy<T> {
-  ContextStateWrapper();
 }

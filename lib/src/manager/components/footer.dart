@@ -2,7 +2,7 @@ part of '../manager.dart';
 
 enum FooterStyle { freefeos, ecosedkit, wechat, clock, calculator }
 
-final class Footer extends UiComponent {
+final class Footer extends UiStatefulComponent {
   const Footer({super.key, required this.style});
 
   /// 底部样式

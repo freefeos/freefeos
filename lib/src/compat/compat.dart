@@ -1,9 +1,9 @@
-/// Donut 平台兼容层
+/// Flutter 平台兼容层
 library;
 
 import 'package:flutter/material.dart';
 
 import '../common/common.dart';
 
-/// Donut平台兼容层实现
+/// Flutter 平台兼容层实现
 part 'impl/compat_impl.dart';

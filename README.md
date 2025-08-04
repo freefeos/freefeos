@@ -180,7 +180,7 @@ that can provide many advanced features for applications.
 
 ```yaml
 dependencies:
-freefeos: ^这里写最新版本
+  freefeos: ^这里写最新版本
 ```
 
 * 在终端中更新依赖:
