@@ -1,6 +1,6 @@
 part of 'manager.dart';
 
-final class App extends UiApp implements IAppOption {
+final class App extends UiApp {
   const App({super.key, required super.viewModel});
 
   /// 页面

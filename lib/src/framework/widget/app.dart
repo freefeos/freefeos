@@ -4,4 +4,16 @@ abstract base class UiApp extends UiStatelessComponent {
   const UiApp({super.key, required this.viewModel});
 
   final ViewModel viewModel;
+
+  /// 页面
+  Map<RouteName, UiPageBuilder> get buildPages;
+
+  /// 样式
+  ThemeData buildStyle(BuildContext context);
+
+  /// 标题
+  String buildTitle(BuildContext context);
+
+  /// ViewModel
+  List<ViewModelProvider> get buildViewModel;
 }

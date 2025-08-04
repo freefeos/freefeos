@@ -30,8 +30,6 @@ part 'logcat/log.dart';
 part 'logcat/parser_interface.dart';
 part 'logcat/ansi_parser.dart';
 
-part 'option/option.dart';
-
 /// 系统能力provider
 part 'provider/provider.dart';
 
