@@ -2,7 +2,7 @@ part of '../engine.dart';
 
 final class OSEngine extends OSComponent
     with ComponentMixin
-    implements IEngine {
+    implements IEngine, OSModule, EngineProxy {
   OSEngine();
 
   /// 引擎初始化状态

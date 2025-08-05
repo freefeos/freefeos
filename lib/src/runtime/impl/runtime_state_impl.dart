@@ -1,5 +1,6 @@
 part of '../runtime.dart';
 
+/// 系统运行时状态实现
 final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
     with SystemEntry, RuntimeMixin, BridgeMixin
     implements OSModule, FreeFEOSSystem, IRuntime {
