@@ -147,7 +147,6 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
           );
           // 初始化应用
           await init();
-          // await Future.delayed(Duration(seconds: 3));
         } catch (exception) {
           Log.e(tag: _tag, message: exception.toString());
         }
