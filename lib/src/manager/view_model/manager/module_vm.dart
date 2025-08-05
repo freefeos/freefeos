@@ -109,8 +109,6 @@ final class ModuleViewModel with ViewModel implements IModuleViewModel {
   /// 获取图标
   IconData _getIcon(List<ModuleDetails> list, int i) {
     switch (list[i].type) {
-      case ModuleType.base:
-        return Icons.webhook;
       case ModuleType.runtime:
         return Icons.bubble_chart;
       case ModuleType.engine:

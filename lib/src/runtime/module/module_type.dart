@@ -5,9 +5,6 @@ enum ModuleType {
   /// 框架运行时
   runtime,
 
-  /// 运行时基础绑定
-  base,
-
   /// 引擎模块
   engine,
 

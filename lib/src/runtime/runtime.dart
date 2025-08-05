@@ -1,6 +1,7 @@
 /// 系统运行时
 library;
 
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 
 import '../common/common.dart';

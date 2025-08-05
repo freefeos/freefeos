@@ -6,7 +6,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
   OSRuntimeState();
 
   /// Logcat 标签
-  static const String _tag = 'OSRuntime';
+  static const String _tag = 'OSRuntimeState';
 
   /// 模块列表
   final List<OSModule> _moduleList = [];
@@ -14,7 +14,8 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
   /// 模块详细信息列表
   final List<ModuleDetails> _moduleDetailsList = [];
 
-  bool _initializationFlag = false;
+  /// 初始化标志
+  final ValueNotifier<bool> _initializationFlag = ValueNotifier(false);
 
   /// 模块通道
   @override
@@ -76,20 +77,18 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
   /// 获取App
   @override
   Layout findMiniProgram() {
-    // 遍历模块信息列表
-    for (var element in _moduleDetailsList) {
-      // 判断当前信息是否为运行时
-      if (element.id == moduleChannel) {
-        // 返回运行时的界面
-        return resources.getLayout(
-          builder: (context) {
+    return resources.getLayout(
+      builder: (context) {
+        for (var element in _moduleDetailsList) {
+          // 判断当前信息是否为运行时
+          if (element.id == moduleChannel) {
+            // 返回运行时的界面
             return _getModuleWidget(context, element);
-          },
-        );
-      }
-    }
-    // 当模块信息列表中没有符合的项时直接调用父类方法
-    return resources.getLayout(builder: (context) => const Placeholder());
+          }
+        }
+        return const Placeholder();
+      },
+    );
   }
 
   @override
@@ -137,7 +136,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
   @override
   void initState() {
     super.initState();
-    if (!_initializationFlag) {
+    if (!_initializationFlag.value) {
       (() async {
         try {
           // 初始化日志
@@ -145,63 +144,70 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
           // 初始化引擎
           await initEngineBridge().then(
             (_) => bridgeScope?.onCreateEngine(baseContext),
-            onError: (error) => Log.e(tag: _tag, message: error.toString()),
           );
           // 初始化应用
           await init();
+          // await Future.delayed(Duration(days: 1));
         } catch (exception) {
           Log.e(tag: _tag, message: exception.toString());
         }
-      })().then((_) {
-        if (mounted) {
-          setState(() => _initializationFlag = true);
-        }
-      });
+      })().then((_) => _initializationFlag.value = true);
     }
   }
 
   @override
   void dispose() {
-    if (_initializationFlag) {
+    if (_initializationFlag.value) {
       (() async {
-        await Log.dispose();
-        await bridgeScope?.onDestroyEngine();
-      })().then((_) {
-        if (mounted) {
-          setState(() => _initializationFlag = false);
+        try {
+          // 销毁日志
+          await Log.dispose();
+          // 销毁引擎
+          await bridgeScope?.onDestroyEngine();
+        } catch (exception) {
+          Log.e(tag: _tag, message: exception.toString());
         }
-      });
+      })().then((_) => _initializationFlag.value = false);
     }
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return _initializationFlag
-        ? WidgetUtil.layout2Widget(layout: findMiniProgram())
-        : const Center(child: CircularProgressIndicator.adaptive());
+    return ValueListenableBuilder(
+      valueListenable: _initializationFlag,
+      builder: (context, value, child) {
+        return PageTransitionSwitcher(
+          transitionBuilder: (child, animation, secondaryAnimation) {
+            return SharedAxisTransition(
+              animation: animation,
+              secondaryAnimation: secondaryAnimation,
+              transitionType: SharedAxisTransitionType.scaled,
+              child: child,
+            );
+          },
+          child: value
+              ? WidgetUtil.layout2Widget(layout: findMiniProgram())
+              : AppUtils.nonNullWidget(child: child),
+        );
+      },
+      child: const Center(child: CircularProgressIndicator.adaptive()),
+    );
   }
 
   /// 初始化运行时
   Future<void> _initRuntime() async {
     if (_moduleList.isEmpty && _moduleDetailsList.isEmpty) {
       try {
-        final String base = resources.getValues(value: V.channels.baseChannel);
-        final String runtime = resources.getValues(
-          value: V.channels.runtimeChannel,
-        );
-        final String engine = resources.getValues(
-          value: V.channels.engineChannel,
-        );
         // 初始化运行时
-        for (var element in [this, ?super.engine]) {
+        for (var element in <OSModule>[this, ?engine]) {
           // 类型
           ModuleType type = ModuleType.unknown;
-          if (element.moduleChannel == base) {
-            type = ModuleType.base;
-          } else if (element.moduleChannel == runtime) {
+          if (element.moduleChannel ==
+              resources.getValues(value: V.channels.runtimeChannel)) {
             type = ModuleType.runtime;
-          } else if (element.moduleChannel == engine) {
+          } else if (element.moduleChannel ==
+              resources.getValues(value: V.channels.engineChannel)) {
             type = ModuleType.engine;
           } else {
             type = ModuleType.unknown;

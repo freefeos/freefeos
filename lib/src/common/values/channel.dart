@@ -3,7 +3,6 @@ part of '../common.dart';
 final class VChannel {
   const VChannel();
   // runtime
-  String get baseChannel => 'system_base';
   String get runtimeChannel => 'system_runtime';
   String get embedderChannel => 'platform_embedder';
 
