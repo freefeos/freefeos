@@ -4,7 +4,7 @@ part of '../engine.dart';
 /// 实现 [IOSBase] 中的 [engine] 接口
 /// 并实现了两个供 [OSBase] 使用的接口
 /// [initEngineBridge] 和 [engineBridgerScope]
-abstract interface class IBridgeMixin implements IBase {
+abstract interface class IBridgeMixin implements IRuntime {
   /// 初始化引擎桥接
   Future<void> initEngineBridge();
 

@@ -1,6 +1,6 @@
 part of '../loader.dart';
 
-final class OSEntry extends FreeFEOSSystem with BaseEntry {
+final class OSEntry extends FreeFEOSSystem with SystemEntry {
   OSEntry();
 
   @override

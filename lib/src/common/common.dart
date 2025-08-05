@@ -11,7 +11,6 @@ import 'package:provider/provider.dart';
 import '../loader/loader.dart';
 import '../framework/framework.dart';
 import '../runtime/runtime.dart';
-import '../manager/manager.dart';
 import '../standard/standard.dart';
 
 /// Envents 事件

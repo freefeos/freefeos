@@ -1,6 +1,8 @@
 part of '../runtime.dart';
 
-final class OSRuntimeState<W extends OSRuntime> extends OSBaseState<W> {
+final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
+    with SystemEntry, RuntimeMixin, BridgeMixin
+    implements OSModule, FreeFEOSSystem, IRuntime {
   OSRuntimeState();
 
   /// Logcat 标签
@@ -11,6 +13,8 @@ final class OSRuntimeState<W extends OSRuntime> extends OSBaseState<W> {
 
   /// 模块详细信息列表
   final List<ModuleDetails> _moduleDetailsList = [];
+
+  bool _initializationFlag = false;
 
   /// 模块通道
   @override
@@ -30,10 +34,16 @@ final class OSRuntimeState<W extends OSRuntime> extends OSBaseState<W> {
     return resources.getValues(value: V.strings.runtimeName);
   }
 
+  /// 模块界面
   @override
-  TransitionBuilder get builder {
-    return (_, child) => OSRuntime(child: child);
+  Layout moduleWidget(BuildContext context) {
+    return buildManager(viewModel(context, execSdk, widget.child));
   }
+
+  @override
+  TransitionBuilder get builder => (_, child) {
+    return OSRuntime(child: child);
+  };
 
   /// 方法调用
   @override
@@ -79,7 +89,7 @@ final class OSRuntimeState<W extends OSRuntime> extends OSBaseState<W> {
       }
     }
     // 当模块信息列表中没有符合的项时直接调用父类方法
-    return super.findMiniProgram();
+    return resources.getLayout(builder: (context) => const Placeholder());
   }
 
   @override
@@ -100,6 +110,76 @@ final class OSRuntimeState<W extends OSRuntime> extends OSBaseState<W> {
   @override
   Layout buildManager(ViewModel viewModel) {
     return resources.getLayout(builder: (_) => App(viewModel: viewModel));
+  }
+
+  @override
+  Future<T?> getComponentsList<T>() {
+    return execModuleAsyncMethodCall<T>(
+      resources.getValues(value: V.channels.engineChannel),
+      resources.getValues(value: V.methods.engineGetEngineModules),
+      {'id': resources.getValues(value: V.channels.engineChannel)},
+    );
+  }
+
+  @override
+  T? execSdk<T>(String apiId, [dynamic arguments]) {
+    return execModuleSyncMethodCall(
+      resources.getValues(value: V.channels.engineChannel),
+      'execSdkInvoke',
+      {
+        'id': resources.getValues(value: V.channels.engineChannel),
+        'apiId': apiId,
+        'apiArguments': arguments,
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (!_initializationFlag) {
+      (() async {
+        try {
+          // 初始化日志
+          await Log.init();
+          // 初始化引擎
+          await initEngineBridge().then(
+            (_) => bridgeScope?.onCreateEngine(baseContext),
+            onError: (error) => Log.e(tag: _tag, message: error.toString()),
+          );
+          // 初始化应用
+          await init();
+        } catch (exception) {
+          Log.e(tag: _tag, message: exception.toString());
+        }
+      })().then((_) {
+        if (mounted) {
+          setState(() => _initializationFlag = true);
+        }
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    if (_initializationFlag) {
+      (() async {
+        await Log.dispose();
+        await bridgeScope?.onDestroyEngine();
+      })().then((_) {
+        if (mounted) {
+          setState(() => _initializationFlag = false);
+        }
+      });
+    }
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _initializationFlag
+        ? WidgetUtil.layout2Widget(layout: findMiniProgram())
+        : const Center(child: CircularProgressIndicator.adaptive());
   }
 
   /// 初始化运行时
