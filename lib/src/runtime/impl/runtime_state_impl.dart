@@ -76,7 +76,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
 
   /// 获取App
   @override
-  Layout findMiniProgram() {
+  Layout findApplication() {
     return resources.getLayout(
       builder: (context) {
         for (var element in _moduleDetailsList) {
@@ -182,7 +182,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
             return FadeTransition(opacity: animation, child: child);
           },
           child: value
-              ? WidgetUtil.layout2Widget(layout: findMiniProgram())
+              ? WidgetUtil.layout2Widget(layout: findApplication())
               : AppUtils.nonNullWidget(child: child),
         );
       },
