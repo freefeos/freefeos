@@ -147,7 +147,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
           );
           // 初始化应用
           await init();
-          // await Future.delayed(Duration(days: 1));
+          // await Future.delayed(Duration(seconds: 3));
         } catch (exception) {
           Log.e(tag: _tag, message: exception.toString());
         }
@@ -177,14 +177,10 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
     return ValueListenableBuilder(
       valueListenable: _initializationFlag,
       builder: (context, value, child) {
-        return PageTransitionSwitcher(
-          transitionBuilder: (child, animation, secondaryAnimation) {
-            return SharedAxisTransition(
-              animation: animation,
-              secondaryAnimation: secondaryAnimation,
-              transitionType: SharedAxisTransitionType.scaled,
-              child: child,
-            );
+        return AnimatedSwitcher(
+          duration: const Duration(seconds: 1),
+          transitionBuilder: (Widget child, Animation<double> animation) {
+            return FadeTransition(opacity: animation, child: child);
           },
           child: value
               ? WidgetUtil.layout2Widget(layout: findMiniProgram())
