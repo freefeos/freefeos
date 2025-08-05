@@ -28,11 +28,6 @@ class _IndexPageState extends State<IndexPage> {
               showModalBottomSheet(
                 context: context,
                 // showDragHandle: true,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(28.0),
-                  ),
-                ),
                 builder: (context) {
                   return SystemSheet();
                 },

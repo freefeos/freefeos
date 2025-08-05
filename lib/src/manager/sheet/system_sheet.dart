@@ -40,12 +40,9 @@ final class _SystemSheetState extends State<SystemSheet> {
                     Card.filled(
                       margin: const EdgeInsets.only(
                         left: 16,
-                        top: 0,
+                        top: 16,
                         right: 16,
                         bottom: 8,
-                      ),
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(12.0)),
                       ),
                       color: Theme.of(context).colorScheme.primaryContainer,
                       child: ListTile(
