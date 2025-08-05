@@ -42,7 +42,7 @@
     </a>
     <!-- GitHub协议 -->
     <a href="https://github.com/freefeos/freefeos/blob/master/LICENSE">
-        <img src="https://img.shields.io/github/license/freefeos/freefeos?style=flat-square" alt="GitHub License">
+        <img src="https://img.shields.io/github/license/freefeos/freefeos?style=flat-square&logo=github&logoColor=white" alt="GitHub License">
     </a>
     <!-- FreeFEOS项目 -->
     <a href="https://github.com/freefeos/freefeos">
