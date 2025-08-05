@@ -5,6 +5,8 @@ abstract base class UiApp extends UiStatelessComponent {
 
   final ViewModel viewModel;
 
+  ViewModel get getViewModel => viewModel;
+
   /// 页面
   Map<RouteName, UiPageBuilder> get buildPages;
 

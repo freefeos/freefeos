@@ -1,9 +1,5 @@
 part of '../common.dart';
 
-/// 上下文附加器
-/// ViewModel使用
-typedef ContextAttacher = void Function(BuildContext context);
-
 /// 日志监听器
 /// 框架使用
 typedef LoggerListener = void Function(LoggerRecord record);
@@ -14,10 +10,6 @@ typedef ViewModel = ChangeNotifier;
 
 /// 视图模型Provider
 typedef ViewModelProvider<T extends ViewModel> = ChangeNotifierProvider<T>;
-
-/// 视图模型构建器
-/// Shell ViewModel Base 使用
-typedef ViewModelBuilder = ViewModel Function(BuildContext context);
 
 /// 路由名称
 /// Shell 使用

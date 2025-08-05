@@ -49,7 +49,7 @@ final class App extends UiApp {
   @override
   List<ViewModelProvider> get buildViewModel {
     return [
-      OSAbilityProvider(viewModel: viewModel),
+      OSAbilityProvider(viewModel: getViewModel),
       ViewModelProvider<IndexViewModule>(create: (_) => IndexViewModule()),
       ViewModelProvider<HomeViewModel>(create: (_) => HomeViewModel()),
       ViewModelProvider<LogcatViewModel>(create: (_) => LogcatViewModel()),

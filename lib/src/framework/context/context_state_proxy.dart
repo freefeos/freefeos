@@ -46,4 +46,10 @@ base mixin ContextStateProxy<T extends ContextStatefulWrapper> on State<T>
   BuildContext get buildContext {
     return widget.buildContext;
   }
+
+  @override
+  void didChangeDependencies() {
+    attachBuildContext(context);
+    super.didChangeDependencies();
+  }
 }

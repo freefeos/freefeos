@@ -53,6 +53,10 @@ part 'widget/context_state_wrapper.dart';
 part 'widget/context_stateful_wrapper.dart';
 
 part 'widget/app.dart';
-part 'widget/component.dart';
+part 'widget/stateful_component.dart';
 part 'widget/page.dart';
 part 'widget/screen.dart';
+part 'widget/stateless_component.dart';
+
+part 'widget/basic_component.dart';
+part 'widget/basic_element.dart';

@@ -1,6 +1,6 @@
 part of '../framework.dart';
 
-final class LayoutElement extends ComponentElement {
+final class LayoutElement extends UiBasicElement {
   LayoutElement(super.widget, this.layout);
 
   /// Widget

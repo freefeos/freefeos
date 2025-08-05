@@ -7,7 +7,7 @@ final class Layout extends UiBasicComponent {
   final Widget layout;
 
   @override
-  Element createElement() {
+  UiBasicElement createElement() {
     return LayoutElement(this, layout);
   }
 }

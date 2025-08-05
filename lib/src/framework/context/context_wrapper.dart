@@ -9,12 +9,12 @@ abstract base class ContextWrapper implements IContent {
   Context? _mBase;
 
   /// 构建上下文
-  BuildContext? mBuild;
+  BuildContext? _mBuild;
 
   /// 附加构建上下文
   @override
   void attachBuildContext(BuildContext context) {
-    mBuild = context;
+    _mBuild = context;
   }
 
   /// 附加基本上下文
@@ -39,12 +39,12 @@ abstract base class ContextWrapper implements IContent {
   @override
   BuildContext get buildContext {
     assert(() {
-      if (mBuild == null) {
+      if (_mBuild == null) {
         throw FlutterError('异常: 构建上下文为空!');
       }
       return true;
     }());
-    return mBuild!;
+    return _mBuild!;
   }
 
   @override

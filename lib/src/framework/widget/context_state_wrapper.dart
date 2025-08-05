@@ -4,10 +4,4 @@ abstract base class ContextStateWrapper<T extends ContextStatefulWrapper>
     extends State<T>
     with ContextStateProxy<T> {
   ContextStateWrapper();
-
-  @override
-  void didChangeDependencies() {
-    attachBuildContext(context);
-    super.didChangeDependencies();
-  }
 }

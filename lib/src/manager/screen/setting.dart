@@ -179,9 +179,7 @@ class _SettingScreenState extends State<SettingScreen> {
                             topRight: Radius.circular(12),
                           ),
                         ),
-                        onTap: () {
-                         
-                        },
+                        onTap: () {},
                       ),
                       const Divider(height: 1, indent: 16, endIndent: 16),
                       Consumer<OSAbility>(
