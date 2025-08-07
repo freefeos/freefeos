@@ -12,7 +12,7 @@ abstract interface class IRuntime {
   OSModule? get engine;
 
   /// 图形界面
-  Layout findMiniProgram();
+  Layout findApplication();
 
   /// 系统能力ViewModel
   ViewModel viewModel(

@@ -1,7 +1,7 @@
 part of '../engine.dart';
 
 /// 引擎包装器
-abstract interface class IEngine implements OSModule, EngineProxy {
+abstract interface class IEngine {
   /// 引擎入口
   OSEngine call();
 
