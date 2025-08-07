@@ -38,7 +38,7 @@
     <!-- GitHub仓库forks -->
     <a href="https://github.com/freefeos/freefeos/fork">
         <img src="https://img.shields.io/github/forks/freefeos/freefeos?style=flat-square&logo=github&logoColor=white&label=Forks&color=blue"
-            alt="GitHub forks">
+            alt="GitHub Forks">
     </a>
     <!-- GitHub协议 -->
     <a href="https://github.com/freefeos/freefeos/blob/master/LICENSE">
