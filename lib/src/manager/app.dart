@@ -39,12 +39,6 @@ final class App extends UiApp {
     );
   }
 
-  /// 标题
-  @override
-  String buildTitle(BuildContext context) {
-    return AppLocalizations.of(context).selfAppName;
-  }
-
   /// ViewModel
   @override
   List<ViewModelProvider> get buildViewModel {
@@ -75,9 +69,6 @@ final class App extends UiApp {
             ),
           ),
         );
-      },
-      onGenerateTitle: (context) {
-        return buildTitle(context);
       },
       color: Colors.transparent,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
