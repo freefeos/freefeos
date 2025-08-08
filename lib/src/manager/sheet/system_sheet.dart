@@ -22,71 +22,76 @@ final class _SystemSheetState extends State<SystemSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Expanded(
-          child: Scrollbar(
-            controller: _scrollController,
-            child: ScrollConfiguration(
-              behavior: ScrollConfiguration.of(context).copyWith(
-                scrollbars: false, // 禁用默认滚动条
-              ),
-              child: SingleChildScrollView(
-                controller: _scrollController,
-                child: Column(
-                  children: [
-                    Card.filled(
-                      margin: const EdgeInsets.only(
-                        left: 16,
-                        top: 16,
-                        right: 16,
-                        bottom: 8,
-                      ),
-                      color: Theme.of(context).colorScheme.primaryContainer,
-                      child: ListTile(
-                        leading: const FlutterLogo(),
-                        title: Text('appName'),
-                        subtitle: Text('subtitle'),
-                        trailing: const Icon(Icons.arrow_right_rounded),
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(12.0)),
+    return ClipRRect(
+      borderRadius: const BorderRadius.vertical(top: Radius.circular(28.0)),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: Scrollbar(
+              controller: _scrollController,
+              child: ScrollConfiguration(
+                behavior: ScrollConfiguration.of(
+                  context,
+                ).copyWith(scrollbars: false),
+                child: SingleChildScrollView(
+                  controller: _scrollController,
+                  child: Column(
+                    children: [
+                      Card.filled(
+                        margin: const EdgeInsets.only(
+                          left: 16,
+                          top: 16,
+                          right: 16,
+                          bottom: 8,
                         ),
-                        onTap: () => Navigator.of(context)
-                          ..pop()
-                          ..pushNamed(AboutPage.route),
+                        color: Theme.of(context).colorScheme.primaryContainer,
+                        child: ListTile(
+                          leading: const FlutterLogo(),
+                          title: Text('appName'),
+                          subtitle: Text('subtitle'),
+                          trailing: const Icon(Icons.arrow_right_rounded),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(12.0),
+                            ),
+                          ),
+                          onTap: () => Navigator.of(context)
+                            ..pop()
+                            ..pushNamed(AboutPage.route),
+                        ),
                       ),
-                    ),
-                    FilledButton(
-                      onPressed: () => Navigator.of(context)
-                        ..pop()
-                        ..pushNamed(ManagerPage.route),
-                      child: Text('管理器'),
-                    ),
-                    FilledButton(
-                      onPressed: () => Navigator.of(context)
-                        ..pop()
-                        ..pushNamed(SettingsPage.route),
-                      child: Text('设置'),
-                    ),
-                  ],
+                      FilledButton(
+                        onPressed: () => Navigator.of(context)
+                          ..pop()
+                          ..pushNamed(ManagerPage.route),
+                        child: Text('管理器'),
+                      ),
+                      FilledButton(
+                        onPressed: () => Navigator.of(context)
+                          ..pop()
+                          ..pushNamed(SettingsPage.route),
+                        child: Text('设置'),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-        Divider(height: 1),
-        ListTile(
-          onTap: () => Navigator.of(context).pop(),
-          title: Text('Cancel', textAlign: TextAlign.center),
-          textColor: Theme.of(context).colorScheme.primary,
-          titleAlignment: ListTileTitleAlignment.center,
-          contentPadding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).padding.bottom,
+          Divider(height: 1),
+          ListTile(
+            onTap: () => Navigator.of(context).pop(),
+            title: Text('Cancel', textAlign: TextAlign.center),
+            textColor: Theme.of(context).colorScheme.primary,
+            titleAlignment: ListTileTitleAlignment.center,
+            contentPadding: EdgeInsets.only(
+              bottom: MediaQuery.of(context).padding.bottom,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
