@@ -157,6 +157,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
 
   @override
   void dispose() {
+    super.dispose();
     if (_initializationFlag.value) {
       (() async {
         try {
@@ -169,7 +170,6 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
         }
       })().then((_) => _initializationFlag.value = false);
     }
-    super.dispose();
   }
 
   @override
