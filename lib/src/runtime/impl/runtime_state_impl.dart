@@ -176,9 +176,9 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: _initializationFlag,
-      builder: (context, value, child) {
+      builder: (_, value, child) {
         return AnimatedSwitcher(
-          duration: const Duration(seconds: 1),
+          duration: const Duration(milliseconds: 500),
           transitionBuilder: (Widget child, Animation<double> animation) {
             return FadeTransition(opacity: animation, child: child);
           },
