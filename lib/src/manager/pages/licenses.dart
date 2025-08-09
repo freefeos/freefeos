@@ -14,6 +14,10 @@ final class _LicensesPageState extends State<LicensesPage> {
 
   @override
   Widget build(BuildContext context) {
-    return LicensePage();
+    return LicensePage(
+      applicationName: 'appName',
+      applicationVersion: 'appVersionName',
+      applicationLegalese: 'Powered by FreeFEOS',
+    );
   }
 }

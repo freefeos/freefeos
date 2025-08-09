@@ -84,7 +84,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
           // 判断当前信息是否为运行时
           if (element.id == moduleChannel) {
             // 返回运行时的界面
-            return _getModuleWidget(context, element);
+            return _getModuleWidget(context, element) ?? const Placeholder();
           }
         }
         return const Placeholder();
@@ -230,16 +230,20 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
 
   /// 初始化系统组件
   Future<void> _initComponent() async {
+    // 判断模块详细信息列表是否小于等于模块列表
     if (_moduleDetailsList.length <= _moduleList.length) {
       try {
+        // 获取模块信息列表
         List<Map<String, String>>? result =
             await execModuleAsyncMethodCall<List<Map<String, String>>>(
               moduleChannel,
               resources.getValues(value: V.methods.runtimeGetEngineModules),
             );
+        // 占位符
         final List<Map<String, String>> placeholder = [
           resources.getValues(value: V.placeholder.component),
         ];
+        // 如果获取失败, 则使用占位符
         List<Map<String, String>> componentsList = result ?? placeholder;
         // 判断列表是否为空
         if (componentsList.isNotEmpty) {
@@ -272,10 +276,10 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
   }
 
   /// 获取模块界面
-  Widget _getModuleWidget(BuildContext context, ModuleDetails details) {
+  Widget? _getModuleWidget(BuildContext context, ModuleDetails details) {
     OSModule? module = _getModule(details);
     Widget? moduleWidget = module?.moduleWidget(context);
-    return moduleWidget ?? const Placeholder();
+    return moduleWidget;
   }
 
   @override

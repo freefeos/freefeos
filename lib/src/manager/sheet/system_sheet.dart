@@ -50,7 +50,7 @@ final class _SystemSheetState extends State<SystemSheet> {
                         child: ListTile(
                           leading: const FlutterLogo(),
                           title: Text('appName'),
-                          subtitle: Text('subtitle'),
+                          subtitle: Text('appVersionName'),
                           trailing: const Icon(Icons.arrow_right_rounded),
                           shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(
