@@ -49,6 +49,7 @@ class MyApp extends StatelessWidget {
         // 为了与 device_preview 兼容, 需要将 useInheritedMediaQuery 设置为 true.
         // ignore: deprecated_member_use
         useInheritedMediaQuery: true,
+        debugShowCheckedModeBanner: false,
       ),
     );
   }

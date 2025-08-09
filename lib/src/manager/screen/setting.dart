@@ -12,7 +12,7 @@ final class SettingScreen extends UiScreen {
     required this.navController,
   });
 
-  final NavController navController;
+  final NavController? navController;
 
   @override
   State<SettingScreen> createState() => _SettingScreenState();
@@ -106,7 +106,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           message: '进入小程序',
                           child: FilledButton(
                             onPressed: () {
-                              widget.navController.animateToFirst();
+                              widget.navController?.animateToFirst();
                             },
                             child: Text('进入小程序'),
                           ),

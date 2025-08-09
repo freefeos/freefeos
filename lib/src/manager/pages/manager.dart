@@ -69,7 +69,7 @@ class _ManagerPageState extends State<ManagerPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: NavTitle(navController: _navController)),
+      appBar: AppBar(title: Text('管理器')),
       bottomNavigationBar: NavBar(navController: _navController),
       body: NavHost(navController: _navController),
     );

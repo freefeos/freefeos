@@ -51,11 +51,14 @@ final class _SystemSheetState extends State<SystemSheet> {
                           leading: const FlutterLogo(),
                           title: Text('appName'),
                           subtitle: Text('appVersionName'),
-                          trailing: const Icon(Icons.arrow_right_rounded),
+                          trailing: const Icon(Icons.keyboard_arrow_right),
                           shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(
                               Radius.circular(12.0),
                             ),
+                          ),
+                          contentPadding: const EdgeInsetsDirectional.symmetric(
+                            horizontal: 16.0,
                           ),
                           onTap: () => Navigator.of(context)
                             ..pop()

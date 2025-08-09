@@ -12,6 +12,16 @@ final class SettingsPage extends UiPage {
 final class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text('设置')));
+    return Scaffold(
+      appBar: AppBar(title: Text('设置')),
+      body: SettingScreen(
+        title: '',
+        index: 0,
+        label: '',
+        icon: Icons.settings_outlined,
+        selectedIcon: Icons.settings_outlined,
+        navController: null,
+      ),
+    );
   }
 }
