@@ -98,16 +98,6 @@ class _AboutPageState extends State<AboutPage> {
                     ],
                   ),
                 ),
-
-                // Card.filled(
-                //   margin: const EdgeInsets.only(
-                //     left: 16,
-                //     top: 8,
-                //     bottom: 8,
-                //     right: 16,
-                //   ),
-                //   child: ListTile(),
-                // ),
                 Card.filled(
                   margin: const EdgeInsets.only(
                     left: 16,
@@ -174,17 +164,6 @@ class _AboutPageState extends State<AboutPage> {
                     ),
                   ),
                 ),
-
-                // FilledButton(
-                //   onPressed: () =>
-                //       Navigator.of(context).pushNamed(SettingsPage.route),
-                //   child: Text('设置'),
-                // ),
-                // FilledButton(
-                //   onPressed: () =>
-                //       Navigator.of(context).pushNamed(LicensesPage.route),
-                //   child: Text('开放源代码许可'),
-                // ),
               ],
             ),
           ),
