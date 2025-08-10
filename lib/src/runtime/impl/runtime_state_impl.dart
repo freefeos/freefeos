@@ -12,7 +12,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
   /// 模块列表
   final List<OSModule> _moduleList = [];
 
-  /// 模块详细信息列表
+  /// 模块信息列表
   final List<ModuleDetails> _moduleDetailsList = [];
 
   /// 初始化标志
