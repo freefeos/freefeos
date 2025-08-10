@@ -43,9 +43,12 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
   }
 
   @override
-  TransitionBuilder get builder => (_, child) {
-    return OSRuntime(child: child);
-  };
+  TransitionBuilder get builder {
+    return (_, child) {
+      // Container(child: child);
+      return OSRuntime(child: child);
+    };
+  }
 
   /// 方法调用
   @override
@@ -148,7 +151,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
           );
           // 初始化应用
           await init();
-          await Future.delayed(const Duration(milliseconds: 500));
+          // await Future.delayed(const Duration(milliseconds: 500));
         } catch (exception) {
           Log.e(tag: _tag, message: exception.toString());
         }
