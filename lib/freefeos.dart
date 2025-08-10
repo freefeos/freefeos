@@ -26,7 +26,7 @@ final class FreeFEOS {
   }
 
   /// FreeFEOS
-  static TransitionBuilder get builder {
+  static TransitionBuilder builder({bool enabled = false}) {
     return FreeFEOSLoader.instance.builder;
   }
 }

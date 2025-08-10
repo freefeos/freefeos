@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
           // 如果与 device_preview 同时使用, 请将 freefeos 置于其后方.
           DevicePreview.appBuilder,
           // 关键在这里, 一行代码接入 FreeFEOS 库
-          FreeFEOS.builder,
+          FreeFEOS.builder(enabled: true),
         ].toBuilder, // 多构造器
         theme: ThemeData(
           brightness: Brightness.light,
