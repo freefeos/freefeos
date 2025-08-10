@@ -160,6 +160,21 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // 检查是否多次添加进组件树
+    assert(() {
+      if (buildContext.findAncestorWidgetOfExactType<OSRuntime>() != null) {
+        throw FlutterError(
+          'FreeFEOS.builder 在组件树中只能有一个实例, '
+          '请检查代码中是否存在多个 FreeFEOS.builder 实例.',
+        );
+      }
+      return true;
+    }());
+  }
+
+  @override
   void dispose() {
     super.dispose();
     if (_initializationFlag.value) {
