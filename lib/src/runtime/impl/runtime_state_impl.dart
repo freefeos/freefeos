@@ -38,7 +38,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
 
   /// 模块界面
   @override
-  Layout moduleWidget(BuildContext context) {
+  Layout moduleLayout(BuildContext context) {
     return buildManager(viewModel(context, execSdk, widget.child));
   }
 
@@ -84,7 +84,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
           // 判断当前信息是否为运行时
           if (element.id == moduleChannel) {
             // 返回运行时的界面
-            return _getModuleWidget(context, element) ?? const Placeholder();
+            return _getModuleWidget(context, element);
           }
         }
         return const Placeholder();
@@ -148,6 +148,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
           );
           // 初始化应用
           await init();
+          await Future.delayed(const Duration(milliseconds: 500));
         } catch (exception) {
           Log.e(tag: _tag, message: exception.toString());
         }
@@ -187,7 +188,12 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
               : AppUtils.nonNullWidget(child: child),
         );
       },
-      child: const Center(child: CircularProgressIndicator.adaptive()),
+      child: Container(
+        color: MediaQuery.platformBrightnessOf(context) == Brightness.light
+            ? Colors.white
+            : Colors.black,
+        child: const Center(child: CircularProgressIndicator.adaptive()),
+      ),
     );
   }
 
@@ -276,10 +282,13 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
   }
 
   /// 获取模块界面
-  Widget? _getModuleWidget(BuildContext context, ModuleDetails details) {
+  Widget _getModuleWidget(BuildContext context, ModuleDetails details) {
     OSModule? module = _getModule(details);
-    Widget? moduleWidget = module?.moduleWidget(context);
-    return moduleWidget;
+    Layout? layout = module?.moduleLayout(context);
+    Layout placeholder = resources.getLayout(
+      builder: (_) => const Placeholder(),
+    );
+    return WidgetUtil.layout2Widget(layout: layout ?? placeholder);
   }
 
   @override

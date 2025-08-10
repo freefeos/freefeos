@@ -11,7 +11,7 @@ abstract interface class OSModule {
   String get moduleDescription;
 
   ///模块界面
-  Layout moduleWidget(BuildContext context);
+  Layout moduleLayout(BuildContext context);
 
   ///方法调用
   Future<T?> onModuleAsyncMethodCall<T>(String method, [dynamic arguments]);

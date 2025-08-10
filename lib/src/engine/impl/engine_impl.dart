@@ -44,7 +44,7 @@ final class OSEngine extends OSComponent
   }
 
   @override
-  Layout moduleWidget(BuildContext context) {
+  Layout moduleLayout(BuildContext context) {
     return resources.getLayout(builder: (_) => const Placeholder());
   }
 
