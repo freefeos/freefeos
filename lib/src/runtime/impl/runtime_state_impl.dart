@@ -126,7 +126,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
 
   @override
   T? execSdk<T>(String apiId, [dynamic arguments]) {
-    return execModuleSyncMethodCall(
+    return execModuleSyncMethodCall<T>(
       resources.getValues(value: V.channels.engineChannel),
       'execSdkInvoke',
       {
@@ -155,7 +155,9 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
         } catch (exception) {
           Log.e(tag: _tag, message: exception.toString());
         }
-      })().then((_) => _initializationFlag.value = true);
+      })().then((_) {
+        _initializationFlag.value = true;
+      });
     }
   }
 
@@ -166,8 +168,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
     assert(() {
       if (buildContext.findAncestorWidgetOfExactType<OSRuntime>() != null) {
         throw FlutterError(
-          'FreeFEOS.builder 在组件树中只能有一个实例, '
-          '请检查代码中是否存在多个 FreeFEOS.builder 实例.',
+          'FreeFEOS.builder 在组件树中只能有一个实例, 请检查代码中是否存在多个 FreeFEOS.builder 实例.',
         );
       }
       return true;
@@ -183,11 +184,15 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
           // 销毁日志
           await Log.dispose();
           // 销毁引擎
-          await bridgeScope?.onDestroyEngine();
+          await bridgeScope?.onDestroyEngine().then(
+            (_) => disposeEngineBridge(),
+          );
         } catch (exception) {
           Log.e(tag: _tag, message: exception.toString());
         }
-      })().then((_) => _initializationFlag.value = false);
+      })().then((_) {
+        _initializationFlag.value = false;
+      });
     }
   }
 
@@ -196,6 +201,9 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
     return ValueListenableBuilder(
       valueListenable: _initializationFlag,
       builder: (_, value, child) {
+        return value
+            ? WidgetUtil.layout2Widget(layout: findApplication())
+            : WidgetUtil.nonNullWidget(child: child);
         return AnimatedSwitcher(
           duration: const Duration(milliseconds: 500),
           transitionBuilder: (Widget child, Animation<double> animation) {
@@ -203,15 +211,10 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
           },
           child: value
               ? WidgetUtil.layout2Widget(layout: findApplication())
-              : AppUtils.nonNullWidget(child: child),
+              : WidgetUtil.nonNullWidget(child: child),
         );
       },
-      child: Container(
-        color: MediaQuery.platformBrightnessOf(context) == Brightness.light
-            ? Colors.white
-            : Colors.black,
-        child: const Center(child: CircularProgressIndicator.adaptive()),
-      ),
+      child: const Center(child: CircularProgressIndicator.adaptive()),
     );
   }
 

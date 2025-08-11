@@ -34,18 +34,6 @@ final class AppUtils {
   }
 
   static Widget nonNullWidget({required Widget? child}) {
-    return Container(child: child);
-  }
-
-  /// Widget转Widget列表
-  static List<Widget> widget2WidgetList({required Widget? child}) {
-    return <Widget>[nonNullWidget(child: child)];
-  }
-
-  /// NavigatorObserver转NavigatorObserver列表
-  static List<NavigatorObserver> observer2ObserverList({
-    required NavigatorObserver observer,
-  }) {
-    return <NavigatorObserver>[observer];
+    return WidgetUtil.nonNullWidget(child: child);
   }
 }

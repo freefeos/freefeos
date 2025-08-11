@@ -11,6 +11,11 @@ base mixin BridgeMixin implements IBridgeMixin {
     _engineBridge = OSBridge()();
   }
 
+  @override
+  Future<void> disposeEngineBridge() async {
+    _engineBridge = null;
+  }
+
   /// 获取引擎桥接
   @override
   OSBridge? get bridgeScope => _engineBridge;

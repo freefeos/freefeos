@@ -8,6 +8,8 @@ abstract interface class IBridgeMixin implements IRuntime {
   /// 初始化引擎桥接
   Future<void> initEngineBridge();
 
+  Future<void> disposeEngineBridge();
+
   /// 引擎桥接域
   OSBridge? get bridgeScope;
 }

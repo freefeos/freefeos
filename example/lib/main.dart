@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:freefeos/freefeos.dart'; // 导入 FreeFEOS 库
 import 'package:multi_builder/multi_builder.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(const TestApp());
 // void main() => runApp(MaterialApp(builder: FreeFEOS.builder));
 
 class TestApp extends StatefulWidget {
