@@ -256,10 +256,10 @@ packages:
     dependency: "direct main"
     description:
       name: multi_builder
-      sha256: cfa4d786af1ec56669b67830440085f24bc03972b9d321c28555d48757d4f1f7
+      sha256: da14d6d2ac48c0c031eafabcd5c8a7646b3b7297344cbff2e9446fb694a3f3bc
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.0"
+    version: "1.1.0"
   nested:
     dependency: transitive
     description:

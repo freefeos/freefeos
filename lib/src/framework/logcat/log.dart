@@ -22,27 +22,26 @@ final class Log {
             OutputEvent(record.level, [record.printable()]),
           );
         });
-      })().then(
-        (_) => Log.i(
-          tag: _tag,
-          message: utf8.decode(base64Decode(V.drawable.banner)),
-        ),
-      );
+      })().then((_) {
+        _instanced = true;
+        Log.i(tag: _tag, message: utf8.decode(base64Decode(V.drawable.banner)));
+      });
     } else {
       Log.w(tag: _tag, message: '请勿重复初始化日志!');
     }
-    _instanced = true;
   }
 
   static Future<void> dispose() async {
     if (_instanced) {
       (() async {
         _clearListeners();
-      })().then((_) => Log.d(tag: _tag, message: 'system exit.'));
+        EventBuffer.outputEventBuffer.clear();
+      })().then((_) {
+        _instanced = false;
+      });
     } else {
       Log.w(tag: _tag, message: '请勿重复销毁日志!');
     }
-    _instanced = false;
   }
 
   /// Debug级别

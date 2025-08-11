@@ -6,7 +6,7 @@ final class OSEngine extends OSComponent
   OSEngine();
 
   /// 引擎初始化状态
-  bool initialized = false;
+  bool _instanced = false;
 
   /// 组件列表
   final List<OSComponent> _componentList = [];
@@ -118,7 +118,7 @@ final class OSEngine extends OSComponent
 
   @override
   Future<void> onCreateEngine(Context context) async {
-    if (initialized == false) {
+    if (_instanced == false) {
       // 初始化绑定
       _binding = ComponentBinding(context: context, engine: this);
       // 遍历组件列表
@@ -146,7 +146,7 @@ final class OSEngine extends OSComponent
         }
       }
       // 将引擎状态设为已加载
-      initialized = true;
+      _instanced = true;
     } else {
       // 打印提示
       Log.w(tag: _tag, message: '请勿重复执行onCreateEngine!');
@@ -155,9 +155,10 @@ final class OSEngine extends OSComponent
 
   @override
   Future<void> onDestroyEngine() async {
-    if (initialized == true) {
+    if (_instanced == true) {
       _componentList.clear();
       _componentInfoList.clear();
+      _instanced = false;
     } else {
       Log.d(tag: _tag, message: '请勿重复执行onDestroyEngine!');
     }

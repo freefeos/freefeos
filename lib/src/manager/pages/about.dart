@@ -41,28 +41,26 @@ class _AboutPageState extends State<AboutPage> {
             controller: _scrollController,
             child: Column(
               children: [
-                ListTile(
-                  leading: const FlutterLogo(),
-                  title: Text('appName'),
-                  subtitle: Text('appVersionName'),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.info_outline,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                      const Icon(Icons.keyboard_arrow_right),
-                    ],
+                Padding(
+                  padding: EdgeInsets.only(bottom: 8),
+                  child: ListTile(
+                    leading: const FlutterLogo(),
+                    title: Text('appName'),
+                    subtitle: Text('appVersionName'),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.info_outline,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                        const Icon(Icons.keyboard_arrow_right),
+                      ],
+                    ),
+                    contentPadding: const EdgeInsets.all(16),
+                    onTap: () =>
+                        Navigator.of(context).pushNamed(DetailsPage.route),
                   ),
-                  contentPadding: const EdgeInsets.only(
-                    left: 16.0,
-                    top: 16.0,
-                    bottom: 8.0,
-                    right: 16.0,
-                  ),
-                  onTap: () =>
-                      Navigator.of(context).pushNamed(DetailsPage.route),
                 ),
                 Padding(
                   padding: EdgeInsets.only(
