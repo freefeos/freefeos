@@ -201,9 +201,6 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
     return ValueListenableBuilder(
       valueListenable: _initializationFlag,
       builder: (_, value, child) {
-        return value
-            ? WidgetUtil.layout2Widget(layout: findApplication())
-            : WidgetUtil.nonNullWidget(child: child);
         return AnimatedSwitcher(
           duration: const Duration(milliseconds: 500),
           transitionBuilder: (Widget child, Animation<double> animation) {

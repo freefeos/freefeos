@@ -3,51 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:freefeos/freefeos.dart'; // 导入 FreeFEOS 库
 import 'package:multi_builder/multi_builder.dart';
 
-void main() => runApp(const TestApp());
+void main() => runApp(const MyApp());
 // void main() => runApp(MaterialApp(builder: FreeFEOS.builder));
-
-class TestApp extends StatefulWidget {
-  const TestApp({super.key});
-
-  @override
-  State<TestApp> createState() => _TestAppState();
-}
-
-class _TestAppState extends State<TestApp> {
-  bool enabled = false;
-  int _counter = 0;
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      builder: (context, child) {
-        return LifecycleListener.builder(
-          context,
-          enabled ? FreeFEOS.builder(context, child) : child,
-        );
-      },
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('FreeFEOS Test App'),
-          actions: [
-            Switch(
-              value: enabled,
-              onChanged: (value) {
-                setState(() => enabled = value);
-              },
-              padding: EdgeInsets.zero,
-            ),
-            const CapsulePlaceholder(),
-          ],
-        ),
-        body: Center(child: Text(_counter.toString())),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => setState(() => _counter++),
-          child: const Icon(Icons.add),
-        ),
-      ),
-    );
-  }
-}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

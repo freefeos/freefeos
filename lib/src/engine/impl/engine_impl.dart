@@ -129,14 +129,12 @@ final class OSEngine extends OSComponent
             Log.d(tag: _tag, message: '组件${element.id}已加载');
             // 将组件添加进列表
             _componentList.add(element);
-            // 引擎本身已经作为运行时模块, 不在组件列表中展示
-            if (element.id != id) {
-              _componentInfoList.add({
-                'id': element.id,
-                'title': element.title,
-                'description': element.description,
-              });
-            }
+            // 将组件信息添加进信息列表
+            _componentInfoList.add({
+              'id': element.id,
+              'title': element.title,
+              'description': element.description,
+            });
             // 打印提示
             Log.d(tag: _tag, message: '组件${element.id}已添加到组件列表');
             return added;
