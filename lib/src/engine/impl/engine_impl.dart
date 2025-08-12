@@ -5,6 +5,9 @@ final class OSEngine extends OSComponent
     implements IEngine, OSModule, EngineProxy {
   OSEngine();
 
+  /// 日志标签
+  static const String _tag = 'OSEngine';
+
   /// 引擎初始化状态
   bool _instanced = false;
 
@@ -16,9 +19,6 @@ final class OSEngine extends OSComponent
 
   /// 组件绑定
   late ComponentBinding _binding;
-
-  /// 日志标签
-  static const String _tag = 'OSEngine';
 
   /// 引擎入口函数
   @override
@@ -154,8 +154,11 @@ final class OSEngine extends OSComponent
   @override
   Future<void> onDestroyEngine() async {
     if (_instanced == true) {
+      // 清空组件列表
       _componentList.clear();
+      // 清空组件信息列表
       _componentInfoList.clear();
+      // 将引擎状态设为未加载
       _instanced = false;
     } else {
       Log.d(tag: _tag, message: '请勿重复执行onDestroyEngine!');

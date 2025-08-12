@@ -16,7 +16,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
   final List<ModuleDetails> _moduleDetailsList = [];
 
   /// 初始化标志
-  final ValueNotifier<bool> _initializationFlag = ValueNotifier(false);
+  final ValueNotifier<bool> _instanced = ValueNotifier(false);
 
   /// 模块通道
   @override
@@ -39,15 +39,12 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
   /// 模块界面
   @override
   Layout moduleLayout(BuildContext context) {
-    return buildManager(viewModel(context, execSdk, widget.child));
+    return _buildManager(_viewModel(context, _execSdk, widget.child));
   }
 
   @override
   TransitionBuilder get builder {
-    return (_, child) {
-      // Container(child: child);
-      return OSRuntime(child: child);
-    };
+    return (_, child) => OSRuntime(child: child);
   }
 
   /// 方法调用
@@ -58,7 +55,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
   ]) async {
     if (method ==
         resources.getValues(value: V.methods.runtimeGetEngineModules)) {
-      return await getComponentsList<T>();
+      return await _getComponentsList<T>();
     } else {
       return await null;
     }
@@ -69,9 +66,53 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
     return null;
   }
 
-  /// 初始化应用
   @override
-  Future<void> init() async {
+  void initState() {
+    super.initState();
+    if (!_instanced.value) {
+      (() async {
+        try {
+          await _init(); // 初始化应用
+        } catch (exception) {
+          Log.e(tag: _tag, message: exception.toString());
+        }
+      })().then((_) {
+        _instanced.value = true;
+      });
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // 检查是否多次添加进组件树
+    _widgetTreeCheck();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    if (_instanced.value) {
+      (() async {
+        try {
+          await _destroy(); // 销毁应用
+        } catch (exception) {
+          Log.e(tag: _tag, message: exception.toString());
+        }
+      })().then((_) {
+        _instanced.value = false;
+      });
+    }
+  }
+
+  /// 初始化应用
+  Future<void> _init() async {
+    // 初始化日志
+    await Log.init();
+    // 初始化引擎
+    await initEngineBridge().then((_) {
+      bridgeScope?.onCreateEngine(baseContext);
+    });
     // 初始化运行时
     await _initRuntime();
     // 初始化引擎模块
@@ -79,8 +120,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
   }
 
   /// 获取App
-  @override
-  Layout findApplication() {
+  Layout _findApplication() {
     return resources.getLayout(
       builder: (context) {
         for (var element in _moduleDetailsList) {
@@ -95,8 +135,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
     );
   }
 
-  @override
-  ViewModel viewModel(
+  ViewModel _viewModel(
     BuildContext buildContext,
     SdkInvoker sdkInstance,
     Widget? child,
@@ -110,23 +149,20 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
   }
 
   /// 构建应用
-  @override
-  Layout buildManager(ViewModel viewModel) {
+  Layout _buildManager(ViewModel viewModel) {
     return resources.getLayout(builder: (_) => App(viewModel: viewModel));
   }
 
-  @override
-  Future<T?> getComponentsList<T>() {
-    return execModuleAsyncMethodCall<T>(
+  Future<T?> _getComponentsList<T>() {
+    return _execModuleAsyncMethodCall<T>(
       resources.getValues(value: V.channels.engineChannel),
       resources.getValues(value: V.methods.engineGetEngineModules),
       {'id': resources.getValues(value: V.channels.engineChannel)},
     );
   }
 
-  @override
-  T? execSdk<T>(String apiId, [dynamic arguments]) {
-    return execModuleSyncMethodCall<T>(
+  T? _execSdk<T>(String apiId, [dynamic arguments]) {
+    return _execModuleSyncMethodCall<T>(
       resources.getValues(value: V.channels.engineChannel),
       'execSdkInvoke',
       {
@@ -137,34 +173,8 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
     );
   }
 
-  @override
-  void initState() {
-    super.initState();
-    if (!_initializationFlag.value) {
-      (() async {
-        try {
-          // 初始化日志
-          await Log.init();
-          // 初始化引擎
-          await initEngineBridge().then(
-            (_) => bridgeScope?.onCreateEngine(baseContext),
-          );
-          // 初始化应用
-          await init();
-          // await Future.delayed(const Duration(milliseconds: 500));
-        } catch (exception) {
-          Log.e(tag: _tag, message: exception.toString());
-        }
-      })().then((_) {
-        _initializationFlag.value = true;
-      });
-    }
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // 检查是否多次添加进组件树
+  /// 检查是否多次添加进组件树
+  void _widgetTreeCheck() {
     assert(() {
       if (buildContext.findAncestorWidgetOfExactType<OSRuntime>() != null) {
         throw FlutterError(
@@ -175,31 +185,20 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
     }());
   }
 
-  @override
-  void dispose() {
-    super.dispose();
-    if (_initializationFlag.value) {
-      (() async {
-        try {
-          // 销毁日志
-          await Log.dispose();
-          // 销毁引擎
-          await bridgeScope?.onDestroyEngine().then(
-            (_) => disposeEngineBridge(),
-          );
-        } catch (exception) {
-          Log.e(tag: _tag, message: exception.toString());
-        }
-      })().then((_) {
-        _initializationFlag.value = false;
-      });
-    }
+  /// 销毁应用
+  Future<void> _destroy() async {
+    // 销毁日志
+    await Log.dispose();
+    // 销毁引擎
+    await bridgeScope?.onDestroyEngine().then((_) {
+      destroyEngineBridge();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: _initializationFlag,
+      valueListenable: _instanced,
       builder: (_, value, child) {
         return AnimatedSwitcher(
           duration: const Duration(milliseconds: 500),
@@ -207,7 +206,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
             return FadeTransition(opacity: animation, child: child);
           },
           child: value
-              ? WidgetUtil.layout2Widget(layout: findApplication())
+              ? WidgetUtil.layout2Widget(layout: _findApplication())
               : WidgetUtil.nonNullWidget(child: child),
         );
       },
@@ -259,7 +258,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
       try {
         // 获取模块信息列表
         List<Map<String, String>>? result =
-            await execModuleAsyncMethodCall<List<Map<String, String>>>(
+            await _execModuleAsyncMethodCall<List<Map<String, String>>>(
               moduleChannel,
               resources.getValues(value: V.methods.runtimeGetEngineModules),
             );
@@ -309,8 +308,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
     return WidgetUtil.layout2Widget(layout: layout ?? placeholder);
   }
 
-  @override
-  T? execModuleSyncMethodCall<T>(String id, String method, [arguments]) {
+  T? _execModuleSyncMethodCall<T>(String id, String method, [arguments]) {
     // 判断模块列表是否非空
     if (_moduleList.isNotEmpty) {
       // 遍历模块列表
@@ -350,8 +348,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
   }
 
   /// 执行模块方法
-  @override
-  Future<T?> execModuleAsyncMethodCall<T>(
+  Future<T?> _execModuleAsyncMethodCall<T>(
     String id,
     String method, [
     dynamic arguments,

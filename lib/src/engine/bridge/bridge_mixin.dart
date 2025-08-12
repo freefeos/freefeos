@@ -12,7 +12,7 @@ base mixin BridgeMixin implements IBridgeMixin {
   }
 
   @override
-  Future<void> disposeEngineBridge() async {
+  Future<void> destroyEngineBridge() async {
     _engineBridge = null;
   }
 
