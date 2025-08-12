@@ -5,10 +5,10 @@ final class ResultImport<T> implements EngineResult<T> {
   const ResultImport({this.asyncCallback, this.syncCallback});
 
   /// 异步回调
-  final Future<void> Function(T? result)? asyncCallback;
+  final AsyncResultCallback<T>? asyncCallback;
 
   /// 同步回调
-  final void Function(T? result)? syncCallback;
+  final SyncResultCallback<T>? syncCallback;
 
   /// 成功
   @override

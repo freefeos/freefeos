@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
           '/details': (context) => const DetailsPage(),
         },
         builder: [
+          FreeFEOS.builder,
           // 生命周期监听器, 用于调试 device_preview 的 bug, 与 freefeos 无关.
           // 日志会显示 initState 被执行两次, 然后 dispose, 然后继续执行. 逆天.
           LifecycleListener.builder,
@@ -27,8 +28,8 @@ class MyApp extends StatelessWidget {
           // 而且会在 dispose() 后继续执行代码, 导致抛出异常.
           // 如果与 device_preview 同时使用, 请将 freefeos 置于其后方.
           DevicePreview.appBuilder,
+
           // 关键在这里, 一行代码接入 FreeFEOS 库
-          FreeFEOS.builder,
         ].toBuilder, // 多构造器
         theme: ThemeData(
           brightness: Brightness.light,

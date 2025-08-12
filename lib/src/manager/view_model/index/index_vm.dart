@@ -4,7 +4,7 @@ final class IndexViewModule with ViewModel {
   DateTime? _lastBackPressTime;
 
   Widget getUserApp(OSAbility ability) {
-    return AppUtils.nonNullWidget(child: ability.getChild);
+    return ability.getUserApp;
   }
 
   void doubleExit({

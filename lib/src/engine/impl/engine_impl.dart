@@ -74,10 +74,14 @@ final class OSEngine extends OSComponent
   ) async {
     if (call.method ==
         resources.getValues(value: V.methods.engineGetEngineModules)) {
-      if (_componentInfoList is T) {
-        await result.asyncSuccess(_componentInfoList as T);
+      if (_instanced) {
+        if (_componentInfoList is T) {
+          await result.asyncSuccess(_componentInfoList as T);
+        } else {
+          result.error('', '组件方法调用失败', '组件信息列表类型错误');
+        }
       } else {
-        result.error('', '组件方法调用失败', '组件信息列表类型错误');
+        result.error('', '组件方法调用失败', '引擎未初始化');
       }
     } else if (call.method == resources.getValues(value: 'execKernelStartup')) {
       await execAsyncComponentMethod<T>(
@@ -118,7 +122,7 @@ final class OSEngine extends OSComponent
 
   @override
   Future<void> onCreateEngine(Context context) async {
-    if (_instanced == false) {
+    if (!_instanced) {
       // 初始化绑定
       _binding = ComponentBinding(context: context, engine: this);
       // 遍历组件列表
@@ -153,7 +157,7 @@ final class OSEngine extends OSComponent
 
   @override
   Future<void> onDestroyEngine() async {
-    if (_instanced == true) {
+    if (_instanced) {
       // 清空组件列表
       _componentList.clear();
       // 清空组件信息列表
@@ -168,33 +172,37 @@ final class OSEngine extends OSComponent
   @override
   T? execSyncMethodCall<T>(String id, String method, [arguments]) {
     T? result;
-    try {
-      for (var element in _componentList) {
-        if (element.getComponentChannel.getId() == id) {
-          result = element.getComponentChannel.execSyncMethodCall<T>(
-            id,
-            method,
-            arguments,
-          );
-          Log.d(
-            tag: _tag,
-            message:
-                '组件代码调用成功!\n'
-                '组件ID:$id.\n'
-                '方法名称:$method.\n'
-                '返回结果:$result.',
-          );
+    if (_instanced) {
+      try {
+        for (var element in _componentList) {
+          if (element.getComponentChannel.getId() == id) {
+            result = element.getComponentChannel.execSyncMethodCall<T>(
+              id,
+              method,
+              arguments,
+            );
+            Log.d(
+              tag: _tag,
+              message:
+                  '组件代码调用成功!\n'
+                  '组件ID:$id.\n'
+                  '方法名称:$method.\n'
+                  '返回结果:$result.',
+            );
+          }
         }
+      } catch (exception) {
+        Log.e(
+          tag: _tag,
+          message:
+              '组件代码调用失败!\n$exception'
+              '组件ID:$id.\n'
+              '方法名称:$method.\n'
+              '返回结果:$result.',
+        );
       }
-    } catch (exception) {
-      Log.e(
-        tag: _tag,
-        message:
-            '组件代码调用失败!\n$exception'
-            '组件ID:$id.\n'
-            '方法名称:$method.\n'
-            '返回结果:$result.',
-      );
+    } else {
+      Log.w(tag: _tag, message: '引擎未初始化，无法执行同步方法调用!');
     }
     return result;
   }
@@ -206,33 +214,37 @@ final class OSEngine extends OSComponent
     dynamic arguments,
   ]) async {
     T? result;
-    try {
-      for (var element in _componentList) {
-        if (element.getComponentChannel.getId() == id) {
-          result = await element.getComponentChannel.execAsyncMethodCall<T>(
-            id,
-            method,
-            arguments,
-          );
-          Log.d(
-            tag: _tag,
-            message:
-                '组件代码调用成功!\n'
-                '组件ID:$id.\n'
-                '方法名称:$method.\n'
-                '返回结果:$result.',
-          );
+    if (_instanced) {
+      try {
+        for (var element in _componentList) {
+          if (element.getComponentChannel.getId() == id) {
+            result = await element.getComponentChannel.execAsyncMethodCall<T>(
+              id,
+              method,
+              arguments,
+            );
+            Log.d(
+              tag: _tag,
+              message:
+                  '组件代码调用成功!\n'
+                  '组件ID:$id.\n'
+                  '方法名称:$method.\n'
+                  '返回结果:$result.',
+            );
+          }
         }
+      } catch (exception) {
+        Log.e(
+          tag: _tag,
+          message:
+              '组件代码调用失败!\n$exception'
+              '组件ID:$id.\n'
+              '方法名称:$method.\n'
+              '返回结果:$result.',
+        );
       }
-    } catch (exception) {
-      Log.e(
-        tag: _tag,
-        message:
-            '组件代码调用失败!\n$exception'
-            '组件ID:$id.\n'
-            '方法名称:$method.\n'
-            '返回结果:$result.',
-      );
+    } else {
+      Log.w(tag: _tag, message: '引擎未初始化，无法执行异步方法调用!');
     }
     return result;
   }

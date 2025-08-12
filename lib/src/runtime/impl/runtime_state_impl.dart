@@ -39,7 +39,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
   /// 模块界面
   @override
   Layout moduleLayout(BuildContext context) {
-    return _buildManager(_viewModel(context, _execSdk, widget.child));
+    return _buildManager(_viewModel(context));
   }
 
   @override
@@ -119,13 +119,26 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
     await _initComponent();
   }
 
+  /// 销毁应用
+  Future<void> _destroy() async {
+    // 销毁日志
+    await Log.dispose();
+    // 销毁引擎
+    await bridgeScope?.onDestroyEngine().then((_) {
+      destroyEngineBridge();
+    });
+    _moduleList.clear();
+    _moduleDetailsList.clear();
+  }
+
   /// 获取App
   Layout _findApplication() {
     return resources.getLayout(
       builder: (context) {
         for (var element in _moduleDetailsList) {
           // 判断当前信息是否为运行时
-          if (element.id == moduleChannel) {
+          if (element.id ==
+              resources.getValues(value: V.channels.runtimeChannel)) {
             // 返回运行时的界面
             return _getModuleWidget(context, element);
           }
@@ -135,22 +148,28 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
     );
   }
 
-  ViewModel _viewModel(
-    BuildContext buildContext,
-    SdkInvoker sdkInstance,
-    Widget? child,
-  ) {
+  ViewModel _viewModel(BuildContext buildContext) {
     return OSViewModel(
       context: buildContext,
-      sdkInvoker: sdkInstance,
+      sdkInvoker: _execSdk,
       detailsList: _moduleDetailsList,
-      child: child,
+      child: _buildUserApp,
     );
+  }
+
+  Widget get _buildUserApp {
+    final Widget? child = widget.child;
+    final Widget userApp = WidgetUtil.nonNullWidget(child: child);
+    return userApp;
   }
 
   /// 构建应用
   Layout _buildManager(ViewModel viewModel) {
-    return resources.getLayout(builder: (_) => App(viewModel: viewModel));
+    return resources.getLayout(
+      builder: (_) {
+        return App(viewModel: viewModel);
+      },
+    );
   }
 
   Future<T?> _getComponentsList<T>() {
@@ -183,16 +202,6 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
       }
       return true;
     }());
-  }
-
-  /// 销毁应用
-  Future<void> _destroy() async {
-    // 销毁日志
-    await Log.dispose();
-    // 销毁引擎
-    await bridgeScope?.onDestroyEngine().then((_) {
-      destroyEngineBridge();
-    });
   }
 
   @override

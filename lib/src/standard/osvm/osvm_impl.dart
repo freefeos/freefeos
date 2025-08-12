@@ -3,7 +3,7 @@ part of '../standard.dart';
 /// 系统能力调用ViewModel实现类
 final class OSViewModel extends ContextWrapper
     with ViewModel
-    implements IOSViewModel {
+    implements IViewModel {
   /// 构造函数
   OSViewModel({
     required BuildContext context,
@@ -18,10 +18,10 @@ final class OSViewModel extends ContextWrapper
   /// 模块列表
   final List<ModuleDetails> detailsList;
 
-  final Widget? child;
+  final Widget child;
 
   @override
-  Widget? get getChild => child;
+  Widget get getUserApp => child;
 
   /// 获取SDK调用器
   @override
