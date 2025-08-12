@@ -42,7 +42,7 @@ final class App extends UiApp {
   /// ViewModel
   @override
   List<ViewModelProvider> get buildViewModel {
-    return [
+    return <ViewModelProvider>[
       OSAbilityProvider(viewModel: getViewModel),
       ViewModelProvider<IndexViewModule>(create: (_) => IndexViewModule()),
       ViewModelProvider<HomeViewModel>(create: (_) => HomeViewModel()),
