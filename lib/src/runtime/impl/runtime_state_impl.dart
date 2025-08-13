@@ -105,6 +105,25 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
     }
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder(
+      valueListenable: _instanced,
+      builder: (_, value, child) {
+        return AnimatedSwitcher(
+          duration: const Duration(milliseconds: 500),
+          transitionBuilder: (Widget child, Animation<double> animation) {
+            return FadeTransition(opacity: animation, child: child);
+          },
+          child: value
+              ? WidgetUtil.layout2Widget(layout: _findApplication())
+              : WidgetUtil.nonNullWidget(child: child),
+        );
+      },
+      child: const Center(child: CircularProgressIndicator.adaptive()),
+    );
+  }
+
   /// 初始化应用
   Future<void> _init() async {
     // 初始化日志
@@ -202,25 +221,6 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
       }
       return true;
     }());
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: _instanced,
-      builder: (_, value, child) {
-        return AnimatedSwitcher(
-          duration: const Duration(milliseconds: 500),
-          transitionBuilder: (Widget child, Animation<double> animation) {
-            return FadeTransition(opacity: animation, child: child);
-          },
-          child: value
-              ? WidgetUtil.layout2Widget(layout: _findApplication())
-              : WidgetUtil.nonNullWidget(child: child),
-        );
-      },
-      child: const Center(child: CircularProgressIndicator.adaptive()),
-    );
   }
 
   /// 初始化运行时
