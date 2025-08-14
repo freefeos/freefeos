@@ -160,13 +160,7 @@ class _SettingScreenState extends State<SettingScreen> {
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(
-                              Icons.keyboard_command_key,
-                              color: ColorScheme.fromSeed(
-                                seedColor: V.colors.ecosedPurple,
-                                brightness: Theme.of(context).brightness,
-                              ).primary,
-                            ),
+                            Icon(Icons.keyboard_command_key),
                             const Icon(Icons.keyboard_arrow_right),
                           ],
                         ),

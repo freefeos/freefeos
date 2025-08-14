@@ -22,14 +22,14 @@ final class ModuleDetails {
   final ModuleType type;
 
   /// 使用Map解析模块详细信息
-  factory ModuleDetails.formMap({
-    required Map<String, dynamic> map,
+  factory ModuleDetails.formData({
+    required ModuleData data,
     required ModuleType type,
   }) {
     return ModuleDetails(
-      id: map['id'],
-      title: map['title'],
-      description: map['description'],
+      id: data['id'] ?? '',
+      title: data['title'] ?? '',
+      description: data['description'] ?? '',
       type: type,
     );
   }

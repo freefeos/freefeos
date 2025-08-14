@@ -24,7 +24,6 @@ final class Log {
         });
       })().then((_) {
         _instanced = true;
-        Log.i(tag: _tag, message: utf8.decode(base64Decode(V.drawable.banner)));
       });
     } else {
       Log.w(tag: _tag, message: '请勿重复初始化日志!');

@@ -60,21 +60,7 @@ class _HeaderState extends State<Header> {
   }
 
   Color getColor(BuildContext context) {
-    switch (widget.style) {
-      case HeaderStyle.clock:
-      case HeaderStyle.calculator:
-        return Theme.of(context).colorScheme.primary;
-      case HeaderStyle.ecosedkit:
-        return ColorScheme.fromSeed(
-          seedColor: V.colors.ecosedPurple,
-          brightness: Theme.of(context).brightness,
-        ).primary;
-      case HeaderStyle.wechat:
-        return ColorScheme.fromSeed(
-          seedColor: V.colors.wechatGreen,
-          brightness: Theme.of(context).brightness,
-        ).primary;
-    }
+    return Theme.of(context).colorScheme.primary;
   }
 
   int get getCount {

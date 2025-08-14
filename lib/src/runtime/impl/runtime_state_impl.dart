@@ -128,6 +128,11 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
   Future<void> _init() async {
     // 初始化日志
     await Log.init();
+    // 打印Banner
+    Log.i(
+      tag: _tag,
+      message: resources.getDrawable(res: V.drawable.banner),
+    );
     // 初始化引擎
     await initEngineBridge().then((_) async {
       return await bridgeScope?.onCreateEngine(baseContext);
@@ -140,6 +145,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
 
   /// 销毁应用
   Future<void> _destroy() async {
+    Log.i(tag: _tag, message: 'system will exit.');
     // 销毁日志
     await Log.dispose();
     // 销毁引擎
@@ -285,7 +291,10 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
           for (var component in componentsList) {
             // 添加到详细信息列表
             _moduleDetailsList.add(
-              ModuleDetails.formMap(map: component, type: ModuleType.component),
+              ModuleDetails.formData(
+                data: component,
+                type: ModuleType.component,
+              ),
             );
           }
         }

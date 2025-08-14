@@ -10,4 +10,8 @@ final class Resources {
   T getValues<T>({required T value}) {
     return value;
   }
+
+  String getDrawable({required DrawableRes res}) {
+    return utf8.decode(base64Decode(res));
+  }
 }

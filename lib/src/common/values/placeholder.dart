@@ -3,7 +3,7 @@ part of '../common.dart';
 final class VPlaceholder {
   const VPlaceholder();
 
-  Map<String, String> get component => {
+  ModuleData get component => {
     'id': 'unknown',
     'title': 'unknown',
     'description': 'unknown',

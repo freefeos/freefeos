@@ -53,3 +53,10 @@ typedef ExitCallback = void Function(VoidCallback exit);
 
 typedef AsyncResultCallback<T> = Future<void> Function(T? result);
 typedef SyncResultCallback<T> = void Function(T? result);
+
+typedef StringRes = String;
+typedef DrawableRes = String;
+
+typedef ChannelName = StringRes;
+typedef MethodName = StringRes;
+typedef ModuleData = Map<String, String>;

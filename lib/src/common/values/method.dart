@@ -4,8 +4,8 @@ final class VMethod {
   const VMethod();
 
   // runtime
-  String get runtimeGetEngineModules => 'get_engine_plugins';
+  MethodName get runtimeGetEngineModules => 'get_engine_plugins';
 
   // engine
-  String get engineGetEngineModules => 'get_engine_plugins';
+  MethodName get engineGetEngineModules => 'get_engine_plugins';
 }
