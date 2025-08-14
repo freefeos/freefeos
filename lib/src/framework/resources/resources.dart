@@ -7,7 +7,7 @@ final class Resources {
     return Layout(layout: Builder(builder: builder));
   }
 
-  dynamic getValues({required dynamic value}) {
+  T getValues<T>({required T value}) {
     return value;
   }
 }
