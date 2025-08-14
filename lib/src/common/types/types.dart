@@ -52,11 +52,20 @@ typedef ModuleItemBuilder =
 typedef ExitCallback = void Function(VoidCallback exit);
 
 typedef AsyncResultCallback<T> = Future<void> Function(T? result);
+
 typedef SyncResultCallback<T> = void Function(T? result);
 
+/// 字符串资源
 typedef StringRes = String;
+
+/// 可绘制资源
 typedef DrawableRes = String;
 
+/// 通道名称
 typedef ChannelName = StringRes;
+
+/// 方法名称
 typedef MethodName = StringRes;
+
+/// 模块数据
 typedef ModuleData = Map<String, String>;
