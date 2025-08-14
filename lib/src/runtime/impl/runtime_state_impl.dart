@@ -130,7 +130,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
     await Log.init();
     // 初始化引擎
     await initEngineBridge().then((_) {
-      bridgeScope?.onCreateEngine(baseContext);
+      return bridgeScope?.onCreateEngine(baseContext);
     });
     // 初始化运行时
     await _initRuntime();
@@ -144,9 +144,11 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
     await Log.dispose();
     // 销毁引擎
     await bridgeScope?.onDestroyEngine().then((_) {
-      destroyEngineBridge();
+      return destroyEngineBridge();
     });
+    // 清空模块列表
     _moduleList.clear();
+    // 清空模块信息列表
     _moduleDetailsList.clear();
   }
 
