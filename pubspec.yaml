@@ -4,7 +4,7 @@ version: 0.8.0
 repository: https://github.com/freefeos/freefeos
 
 environment:
-  sdk: ^3.8.1
+  sdk: ^3.9.0
   flutter: ">=3.3.0"
 
 dependencies:
