@@ -64,143 +64,39 @@ FreeFEOS 是一个 Flutter 插件, 也是一高级 Flutter 开发框架, 它能�
 FreeFEOS is a Flutter plugin, an advanced Flutter development framework
 that can provide many advanced features for applications.
 
-## 截图
-
-<table align="center">
-    <tr>
-        <td colspan="2" align="center">iOS</td>
-        <td colspan="2" align="center">Android</td>
-    </tr>
-    <tr>
-        <td>
-            <a
-                href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_ios_app.png">
-                <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_ios_app.png"
-                    width="200">
-            </a>
-        </td>
-        <td>
-            <a
-                href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_ios_mgr.png">
-                <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_ios_mgr.png"
-                    width="200">
-            </a>
-        </td>
-        <td>
-            <a
-                href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_android_app.png">
-                <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_android_app.png"
-                    width="200">
-            </a>
-        </td>
-        <td>
-            <a
-                href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_android_mgr.png">
-                <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_android_mgr.png"
-                    width="200">
-            </a>
-        </td>
-    </tr>
-</table>
-
-<table align="center">
-    <tr>
-        <td colspan="2" align="center">Linux</td>
-    </tr>
-    <tr>
-        <td>
-            <a
-                href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_app.png">
-                <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_app.png"
-                    width="400">
-            </a>
-        </td>
-        <td>
-            <a
-                href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_mgr.png">
-                <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_mgr.png"
-                    width="400">
-            </a>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2" align="center">macOS</td>
-    </tr>
-    <tr>
-        <td>
-            <a
-                href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_app.png">
-                <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_app.png"
-                    width="400">
-            </a>
-        </td>
-        <td>
-            <a
-                href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_mgr.png">
-                <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_macos_mgr.png"
-                    width="400">
-            </a>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2" align="center">Windows</td>
-    </tr>
-    <tr>
-        <td>
-            <a
-                href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_windows_app.png">
-                <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_windows_app.png"
-                    width="400">
-            </a>
-        </td>
-        <td>
-            <a
-                href="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_windows_mgr.png">
-                <img src="https://raw.githubusercontent.com/freefeos/freefeos/master/assets/screenhots/screenhot_windows_mgr.png"
-                    width="400">
-            </a>
-        </td>
-    </tr>
-</table>
-
 ## 📚快速开始
 
-1.搭建开发环境:
+1. 创建新的Flutter项目
 
-* [Flutter](https://docs.flutter.cn/get-started/install)
+2. 添加依赖
 
-2.创建新的Flutter项目
+    * 在项目的pubspec.yaml中添加依赖:
+    * [![PubVersion](https://img.shields.io/pub/v/freefeos?include_prereleases&style=flat-square&logo=dart&logoColor=white&label=Pub&color=blue)](https://pub.dev/packages/freefeos)
 
-* 无论是[命令行](), 还是[VSCode](), 还是[IntelliJ IDEA](), 只要能正常创建Flutter项目的方法都可以.
+        ```yaml
+        dependencies:
+            freefeos: ^这里写最新版本
+        ```
 
-3.添加依赖
+    * 在终端中更新依赖:
 
-* 在项目的pubspec.yaml中添加依赖:
-[![PubVersion](https://img.shields.io/pub/v/freefeos?include_prereleases&style=flat-square&logo=dart&logoColor=white&label=Pub&color=blue)](https://pub.dev/packages/freefeos)
+        ```shell
+        flutter pub get
+        ```
 
-```yaml
-dependencies:
-  freefeos: ^这里写最新版本
-```
+3. 编写代码
 
-* 在终端中更新依赖:
+4. 添加标签
 
-```shell
-flutter pub get
-```
+    * 最后记得在README.md中添加标签(非必需).
 
-4.编写代码
+    * [![Powered by
+    FreeFEOS](https://img.shields.io/badge/Powered_by-FreeFEOS-blue?style=flat-square&logo=flutter&logoColor=white)](https://github.com/freefeos/freefeos)
 
-5.添加标签
-
-* 最后记得在README.md中添加标签(非必需).
-* [![Powered by
-FreeFEOS](https://img.shields.io/badge/Powered_by-FreeFEOS-blue?style=flat-square&logo=flutter&logoColor=white)](https://github.com/freefeos/freefeos)
-
-```markdown
-[![Powered by
-FreeFEOS](https://img.shields.io/badge/Powered_by-FreeFEOS-blue?style=flat-square&logo=flutter&logoColor=white)](https://github.com/freefeos/freefeos)
-```
+        ```markdown
+        [![Powered by
+        FreeFEOS](https://img.shields.io/badge/Powered_by-FreeFEOS-blue?style=flat-square&logo=flutter&logoColor=white)](https://github.com/freefeos/freefeos)
+        ```
 
 ## 📔更新日志
 
