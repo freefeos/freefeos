@@ -2,7 +2,7 @@ arb-dir: lib/src/manager/l10n
 output-dir: lib/src/manager/intl
 template-arb-file: app_zh.arb
 output-localization-file: app_localizations.dart
-synthetic-package: false
+# synthetic-package: false
 output-class: AppLocalizations
 preferred-supported-locales: [zh]
 nullable-getter: false
