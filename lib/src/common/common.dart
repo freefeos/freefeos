@@ -23,12 +23,6 @@ part 'interface/loader_interface.dart';
 part 'interface/compat_interface.dart';
 part 'interface/system_interface.dart';
 
-/// Manifest 清单
-part 'manifest/manifest_ecosedkit.dart';
-part 'manifest/manifest_freefeos.dart';
-part 'manifest/manifest_interface.dart';
-part 'manifest/manifest.dart';
-
 /// Model 模型
 part 'model/module_details.dart';
 

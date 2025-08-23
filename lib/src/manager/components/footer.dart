@@ -33,13 +33,13 @@ class _FooterState extends State<Footer> {
   String getSecond(BuildContext context) {
     switch (widget.style) {
       case FooterStyle.freefeos:
-        return Manifest.freefeos.icpId;
+        return '';
       case FooterStyle.ecosedkit:
-        return Manifest.ecosedKit.icpId;
+        return '';
       case FooterStyle.wechat:
-        return 'WeChat 及 微信 商标归腾讯公司所有';
+        return '';
       case FooterStyle.clock:
-        return '此时间为操作系统时间';
+        return '';
       case FooterStyle.calculator:
         return '';
     }

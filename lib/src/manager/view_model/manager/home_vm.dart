@@ -5,23 +5,26 @@ final class HomeViewModel with ViewModel implements IHomeViewModel {
 
   @override
   Color getStateCardColor(BuildContext context, OSAbility ability) {
-    return ability.checkEnv && ability.getAppId != Manifest.freefeos.appId
-        ? Theme.of(context).colorScheme.errorContainer
-        : Theme.of(context).colorScheme.primaryContainer;
+    return Theme.of(context).colorScheme.primaryContainer;
+    // return ability.checkEnv && ability.getAppId != Manifest.freefeos.appId
+    //     ? Theme.of(context).colorScheme.errorContainer
+    //     : Theme.of(context).colorScheme.primaryContainer;
   }
 
   @override
   IconData getStateCardIcon(OSAbility ability) {
-    return ability.checkEnv && ability.getAppId != Manifest.freefeos.appId
-        ? Icons.error_outline
-        : Icons.check_circle_outline;
+    return Icons.check_circle_outline;
+    // return ability.checkEnv && ability.getAppId != Manifest.freefeos.appId
+    //     ? Icons.error_outline
+    //     : Icons.check_circle_outline;
   }
 
   @override
   String getStateCardTitle(BuildContext context, OSAbility ability) {
-    return ability.checkEnv && ability.getAppId != Manifest.freefeos.appId
-        ? '环境异常'
-        : '工作中';
+    return '工作中';
+    // return ability.checkEnv && ability.getAppId != Manifest.freefeos.appId
+    //     ? '环境异常'
+    //     : '工作中';
   }
 
   @override
