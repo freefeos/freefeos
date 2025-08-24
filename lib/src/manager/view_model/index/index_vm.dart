@@ -1,12 +1,19 @@
 part of '../../manager.dart';
 
-final class IndexViewModule with ViewModel {
+abstract interface class IIndexViewModule {
+  Widget getUserApp(OSAbility ability);
+  void doubleExit({required ExitCallback showTips, required VoidCallback exit});
+}
+
+final class IndexViewModule with ViewModel implements IIndexViewModule {
   DateTime? _lastBackPressTime;
 
+  @override
   Widget getUserApp(OSAbility ability) {
     return ability.getUserApp;
   }
 
+  @override
   void doubleExit({
     required ExitCallback showTips,
     required VoidCallback exit,

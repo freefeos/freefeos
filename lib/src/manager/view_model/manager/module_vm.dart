@@ -1,5 +1,24 @@
 part of '../../manager.dart';
 
+/// 模块VM接口
+abstract interface class IModuleViewModel {
+  void init(OSAbility ability);
+
+  List<Widget> moduleList({
+    required BuildContext context,
+    required DetailDialogLauncher showDetail,
+    required WidgetBuilder dividerBuilder,
+    required ModuleItemBuilder itemBuilder,
+  });
+
+  List<Widget> componentList({
+    required BuildContext context,
+    required DetailDialogLauncher showDetail,
+    required WidgetBuilder dividerBuilder,
+    required ModuleItemBuilder itemBuilder,
+  });
+}
+
 /// 模块VM
 final class ModuleViewModel with ViewModel implements IModuleViewModel {
   ModuleViewModel();

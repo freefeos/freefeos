@@ -2,7 +2,6 @@ library;
 
 import 'dart:async';
 import 'dart:collection';
-import 'dart:math';
 
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
@@ -17,16 +16,13 @@ import 'intl/app_localizations.dart';
 
 /// Components 组件
 part 'components/capsule_button.dart';
-part 'components/clock_view.dart';
 part 'components/footer.dart';
 part 'components/header.dart';
 part 'components/nav_bar.dart';
-part 'components/nav_drawer.dart';
 part 'components/nav_host.dart';
 part 'components/nav_title.dart';
 part 'components/root_theme.dart';
 part 'components/screen_adapter.dart';
-part 'components/text_clock.dart';
 
 /// Controllers 控制器
 part 'controllers/nav_controller.dart';
@@ -51,14 +47,8 @@ part 'utils/utils.dart';
 
 /// ViewModel 视图模型
 part 'view_model/index/index_vm.dart';
-
-part 'view_model/manager/home_interface.dart';
 part 'view_model/manager/home_vm.dart';
-
-part 'view_model/manager/logcat_interface.dart';
 part 'view_model/manager/logcat_vm.dart';
-
-part 'view_model/manager/module_interface.dart';
 part 'view_model/manager/module_vm.dart';
 
 /// App
