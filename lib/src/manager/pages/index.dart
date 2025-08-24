@@ -24,30 +24,21 @@ class _IndexPageState extends State<IndexPage> {
             lastIcon: Icons.adjust,
             firstTooltip: '系统菜单',
             lastTooltip: '退出应用',
-            onFirstTap: () {
-              showModalBottomSheet(
-                context: context,
-                // showDragHandle: true,
-                builder: (context) {
-                  return SystemSheet();
-                },
-              );
-            },
-            onLastTap: () {
-              index.doubleExit(
-                showTips: (exit) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('再按一次退出应用'),
-                      action: SnackBarAction(label: '退出', onPressed: exit),
-                    ),
-                  );
-                },
-                exit: () {
-                  SystemNavigator.pop();
-                },
-              );
-            },
+            onFirstTap: () => showModalBottomSheet(
+              context: context,
+              builder: (context) {
+                return SystemSheet();
+              },
+            ),
+            onLastTap: () => index.doubleExit(
+              showTips: (exit) => ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('再按一次退出应用'),
+                  action: SnackBarAction(label: '退出', onPressed: exit),
+                ),
+              ),
+              exit: () => SystemNavigator.pop(),
+            ),
             child: Theme(
               data: RootTheme.of(context),
               child: index.getUserApp(ability),
