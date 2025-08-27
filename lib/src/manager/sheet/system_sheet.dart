@@ -38,31 +38,38 @@ final class _SystemSheetState extends State<SystemSheet> {
                 child: SingleChildScrollView(
                   controller: _scrollController,
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Card.filled(
                         margin: const EdgeInsets.only(
                           left: 16,
                           top: 16,
                           right: 16,
-                          bottom: 8,
+                          bottom: 16,
                         ),
                         color: Theme.of(context).colorScheme.primaryContainer,
-                        child: ListTile(
-                          leading: const FlutterLogo(),
-                          title: Text('appName'),
-                          subtitle: Text('appVersionName'),
-                          trailing: const Icon(Icons.keyboard_arrow_right),
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(12.0),
-                            ),
-                          ),
-                          contentPadding: const EdgeInsetsDirectional.symmetric(
-                            horizontal: 16.0,
-                          ),
-                          onTap: () => Navigator.of(context)
-                            ..pop()
-                            ..pushNamed(AboutPage.route),
+                        child: Consumer<OSAbility>(
+                          builder: (context, ability, child) {
+                            return ListTile(
+                              leading: const FlutterLogo(),
+                              title: Text(ability.getAppName),
+                              subtitle: Text(ability.getVersionName),
+                              trailing: const Icon(Icons.keyboard_arrow_right),
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(12.0),
+                                ),
+                              ),
+                              contentPadding:
+                                  const EdgeInsetsDirectional.symmetric(
+                                    horizontal: 16.0,
+                                  ),
+                              onTap: () => Navigator.of(context)
+                                ..pop()
+                                ..pushNamed(AboutPage.route),
+                            );
+                          },
                         ),
                       ),
                       FilledButton(

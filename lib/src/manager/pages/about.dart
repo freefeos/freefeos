@@ -114,23 +114,13 @@ class _AboutPageState extends State<AboutPage> {
                         ),
                         const SizedBox(width: 16),
                         Expanded(
-                          child: Consumer<OSAbility>(
-                            builder: (context, ability, child) {
-                              return ability.openCustomer(
-                                child: AppUtils.nonNullWidget(child: child),
-                              );
-                            },
-                            child: SizedBox(
-                              width: double.infinity,
-                              child: Tooltip(
-                                message: '管理器',
-                                child: OutlinedButton(
-                                  onPressed: () => Navigator.of(
-                                    context,
-                                  ).pushNamed(ManagerPage.route),
-                                  child: Text('管理器'),
-                                ),
-                              ),
+                          child: Tooltip(
+                            message: '管理器',
+                            child: OutlinedButton(
+                              onPressed: () => Navigator.of(
+                                context,
+                              ).pushNamed(ManagerPage.route),
+                              child: Text('管理器'),
                             ),
                           ),
                         ),
@@ -189,39 +179,30 @@ class _AboutPageState extends State<AboutPage> {
                           },
                         ),
                         const Divider(height: 1, indent: 16, endIndent: 16),
-                        Consumer<OSAbility>(
-                          builder: (context, ability, child) {
-                            return ability.openSetting(
-                              child: AppUtils.nonNullWidget(child: child),
-                            );
-                          },
-                          child: ListTile(
-                            title: Text('开放源代码许可'),
-                            trailing: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(
-                                  Icons.list,
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
-                                const Icon(Icons.keyboard_arrow_right),
-                              ],
-                            ),
-                            contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 16,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(12),
-                                bottomRight: Radius.circular(12),
+                        ListTile(
+                          title: Text('开放源代码许可'),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.list,
+                                color: Theme.of(context).colorScheme.primary,
                               ),
-                            ),
-                            onTap: () {
-                              Navigator.of(
-                                context,
-                              ).pushNamed(LicensesPage.route);
-                            },
+                              const Icon(Icons.keyboard_arrow_right),
+                            ],
                           ),
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(12),
+                              bottomRight: Radius.circular(12),
+                            ),
+                          ),
+                          onTap: () {
+                            Navigator.of(context).pushNamed(LicensesPage.route);
+                          },
                         ),
                       ],
                     ),

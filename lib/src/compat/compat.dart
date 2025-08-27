@@ -1,7 +1,9 @@
 /// Flutter 平台兼容层
 library;
 
-import 'package:flutter/material.dart';
+import 'dart:async';
+
+import 'package:package_info_plus/package_info_plus.dart';
 
 import '../common/common.dart';
 

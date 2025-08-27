@@ -43,19 +43,6 @@ final class HomeViewModel with ViewModel implements IHomeViewModel {
 
   @override
   String getStateCardEnv(BuildContext context, OSAbility ability) {
-    if (ability.checkEnv) {
-      switch (ability.getVersionStage) {
-        case 'develop':
-          return '开发版';
-        case 'trial':
-          return '体验版';
-        case 'release':
-          return '正式版';
-        default:
-          return '未知版本';
-      }
-    } else {
-      return 'Flutter';
-    }
+    return 'Flutter';
   }
 }
