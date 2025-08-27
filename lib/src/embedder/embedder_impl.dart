@@ -39,15 +39,16 @@ final class OSEmbedder extends OSComponent {
     EngineMethodCall call,
     EngineResult<T> result,
   ) {
-    if (call.method == resources.getValues(value: 'getPackageName')) {
-      result.syncSuccess(_embedder.getPackageName as T);
-    } else if (call.method == resources.getValues(value: 'getAppName')) {
-      result.syncSuccess(_embedder.getAppName as T);
-    } else if (call.method == resources.getValues(value: 'getVersionName')) {
-      result.syncSuccess(_embedder.getVersionName as T);
-    } else {
-      result.notImplemented();
-    }
+    result.notImplemented();
+    // if (call.method == resources.getValues(value: 'getPackageName')) {
+    //   result.syncSuccess(_embedder.getPackageName as T);
+    // } else if (call.method == resources.getValues(value: 'getAppName')) {
+    //   result.syncSuccess(_embedder.getAppName as T);
+    // } else if (call.method == resources.getValues(value: 'getVersionName')) {
+    //   result.syncSuccess(_embedder.getVersionName as T);
+    // } else {
+    //   result.notImplemented();
+    // }
 
     // if (call.method ==
     //     resources.getValues(value: 'addThemeModeChangeListener')) {

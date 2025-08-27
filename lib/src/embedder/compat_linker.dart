@@ -1,20 +1,20 @@
 part of 'embedder.dart';
 
-class CompatLinker implements FreeFEOSCompat {
-  @override
-  String get getAppName {
-    return FreeFEOSCompat.instance.getAppName;
-  }
+class CompatLinker {
+  // @override
+  // String get getAppName {
+  //   return FreeFEOSCompat.instance.getAppName;
+  // }
 
-  @override
-  String get getPackageName {
-    return FreeFEOSCompat.instance.getPackageName;
-  }
+  // @override
+  // String get getPackageName {
+  //   return FreeFEOSCompat.instance.getPackageName;
+  // }
 
-  @override
-  String get getVersionName {
-    return FreeFEOSCompat.instance.getVersionName;
-  }
+  // @override
+  // String get getVersionName {
+  //   return FreeFEOSCompat.instance.getVersionName;
+  // }
   // @override
   // void addThemeModeChangeListener(VoidCallback callback) {
   //   return FreeFEOSCompat.instance.addThemeModeChangeListener(callback);

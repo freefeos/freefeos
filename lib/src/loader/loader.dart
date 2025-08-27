@@ -4,7 +4,6 @@ library;
 import 'package:flutter/widgets.dart';
 
 import '../common/common.dart';
-import '../compat/compat.dart';
 import '../runtime/runtime.dart';
 
 /// OSLoader

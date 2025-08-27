@@ -1,17 +1,18 @@
 part of 'embedder.dart';
 
-final class PlatformEmbedder extends Service implements FreeFEOSCompat {
+//final class PlatformEmbedder extends Service implements FreeFEOSCompat {
+final class PlatformEmbedder extends Service {
   PlatformEmbedder();
 
   /// 日志标签
   static const String tag = 'embedder';
 
-  late FreeFEOSCompat _linker;
+  // late FreeFEOSCompat _linker;
 
   @override
   void onCreate() {
     super.onCreate();
-    _linker = CompatLinker();
+    // _linker = CompatLinker();
   }
 
   @override
@@ -244,28 +245,28 @@ final class PlatformEmbedder extends Service implements FreeFEOSCompat {
   //   );
   // }
 
-  @override
-  String get getPackageName {
-    return _linker.getPackageName;
-  }
+  // @override
+  // String get getPackageName {
+  //   return _linker.getPackageName;
+  // }
 
-  @override
-  String get getAppName {
-    return _linker.getAppName;
-  }
+  // @override
+  // String get getAppName {
+  //   return _linker.getAppName;
+  // }
 
-  @override
-  String get getVersionName {
-    return _linker.getVersionName;
-    // return _invoke<String>(
-    //   flutter: (linker) => linker.getVersionName,
-    //   origin: () => '0.0.0',
-    //   error: (exception) {
-    //     Log.e(tag: tag, message: exception.toString());
-    //     return '';
-    //   },
-    // );
-  }
+  // @override
+  // String get getVersionName {
+  //   return _linker.getVersionName;
+  //   // return _invoke<String>(
+  //   //   flutter: (linker) => linker.getVersionName,
+  //   //   origin: () => '0.0.0',
+  //   //   error: (exception) {
+  //   //     Log.e(tag: tag, message: exception.toString());
+  //   //     return '';
+  //   //   },
+  //   // );
+  // }
 
   // /// 调用
   // T _invoke<T>({

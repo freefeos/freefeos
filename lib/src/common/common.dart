@@ -20,7 +20,6 @@ part 'event/event_rendered.dart';
 
 /// Interface 接口
 part 'interface/loader_interface.dart';
-part 'interface/compat_interface.dart';
 part 'interface/system_interface.dart';
 
 /// Model 模型
