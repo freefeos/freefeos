@@ -13,11 +13,24 @@ final class _SystemSheetState extends State<SystemSheet> {
   /// 滚动控制器
   final ScrollController _scrollController = ScrollController();
 
+  /// 应用信息
+  PackageInfo? _packageInfo;
+
+  @override
+  void initState() {
+    super.initState();
+    PackageInfo.fromPlatform().then((res) {
+      setState(() => _packageInfo = res);
+    });
+  }
+
   @override
   void dispose() {
     super.dispose();
     // 释放滚动控制器
     _scrollController.dispose();
+    // 清空应用信息
+    _packageInfo = null;
   }
 
   @override
@@ -53,8 +66,16 @@ final class _SystemSheetState extends State<SystemSheet> {
                           builder: (context, ability, child) {
                             return ListTile(
                               leading: const FlutterLogo(),
-                              title: Text(ability.getAppName),
-                              subtitle: Text(ability.getVersionName),
+                              title: Text(
+                                _packageInfo?.appName ?? 'Unknown',
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                              ),
+                              subtitle: Text(
+                                _packageInfo?.version ?? 'Unknown',
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                              ),
                               trailing: const Icon(Icons.keyboard_arrow_right),
                               shape: const RoundedRectangleBorder(
                                 borderRadius: BorderRadius.all(

@@ -1,9 +1,7 @@
 part of 'kernel.dart';
 
 enum CallForm {
-  getAppName,
-  getPackageName,
-  getVersionName;
+  form;
 
   // addThemeModeChangeListener,
   // setClipboardData,

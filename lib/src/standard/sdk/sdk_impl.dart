@@ -5,21 +5,6 @@ final class FreeFEOSSdk implements IFreeFEOSSdk {
 
   final SdkInvoker sdkInvoker;
 
-  @override
-  String get getAppName {
-    return sdkInvoker<String>('getAppName') ?? '';
-  }
-
-  @override
-  String get getPackageName {
-    return sdkInvoker<String>('getPackageName') ?? '';
-  }
-
-  @override
-  String get getVersionName {
-    return sdkInvoker<String>('getVersionName') ?? '';
-  }
-
   // @override
   // void addThemeModeChangeListener(VoidCallback callback) {
   //   return sdkInvoker<void>('addThemeModeChangeListener', {

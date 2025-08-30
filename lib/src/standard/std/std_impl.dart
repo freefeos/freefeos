@@ -15,15 +15,16 @@ final class OSStandard extends OSComponent {
     EngineMethodCall call,
     EngineResult<T> result,
   ) {
-    if (call.method == 'getAppName') {
-      result.syncSuccess(_execSysCall(CallForm.getAppName));
-    } else if (call.method == 'getPackageName') {
-      result.syncSuccess(_execSysCall(CallForm.getPackageName));
-    } else if (call.method == 'getVersionName') {
-      result.syncSuccess(_execSysCall(CallForm.getVersionName));
-    } else {
-      result.notImplemented();
-    }
+    result.notImplemented();
+    // if (call.method == 'getAppName') {
+    //   result.syncSuccess(_execSysCall(CallForm.getAppName));
+    // } else if (call.method == 'getPackageName') {
+    //   result.syncSuccess(_execSysCall(CallForm.getPackageName));
+    // } else if (call.method == 'getVersionName') {
+    //   result.syncSuccess(_execSysCall(CallForm.getVersionName));
+    // } else {
+    //   result.notImplemented();
+    // }
 
     // if (call.method == 'addThemeModeChangeListener') {
     //   result.syncSuccess(

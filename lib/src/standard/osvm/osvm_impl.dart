@@ -118,19 +118,4 @@ final class OSViewModel extends ContextWrapper
   List<ModuleDetails> get getDetailsList {
     return detailsList;
   }
-
-  @override
-  String get getAppName {
-    return fe.getAppName;
-  }
-
-  @override
-  String get getPackageName {
-    return fe.getPackageName;
-  }
-
-  @override
-  String get getVersionName {
-    return fe.getVersionName;
-  }
 }

@@ -6,9 +6,9 @@ abstract interface class IfeOSdk {
 }
 
 abstract interface class IFreeFEOSSdk {
-  String get getPackageName;
-  String get getAppName;
-  String get getVersionName;
+  // String get getPackageName;
+  // String get getAppName;
+  // String get getVersionName;
 
   // /// 添加主题模式监听
   // void addThemeModeChangeListener(VoidCallback callback);

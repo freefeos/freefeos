@@ -13,11 +13,24 @@ class _AboutPageState extends State<AboutPage> {
   /// 滚动控制器
   final ScrollController _scrollController = ScrollController();
 
+  /// 应用信息
+  PackageInfo? _packageInfo;
+
+  @override
+  void initState() {
+    super.initState();
+    PackageInfo.fromPlatform().then((res) {
+      setState(() => _packageInfo = res);
+    });
+  }
+
   @override
   void dispose() {
     super.dispose();
     // 释放滚动控制器
     _scrollController.dispose();
+    // 清空应用信息
+    _packageInfo = null;
   }
 
   @override
@@ -27,8 +40,9 @@ class _AboutPageState extends State<AboutPage> {
         title: Text('关于应用'),
         actions: [
           IconButton(
-            onPressed: () =>
-                Navigator.of(context).pushNamed(SettingsPage.route),
+            onPressed: () {
+              Navigator.of(context).pushNamed(SettingsPage.route);
+            },
             icon: Icon(Icons.settings),
             tooltip: '设置',
           ),
@@ -58,8 +72,16 @@ class _AboutPageState extends State<AboutPage> {
                       message: '应用',
                       child: ListTile(
                         leading: const FlutterLogo(),
-                        title: Text('appName'),
-                        subtitle: Text('appVersion'),
+                        title: Text(
+                          _packageInfo?.appName ?? 'Unknown',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                        subtitle: Text(
+                          _packageInfo?.version ?? 'Unknown',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
                         contentPadding: const EdgeInsets.symmetric(
                           vertical: 12,
                           horizontal: 24,
@@ -138,6 +160,8 @@ class _AboutPageState extends State<AboutPage> {
                     child: ListTile(
                       title: Text(
                         'Powered by FreeFEOS',
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                         // textAlign: TextAlign.center,
                       ),
                       // titleAlignment: ListTileTitleAlignment.center,

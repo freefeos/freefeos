@@ -77,9 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               Text(
                                 AppLocalizations.of(
                                   context,
-                                ).indexHomeStatuesCardAppVersion(
-                                  ability.getVersionName,
-                                ),
+                                ).indexHomeStatuesCardAppVersion(""),
                               ),
                             ],
                           ),
@@ -170,7 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           subtitle: Consumer<OSAbility>(
                             builder: (context, ability, _) {
-                              return Text(ability.getVersionName);
+                              return Text("");
                             },
                           ),
                         ),
