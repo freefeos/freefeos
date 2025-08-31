@@ -9,6 +9,7 @@ final class WidgetUtil {
     return LayoutFrame(layout: layout);
   }
 
+  /// 非空Widget
   static Widget nonNullWidget({required Widget? child}) {
     return Container(child: child);
   }
