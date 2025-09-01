@@ -39,12 +39,13 @@ final class OSKernel extends OSComponent {
     await _buildRootFS();
   }
 
+  final FileSystem _fs = FileSystem();
+
   Future<void> _buildRootFS() async {
-    FileSystem fs = FileSystem();
-    fs.createFile('/hello_fs.txt');
-    fs.write('/hello_fs.txt', 'hello world');
-    var ls = fs.ls('/');
-    var cat = fs.cat('/hello_fs.txt');
+    _fs.createFile('/hello_fs.txt');
+    _fs.write('/hello_fs.txt', 'hello world');
+    var ls = _fs.ls('/');
+    var cat = _fs.cat('/hello_fs.txt');
     debugPrint(ls.toString());
     debugPrint(cat.toString());
   }

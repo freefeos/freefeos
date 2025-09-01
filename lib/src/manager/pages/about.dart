@@ -38,15 +38,15 @@ class _AboutPageState extends State<AboutPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('关于应用'),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed(SettingsPage.route);
-            },
-            icon: Icon(Icons.settings),
-            tooltip: '设置',
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     onPressed: () {
+        //       Navigator.of(context).pushNamed(SettingsPage.route);
+        //     },
+        //     icon: Icon(Icons.settings),
+        //     tooltip: '设置',
+        //   ),
+        // ],
       ),
       body: Scrollbar(
         controller: _scrollController,
@@ -104,15 +104,6 @@ class _AboutPageState extends State<AboutPage> {
                       ),
                     ),
                   ),
-                  // Padding(
-                  //   padding: const EdgeInsets.only(
-                  //     left: 16,
-                  //     top: 8,
-                  //     right: 16,
-                  //     bottom: 8,
-                  //   ),
-                  //   child: Text('description'),
-                  // ),
                   Padding(
                     padding: const EdgeInsets.only(
                       left: 16,
@@ -229,15 +220,15 @@ class _AboutPageState extends State<AboutPage> {
                       ],
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(
-                      left: 16,
-                      top: 8,
-                      right: 16,
-                      bottom: 16,
-                    ),
-                    child: Footer(style: FooterStyle.freefeos),
-                  ),
+                  // const Padding(
+                  //   padding: EdgeInsets.only(
+                  //     left: 16,
+                  //     top: 8,
+                  //     right: 16,
+                  //     bottom: 16,
+                  //   ),
+                  //   child: Footer(style: FooterStyle.freefeos),
+                  // ),
                 ],
               ),
             ),
