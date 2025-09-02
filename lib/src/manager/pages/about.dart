@@ -161,7 +161,7 @@ class _AboutPageState extends State<AboutPage> {
                       left: 16,
                       top: 8,
                       right: 16,
-                      bottom: 8,
+                      bottom: 16,
                     ),
                     color: Theme.of(context).colorScheme.surfaceContainerHigh,
                     child: Column(
