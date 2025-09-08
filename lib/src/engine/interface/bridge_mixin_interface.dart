@@ -11,5 +11,5 @@ abstract interface class IBridgeMixin implements IRuntime {
   Future<void> destroyEngineBridge();
 
   /// 引擎桥接域
-  EngineMixin? get bridgeScope;
+  EngineProxy? get bridgeScope;
 }

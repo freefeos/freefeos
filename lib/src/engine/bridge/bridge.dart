@@ -50,7 +50,9 @@ final class OSBridge extends OSComponent
   }
 
   @override
-  String get moduleDescription => '桥接模块';
+  String get moduleDescription {
+    return resources.getValues(value: V.strings.bridgeDescription);
+  }
 
   @override
   Layout moduleLayout(BuildContext context) {
@@ -58,7 +60,9 @@ final class OSBridge extends OSComponent
   }
 
   @override
-  String get moduleName => 'Bridge';
+  String get moduleName {
+    return resources.getValues(value: V.strings.bridgeTitle);
+  }
 
   @override
   Future<T?> onModuleAsyncMethodCall<T>(String method, [dynamic arguments]) {

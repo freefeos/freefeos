@@ -1,10 +1,11 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:freefeos/freefeos.dart'; // 导入 FreeFEOS 库
 import 'package:multi_builder/multi_builder.dart';
 
-void main() => runApp(const MyApp());
-// void main() => runApp(MaterialApp(builder: FreeFEOS.builder));
+// void main() => runApp(const MyApp());
+void main() => runApp(CupertinoApp(builder: FreeFEOS.builder));
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

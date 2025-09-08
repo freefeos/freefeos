@@ -24,10 +24,57 @@ class _IndexPageState extends State<IndexPage> {
             lastIcon: Icons.adjust,
             firstTooltip: '系统菜单',
             lastTooltip: '退出应用',
-            onFirstTap: () => showModalBottomSheet(
+            onFirstTap: () => showDialog(
               context: context,
+              useRootNavigator: false,
               builder: (context) {
-                return SystemSheet();
+                return AlertDialog(
+                  titlePadding: EdgeInsets.zero,
+                  title: ListTile(
+                    contentPadding: const EdgeInsets.only(
+                      left: 24.0,
+                      top: 12.0,
+                      right: 24.0,
+                    ),
+                    leading: const FlutterLogo(),
+                    title: Text('appname'),
+                    subtitle: Text('appversion'),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(28),
+                        topRight: Radius.circular(28),
+                      ),
+                    ),
+                    tileColor: Theme.of(context).colorScheme.primaryContainer,
+                    trailing: const Icon(Icons.keyboard_arrow_right),
+                    onTap: () => Navigator.of(context)
+                      ..pop()
+                      ..pushNamed(AboutPage.route),
+                  ),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      FilledButton(
+                        onPressed: () => Navigator.of(context)
+                          ..pop()
+                          ..pushNamed(ManagerPage.route),
+                        child: Text('管理器'),
+                      ),
+                      FilledButton(
+                        onPressed: () => Navigator.of(context)
+                          ..pop()
+                          ..pushNamed(SettingsPage.route),
+                        child: Text('设置'),
+                      ),
+                    ],
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: Text("确定"),
+                    ),
+                  ],
+                );
               },
             ),
             onLastTap: () => index.doubleExit(

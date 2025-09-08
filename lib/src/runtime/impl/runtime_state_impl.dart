@@ -244,7 +244,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
             type = ModuleType.runtime;
           } else if (element.moduleChannel ==
               resources.getValues(value: V.channels.bridgeChannel)) {
-            type = ModuleType.engine;
+            type = ModuleType.bridge;
           } else {
             type = ModuleType.unknown;
           }

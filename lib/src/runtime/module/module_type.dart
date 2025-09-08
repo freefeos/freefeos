@@ -5,8 +5,8 @@ enum ModuleType {
   /// 框架运行时
   runtime,
 
-  /// 引擎模块
-  engine,
+  /// 引擎桥接
+  bridge,
 
   /// 系统组件
   component,

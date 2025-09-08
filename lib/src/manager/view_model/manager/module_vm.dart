@@ -130,8 +130,8 @@ final class ModuleViewModel with ViewModel implements IModuleViewModel {
     switch (list[i].type) {
       case ModuleType.runtime:
         return Icons.bubble_chart;
-      case ModuleType.engine:
-        return Icons.miscellaneous_services;
+      case ModuleType.bridge:
+        return Icons.compare_arrows;
       case ModuleType.component:
         return Icons.extension;
       case ModuleType.unknown:
