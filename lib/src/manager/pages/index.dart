@@ -71,7 +71,7 @@ class _IndexPageState extends State<IndexPage> {
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.of(context).pop(),
-                      child: Text("确定"),
+                      child: Text("取消"),
                     ),
                   ],
                 );
