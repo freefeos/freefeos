@@ -8,17 +8,17 @@ final class OSEmbedder extends OSComponent {
 
   @override
   String get id {
-    return resources.getValues(value: V.channels.connectChannel);
+    return resources.getChannel(channel: V.channels.embedderChannel);
   }
 
   @override
   String get description {
-    return resources.getValues(value: V.strings.embedderDescription);
+    return resources.getString(string: V.strings.embedderDescription);
   }
 
   @override
   String get title {
-    return resources.getValues(value: V.strings.embedderTitle);
+    return resources.getString(string: V.strings.embedderTitle);
   }
 
   @override

@@ -2,13 +2,19 @@ part of '../standard.dart';
 
 final class OSStandard extends OSComponent {
   @override
-  String get title => 'OSSdk';
+  String get title {
+    return resources.getString(string: V.strings.standardTitle);
+  }
 
   @override
-  String get description => 'OSSdk';
+  String get description {
+    return resources.getString(string: V.strings.standardDescription);
+  }
 
   @override
-  String get id => 'system_sdk';
+  String get id {
+    return resources.getChannel(channel: V.channels.standardChannel);
+  }
 
   @override
   void onComponentSyncMethodCall<T>(

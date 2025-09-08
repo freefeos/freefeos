@@ -21,19 +21,19 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
   /// 模块通道
   @override
   String get moduleChannel {
-    return resources.getValues(value: V.channels.runtimeChannel);
+    return resources.getChannel(channel: V.channels.runtimeChannel);
   }
 
   /// 模块描述
   @override
   String get moduleDescription {
-    return resources.getValues(value: V.strings.runtimeDescription);
+    return resources.getString(string: V.strings.runtimeDescription);
   }
 
   /// 模块名称
   @override
   String get moduleName {
-    return resources.getValues(value: V.strings.runtimeName);
+    return resources.getString(string: V.strings.runtimeName);
   }
 
   /// 模块界面
@@ -54,7 +54,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
     dynamic arguments,
   ]) async {
     if (method ==
-        resources.getValues(value: V.methods.runtimeGetEngineModules)) {
+        resources.getMethod(method: V.methods.runtimeGetEngineModules)) {
       return await _getComponentsList<T>();
     } else {
       return await null;
@@ -165,7 +165,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
         for (var element in _moduleDetailsList) {
           // 判断当前信息是否为运行时
           if (element.id ==
-              resources.getValues(value: V.channels.runtimeChannel)) {
+              resources.getMethod(method: V.channels.runtimeChannel)) {
             // 返回运行时的界面
             return _getModuleWidget(context, element);
           }
@@ -201,21 +201,16 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
 
   Future<T?> _getComponentsList<T>() {
     return _execModuleAsyncMethodCall<T>(
-      resources.getValues(value: V.channels.bridgeChannel),
-      resources.getValues(value: V.methods.engineGetEngineModules),
-      {'id': resources.getValues(value: V.channels.engineChannel)},
+      resources.getChannel(channel: V.channels.bridgeChannel),
+      resources.getMethod(method: V.methods.engineGetEngineModules),
     );
   }
 
   T? _execSdk<T>(String apiId, [dynamic arguments]) {
     return _execModuleSyncMethodCall<T>(
-      resources.getValues(value: V.channels.bridgeChannel),
+      resources.getChannel(channel: V.channels.bridgeChannel),
       'execSdkInvoke',
-      {
-        'id': resources.getValues(value: V.channels.bridgeChannel),
-        'apiId': apiId,
-        'apiArguments': arguments,
-      },
+      {'apiId': apiId, 'apiArguments': arguments},
     );
   }
 
@@ -224,7 +219,8 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
     assert(() {
       if (buildContext.findAncestorWidgetOfExactType<OSRuntime>() != null) {
         throw FlutterError(
-          'FreeFEOS.builder 在组件树中只能有一个实例, 请检查代码中是否存在多个 FreeFEOS.builder 实例.',
+          'FreeFEOS.builder 在组件树中只能有一个实例, '
+          '请检查代码中是否存在多个 FreeFEOS.builder 实例.',
         );
       }
       return true;
@@ -240,10 +236,10 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
           // 类型
           ModuleType type = ModuleType.unknown;
           if (element.moduleChannel ==
-              resources.getValues(value: V.channels.runtimeChannel)) {
+              resources.getChannel(channel: V.channels.runtimeChannel)) {
             type = ModuleType.runtime;
           } else if (element.moduleChannel ==
-              resources.getValues(value: V.channels.bridgeChannel)) {
+              resources.getChannel(channel: V.channels.bridgeChannel)) {
             type = ModuleType.bridge;
           } else {
             type = ModuleType.unknown;
@@ -274,17 +270,17 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
     if (_moduleDetailsList.length <= _moduleList.length) {
       try {
         // 获取模块信息列表
-        List<Map<String, String>>? result =
-            await _execModuleAsyncMethodCall<List<Map<String, String>>>(
+        List<ModuleData>? result =
+            await _execModuleAsyncMethodCall<List<ModuleData>>(
               moduleChannel,
-              resources.getValues(value: V.methods.runtimeGetEngineModules),
+              resources.getMethod(method: V.methods.runtimeGetEngineModules),
             );
         // 占位符
-        final List<Map<String, String>> placeholder = [
-          resources.getValues(value: V.placeholder.component),
+        final List<ModuleData> placeholder = [
+          resources.getPlaceholder(placeholder: V.placeholder.component),
         ];
         // 如果获取失败, 则使用占位符
-        List<Map<String, String>> componentsList = result ?? placeholder;
+        List<ModuleData> componentsList = result ?? placeholder;
         // 判断列表是否为空
         if (componentsList.isNotEmpty) {
           // 遍历系统组件

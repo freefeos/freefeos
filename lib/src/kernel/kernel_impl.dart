@@ -7,13 +7,19 @@ final class OSKernel extends OSComponent {
   static const String tag = 'OSKernel';
 
   @override
-  String get id => 'kernel';
+  String get id {
+    return resources.getChannel(channel: V.channels.kernelChannel);
+  }
 
   @override
-  String get description => 'feOS Kernel';
+  String get description {
+    return resources.getString(string: V.strings.kernelDescription);
+  }
 
   @override
-  String get title => 'OSKernel';
+  String get title {
+    return resources.getString(string: V.strings.kernelTitle);
+  }
 
   @override
   Future<void> onComponentAdded(ComponentBinding binding) {
@@ -28,7 +34,7 @@ final class OSKernel extends OSComponent {
     EngineMethodCall call,
     EngineResult<T> result,
   ) {
-    if (call.method == resources.getValues(value: 'syscall')) {
+    if (call.method == resources.getMethod(method: 'syscall')) {
       result.syncSuccess(
         _syscall(call.arguments['callForm'], call.arguments['callArguments']),
       );

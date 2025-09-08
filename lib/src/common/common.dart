@@ -33,7 +33,6 @@ part 'utils/widget_utils.dart';
 
 /// Values 值
 part 'values/channel.dart';
-part 'values/colors.dart';
 part 'values/drawable.dart';
 part 'values/method.dart';
 part 'values/placeholder.dart';

@@ -6,9 +6,6 @@ final class V {
   /// 通道
   static const VChannel channels = VChannel();
 
-  /// 颜色
-  static const VColors colors = VColors();
-
   /// banner
   static const VDrawable drawable = VDrawable();
 

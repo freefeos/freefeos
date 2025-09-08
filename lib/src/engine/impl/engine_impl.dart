@@ -24,46 +24,22 @@ final class OSEngine extends OSComponent
   @override
   OSEngine call() => this;
 
-  /// 获取引擎
-  // @override
-  // OSModule get getEngine => this();
-
-  // @override
-  // String get moduleChannel {
-  //   return resources.getValues(value: V.channels.engineChannel);
-  // }
-
-  // @override
-  // String get moduleDescription {
-  //   return resources.getValues(value: V.strings.engineDescription);
-  // }
-
-  // @override
-  // String get moduleName {
-  //   return resources.getValues(value: V.strings.engineTitle);
-  // }
-
-  // @override
-  // Layout moduleLayout(BuildContext context) {
-  //   return resources.getLayout(builder: (_) => const Placeholder());
-  // }
-
   /// 组件ID
   @override
   String get id {
-    return resources.getValues(value: V.channels.engineChannel);
+    return resources.getChannel(channel: V.channels.engineChannel);
   }
 
   /// 组件描述
   @override
   String get description {
-    return resources.getValues(value: V.strings.engineDescription);
+    return resources.getString(string: V.strings.engineDescription);
   }
 
   /// 组件名称
   @override
   String get title {
-    return resources.getValues(value: V.strings.engineTitle);
+    return resources.getString(string: V.strings.engineTitle);
   }
 
   /// 调用组件方法
@@ -73,7 +49,7 @@ final class OSEngine extends OSComponent
     EngineResult<T> result,
   ) async {
     if (call.method ==
-        resources.getValues(value: V.methods.engineGetEngineModules)) {
+        resources.getMethod(method: V.methods.engineGetEngineModules)) {
       if (_instanced) {
         if (_componentInfoList is T) {
           await result.asyncSuccess(_componentInfoList as T);
@@ -83,20 +59,6 @@ final class OSEngine extends OSComponent
       } else {
         result.error('', '组件方法调用失败', '引擎未初始化');
       }
-    } else if (call.method == resources.getValues(value: 'execKernelStartup')) {
-      await execAsyncComponentMethod<T>(
-        resources.getValues(value: kernel.id),
-        resources.getValues(value: 'startup'),
-        {
-          resources.getValues(value: 'shell'):
-              call.arguments[resources.getValues(value: 'shell')],
-        },
-      ).then(
-        (res) => result.asyncSuccess(res),
-        onError: (error) {
-          result.error('', '组件方法调用失败', error.toString());
-        },
-      );
     } else {
       result.notImplemented();
     }
@@ -107,7 +69,7 @@ final class OSEngine extends OSComponent
     EngineMethodCall call,
     EngineResult<T> result,
   ) {
-    if (call.method == resources.getValues(value: 'execSdkInvoke')) {
+    if (call.method == resources.getMethod(method: 'execSdkInvoke')) {
       result.syncSuccess(
         execSyncComponentMethod<T>(
           sdk.id,
@@ -248,22 +210,4 @@ final class OSEngine extends OSComponent
     }
     return result;
   }
-
-  // @override
-  // Future<T?> onModuleAsyncMethodCall<T>(String method, [dynamic arguments]) {
-  //   return execAsyncComponentMethod<T>(
-  //     resources.getValues(value: V.channels.engineChannel),
-  //     method,
-  //     arguments,
-  //   );
-  // }
-
-  // @override
-  // T? onModuleSyncMethodCall<T>(String method, [dynamic arguments]) {
-  //   return execSyncComponentMethod(
-  //     resources.getValues(value: V.channels.engineChannel),
-  //     method,
-  //     arguments,
-  //   );
-  // }
 }

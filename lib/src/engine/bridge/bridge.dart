@@ -12,19 +12,19 @@ final class OSBridge extends OSComponent
   /// 组件通道
   @override
   String get id {
-    return resources.getValues(value: V.channels.bridgeChannel);
+    return resources.getChannel(channel: V.channels.bridgeChannel);
   }
 
   /// 组件描述
   @override
   String get description {
-    return resources.getValues(value: V.strings.bridgeDescription);
+    return resources.getString(string: V.strings.bridgeDescription);
   }
 
   /// 组件名称
   @override
   String get title {
-    return resources.getValues(value: V.strings.bridgeTitle);
+    return resources.getString(string: V.strings.bridgeTitle);
   }
 
   /// 组件方法调用
@@ -46,12 +46,12 @@ final class OSBridge extends OSComponent
 
   @override
   String get moduleChannel {
-    return resources.getValues(value: V.channels.bridgeChannel);
+    return resources.getChannel(channel: V.channels.bridgeChannel);
   }
 
   @override
   String get moduleDescription {
-    return resources.getValues(value: V.strings.bridgeDescription);
+    return resources.getString(string: V.strings.bridgeDescription);
   }
 
   @override
@@ -61,13 +61,13 @@ final class OSBridge extends OSComponent
 
   @override
   String get moduleName {
-    return resources.getValues(value: V.strings.bridgeTitle);
+    return resources.getString(string: V.strings.bridgeTitle);
   }
 
   @override
   Future<T?> onModuleAsyncMethodCall<T>(String method, [dynamic arguments]) {
     return execAsyncComponentMethod<T>(
-      resources.getValues(value: V.channels.engineChannel),
+      resources.getChannel(channel: V.channels.engineChannel),
       method,
       arguments,
     );
@@ -76,7 +76,7 @@ final class OSBridge extends OSComponent
   @override
   T? onModuleSyncMethodCall<T>(String method, [dynamic arguments]) {
     return execSyncComponentMethod<T>(
-      resources.getValues(value: V.channels.engineChannel),
+      resources.getChannel(channel: V.channels.engineChannel),
       method,
       arguments,
     );

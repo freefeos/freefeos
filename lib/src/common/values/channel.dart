@@ -2,14 +2,10 @@ part of '../common.dart';
 
 final class VChannel {
   const VChannel();
-  // runtime
   ChannelName get runtimeChannel => 'system_runtime';
-  ChannelName get embedderChannel => 'platform_embedder';
-
-  // engine
-  ChannelName get bridgeChannel => 'engine_bridge';
+  ChannelName get bridgeChannel => 'system_bridge';
   ChannelName get engineChannel => 'system_engine';
-  ChannelName get connectChannel => 'engine_connectors';
-
-  // kernel
+  ChannelName get kernelChannel => 'system_kernel';
+  ChannelName get embedderChannel => 'system_embedder';
+  ChannelName get standardChannel => 'system_sdk';
 }

@@ -1,10 +1,10 @@
 /// 系统内核层
 library;
 
-import 'package:flutter/foundation.dart';
-import 'package:freefeos/src/framework/framework.dart';
+import 'package:freefeos/src/common/common.dart';
 
 import '../engine/engine.dart';
+import '../framework/framework.dart';
 
 part 'kernel_impl.dart';
 part 'call_form.dart';
