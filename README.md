@@ -84,7 +84,7 @@ that can provide many advanced features for applications.
         flutter pub get
         ```
 
-3. 编写代码
+3. 编写代码 [main.dart](https://github.com/freefeos/freefeos/blob/master/example/lib/main.dart) (点击查看完整示例源码)
 
 4. 添加标签
 

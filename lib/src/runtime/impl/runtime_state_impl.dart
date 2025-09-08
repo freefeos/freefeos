@@ -219,8 +219,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
     assert(() {
       if (buildContext.findAncestorWidgetOfExactType<OSRuntime>() != null) {
         throw FlutterError(
-          'FreeFEOS.builder 在组件树中只能有一个实例, '
-          '请检查代码中是否存在多个 FreeFEOS.builder 实例.',
+          resources.getString(string: V.strings.multipleInstancesError),
         );
       }
       return true;

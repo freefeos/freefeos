@@ -22,4 +22,8 @@ final class VString {
 
   StringRes get standardTitle => 'Standard';
   StringRes get standardDescription => '标准库';
+
+  StringRes get multipleInstancesError =>
+      'FreeFEOS.builder 在组件树中只能有一个实例, '
+      '请检查代码中是否存在多个 FreeFEOS.builder 实例.';
 }
