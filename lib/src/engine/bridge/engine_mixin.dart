@@ -8,7 +8,7 @@ base mixin EngineMixin on OSComponent implements EngineProxy {
   /// 初始化引擎
   @override
   Future<void> onCreateEngine(Context context) {
-    return _engineScope.onCreateEngine(context);
+    return _engineScope.onCreateEngine(context, this);
   }
 
   /// 销毁引擎
@@ -16,8 +16,4 @@ base mixin EngineMixin on OSComponent implements EngineProxy {
   Future<void> onDestroyEngine() {
     return _engineScope.onDestroyEngine();
   }
-
-  /// 获取引擎
-  @override
-  OSModule get getEngine => _engineScope;
 }

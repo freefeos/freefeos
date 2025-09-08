@@ -2,7 +2,7 @@ part of '../engine.dart';
 
 final class OSEngine extends OSComponent
     with ComponentMixin
-    implements IEngine, OSModule, EngineProxy {
+    implements IEngine {
   OSEngine();
 
   /// 日志标签
@@ -25,28 +25,28 @@ final class OSEngine extends OSComponent
   OSEngine call() => this;
 
   /// 获取引擎
-  @override
-  OSModule get getEngine => this();
+  // @override
+  // OSModule get getEngine => this();
 
-  @override
-  String get moduleChannel {
-    return resources.getValues(value: V.channels.engineChannel);
-  }
+  // @override
+  // String get moduleChannel {
+  //   return resources.getValues(value: V.channels.engineChannel);
+  // }
 
-  @override
-  String get moduleDescription {
-    return resources.getValues(value: V.strings.engineDescription);
-  }
+  // @override
+  // String get moduleDescription {
+  //   return resources.getValues(value: V.strings.engineDescription);
+  // }
 
-  @override
-  String get moduleName {
-    return resources.getValues(value: V.strings.engineTitle);
-  }
+  // @override
+  // String get moduleName {
+  //   return resources.getValues(value: V.strings.engineTitle);
+  // }
 
-  @override
-  Layout moduleLayout(BuildContext context) {
-    return resources.getLayout(builder: (_) => const Placeholder());
-  }
+  // @override
+  // Layout moduleLayout(BuildContext context) {
+  //   return resources.getLayout(builder: (_) => const Placeholder());
+  // }
 
   /// 组件ID
   @override
@@ -121,12 +121,12 @@ final class OSEngine extends OSComponent
   }
 
   @override
-  Future<void> onCreateEngine(Context context) async {
+  Future<void> onCreateEngine(Context context, OSComponent bridge) async {
     if (!_instanced) {
       // 初始化绑定
       _binding = ComponentBinding(context: context, engine: this);
       // 遍历组件列表
-      for (var element in [this, OSBridge(), ...components]) {
+      for (var element in [bridge, this, ...components]) {
         // 加载组件
         try {
           await element.onComponentAdded(_binding).then((added) {
@@ -249,13 +249,21 @@ final class OSEngine extends OSComponent
     return result;
   }
 
-  @override
-  Future<T?> onModuleAsyncMethodCall<T>(String method, [dynamic arguments]) {
-    return execAsyncMethodCall<T>(id, method, arguments);
-  }
+  // @override
+  // Future<T?> onModuleAsyncMethodCall<T>(String method, [dynamic arguments]) {
+  //   return execAsyncComponentMethod<T>(
+  //     resources.getValues(value: V.channels.engineChannel),
+  //     method,
+  //     arguments,
+  //   );
+  // }
 
-  @override
-  T? onModuleSyncMethodCall<T>(String method, [dynamic arguments]) {
-    return execSyncMethodCall<T>(id, method, arguments);
-  }
+  // @override
+  // T? onModuleSyncMethodCall<T>(String method, [dynamic arguments]) {
+  //   return execSyncComponentMethod(
+  //     resources.getValues(value: V.channels.engineChannel),
+  //     method,
+  //     arguments,
+  //   );
+  // }
 }

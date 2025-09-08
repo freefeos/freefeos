@@ -201,7 +201,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
 
   Future<T?> _getComponentsList<T>() {
     return _execModuleAsyncMethodCall<T>(
-      resources.getValues(value: V.channels.engineChannel),
+      resources.getValues(value: V.channels.bridgeChannel),
       resources.getValues(value: V.methods.engineGetEngineModules),
       {'id': resources.getValues(value: V.channels.engineChannel)},
     );
@@ -209,10 +209,10 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
 
   T? _execSdk<T>(String apiId, [dynamic arguments]) {
     return _execModuleSyncMethodCall<T>(
-      resources.getValues(value: V.channels.engineChannel),
+      resources.getValues(value: V.channels.bridgeChannel),
       'execSdkInvoke',
       {
-        'id': resources.getValues(value: V.channels.engineChannel),
+        'id': resources.getValues(value: V.channels.bridgeChannel),
         'apiId': apiId,
         'apiArguments': arguments,
       },
@@ -236,14 +236,14 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
     if (_moduleList.isEmpty && _moduleDetailsList.isEmpty) {
       try {
         // 初始化运行时
-        for (var element in <OSModule>[this, ?engine]) {
+        for (var element in <OSModule>[this, ?bridge]) {
           // 类型
           ModuleType type = ModuleType.unknown;
           if (element.moduleChannel ==
               resources.getValues(value: V.channels.runtimeChannel)) {
             type = ModuleType.runtime;
           } else if (element.moduleChannel ==
-              resources.getValues(value: V.channels.engineChannel)) {
+              resources.getValues(value: V.channels.bridgeChannel)) {
             type = ModuleType.engine;
           } else {
             type = ModuleType.unknown;

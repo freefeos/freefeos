@@ -1,8 +1,9 @@
 part of '../engine.dart';
 
-// TODO: 实现运行时与引擎通过桥接通信
-final class OSBridge extends OSComponent with EngineMixin implements IBridge {
-  OSBridge();
+final class OSBridge extends OSComponent
+    with EngineMixin
+    implements IBridge, OSModule {
+  OSBridge({super.attach = true});
 
   /// 组件入口
   @override
@@ -41,5 +42,39 @@ final class OSBridge extends OSComponent with EngineMixin implements IBridge {
     EngineResult<T> result,
   ) {
     return;
+  }
+
+  @override
+  String get moduleChannel {
+    return resources.getValues(value: V.channels.bridgeChannel);
+  }
+
+  @override
+  String get moduleDescription => '桥接模块';
+
+  @override
+  Layout moduleLayout(BuildContext context) {
+    return resources.getLayout(builder: (_) => const Placeholder());
+  }
+
+  @override
+  String get moduleName => 'Bridge';
+
+  @override
+  Future<T?> onModuleAsyncMethodCall<T>(String method, [dynamic arguments]) {
+    return execAsyncComponentMethod<T>(
+      resources.getValues(value: V.channels.engineChannel),
+      method,
+      arguments,
+    );
+  }
+
+  @override
+  T? onModuleSyncMethodCall<T>(String method, [dynamic arguments]) {
+    return execSyncComponentMethod<T>(
+      resources.getValues(value: V.channels.engineChannel),
+      method,
+      arguments,
+    );
   }
 }

@@ -6,5 +6,5 @@ abstract interface class IRuntime {
   FreeFEOSSystem call();
 
   /// 平台嵌入层模块
-  OSModule? get engine;
+  OSModule? get bridge;
 }

@@ -5,6 +5,12 @@ abstract interface class IEngine {
   /// 引擎入口
   OSEngine call();
 
+  /// 创建引擎
+  Future<void> onCreateEngine(Context context, OSComponent bridge);
+
+  /// 销毁引擎
+  Future<void> onDestroyEngine();
+
   /// 执行方法
   Future<T?> execAsyncMethodCall<T>(
     String id,

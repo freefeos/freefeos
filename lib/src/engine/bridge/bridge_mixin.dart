@@ -18,9 +18,9 @@ base mixin BridgeMixin implements IBridgeMixin {
 
   /// 获取引擎桥接
   @override
-  OSBridge? get bridgeScope => _engineBridge;
+  EngineMixin? get bridgeScope => _engineBridge;
 
   /// 获取引擎模块实例
   @override
-  OSModule? get engine => _engineBridge?.getEngine;
+  OSModule? get bridge => _engineBridge;
 }
