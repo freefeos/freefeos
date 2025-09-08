@@ -58,8 +58,16 @@ class _IndexPageState extends State<IndexPage> {
                       right: 24.0,
                     ),
                     leading: const FlutterLogo(),
-                    title: Text(_packageInfo?.appName ?? 'Unknown'),
-                    subtitle: Text(_packageInfo?.version ?? 'Unknown'),
+                    title: Text(
+                      _packageInfo?.appName ?? 'Unknown',
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                    subtitle: Text(
+                      _packageInfo?.version ?? 'Unknown',
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(28),

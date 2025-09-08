@@ -118,7 +118,6 @@ that can provide many advanced features for applications.
 
 ## 致谢
 
-* [FreeRTOS](https://www.freertos.org/zh-cn-cmn-s/) : FreeFEOS项目命名的灵感来源.
 * [一个木函](https://ol.woobx.cn/) : Base64 编码/解码.
 
 ## 许可
