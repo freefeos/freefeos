@@ -4,6 +4,8 @@ part of 'kernel.dart';
 final class OSKernel extends OSComponent {
   OSKernel();
 
+  static const String tag = 'OSKernel';
+
   @override
   String get id => 'kernel';
 
@@ -46,8 +48,8 @@ final class OSKernel extends OSComponent {
     _fs.write('/hello_fs.txt', 'hello world');
     var ls = _fs.ls('/');
     var cat = _fs.cat('/hello_fs.txt');
-    debugPrint(ls.toString());
-    debugPrint(cat.toString());
+    Log.d(tag: tag, message: ls.toString());
+    Log.d(tag: tag, message: cat.toString());
   }
 
   T? _syscall<T>(CallForm form, [dynamic arguments]) {

@@ -2,6 +2,7 @@
 library;
 
 import 'package:flutter/foundation.dart';
+import 'package:freefeos/src/framework/framework.dart';
 
 import '../engine/engine.dart';
 

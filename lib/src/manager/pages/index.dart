@@ -13,6 +13,24 @@ final class IndexPage extends UiPage {
 class _IndexPageState extends State<IndexPage> {
   _IndexPageState();
 
+  /// 应用信息
+  PackageInfo? _packageInfo;
+
+  @override
+  void initState() {
+    super.initState();
+    PackageInfo.fromPlatform().then((res) {
+      setState(() => _packageInfo = res);
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    // 清空应用信息
+    _packageInfo = null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +48,9 @@ class _IndexPageState extends State<IndexPage> {
               builder: (context) {
                 return AlertDialog(
                   titlePadding: EdgeInsets.zero,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(28)),
+                  ),
                   title: ListTile(
                     contentPadding: const EdgeInsets.only(
                       left: 24.0,
@@ -37,8 +58,8 @@ class _IndexPageState extends State<IndexPage> {
                       right: 24.0,
                     ),
                     leading: const FlutterLogo(),
-                    title: Text('appname'),
-                    subtitle: Text('appversion'),
+                    title: Text(_packageInfo?.appName ?? 'Unknown'),
+                    subtitle: Text(_packageInfo?.version ?? 'Unknown'),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(28),
