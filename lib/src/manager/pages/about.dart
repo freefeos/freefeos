@@ -36,18 +36,7 @@ class _AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('关于应用'),
-        // actions: [
-        //   IconButton(
-        //     onPressed: () {
-        //       Navigator.of(context).pushNamed(SettingsPage.route);
-        //     },
-        //     icon: Icon(Icons.settings),
-        //     tooltip: '设置',
-        //   ),
-        // ],
-      ),
+      appBar: AppBar(title: Text('关于应用')),
       body: Scrollbar(
         controller: _scrollController,
         child: ScreenAdapter(
