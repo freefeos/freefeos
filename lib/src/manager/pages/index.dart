@@ -74,7 +74,6 @@ class _IndexPageState extends State<IndexPage> {
                         topRight: Radius.circular(28),
                       ),
                     ),
-                    tileColor: Theme.of(context).colorScheme.primaryContainer,
                     trailing: const Icon(Icons.keyboard_arrow_right),
                     onTap: () => Navigator.of(context)
                       ..pop()
