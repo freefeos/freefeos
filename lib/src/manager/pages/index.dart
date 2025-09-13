@@ -51,33 +51,36 @@ class _IndexPageState extends State<IndexPage> {
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(28)),
                   ),
-                  title: ListTile(
-                    contentPadding: const EdgeInsets.only(
-                      left: 24.0,
-                      top: 12.0,
-                      right: 24.0,
-                    ),
-                    leading: const FlutterLogo(),
-                    title: Text(
-                      _packageInfo?.appName ?? 'Unknown',
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                    subtitle: Text(
-                      _packageInfo?.version ?? 'Unknown',
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                    ),
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(28),
-                        topRight: Radius.circular(28),
+                  title: Tooltip(
+                    message: '关于应用',
+                    child: ListTile(
+                      contentPadding: const EdgeInsets.only(
+                        left: 24.0,
+                        top: 12.0,
+                        right: 24.0,
                       ),
+                      leading: const FlutterLogo(),
+                      title: Text(
+                        _packageInfo?.appName ?? 'Unknown',
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                      subtitle: Text(
+                        _packageInfo?.version ?? 'Unknown',
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(28),
+                          topRight: Radius.circular(28),
+                        ),
+                      ),
+                      trailing: const Icon(Icons.keyboard_arrow_right),
+                      onTap: () => Navigator.of(context)
+                        ..pop()
+                        ..pushNamed(AboutPage.route),
                     ),
-                    trailing: const Icon(Icons.keyboard_arrow_right),
-                    onTap: () => Navigator.of(context)
-                      ..pop()
-                      ..pushNamed(AboutPage.route),
                   ),
                   content: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -97,9 +100,12 @@ class _IndexPageState extends State<IndexPage> {
                     ],
                   ),
                   actions: [
-                    TextButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      child: Text("取消"),
+                    Tooltip(
+                      message: '取消',
+                      child: TextButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: Text("取消"),
+                      ),
                     ),
                   ],
                 );

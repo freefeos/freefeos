@@ -41,8 +41,6 @@ part 'screen/logcat.dart';
 part 'screen/module.dart';
 part 'screen/setting.dart';
 
-part 'sheet/system_sheet.dart';
-
 /// Utils 工具
 part 'utils/utils.dart';
 
