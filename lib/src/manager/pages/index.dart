@@ -38,11 +38,9 @@ class _IndexPageState extends State<IndexPage> {
       body: Consumer2<IndexViewModule, OSAbility>(
         builder: (context, index, ability, child) {
           return CapsuleButton(
-            firstIcon: Icons.more_horiz,
-            lastIcon: Icons.adjust,
-            firstTooltip: '系统菜单',
-            lastTooltip: '退出应用',
-            onFirstTap: () => showDialog(
+            leadingIcon: Icons.more_horiz,
+            leadingTooltip: '系统菜单',
+            onLeadingTap: () => showDialog(
               context: context,
               useRootNavigator: false,
               builder: (context) {
@@ -111,7 +109,9 @@ class _IndexPageState extends State<IndexPage> {
                 );
               },
             ),
-            onLastTap: () => index.doubleExit(
+            trailingIcon: Icons.adjust,
+            trailingTooltip: '退出应用',
+            onTrailingTap: () => index.doubleExit(
               showTips: (exit) => ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text('再按一次退出应用'),

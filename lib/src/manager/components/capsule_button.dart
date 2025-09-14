@@ -1,35 +1,50 @@
 part of '../manager.dart';
 
+/// 胶囊按钮
 final class CapsuleButton extends UiStatefulComponent {
   const CapsuleButton({
     super.key,
-    required this.firstIcon,
-    required this.lastIcon,
-    required this.firstTooltip,
-    required this.lastTooltip,
-    required this.onFirstTap,
-    required this.onLastTap,
+    required this.leadingIcon,
+    required this.leadingTooltip,
+    required this.onLeadingTap,
+    required this.trailingIcon,
+    required this.trailingTooltip,
+    required this.onTrailingTap,
     required this.child,
   });
 
-  final IconData firstIcon;
-  final IconData lastIcon;
-  final String firstTooltip;
-  final String lastTooltip;
-  final VoidCallback onFirstTap;
-  final VoidCallback onLastTap;
+  /// 左侧按钮图标
+  final IconData leadingIcon;
+
+  /// 左侧按钮提示
+  final String leadingTooltip;
+
+  /// 左侧按钮点击事件
+  final VoidCallback onLeadingTap;
+
+  /// 右侧按钮图标
+  final IconData trailingIcon;
+
+  /// 右侧按钮提示
+  final String trailingTooltip;
+
+  /// 右侧按钮点击事件
+  final VoidCallback onTrailingTap;
+
+  /// 子组件
   final Widget child;
 
   @override
   State<CapsuleButton> createState() => _CapsuleButtonState();
 }
 
-class _CapsuleButtonState extends State<CapsuleButton> {
-  /// 胶囊按钮宽度
-  final double _width = 87.0;
+final class _CapsuleButtonState extends State<CapsuleButton> {
+  _CapsuleButtonState();
 
-  /// 胶囊按钮高度
-  final double _height = 32.0;
+  // 胶囊按钮宽度
+  static final double _width = 87.0;
+  // 胶囊按钮高度
+  static final double _height = 32.0;
 
   @override
   Widget build(BuildContext context) {
@@ -71,9 +86,9 @@ class _CapsuleButtonState extends State<CapsuleButton> {
                     children: [
                       Expanded(
                         child: Tooltip(
-                          message: widget.firstTooltip,
+                          message: widget.leadingTooltip,
                           child: InkWell(
-                            onTap: widget.onFirstTap,
+                            onTap: widget.onLeadingTap,
                             borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(20),
                               bottomLeft: Radius.circular(20),
@@ -89,7 +104,7 @@ class _CapsuleButtonState extends State<CapsuleButton> {
                                       ? 1.0
                                       : 0.8,
                                   child: Icon(
-                                    widget.firstIcon,
+                                    widget.leadingIcon,
                                     color:
                                         Theme.of(context).brightness ==
                                             Brightness.light
@@ -113,9 +128,9 @@ class _CapsuleButtonState extends State<CapsuleButton> {
                       ),
                       Expanded(
                         child: Tooltip(
-                          message: widget.lastTooltip,
+                          message: widget.trailingTooltip,
                           child: InkWell(
-                            onTap: widget.onLastTap,
+                            onTap: widget.onTrailingTap,
                             borderRadius: const BorderRadius.only(
                               topRight: Radius.circular(20),
                               bottomRight: Radius.circular(20),
@@ -131,7 +146,7 @@ class _CapsuleButtonState extends State<CapsuleButton> {
                                       ? 1.0
                                       : 0.8,
                                   child: Icon(
-                                    widget.lastIcon,
+                                    widget.trailingIcon,
                                     color:
                                         Theme.of(context).brightness ==
                                             Brightness.light
