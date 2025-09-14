@@ -168,7 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           subtitle: Consumer<OSAbility>(
                             builder: (context, ability, _) {
-                              return Text("");
+                              return Text(" ");
                             },
                           ),
                         ),
