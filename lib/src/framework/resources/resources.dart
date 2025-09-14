@@ -26,8 +26,4 @@ final class Resources {
   String getString({required StringRes string}) {
     return string;
   }
-
-  // T getValues<T>({required T value}) {
-  //   return value;
-  // }
 }

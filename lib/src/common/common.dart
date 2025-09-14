@@ -30,6 +30,7 @@ part 'types/types.dart';
 
 /// Utils 工具
 part 'utils/widget_utils.dart';
+part 'utils/string_equal.dart';
 
 /// Values 值
 part 'values/channel.dart';

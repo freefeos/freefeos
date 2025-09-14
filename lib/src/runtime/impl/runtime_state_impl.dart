@@ -53,8 +53,9 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
     String method, [
     dynamic arguments,
   ]) async {
-    if (method ==
-        resources.getMethod(method: V.methods.runtimeGetEngineModules)) {
+    if (resources
+        .getMethod(method: V.methods.runtimeGetEngineModules)
+        .equal(method)) {
       return await _getComponentsList<T>();
     } else {
       return await null;
@@ -73,6 +74,9 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
       (() async {
         try {
           await _init(); // 初始化应用
+
+          // 延时五秒(测试)
+          await Future.delayed(const Duration(seconds: 5));
         } catch (exception) {
           Log.e(tag: _tag, message: exception.toString());
         }
