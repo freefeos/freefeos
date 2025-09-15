@@ -55,7 +55,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
   ]) async {
     if (resources
         .getMethod(method: V.methods.runtimeGetEngineModules)
-        .equal(method)) {
+        .equal(data: method)) {
       return await _getComponentsList<T>();
     } else {
       return await null;
@@ -238,11 +238,13 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
         for (var element in <OSModule>[this, ?bridge]) {
           // 类型
           ModuleType type = ModuleType.unknown;
-          if (element.moduleChannel ==
-              resources.getChannel(channel: V.channels.runtimeChannel)) {
+          if (resources
+              .getChannel(channel: V.channels.runtimeChannel)
+              .equal(data: element.moduleChannel)) {
             type = ModuleType.runtime;
-          } else if (element.moduleChannel ==
-              resources.getChannel(channel: V.channels.bridgeChannel)) {
+          } else if (resources
+              .getChannel(channel: V.channels.bridgeChannel)
+              .equal(data: element.moduleChannel)) {
             type = ModuleType.bridge;
           } else {
             type = ModuleType.unknown;
