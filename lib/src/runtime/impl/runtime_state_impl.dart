@@ -76,7 +76,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
           await _init(); // 初始化应用
 
           // 延时五秒(测试)
-          await Future.delayed(const Duration(seconds: 5));
+          // await Future.delayed(const Duration(seconds: 5));
         } catch (exception) {
           Log.e(tag: _tag, message: exception.toString());
         }
