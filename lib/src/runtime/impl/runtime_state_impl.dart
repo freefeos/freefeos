@@ -203,6 +203,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
     );
   }
 
+  /// 获取组件列表
   Future<T?> _getComponentsList<T>() {
     return _execModuleAsyncMethodCall<T>(
       resources.getChannel(channel: V.channels.bridgeChannel),
