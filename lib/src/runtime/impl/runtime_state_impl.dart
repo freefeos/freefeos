@@ -187,6 +187,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
     );
   }
 
+  /// 构建应用
   Widget get _buildUserApp {
     final Widget? child = widget.child;
     final Widget userApp = WidgetUtil.nonNullWidget(child: child);
