@@ -132,10 +132,10 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
     // 初始化日志
     await Log.init();
     // 打印Banner
-    Log.i(
+    await (() async => Log.i(
       tag: _tag,
       message: resources.getDrawable(res: V.drawable.banner),
-    );
+    ))();
     // 初始化引擎
     await initEngineBridge().then((_) {
       return bridgeScope?.onCreateEngine(baseContext);
@@ -148,7 +148,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
 
   /// 销毁应用
   Future<void> _destroy() async {
-    Log.i(tag: _tag, message: 'system will exit.');
+    await (() async => Log.i(tag: _tag, message: 'System will exit.'))();
     // 销毁引擎
     await bridgeScope?.onDestroyEngine().then((_) {
       return destroyEngineBridge();
