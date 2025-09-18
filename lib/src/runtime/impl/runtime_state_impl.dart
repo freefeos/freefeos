@@ -149,12 +149,12 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
   /// 销毁应用
   Future<void> _destroy() async {
     Log.i(tag: _tag, message: 'system will exit.');
-    // 销毁日志
-    await Log.dispose();
     // 销毁引擎
     await bridgeScope?.onDestroyEngine().then((_) {
       return destroyEngineBridge();
     });
+    // 销毁日志
+    await Log.dispose();
     // 清空模块列表
     _moduleList.clear();
     // 清空模块信息列表
