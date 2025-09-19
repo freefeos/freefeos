@@ -167,8 +167,9 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
       builder: (context) {
         for (var element in _moduleDetailsList) {
           // 判断当前信息是否为运行时
-          if (element.id ==
-              resources.getMethod(method: V.channels.runtimeChannel)) {
+          if (resources
+              .getMethod(method: V.channels.runtimeChannel)
+              .equal(data: element.id)) {
             // 返回运行时的界面
             return _getModuleWidget(context, element);
           }
