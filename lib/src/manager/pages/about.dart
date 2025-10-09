@@ -209,15 +209,6 @@ class _AboutPageState extends State<AboutPage> {
                       ],
                     ),
                   ),
-                  // const Padding(
-                  //   padding: EdgeInsets.only(
-                  //     left: 16,
-                  //     top: 8,
-                  //     right: 16,
-                  //     bottom: 16,
-                  //   ),
-                  //   child: Footer(style: FooterStyle.freefeos),
-                  // ),
                 ],
               ),
             ),
