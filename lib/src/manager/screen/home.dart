@@ -19,11 +19,24 @@ class _HomeScreenState extends State<HomeScreen> {
   /// 滚动控制器
   final ScrollController _scrollController = ScrollController();
 
+  /// 应用信息
+  PackageInfo? _packageInfo;
+
+  @override
+  void initState() {
+    super.initState();
+    PackageInfo.fromPlatform().then((res) {
+      setState(() => _packageInfo = res);
+    });
+  }
+
   @override
   void dispose() {
     super.dispose();
     // 释放滚动控制器
     _scrollController.dispose();
+    // 清空应用信息
+    _packageInfo = null;
   }
 
   @override
@@ -65,7 +78,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               Text(
                                 AppLocalizations.of(
                                   context,
-                                ).indexHomeStatuesCardAppId(''),
+                                ).indexHomeStatuesCardAppId(
+                                  _packageInfo?.packageName ?? 'Unknown',
+                                ),
                               ),
                               Text(
                                 AppLocalizations.of(
@@ -77,7 +92,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               Text(
                                 AppLocalizations.of(
                                   context,
-                                ).indexHomeStatuesCardAppVersion(""),
+                                ).indexHomeStatuesCardAppVersion(
+                                  _packageInfo?.version ?? 'Unknown',
+                                ),
                               ),
                             ],
                           ),

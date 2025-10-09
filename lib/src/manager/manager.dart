@@ -4,6 +4,7 @@ import 'dart:async';
 import 'dart:collection';
 
 import 'package:animations/animations.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:logging/logging.dart';
@@ -17,8 +18,6 @@ import 'intl/app_localizations.dart';
 
 /// Components 组件
 part 'components/capsule_button.dart';
-part 'components/footer.dart';
-part 'components/header.dart';
 part 'components/nav_bar.dart';
 part 'components/nav_host.dart';
 part 'components/nav_title.dart';
