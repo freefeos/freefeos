@@ -44,6 +44,7 @@ part 'screen/setting.dart';
 part 'utils/utils.dart';
 
 /// ViewModel 视图模型
+part 'view_model/details/details_vm.dart';
 part 'view_model/index/index_vm.dart';
 part 'view_model/manager/home_vm.dart';
 part 'view_model/manager/logcat_vm.dart';

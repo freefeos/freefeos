@@ -44,6 +44,7 @@ final class App extends UiApp {
   List<ViewModelProvider> get buildViewModel {
     return <ViewModelProvider>[
       OSAbilityProvider(viewModel: getViewModel),
+      ViewModelProvider<DetailsViewModule>(create: (_) => DetailsViewModule()),
       ViewModelProvider<IndexViewModule>(create: (_) => IndexViewModule()),
       ViewModelProvider<HomeViewModel>(create: (_) => HomeViewModel()),
       ViewModelProvider<LogcatViewModel>(create: (_) => LogcatViewModel()),
