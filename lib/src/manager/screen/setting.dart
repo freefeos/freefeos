@@ -29,6 +29,15 @@ class _SettingScreenState extends State<SettingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Placeholder();
+    return Column(
+      children: [
+        ListTile(
+          title: Text('pub.dev'),
+          onTap: () {
+            launchUrl(Uri.parse('https://pub.dev/packages/freefeos'));
+          },
+        ),
+      ],
+    );
   }
 }
