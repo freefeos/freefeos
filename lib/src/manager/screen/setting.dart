@@ -31,11 +31,15 @@ class _SettingScreenState extends State<SettingScreen> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ListTile(
-          title: Text('pub.dev'),
-          onTap: () {
-            launchUrl(Uri.parse('https://pub.dev/packages/freefeos'));
-          },
+        Card(
+          child: ListTile(
+            title: Text('了解更多'),
+            subtitle: Text('在 pub.dev 上查看'),
+            leading: Icon(Icons.open_in_browser),
+            onTap: () {
+              launchUrl(Uri.parse('https://pub.dev/packages/freefeos'));
+            },
+          ),
         ),
       ],
     );

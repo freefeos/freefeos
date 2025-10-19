@@ -45,10 +45,9 @@ final class LogcatViewModel with ViewModel implements ILogcatViewModel {
     for (var event in EventBuffer.outputEventBuffer) {
       final IAnsiParser parser = AnsiParser(
         isDark: isDark,
-        copy: (text) {
-          // ability.setClipboardData(text, showTips);
-          Clipboard.setData(ClipboardData(text: text));
-        },
+        copy: (text) => Clipboard.setData(
+          ClipboardData(text: text),
+        ).then((_) => showTips()),
       );
       final String text = event.lines.join('\n');
       int currentId = 0;
