@@ -41,6 +41,16 @@ class _SettingScreenState extends State<SettingScreen> {
             },
           ),
         ),
+        Card(
+          child: ListTile(
+            title: Text('详细信息'),
+            subtitle: Text('应用的详细信息'),
+            leading: Icon(Icons.info_outline),
+            onTap: () {
+              Navigator.of(context).pushNamed(DetailsPage.route);
+            },
+          ),
+        ),
       ],
     );
   }

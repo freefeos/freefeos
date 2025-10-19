@@ -42,6 +42,20 @@ final class _DetailsPageState extends State<DetailsPage> {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 32,
+                  top: 16,
+                  right: 32,
+                  bottom: 8,
+                ),
+                child: Text(
+                  '基础信息',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+              ),
               Text('应用名称: ${_packageInfo?.appName ?? 'Unknown'}'),
               Text('版本名称: ${_packageInfo?.version ?? 'Unknown'}'),
               Text('内部构建号: ${_packageInfo?.buildNumber ?? 'Unknown'}'),
@@ -52,6 +66,21 @@ final class _DetailsPageState extends State<DetailsPage> {
               Text(
                 '最后更新时间: ${dvm.formattDateString(_packageInfo?.updateTime) ?? 'Unknown'}',
               ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  left: 32,
+                  top: 8,
+                  right: 32,
+                  bottom: 8,
+                ),
+                child: Text(
+                  '服务声明',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+              ),
+              Text('由于使用此软件库的开发者的个人行为导致的违法违规, 与此软件库开发者无关.'),
             ],
           );
         },
