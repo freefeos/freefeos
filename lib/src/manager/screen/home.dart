@@ -111,9 +111,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
                 Card.filled(
-                  margin: const EdgeInsets.symmetric(
-                    vertical: 8,
-                    horizontal: 16,
+                  margin: const EdgeInsets.only(
+                    left: 16,
+                    top: 8,
+                    right: 16,
+                    bottom: 16,
                   ),
                   color: Theme.of(context).colorScheme.surfaceContainerHigh,
                   child: Column(
