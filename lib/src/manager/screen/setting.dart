@@ -72,6 +72,9 @@ class _SettingScreenState extends State<SettingScreen> {
                     onTap: () {
                       Navigator.of(context).pushNamed(DetailsPage.route);
                     },
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                    ),
                   ),
                 ),
                 Padding(
@@ -104,6 +107,9 @@ class _SettingScreenState extends State<SettingScreen> {
                     onTap: () {
                       launchUrl(Uri.parse('https://pub.dev/packages/freefeos'));
                     },
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                    ),
                   ),
                 ),
               ],
