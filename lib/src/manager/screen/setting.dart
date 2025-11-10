@@ -100,7 +100,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   ),
                   child: ListTile(
                     title: Text('了解更多'),
-                    subtitle: Text('在 pub.dev 上查看'),
+                    subtitle: Text('在 pub.dev 上查看 freefeos 包'),
                     leading: const Icon(Icons.open_in_browser),
                     trailing: const Icon(Icons.keyboard_arrow_right),
                     contentPadding: const EdgeInsets.symmetric(horizontal: 16),
