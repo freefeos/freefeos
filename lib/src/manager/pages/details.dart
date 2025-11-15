@@ -46,12 +46,12 @@ final class _DetailsPageState extends State<DetailsPage> {
             ).copyWith(scrollbars: false),
             child: SingleChildScrollView(
               controller: _scrollController,
-              padding: EdgeInsets.zero,
+              padding: .zero,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(
+                    padding: const .only(
                       left: 32,
                       top: 16,
                       right: 32,
@@ -67,10 +67,7 @@ final class _DetailsPageState extends State<DetailsPage> {
                   Consumer<DetailsViewModule>(
                     builder: (context, dvm, child) {
                       return Card.filled(
-                        margin: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 8,
-                        ),
+                        margin: const .symmetric(horizontal: 16, vertical: 8),
                         child: Column(
                           children: [
                             ListTile(
@@ -126,7 +123,7 @@ final class _DetailsPageState extends State<DetailsPage> {
                     },
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(
+                    padding: const .only(
                       left: 32,
                       top: 8,
                       right: 32,
@@ -140,7 +137,7 @@ final class _DetailsPageState extends State<DetailsPage> {
                     ),
                   ),
                   Card.filled(
-                    margin: EdgeInsets.only(
+                    margin: const .only(
                       left: 16,
                       right: 16,
                       top: 8,

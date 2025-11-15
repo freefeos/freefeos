@@ -239,17 +239,17 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
         // 初始化运行时
         for (var element in <OSModule>[this, ?bridge]) {
           // 类型
-          ModuleType type = ModuleType.unknown;
+          ModuleType type = .unknown;
           if (resources
               .getChannel(channel: V.channels.runtimeChannel)
               .equal(data: element.moduleChannel)) {
-            type = ModuleType.runtime;
+            type = .runtime;
           } else if (resources
               .getChannel(channel: V.channels.bridgeChannel)
               .equal(data: element.moduleChannel)) {
-            type = ModuleType.bridge;
+            type = .bridge;
           } else {
-            type = ModuleType.unknown;
+            type = .unknown;
           }
           // 添加到内置模块列表
           _moduleList.add(element);
@@ -294,10 +294,7 @@ final class OSRuntimeState extends ContextStateWrapper<OSRuntime>
           for (var component in componentsList) {
             // 添加到详细信息列表
             _moduleDetailsList.add(
-              ModuleDetails.formData(
-                data: component,
-                type: ModuleType.component,
-              ),
+              ModuleDetails.formData(data: component, type: .component),
             );
           }
         }

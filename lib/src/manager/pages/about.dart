@@ -46,11 +46,11 @@ class _AboutPageState extends State<AboutPage> {
             ).copyWith(scrollbars: false),
             child: SingleChildScrollView(
               controller: _scrollController,
-              padding: EdgeInsets.zero,
+              padding: .zero,
               child: Column(
                 children: [
                   Card.filled(
-                    margin: const EdgeInsets.only(
+                    margin: const .only(
                       left: 16,
                       top: 16,
                       right: 16,
@@ -63,12 +63,12 @@ class _AboutPageState extends State<AboutPage> {
                         leading: const FlutterLogo(),
                         title: Text(
                           _packageInfo?.appName ?? 'Unknown',
-                          overflow: TextOverflow.ellipsis,
+                          overflow: .ellipsis,
                           maxLines: 1,
                         ),
                         subtitle: Text(
                           _packageInfo?.version ?? 'Unknown',
-                          overflow: TextOverflow.ellipsis,
+                          overflow: .ellipsis,
                           maxLines: 1,
                         ),
                         contentPadding: const EdgeInsets.symmetric(
