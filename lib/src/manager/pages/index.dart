@@ -39,7 +39,7 @@ class _IndexPageState extends State<IndexPage> {
         builder: (context, index, ability, child) {
           return CapsuleButton(
             leadingIcon: Icons.more_horiz,
-            leadingTooltip: '系统菜单',
+            leadingTooltip: '菜单',
             onLeadingTap: () => showDialog(
               context: context,
               useRootNavigator: false,
@@ -80,20 +80,23 @@ class _IndexPageState extends State<IndexPage> {
                         ..pushNamed(AboutPage.route),
                     ),
                   ),
-                  content: Column(
-                    mainAxisSize: MainAxisSize.min,
+                  content: Row(
+                    mainAxisSize: .max,
+                    mainAxisAlignment: .center,
                     children: [
-                      FilledButton(
-                        onPressed: () => Navigator.of(context)
+                      ActinoItem(
+                        icon: Icons.manage_accounts,
+                        label: '管理器',
+                        onTap: () => Navigator.of(context)
                           ..pop()
                           ..pushNamed(ManagerPage.route),
-                        child: Text('管理器'),
                       ),
-                      FilledButton(
-                        onPressed: () => Navigator.of(context)
+                      ActinoItem(
+                        icon: Icons.settings,
+                        label: '设置',
+                        onTap: () => Navigator.of(context)
                           ..pop()
                           ..pushNamed(SettingsPage.route),
-                        child: Text('设置'),
                       ),
                     ],
                   ),
@@ -110,7 +113,7 @@ class _IndexPageState extends State<IndexPage> {
               },
             ),
             trailingIcon: Icons.adjust,
-            trailingTooltip: '退出应用',
+            trailingTooltip: '退出',
             onTrailingTap: () => index.doubleExit(
               showTips: (exit) => ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(

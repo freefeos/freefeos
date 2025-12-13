@@ -18,10 +18,10 @@ import '../runtime/runtime.dart';
 import 'intl/app_localizations.dart';
 
 /// Components 组件
+part 'components/actino_item.dart';
 part 'components/capsule_button.dart';
 part 'components/nav_bar.dart';
 part 'components/nav_host.dart';
-part 'components/nav_title.dart';
 part 'components/root_theme.dart';
 part 'components/screen_adapter.dart';
 

@@ -180,3 +180,5 @@ final class OSKernel extends OSComponent {
     }
   }
 }
+
+class RealTimeStarlit {}
