@@ -13,24 +13,11 @@ class _AboutPageState extends State<AboutPage> {
   /// 滚动控制器
   final ScrollController _scrollController = ScrollController();
 
-  /// 应用信息
-  PackageInfo? _packageInfo;
-
-  @override
-  void initState() {
-    super.initState();
-    PackageInfo.fromPlatform().then((res) {
-      setState(() => _packageInfo = res);
-    });
-  }
-
   @override
   void dispose() {
     super.dispose();
     // 释放滚动控制器
     _scrollController.dispose();
-    // 清空应用信息
-    _packageInfo = null;
   }
 
   @override
@@ -59,37 +46,41 @@ class _AboutPageState extends State<AboutPage> {
                     color: Theme.of(context).colorScheme.primaryContainer,
                     child: Tooltip(
                       message: '应用',
-                      child: ListTile(
-                        leading: const FlutterLogo(),
-                        title: Text(
-                          _packageInfo?.appName ?? 'Unknown',
-                          overflow: .ellipsis,
-                          maxLines: 1,
+                      child: FutureBuilder(
+                        future: PackageInfo.fromPlatform(),
+                        builder: (context, snapshot) => ListTile(
+                          leading: const FlutterLogo(),
+                          title: Text(
+                            snapshot.data?.appName ?? 'Unknown',
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
+                          subtitle: Text(
+                            snapshot.data?.version ?? 'Unknown',
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
+                          contentPadding: const EdgeInsets.symmetric(
+                            vertical: 12,
+                            horizontal: 24,
+                          ),
+                          trailing: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.info_outline,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                              const Icon(Icons.keyboard_arrow_right),
+                            ],
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          onTap: () => Navigator.of(
+                            context,
+                          ).pushNamed(DetailsPage.route),
                         ),
-                        subtitle: Text(
-                          _packageInfo?.version ?? 'Unknown',
-                          overflow: .ellipsis,
-                          maxLines: 1,
-                        ),
-                        contentPadding: const EdgeInsets.symmetric(
-                          vertical: 12,
-                          horizontal: 24,
-                        ),
-                        trailing: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.info_outline,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
-                            const Icon(Icons.keyboard_arrow_right),
-                          ],
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        onTap: () =>
-                            Navigator.of(context).pushNamed(DetailsPage.route),
                       ),
                     ),
                   ),

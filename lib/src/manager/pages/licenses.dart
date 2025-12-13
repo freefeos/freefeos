@@ -12,30 +12,15 @@ final class LicensesPage extends UiPage {
 final class _LicensesPageState extends State<LicensesPage> {
   _LicensesPageState();
 
-  /// 应用信息
-  PackageInfo? _packageInfo;
-
-  @override
-  void initState() {
-    super.initState();
-    PackageInfo.fromPlatform().then((res) {
-      setState(() => _packageInfo = res);
-    });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    // 清空应用信息
-    _packageInfo = null;
-  }
-
   @override
   Widget build(BuildContext context) {
-    return LicensePage(
-      applicationName: _packageInfo?.appName ?? 'Unknown',
-      applicationVersion: _packageInfo?.version ?? 'Unknown',
-      applicationLegalese: 'Powered by FreeFEOS',
+    return FutureBuilder(
+      future: PackageInfo.fromPlatform(),
+      builder: (context, snapshot) => LicensePage(
+        applicationName: snapshot.data?.appName ?? 'Unknown',
+        applicationVersion: snapshot.data?.version ?? 'Unknown',
+        applicationLegalese: 'Powered by FreeFEOS',
+      ),
     );
   }
 }

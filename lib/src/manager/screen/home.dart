@@ -19,24 +19,11 @@ class _HomeScreenState extends State<HomeScreen> {
   /// 滚动控制器
   final ScrollController _scrollController = ScrollController();
 
-  /// 应用信息
-  PackageInfo? _packageInfo;
-
-  @override
-  void initState() {
-    super.initState();
-    PackageInfo.fromPlatform().then((res) {
-      setState(() => _packageInfo = res);
-    });
-  }
-
   @override
   void dispose() {
     super.dispose();
     // 释放滚动控制器
     _scrollController.dispose();
-    // 清空应用信息
-    _packageInfo = null;
   }
 
   @override
@@ -70,33 +57,36 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: ListTile(
                           leading: Icon(hvm.getStateCardIcon(ability)),
                           title: Text(hvm.getStateCardTitle(context, ability)),
-                          subtitle: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                AppLocalizations.of(
-                                  context,
-                                ).indexHomeStatuesCardAppId(
-                                  _packageInfo?.packageName ?? 'Unknown',
+                          subtitle: FutureBuilder(
+                            future: PackageInfo.fromPlatform(),
+                            builder: (context, snapshot) => Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  AppLocalizations.of(
+                                    context,
+                                  ).indexHomeStatuesCardAppId(
+                                    snapshot.data?.packageName ?? 'Unknown',
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                AppLocalizations.of(
-                                  context,
-                                ).indexHomeStatuesCardEnvVersion(
-                                  hvm.getStateCardEnv(context, ability),
+                                Text(
+                                  AppLocalizations.of(
+                                    context,
+                                  ).indexHomeStatuesCardEnvVersion(
+                                    hvm.getStateCardEnv(context, ability),
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                AppLocalizations.of(
-                                  context,
-                                ).indexHomeStatuesCardAppVersion(
-                                  _packageInfo?.version ?? 'Unknown',
+                                Text(
+                                  AppLocalizations.of(
+                                    context,
+                                  ).indexHomeStatuesCardAppVersion(
+                                    snapshot.data?.version ?? 'Unknown',
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
@@ -137,9 +127,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             right: 24,
                             bottom: 3,
                           ),
-                          subtitle: Consumer<OSAbility>(
-                            builder: (context, ability, _) {
-                              return Text('');
+                          subtitle: FutureBuilder(
+                            future: PackageInfo.fromPlatform(),
+                            builder: (context, snapshot) {
+                              return Text(snapshot.data?.appName ?? 'Unknown');
                             },
                           ),
                         ),

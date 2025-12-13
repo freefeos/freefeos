@@ -13,24 +13,11 @@ final class _DetailsPageState extends State<DetailsPage> {
   /// 滚动控制器
   final ScrollController _scrollController = ScrollController();
 
-  /// 应用信息
-  PackageInfo? _packageInfo;
-
-  @override
-  void initState() {
-    super.initState();
-    PackageInfo.fromPlatform().then((res) {
-      setState(() => _packageInfo = res);
-    });
-  }
-
   @override
   void dispose() {
     super.dispose();
     // 释放滚动控制器
     _scrollController.dispose();
-    // 清空应用信息
-    _packageInfo = null;
   }
 
   @override
@@ -68,56 +55,79 @@ final class _DetailsPageState extends State<DetailsPage> {
                     builder: (context, dvm, child) {
                       return Card.filled(
                         margin: const .symmetric(horizontal: 16, vertical: 8),
-                        child: Column(
-                          children: [
-                            ListTile(
-                              title: Text('应用名称'),
-                              subtitle: Text(
-                                _packageInfo?.appName ?? 'Unknown',
+                        child: FutureBuilder(
+                          future: PackageInfo.fromPlatform(),
+                          builder: (context, snapshot) => Column(
+                            children: [
+                              ListTile(
+                                title: Text('应用名称'),
+                                subtitle: Text(
+                                  snapshot.data?.appName ?? 'Unknown',
+                                ),
                               ),
-                            ),
-                            const Divider(height: 1, indent: 16, endIndent: 16),
-                            ListTile(
-                              title: Text('版本名称'),
-                              subtitle: Text(
-                                _packageInfo?.version ?? 'Unknown',
+                              const Divider(
+                                height: 1,
+                                indent: 16,
+                                endIndent: 16,
                               ),
-                            ),
-                            const Divider(height: 1, indent: 16, endIndent: 16),
-                            ListTile(
-                              title: Text('内部构建号'),
-                              subtitle: Text(
-                                _packageInfo?.buildNumber ?? 'Unknown',
+                              ListTile(
+                                title: Text('版本名称'),
+                                subtitle: Text(
+                                  snapshot.data?.version ?? 'Unknown',
+                                ),
                               ),
-                            ),
-                            const Divider(height: 1, indent: 16, endIndent: 16),
-                            ListTile(
-                              title: Text('应用包名'),
-                              subtitle: Text(
-                                _packageInfo?.packageName ?? 'Unknown',
+                              const Divider(
+                                height: 1,
+                                indent: 16,
+                                endIndent: 16,
                               ),
-                            ),
-                            const Divider(height: 1, indent: 16, endIndent: 16),
-                            ListTile(
-                              title: Text('首次安装时间'),
-                              subtitle: Text(
-                                dvm.formattDateString(
-                                      _packageInfo?.installTime,
-                                    ) ??
-                                    'Unknown',
+                              ListTile(
+                                title: Text('版本号'),
+                                subtitle: Text(
+                                  snapshot.data?.buildNumber ?? 'Unknown',
+                                ),
                               ),
-                            ),
-                            const Divider(height: 1, indent: 16, endIndent: 16),
-                            ListTile(
-                              title: Text('最后更新时间'),
-                              subtitle: Text(
-                                dvm.formattDateString(
-                                      _packageInfo?.updateTime,
-                                    ) ??
-                                    'Unknown',
+                              const Divider(
+                                height: 1,
+                                indent: 16,
+                                endIndent: 16,
                               ),
-                            ),
-                          ],
+                              ListTile(
+                                title: Text('应用包名'),
+                                subtitle: Text(
+                                  snapshot.data?.packageName ?? 'Unknown',
+                                ),
+                              ),
+                              const Divider(
+                                height: 1,
+                                indent: 16,
+                                endIndent: 16,
+                              ),
+                              ListTile(
+                                title: Text('首次安装时间'),
+                                subtitle: Text(
+                                  dvm.formattDateString(
+                                        snapshot.data?.installTime,
+                                      ) ??
+                                      'Unknown',
+                                ),
+                              ),
+                              const Divider(
+                                height: 1,
+                                indent: 16,
+                                endIndent: 16,
+                              ),
+                              ListTile(
+                                title: Text('最后更新时间'),
+                                subtitle: Text(
+                                  dvm.formattDateString(
+                                        snapshot.data?.updateTime,
+                                      ) ??
+                                      'Unknown',
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },
@@ -144,7 +154,6 @@ final class _DetailsPageState extends State<DetailsPage> {
                       bottom: 16,
                     ),
                     child: ListTile(
-                      leading: Icon(Icons.warning_amber),
                       title: Text('由于使用此软件库的开发者的个人行为导致的违法违规, 与此软件库开发者无关.'),
                     ),
                   ),

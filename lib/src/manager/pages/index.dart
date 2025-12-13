@@ -3,7 +3,7 @@ part of '../manager.dart';
 final class IndexPage extends UiPage {
   const IndexPage({super.key});
 
-  // 路由地址
+  /// 路由地址
   static const RouteName route = '/app';
 
   @override
@@ -12,24 +12,6 @@ final class IndexPage extends UiPage {
 
 class _IndexPageState extends State<IndexPage> {
   _IndexPageState();
-
-  /// 应用信息
-  PackageInfo? _packageInfo;
-
-  @override
-  void initState() {
-    super.initState();
-    PackageInfo.fromPlatform().then((res) {
-      setState(() => _packageInfo = res);
-    });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    // 清空应用信息
-    _packageInfo = null;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,33 +33,36 @@ class _IndexPageState extends State<IndexPage> {
                   ),
                   title: Tooltip(
                     message: '关于应用',
-                    child: ListTile(
-                      contentPadding: const EdgeInsets.only(
-                        left: 24.0,
-                        top: 12.0,
-                        right: 24.0,
-                      ),
-                      leading: const FlutterLogo(),
-                      title: Text(
-                        _packageInfo?.appName ?? 'Unknown',
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                      ),
-                      subtitle: Text(
-                        _packageInfo?.version ?? 'Unknown',
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                      ),
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(28),
-                          topRight: Radius.circular(28),
+                    child: FutureBuilder(
+                      future: PackageInfo.fromPlatform(),
+                      builder: (context, snapshot) => ListTile(
+                        contentPadding: const EdgeInsets.only(
+                          left: 24.0,
+                          top: 12.0,
+                          right: 24.0,
                         ),
+                        leading: const FlutterLogo(),
+                        title: Text(
+                          snapshot.data?.appName ?? 'Unknown',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                        subtitle: Text(
+                          snapshot.data?.version ?? 'Unknown',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(28),
+                            topRight: Radius.circular(28),
+                          ),
+                        ),
+                        trailing: const Icon(Icons.keyboard_arrow_right),
+                        onTap: () => Navigator.of(context)
+                          ..pop()
+                          ..pushNamed(AboutPage.route),
                       ),
-                      trailing: const Icon(Icons.keyboard_arrow_right),
-                      onTap: () => Navigator.of(context)
-                        ..pop()
-                        ..pushNamed(AboutPage.route),
                     ),
                   ),
                   content: Row(
