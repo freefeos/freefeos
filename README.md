@@ -53,7 +53,7 @@
 
 ## 📢重要通知
 
-~~因开发者学业原因, 自2024年9月起至2025年高考结束(2025年5月12日)期间项目进入维护状态, 仅提供重大错误修复, 预计更新频率最多每月一次, 敬请谅解, 谢谢!~~
+~~因开发者学业原因, 至2025年高考结束期间项目进入维护状态, 仅提供重大错误修复, 预计更新频率最多每月一次, 敬请谅解, 谢谢!~~
 
 🎉🎉🎉 已被心仪的院校录取, 项目开发继续~
 
@@ -102,23 +102,9 @@ that can provide many advanced features for applications.
 
 有关详细信息，请参阅 [CHANGELOG](https://github.com/freefeos/freefeos/blob/master/CHANGELOG.md) 文件.
 
-## 👍参与开发
-
-如果您还不了解Flutter, 👇请往下看.
-
-### Flutter 入门
-
-该项目是 Flutter
-[插件包](https://docs.flutter.cn/packages-and-plugins/developing-packages/)
-的起点，这是一个包含针对 Android 和/或 iOS 平台特定实现代码的专用包。
-
-如需 Flutter 开发入门帮助，请查看
-[在线文档](https://docs.flutter.cn/)，其中提供教程、
-示例、移动开发指南以及完整的 API 参考。
-
 ## 致谢
 
-* [一个木函](https://ol.woobx.cn/) : Base64 编码/解码.
+[一个木函](https://ol.woobx.cn/) : Base64 编码/解码.
 
 ## 许可
 
