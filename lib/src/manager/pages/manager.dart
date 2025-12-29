@@ -53,7 +53,6 @@ class _ManagerPageState extends State<ManagerPage> {
             label: '设置',
             icon: Icons.settings_outlined,
             selectedIcon: Icons.settings,
-            navController: _navController,
           );
         },
       ],

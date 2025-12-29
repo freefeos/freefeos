@@ -9,10 +9,7 @@ final class SettingScreen extends UiScreen {
     required super.label,
     required super.icon,
     required super.selectedIcon,
-    required this.navController,
   });
-
-  final NavController? navController;
 
   @override
   State<SettingScreen> createState() => _SettingScreenState();

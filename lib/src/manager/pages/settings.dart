@@ -20,7 +20,6 @@ final class _SettingsPageState extends State<SettingsPage> {
         label: '',
         icon: Icons.settings_outlined,
         selectedIcon: Icons.settings_outlined,
-        navController: null,
       ),
     );
   }
