@@ -49,7 +49,6 @@ class _LogcatScreenState extends State<LogcatScreen> {
               ).copyWith(scrollbars: false),
               child: ListView.builder(
                 controller: _scrollController,
-                padding: EdgeInsets.zero,
                 itemCount: logcat.getItemCount,
                 itemBuilder: (context, index) {
                   return ListTile(

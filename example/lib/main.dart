@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DevicePreview(
-      enabled: false,
+      enabled: true,
       builder: (context) => MaterialApp(
         routes: {
           '/': (context) => const HomePage(),
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           // 日志会显示 initState 被执行两次, 然后 dispose, 然后继续执行. 逆天.
           LifecycleListener.builder,
           // bug: https://github.com/aloisdeniel/flutter_device_preview/issues/252
-          // device_preview 的逆天 Bug, 导致父级 Widget 生命周期错乱, initState会执行两次,
+          // 父级 Widget 生命周期错乱, initState会执行两次,
           // 而且会在 dispose() 后继续执行代码, 导致抛出异常.
           // 如果与 device_preview 同时使用, 请将 freefeos 置于其后方.
           DevicePreview.appBuilder,
@@ -50,7 +50,6 @@ class MyApp extends StatelessWidget {
         // 为了与 device_preview 兼容, 需要将 useInheritedMediaQuery 设置为 true.
         // ignore: deprecated_member_use
         useInheritedMediaQuery: true,
-        debugShowCheckedModeBanner: false,
       ),
     );
   }

@@ -12,20 +12,27 @@ final class ScreenAdapter extends UiStatefulComponent {
 class _ScreenAdapterState extends State<ScreenAdapter> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      left: true,
-      top: false,
-      right: true,
-      bottom: false,
-      minimum: EdgeInsets.zero,
-      maintainBottomViewPadding: true,
-      child: Align(
-        alignment: Alignment.topCenter,
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 840),
-          child: widget.child,
-        ),
+    return Align(
+      alignment: Alignment.topCenter,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 840),
+        child: widget.child,
       ),
     );
+    // return SafeArea(
+    //   left: true,
+    //   top: false,
+    //   right: true,
+    //   bottom: false,
+    //   minimum: EdgeInsets.zero,
+    //   maintainBottomViewPadding: true,
+    //   child: Align(
+    //     alignment: Alignment.topCenter,
+    //     child: ConstrainedBox(
+    //       constraints: const BoxConstraints(maxWidth: 840),
+    //       child: widget.child,
+    //     ),
+    //   ),
+    // );
   }
 }
