@@ -68,6 +68,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ).indexHomeStatuesCardAppId(
                                   snapshot.data?.packageName ?? 'Unknown',
                                 ),
+                                maxLines: 1,
+                                overflow: .ellipsis,
                               ),
                               Text(
                                 AppLocalizations.of(
@@ -75,6 +77,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ).indexHomeStatuesCardEnvVersion(
                                   hvm.getStateCardEnv(context, ability),
                                 ),
+                                maxLines: 1,
+                                overflow: .ellipsis,
                               ),
                               Text(
                                 AppLocalizations.of(
@@ -82,6 +86,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ).indexHomeStatuesCardAppVersion(
                                   snapshot.data?.version ?? 'Unknown',
                                 ),
+                                maxLines: 1,
+                                overflow: .ellipsis,
                               ),
                             ],
                           ),
