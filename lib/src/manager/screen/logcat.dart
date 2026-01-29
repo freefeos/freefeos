@@ -86,9 +86,7 @@ class _LogcatScreenState extends State<LogcatScreen> {
         content: Text(AppLocalizations.of(context).indexLogcatItemCopyTips),
         action: SnackBarAction(
           label: AppLocalizations.of(context).indexLogcatSnackBarAction,
-          onPressed: () {
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-          },
+          onPressed: () => ScaffoldMessenger.of(context).hideCurrentSnackBar(),
         ),
       ),
     );

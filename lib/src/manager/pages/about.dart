@@ -31,177 +31,168 @@ class _AboutPageState extends State<AboutPage> {
             behavior: ScrollConfiguration.of(
               context,
             ).copyWith(scrollbars: false),
-            child: SingleChildScrollView(
+            child: ListView(
               controller: _scrollController,
-              padding: .zero,
-              child: Column(
-                children: [
-                  Card.filled(
-                    margin: const .only(
-                      left: 16,
-                      top: 16,
-                      right: 16,
-                      bottom: 8,
-                    ),
-                    color: Theme.of(context).colorScheme.primaryContainer,
-                    child: Tooltip(
-                      message: '应用',
-                      child: FutureBuilder(
-                        future: PackageInfo.fromPlatform(),
-                        builder: (context, snapshot) => ListTile(
-                          leading: const FlutterLogo(),
-                          title: Text(
-                            snapshot.data?.appName ?? 'Unknown',
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                          subtitle: Text(
-                            snapshot.data?.version ?? 'Unknown',
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(
-                            vertical: 12,
-                            horizontal: 24,
-                          ),
-                          trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(
-                                Icons.info_outline,
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                              const Icon(Icons.keyboard_arrow_right),
-                            ],
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          onTap: () => Navigator.of(
-                            context,
-                          ).pushNamed(DetailsPage.route),
+              children: [
+                Card.filled(
+                  margin: const .only(left: 16, top: 16, right: 16, bottom: 8),
+                  color: Theme.of(context).colorScheme.primaryContainer,
+                  child: Tooltip(
+                    message: '应用',
+                    child: FutureBuilder(
+                      future: PackageInfo.fromPlatform(),
+                      builder: (context, snapshot) => ListTile(
+                        leading: const FlutterLogo(),
+                        title: Text(
+                          snapshot.data?.appName ?? 'Unknown',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
                         ),
+                        subtitle: Text(
+                          snapshot.data?.version ?? 'Unknown',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(
+                          vertical: 12,
+                          horizontal: 24,
+                        ),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.info_outline,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                            const Icon(Icons.keyboard_arrow_right),
+                          ],
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        onTap: () =>
+                            Navigator.of(context).pushNamed(DetailsPage.route),
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 16,
-                      top: 8,
-                      right: 16,
-                      bottom: 8,
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Expanded(
-                          child: Tooltip(
-                            message: '进入应用',
-                            child: FilledButton(
-                              onPressed: () => Navigator.of(
-                                context,
-                              ).popUntil(ModalRoute.withName(IndexPage.route)),
-                              child: Text('进入应用'),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        Expanded(
-                          child: Tooltip(
-                            message: '管理器',
-                            child: OutlinedButton(
-                              onPressed: () => Navigator.of(
-                                context,
-                              ).pushNamed(ManagerPage.route),
-                              child: Text('管理器'),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 16,
+                    top: 8,
+                    right: 16,
+                    bottom: 8,
                   ),
-                  Card.filled(
-                    margin: const EdgeInsets.only(
-                      left: 16,
-                      top: 8,
-                      right: 16,
-                      bottom: 8,
-                    ),
-                    color: Theme.of(context).colorScheme.surfaceContainerHigh,
-                    child: ListTile(
-                      title: Text(
-                        'Powered by FreeFEOS',
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: Tooltip(
+                          message: '进入应用',
+                          child: FilledButton(
+                            onPressed: () => Navigator.of(
+                              context,
+                            ).popUntil(ModalRoute.withName(IndexPage.route)),
+                            child: Text('进入应用'),
+                          ),
+                        ),
                       ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Tooltip(
+                          message: '管理器',
+                          child: OutlinedButton(
+                            onPressed: () => Navigator.of(
+                              context,
+                            ).pushNamed(ManagerPage.route),
+                            child: Text('管理器'),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Card.filled(
+                  margin: const EdgeInsets.only(
+                    left: 16,
+                    top: 8,
+                    right: 16,
+                    bottom: 8,
+                  ),
+                  color: Theme.of(context).colorScheme.surfaceContainerHigh,
+                  child: ListTile(
+                    title: Text(
+                      'Powered by FreeFEOS',
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
                     ),
                   ),
-                  Card.filled(
-                    margin: const EdgeInsets.only(
-                      left: 16,
-                      top: 8,
-                      right: 16,
-                      bottom: 16,
-                    ),
-                    color: Theme.of(context).colorScheme.surfaceContainerHigh,
-                    child: Column(
-                      children: [
-                        ListTile(
-                          title: Text('设置'),
-                          trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(
-                                Icons.settings,
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                              const Icon(Icons.keyboard_arrow_right),
-                            ],
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(12),
-                              topRight: Radius.circular(12),
-                            ),
-                          ),
-                          onTap: () {
-                            Navigator.of(context).pushNamed(SettingsPage.route);
-                          },
-                        ),
-                        const Divider(height: 1, indent: 16, endIndent: 16),
-                        ListTile(
-                          title: Text('开放源代码许可'),
-                          trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(
-                                Icons.list,
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                              const Icon(Icons.keyboard_arrow_right),
-                            ],
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(
-                            horizontal: 16,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(12),
-                              bottomRight: Radius.circular(12),
-                            ),
-                          ),
-                          onTap: () {
-                            Navigator.of(context).pushNamed(LicensesPage.route);
-                          },
-                        ),
-                      ],
-                    ),
+                ),
+                Card.filled(
+                  margin: const EdgeInsets.only(
+                    left: 16,
+                    top: 8,
+                    right: 16,
+                    bottom: 16,
                   ),
-                ],
-              ),
+                  color: Theme.of(context).colorScheme.surfaceContainerHigh,
+                  child: Column(
+                    children: [
+                      ListTile(
+                        title: Text('设置'),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.settings,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                            const Icon(Icons.keyboard_arrow_right),
+                          ],
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(12),
+                            topRight: Radius.circular(12),
+                          ),
+                        ),
+                        onTap: () {
+                          Navigator.of(context).pushNamed(SettingsPage.route);
+                        },
+                      ),
+                      const Divider(height: 1, indent: 16, endIndent: 16),
+                      ListTile(
+                        title: Text('开放源代码许可'),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.list,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                            const Icon(Icons.keyboard_arrow_right),
+                          ],
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(12),
+                            bottomRight: Radius.circular(12),
+                          ),
+                        ),
+                        onTap: () {
+                          Navigator.of(context).pushNamed(LicensesPage.route);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ),
