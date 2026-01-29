@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DevicePreview(
-      enabled: true,
+      enabled: false,
       builder: (context) => MaterialApp(
         routes: {
           '/': (context) => const HomePage(),
@@ -103,12 +103,19 @@ class DetailsPage extends StatelessWidget {
         title: const Text('路由测试'),
         actions: const [CapsulePlaceholder()],
       ),
-      body: Center(
-        child: FilledButton(
-          onPressed: () => Navigator.of(context).pop(),
-          child: const Text('返回'),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            for (var i = 0; i < 100; i++) ListTile(title: Text('Item $i')),
+          ],
         ),
       ),
+      // body: Center(
+      //   child: FilledButton(
+      //     onPressed: () => Navigator.of(context).pop(),
+      //     child: const Text('返回'),
+      //   ),
+      // ),
     );
   }
 }

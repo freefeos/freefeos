@@ -20,12 +20,12 @@ class _ScreenAdapterState extends State<ScreenAdapter> {
       ),
     );
     // return SafeArea(
-    //   left: true,
-    //   top: false,
-    //   right: true,
-    //   bottom: false,
-    //   minimum: EdgeInsets.zero,
-    //   maintainBottomViewPadding: true,
+    //   // left: true,
+    //   // top: false,
+    //   // right: true,
+    //   // bottom: false,
+    //   // minimum: EdgeInsets.zero,
+    //   // maintainBottomViewPadding: true,
     //   child: Align(
     //     alignment: Alignment.topCenter,
     //     child: ConstrainedBox(
