@@ -27,16 +27,16 @@ class _IndexPageState extends State<IndexPage> {
               useRootNavigator: false,
               builder: (context) {
                 return AlertDialog(
-                  titlePadding: EdgeInsets.zero,
+                  titlePadding: .zero,
                   shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(28)),
+                    borderRadius: .all(.circular(28)),
                   ),
                   title: Tooltip(
                     message: '关于应用',
                     child: FutureBuilder(
                       future: PackageInfo.fromPlatform(),
                       builder: (context, snapshot) => ListTile(
-                        contentPadding: const EdgeInsets.only(
+                        contentPadding: const .only(
                           left: 24.0,
                           top: 12.0,
                           right: 24.0,
@@ -44,18 +44,18 @@ class _IndexPageState extends State<IndexPage> {
                         leading: const FlutterLogo(),
                         title: Text(
                           snapshot.data?.appName ?? 'Unknown',
-                          overflow: TextOverflow.ellipsis,
+                          overflow: .ellipsis,
                           maxLines: 1,
                         ),
                         subtitle: Text(
                           snapshot.data?.version ?? 'Unknown',
-                          overflow: TextOverflow.ellipsis,
+                          overflow: .ellipsis,
                           maxLines: 1,
                         ),
                         shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(28),
-                            topRight: Radius.circular(28),
+                          borderRadius: .only(
+                            topLeft: .circular(28),
+                            topRight: .circular(28),
                           ),
                         ),
                         trailing: const Icon(Icons.keyboard_arrow_right),

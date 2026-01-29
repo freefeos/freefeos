@@ -22,7 +22,7 @@ final class App extends UiApp {
     return ThemeData(
       useMaterial3: true, // Material3
       brightness: MediaQuery.platformBrightnessOf(context),
-      colorScheme: ColorScheme.fromSeed(
+      colorScheme: .fromSeed(
         seedColor: Colors.blue, // 蓝色主题
         brightness: MediaQuery.platformBrightnessOf(context),
       ), // 主题颜色
