@@ -1,19 +1,18 @@
 part of 'embedder.dart';
 
-//final class PlatformEmbedder extends Service implements FreeFEOSCompat {
 final class PlatformEmbedder extends Service {
   PlatformEmbedder();
 
   /// 日志标签
-  static const String tag = 'embedder';
+  // static const String _tag = 'embedder';
 
   // late FreeFEOSCompat _linker;
 
-  @override
-  void onCreate() {
-    super.onCreate();
-    // _linker = CompatLinker();
-  }
+  // @override
+  // void onCreate() {
+  //   super.onCreate();
+  //   // _linker = CompatLinker();
+  // }
 
   @override
   IBinder onBind(Want want) {
