@@ -49,9 +49,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       bottom: 8,
                     ),
                     child: Tooltip(
-                      message: AppLocalizations.of(
-                        context,
-                      ).indexHomeStatuesCardTooltip,
+                      // message: AppLocalizations.of(
+                      //   context,
+                      // ).indexHomeStatuesCardTooltip,
+                      message: '状态',
                       child: ListTile(
                         leading: Icon(hvm.getStateCardIcon(ability)),
                         title: Text(hvm.getStateCardTitle(context, ability)),
@@ -110,9 +111,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   children: [
                     Tooltip(
-                      message: AppLocalizations.of(
-                        context,
-                      ).indexHomeInfoCardHostAppTooltip,
+                      // message: AppLocalizations.of(
+                      //   context,
+                      // ).indexHomeInfoCardHostAppTooltip,
+                      message: '应用版本',
                       child: ListTile(
                         leading: const Icon(Icons.app_shortcut),
                         title: Text(
@@ -136,9 +138,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     Tooltip(
-                      message: AppLocalizations.of(
-                        context,
-                      ).indexHomeInfoCardBaseSdkTooltip,
+                      // message: AppLocalizations.of(
+                      //   context,
+                      // ).indexHomeInfoCardBaseSdkTooltip,
+                      message: 'Dart 版本',
                       child: ListTile(
                         leading: const Icon(Icons.code),
                         title: Text(
@@ -161,9 +164,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     Tooltip(
-                      message: AppLocalizations.of(
-                        context,
-                      ).indexHomeInfoCardVersionTooltip,
+                      // message: AppLocalizations.of(
+                      //   context,
+                      // ).indexHomeInfoCardVersionTooltip,
+                      message: 'Flutter 版本',
                       child: ListTile(
                         leading: const Icon(Icons.flutter_dash),
                         title: Text(
