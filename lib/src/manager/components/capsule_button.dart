@@ -42,23 +42,20 @@ final class _CapsuleButtonState extends State<CapsuleButton> {
   _CapsuleButtonState();
 
   // 胶囊按钮宽度
-  static final double _width = 87.0;
+  static const double _width = 87.0;
   // 胶囊按钮高度
-  static final double _height = 32.0;
+  static const double _height = 32.0;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        ConstrainedBox(
-          constraints: const BoxConstraints.expand(),
-          child: widget.child,
-        ),
+        ConstrainedBox(constraints: const .expand(), child: widget.child),
         SafeArea(
           child: Align(
-            alignment: Alignment.topRight,
+            alignment: .topRight,
             child: Padding(
-              padding: EdgeInsets.all(
+              padding: .all(
                 (Theme.of(context).appBarTheme.toolbarHeight ??
                         kToolbarHeight - _height) /
                     2,
@@ -67,13 +64,13 @@ final class _CapsuleButtonState extends State<CapsuleButton> {
                 width: _width,
                 height: _height,
                 decoration: BoxDecoration(
-                  color: Theme.of(context).brightness == Brightness.light
+                  color: Theme.of(context).brightness == .light
                       ? Colors.white.withAlpha((255 * 0.6).toInt())
                       : Colors.black.withAlpha((255 * 0.15).toInt()),
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
+                  borderRadius: .circular(20),
+                  border: .all(
                     width: 0.5,
-                    color: Theme.of(context).brightness == Brightness.light
+                    color: Theme.of(context).brightness == .light
                         ? Colors.black.withAlpha(25)
                         : Colors.white.withAlpha(25),
                   ),
@@ -81,33 +78,31 @@ final class _CapsuleButtonState extends State<CapsuleButton> {
                 child: Material(
                   color: Colors.transparent,
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: .center,
+                    mainAxisSize: .max,
                     children: [
                       Expanded(
                         child: Tooltip(
                           message: widget.leadingTooltip,
                           child: InkWell(
                             onTap: widget.onLeadingTap,
-                            borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(20),
-                              bottomLeft: Radius.circular(20),
+                            borderRadius: const .only(
+                              topLeft: .circular(20),
+                              bottomLeft: .circular(20),
                             ),
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: .center,
+                              mainAxisSize: .max,
                               children: [
                                 Opacity(
                                   opacity:
-                                      Theme.of(context).brightness ==
-                                          Brightness.light
+                                      Theme.of(context).brightness == .light
                                       ? 1.0
                                       : 0.8,
                                   child: Icon(
                                     widget.leadingIcon,
                                     color:
-                                        Theme.of(context).brightness ==
-                                            Brightness.light
+                                        Theme.of(context).brightness == .light
                                         ? Colors.black
                                         : Colors.white,
                                   ),
@@ -122,7 +117,7 @@ final class _CapsuleButtonState extends State<CapsuleButton> {
                         endIndent: 6,
                         width: 0.2,
                         thickness: 0.2,
-                        color: Theme.of(context).brightness == Brightness.light
+                        color: Theme.of(context).brightness == .light
                             ? Colors.black.withAlpha((255 * 0.3).toInt())
                             : Colors.white.withAlpha((255 * 0.3).toInt()),
                       ),
@@ -131,25 +126,23 @@ final class _CapsuleButtonState extends State<CapsuleButton> {
                           message: widget.trailingTooltip,
                           child: InkWell(
                             onTap: widget.onTrailingTap,
-                            borderRadius: const BorderRadius.only(
-                              topRight: Radius.circular(20),
-                              bottomRight: Radius.circular(20),
+                            borderRadius: const .only(
+                              topRight: .circular(20),
+                              bottomRight: .circular(20),
                             ),
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: .center,
+                              mainAxisSize: .max,
                               children: [
                                 Opacity(
                                   opacity:
-                                      Theme.of(context).brightness ==
-                                          Brightness.light
+                                      Theme.of(context).brightness == .light
                                       ? 1.0
                                       : 0.8,
                                   child: Icon(
                                     widget.trailingIcon,
                                     color:
-                                        Theme.of(context).brightness ==
-                                            Brightness.light
+                                        Theme.of(context).brightness == .light
                                         ? Colors.black
                                         : Colors.white,
                                   ),

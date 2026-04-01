@@ -28,21 +28,15 @@ class _ModuleScreenState extends State<ModuleScreen> {
   @override
   void initState() {
     super.initState();
-    final ModuleViewModel module = Provider.of<ModuleViewModel>(
-      context,
-      listen: false,
-    );
-    final OSAbility ability = Provider.of<OSAbility>(context, listen: false);
+    final ModuleViewModel module = Provider.of(context, listen: false);
+    final OSAbility ability = Provider.of(context, listen: false);
     module.init(ability);
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    final ModuleViewModel module = Provider.of<ModuleViewModel>(
-      context,
-      listen: false,
-    );
+    final ModuleViewModel module = Provider.of(context, listen: false);
     final List<Widget> modules = module.moduleList(
       context: context,
       showDetail: _showDetail,
@@ -80,12 +74,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
             controller: _scrollController,
             children: [
               Padding(
-                padding: const EdgeInsets.only(
-                  left: 32,
-                  top: 16,
-                  right: 32,
-                  bottom: 8,
-                ),
+                padding: const .only(left: 32, top: 16, right: 32, bottom: 8),
                 child: Text(
                   '模块',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -94,15 +83,12 @@ class _ModuleScreenState extends State<ModuleScreen> {
                 ),
               ),
               Card.filled(
-                margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                margin: const .symmetric(vertical: 8, horizontal: 16),
                 color: Theme.of(context).colorScheme.surfaceContainerHigh,
                 child: Column(children: _moduleList),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 8,
-                  horizontal: 32,
-                ),
+                padding: const .symmetric(vertical: 8, horizontal: 32),
                 child: Text(
                   '组件',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -111,12 +97,7 @@ class _ModuleScreenState extends State<ModuleScreen> {
                 ),
               ),
               Card.filled(
-                margin: const EdgeInsets.only(
-                  left: 16,
-                  top: 8,
-                  right: 16,
-                  bottom: 16,
-                ),
+                margin: const .only(left: 16, top: 8, right: 16, bottom: 16),
                 color: Theme.of(context).colorScheme.surfaceContainerHigh,
                 child: Column(children: _componentList),
               ),
@@ -140,21 +121,21 @@ class _ModuleScreenState extends State<ModuleScreen> {
     bool isBottom,
   ) {
     return ListTile(
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
+      contentPadding: const .symmetric(horizontal: 16.0),
       title: Text(title),
       trailing: Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: .min,
         children: [
           Icon(icon, color: Theme.of(context).colorScheme.primary),
           const Icon(Icons.keyboard_arrow_right),
         ],
       ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: isTop ? Radius.circular(12) : Radius.zero,
-          topRight: isTop ? Radius.circular(12) : Radius.zero,
-          bottomLeft: isBottom ? Radius.circular(12) : Radius.zero,
-          bottomRight: isBottom ? Radius.circular(12) : Radius.zero,
+        borderRadius: .only(
+          topLeft: isTop ? .circular(12) : .zero,
+          topRight: isTop ? .circular(12) : .zero,
+          bottomLeft: isBottom ? .circular(12) : .zero,
+          bottomRight: isBottom ? .circular(12) : .zero,
         ),
       ),
       onTap: onTap,
@@ -172,13 +153,9 @@ class _ModuleScreenState extends State<ModuleScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          titlePadding: EdgeInsets.zero,
+          titlePadding: .zero,
           title: ListTile(
-            contentPadding: const EdgeInsets.only(
-              left: 24.0,
-              top: 12.0,
-              right: 24.0,
-            ),
+            contentPadding: const .only(left: 24.0, top: 12.0, right: 24.0),
             trailing: Icon(
               icon,
               size: Theme.of(context).iconTheme.size,
@@ -187,9 +164,9 @@ class _ModuleScreenState extends State<ModuleScreen> {
             title: Text(title),
             subtitle: Text(id),
             shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(28),
-                topRight: Radius.circular(28),
+              borderRadius: .only(
+                topLeft: .circular(28),
+                topRight: .circular(28),
               ),
             ),
           ),

@@ -16,6 +16,7 @@ final class LogcatScreen extends UiScreen {
 }
 
 class _LogcatScreenState extends State<LogcatScreen> {
+  // 滚动控制器
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -23,7 +24,7 @@ class _LogcatScreenState extends State<LogcatScreen> {
     super.didChangeDependencies();
     setState(() {
       Provider.of<LogcatViewModel>(context, listen: false).init(
-        isDark: Theme.of(context).brightness == Brightness.dark,
+        isDark: Theme.of(context).brightness == .dark,
         ability: Provider.of<OSAbility>(context, listen: false),
         showTips: _showTips,
       );
@@ -52,7 +53,7 @@ class _LogcatScreenState extends State<LogcatScreen> {
                 itemCount: logcat.getItemCount,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    contentPadding: EdgeInsets.only(
+                    contentPadding: .only(
                       left: 16,
                       top: logcat.isTop(index) ? 16 : 0,
                       right: 16,

@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 builder: (context, hvm, ability, _) {
                   return Card.filled(
                     color: hvm.getStateCardColor(context, ability),
-                    margin: const EdgeInsets.only(
+                    margin: const .only(
                       left: 16,
                       top: 16,
                       right: 16,
@@ -58,9 +58,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         subtitle: FutureBuilder(
                           future: PackageInfo.fromPlatform(),
                           builder: (context, snapshot) => Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: .min,
+                            mainAxisAlignment: .start,
+                            crossAxisAlignment: .start,
                             children: [
                               Text(
                                 AppLocalizations.of(
@@ -93,9 +93,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: .circular(12),
                         ),
-                        contentPadding: const EdgeInsets.symmetric(
+                        contentPadding: const .symmetric(
                           vertical: 12,
                           horizontal: 24,
                         ),
@@ -105,12 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
               Card.filled(
-                margin: const EdgeInsets.only(
-                  left: 16,
-                  top: 8,
-                  right: 16,
-                  bottom: 16,
-                ),
+                margin: const .only(left: 16, top: 8, right: 16, bottom: 16),
                 color: Theme.of(context).colorScheme.surfaceContainerHigh,
                 child: Column(
                   children: [
@@ -126,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           // ).indexHomeInfoCardHostAppTitle,
                           '应用版本',
                         ),
-                        contentPadding: const EdgeInsets.only(
+                        contentPadding: const .only(
                           top: 12,
                           left: 24,
                           right: 24,
@@ -152,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           // ).indexHomeInfoCardBaseSdkTitle,
                           'Dart 版本',
                         ),
-                        contentPadding: const EdgeInsets.only(
+                        contentPadding: const .only(
                           top: 3,
                           left: 24,
                           right: 24,
@@ -177,7 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           // ).indexHomeInfoCardVersionTitle,
                           'Flutter 版本',
                         ),
-                        contentPadding: const EdgeInsets.only(
+                        contentPadding: const .only(
                           top: 3,
                           left: 24,
                           right: 24,

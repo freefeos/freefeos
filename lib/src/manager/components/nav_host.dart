@@ -23,7 +23,7 @@ final class _NavHostState extends State<NavHost> {
             return SharedAxisTransition(
               animation: animation,
               secondaryAnimation: secondaryAnimation,
-              transitionType: SharedAxisTransitionType.scaled,
+              transitionType: .scaled,
               child: child,
             );
           },
