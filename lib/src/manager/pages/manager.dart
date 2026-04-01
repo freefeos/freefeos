@@ -19,42 +19,34 @@ class _ManagerPageState extends State<ManagerPage> {
       context: context,
       defaultIndex: 0,
       builders: [
-        (context) {
-          return HomeScreen(
-            title: '主页',
-            index: 0,
-            label: '主页',
-            icon: Icons.home_outlined,
-            selectedIcon: Icons.home,
-          );
-        },
-        (context) {
-          return LogcatScreen(
-            title: '日志',
-            index: 1,
-            label: '日志',
-            icon: Icons.bug_report_outlined,
-            selectedIcon: Icons.bug_report,
-          );
-        },
-        (context) {
-          return ModuleScreen(
-            title: '模块',
-            index: 2,
-            label: '模块',
-            icon: Icons.layers_outlined,
-            selectedIcon: Icons.layers,
-          );
-        },
-        (context) {
-          return SettingScreen(
-            title: '设置',
-            index: 3,
-            label: '设置',
-            icon: Icons.settings_outlined,
-            selectedIcon: Icons.settings,
-          );
-        },
+        (context) => HomeScreen(
+          title: '主页',
+          index: 0,
+          label: '主页',
+          icon: Icons.home_outlined,
+          selectedIcon: Icons.home,
+        ),
+        (context) => LogcatScreen(
+          title: '日志',
+          index: 1,
+          label: '日志',
+          icon: Icons.bug_report_outlined,
+          selectedIcon: Icons.bug_report,
+        ),
+        (context) => ModuleScreen(
+          title: '模块',
+          index: 2,
+          label: '模块',
+          icon: Icons.layers_outlined,
+          selectedIcon: Icons.layers,
+        ),
+        (context) => SettingScreen(
+          title: '设置',
+          index: 3,
+          label: '设置',
+          icon: Icons.settings_outlined,
+          selectedIcon: Icons.settings,
+        ),
       ],
     );
   }
