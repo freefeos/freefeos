@@ -1,3 +1,4 @@
+/// manager
 library;
 
 import 'dart:async';

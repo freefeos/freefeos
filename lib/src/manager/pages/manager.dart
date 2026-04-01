@@ -53,8 +53,8 @@ class _ManagerPageState extends State<ManagerPage> {
 
   @override
   void dispose() {
-    _navController.dispose();
     super.dispose();
+    _navController.dispose();
   }
 
   @override

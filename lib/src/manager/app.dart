@@ -5,16 +5,14 @@ final class App extends UiApp {
 
   /// 页面
   @override
-  Map<RouteName, UiPageBuilder> get buildPages {
-    return <RouteName, UiPageBuilder>{
-      IndexPage.route: (_) => IndexPage(),
-      ManagerPage.route: (_) => ManagerPage(),
-      AboutPage.route: (_) => AboutPage(),
-      LicensesPage.route: (_) => LicensesPage(),
-      DetailsPage.route: (_) => DetailsPage(),
-      SettingsPage.route: (_) => SettingsPage(),
-    };
-  }
+  Map<RouteName, UiPageBuilder> get buildPages => {
+    IndexPage.route: (_) => IndexPage(),
+    ManagerPage.route: (_) => ManagerPage(),
+    AboutPage.route: (_) => AboutPage(),
+    LicensesPage.route: (_) => LicensesPage(),
+    DetailsPage.route: (_) => DetailsPage(),
+    SettingsPage.route: (_) => SettingsPage(),
+  };
 
   /// 样式
   @override
@@ -34,11 +32,11 @@ final class App extends UiApp {
   List<ViewModelProvider> get buildViewModel {
     return <ViewModelProvider>[
       OSAbilityProvider(viewModel: getViewModel),
-      ViewModelProvider<DetailsViewModule>(create: (_) => DetailsViewModule()),
-      ViewModelProvider<IndexViewModule>(create: (_) => IndexViewModule()),
-      ViewModelProvider<HomeViewModel>(create: (_) => HomeViewModel()),
-      ViewModelProvider<LogcatViewModel>(create: (_) => LogcatViewModel()),
-      ViewModelProvider<ModuleViewModel>(create: (_) => ModuleViewModel()),
+      ViewModelProvider(create: (_) => DetailsViewModule()),
+      ViewModelProvider(create: (_) => IndexViewModule()),
+      ViewModelProvider(create: (_) => HomeViewModel()),
+      ViewModelProvider(create: (_) => LogcatViewModel()),
+      ViewModelProvider(create: (_) => ModuleViewModel()),
     ];
   }
 
@@ -46,7 +44,7 @@ final class App extends UiApp {
   Widget build(BuildContext context) {
     return WidgetsApp(
       initialRoute: IndexPage.route,
-      pageRouteBuilder: <T>(RouteSettings settings, WidgetBuilder builder) {
+      pageRouteBuilder: <T>(settings, builder) {
         return MaterialPageRoute<T>(builder: builder, settings: settings);
       },
       routes: buildPages,
@@ -64,7 +62,7 @@ final class App extends UiApp {
       color: Colors.transparent,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false, // 隐藏banner防止与app的banner重叠
     );
   }
 }

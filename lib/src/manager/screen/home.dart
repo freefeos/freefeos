@@ -121,9 +121,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: ListTile(
                         leading: const Icon(Icons.app_shortcut),
                         title: Text(
-                          AppLocalizations.of(
-                            context,
-                          ).indexHomeInfoCardHostAppTitle,
+                          // AppLocalizations.of(
+                          //   context,
+                          // ).indexHomeInfoCardHostAppTitle,
+                          '应用版本',
                         ),
                         contentPadding: const EdgeInsets.only(
                           top: 12,
@@ -146,9 +147,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: ListTile(
                         leading: const Icon(Icons.code),
                         title: Text(
-                          AppLocalizations.of(
-                            context,
-                          ).indexHomeInfoCardBaseSdkTitle,
+                          // AppLocalizations.of(
+                          //   context,
+                          // ).indexHomeInfoCardBaseSdkTitle,
+                          'Dart 版本',
                         ),
                         contentPadding: const EdgeInsets.only(
                           top: 3,
@@ -168,11 +170,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         context,
                       ).indexHomeInfoCardVersionTooltip,
                       child: ListTile(
-                        leading: const Icon(Icons.web),
+                        leading: const Icon(Icons.flutter_dash),
                         title: Text(
-                          AppLocalizations.of(
-                            context,
-                          ).indexHomeInfoCardVersionTitle,
+                          // AppLocalizations.of(
+                          //   context,
+                          // ).indexHomeInfoCardVersionTitle,
+                          'Flutter 版本',
                         ),
                         contentPadding: const EdgeInsets.only(
                           top: 3,

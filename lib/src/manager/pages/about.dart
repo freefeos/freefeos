@@ -45,20 +45,20 @@ class _AboutPageState extends State<AboutPage> {
                         leading: const FlutterLogo(),
                         title: Text(
                           snapshot.data?.appName ?? 'Unknown',
-                          overflow: TextOverflow.ellipsis,
+                          overflow: .ellipsis,
                           maxLines: 1,
                         ),
                         subtitle: Text(
                           snapshot.data?.version ?? 'Unknown',
-                          overflow: TextOverflow.ellipsis,
+                          overflow: .ellipsis,
                           maxLines: 1,
                         ),
-                        contentPadding: const EdgeInsets.symmetric(
+                        contentPadding: const .symmetric(
                           vertical: 12,
                           horizontal: 24,
                         ),
                         trailing: Row(
-                          mainAxisSize: MainAxisSize.min,
+                          mainAxisSize: .min,
                           children: [
                             Icon(
                               Icons.info_outline,
@@ -68,7 +68,7 @@ class _AboutPageState extends State<AboutPage> {
                           ],
                         ),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
+                          borderRadius: .circular(12.0),
                         ),
                         onTap: () =>
                             Navigator.of(context).pushNamed(DetailsPage.route),
@@ -77,14 +77,9 @@ class _AboutPageState extends State<AboutPage> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(
-                    left: 16,
-                    top: 8,
-                    right: 16,
-                    bottom: 8,
-                  ),
+                  padding: const .only(left: 16, top: 8, right: 16, bottom: 8),
                   child: Row(
-                    mainAxisSize: MainAxisSize.max,
+                    mainAxisSize: .max,
                     children: [
                       Expanded(
                         child: Tooltip(
@@ -113,35 +108,25 @@ class _AboutPageState extends State<AboutPage> {
                   ),
                 ),
                 Card.filled(
-                  margin: const EdgeInsets.only(
-                    left: 16,
-                    top: 8,
-                    right: 16,
-                    bottom: 8,
-                  ),
+                  margin: const .only(left: 16, top: 8, right: 16, bottom: 8),
                   color: Theme.of(context).colorScheme.surfaceContainerHigh,
                   child: ListTile(
                     title: Text(
                       'Powered by FreeFEOS',
-                      overflow: TextOverflow.ellipsis,
+                      overflow: .ellipsis,
                       maxLines: 1,
                     ),
                   ),
                 ),
                 Card.filled(
-                  margin: const EdgeInsets.only(
-                    left: 16,
-                    top: 8,
-                    right: 16,
-                    bottom: 16,
-                  ),
+                  margin: const .only(left: 16, top: 8, right: 16, bottom: 16),
                   color: Theme.of(context).colorScheme.surfaceContainerHigh,
                   child: Column(
                     children: [
                       ListTile(
                         title: Text('设置'),
                         trailing: Row(
-                          mainAxisSize: MainAxisSize.min,
+                          mainAxisSize: .min,
                           children: [
                             Icon(
                               Icons.settings,
@@ -150,24 +135,21 @@ class _AboutPageState extends State<AboutPage> {
                             const Icon(Icons.keyboard_arrow_right),
                           ],
                         ),
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(12),
-                            topRight: Radius.circular(12),
+                        contentPadding: const .symmetric(horizontal: 16),
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: .only(
+                            topLeft: .circular(12),
+                            topRight: .circular(12),
                           ),
                         ),
-                        onTap: () {
-                          Navigator.of(context).pushNamed(SettingsPage.route);
-                        },
+                        onTap: () =>
+                            Navigator.of(context).pushNamed(SettingsPage.route),
                       ),
                       const Divider(height: 1, indent: 16, endIndent: 16),
                       ListTile(
                         title: Text('开放源代码许可'),
                         trailing: Row(
-                          mainAxisSize: MainAxisSize.min,
+                          mainAxisSize: .min,
                           children: [
                             Icon(
                               Icons.list,
@@ -176,18 +158,15 @@ class _AboutPageState extends State<AboutPage> {
                             const Icon(Icons.keyboard_arrow_right),
                           ],
                         ),
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(12),
-                            bottomRight: Radius.circular(12),
+                        contentPadding: const .symmetric(horizontal: 16),
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: .only(
+                            bottomLeft: .circular(12),
+                            bottomRight: .circular(12),
                           ),
                         ),
-                        onTap: () {
-                          Navigator.of(context).pushNamed(LicensesPage.route);
-                        },
+                        onTap: () =>
+                            Navigator.of(context).pushNamed(LicensesPage.route),
                       ),
                     ],
                   ),
