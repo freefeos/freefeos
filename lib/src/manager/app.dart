@@ -29,16 +29,14 @@ final class App extends UiApp {
 
   /// ViewModel
   @override
-  List<ViewModelProvider> get buildViewModel {
-    return <ViewModelProvider>[
-      OSAbilityProvider(viewModel: getViewModel),
-      ViewModelProvider(create: (_) => DetailsViewModule()),
-      ViewModelProvider(create: (_) => IndexViewModule()),
-      ViewModelProvider(create: (_) => HomeViewModel()),
-      ViewModelProvider(create: (_) => LogcatViewModel()),
-      ViewModelProvider(create: (_) => ModuleViewModel()),
-    ];
-  }
+  List<ViewModelProvider> get buildViewModel => [
+    OSAbilityProvider(viewModel: getViewModel),
+    ViewModelProvider(create: (_) => DetailsViewModule()),
+    ViewModelProvider(create: (_) => IndexViewModule()),
+    ViewModelProvider(create: (_) => HomeViewModel()),
+    ViewModelProvider(create: (_) => LogcatViewModel()),
+    ViewModelProvider(create: (_) => ModuleViewModel()),
+  ];
 
   @override
   Widget build(BuildContext context) {
