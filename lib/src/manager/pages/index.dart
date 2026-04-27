@@ -16,7 +16,6 @@ class _IndexPageState extends State<IndexPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
       body: Consumer2<IndexViewModule, OSAbility>(
         builder: (context, index, ability, child) {
           return CapsuleButton(
