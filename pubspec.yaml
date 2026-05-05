@@ -36,8 +36,6 @@ flutter:
     platforms:
       android:
         dartPluginClass: FreeFEOS
-      fuchsia:
-        dartPluginClass: FreeFEOS
       ios:
         dartPluginClass: FreeFEOS
       linux:
