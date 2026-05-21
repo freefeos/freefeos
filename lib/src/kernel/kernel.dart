@@ -1,8 +1,7 @@
 /// 系统内核层
 library;
 
-import 'package:freefeos/src/common/common.dart';
-
+import '../common/common.dart';
 import '../engine/engine.dart';
 import '../framework/framework.dart';
 
