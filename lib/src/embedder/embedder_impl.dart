@@ -26,7 +26,7 @@ final class OSEmbedder extends OSComponent {
     return super.onComponentAdded(binding).then((added) {
       final Want want = Want(classes: PlatformEmbedder());
       final EmbedderConnection connect = EmbedderConnection(
-        calback: (embedder) => _embedder = embedder,
+        callback: (embedder) => _embedder = embedder,
       );
       startService(want);
       bindService(want, connect);

@@ -1,14 +1,14 @@
 part of 'embedder.dart';
 
 final class EmbedderConnection implements ServiceConnection {
-  EmbedderConnection({required this.calback});
+  EmbedderConnection({required this.callback});
 
-  final void Function(PlatformEmbedder embedder) calback;
+  final void Function(PlatformEmbedder embedder) callback;
 
   @override
   void onServiceConnected(String name, IBinder service) {
     EmbedderBinder binder = service as EmbedderBinder;
-    calback(binder.getService as PlatformEmbedder);
+    callback(binder.getService as PlatformEmbedder);
   }
 
   @override
