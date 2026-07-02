@@ -105,7 +105,7 @@ class _IndexPageState extends State<IndexPage> {
                   action: SnackBarAction(label: '退出', onPressed: exit),
                 ),
               ),
-              exit: () => SystemNavigator.pop(),
+              exit: () => SystemNavigator.pop(animated: true),
             ),
             child: Theme(
               data: RootTheme.of(context),
